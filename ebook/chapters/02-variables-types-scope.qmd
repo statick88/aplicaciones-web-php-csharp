@@ -86,18 +86,29 @@ const CURSO = 'PHP-CSharp';
 define('ETIQUETA', 'Semana 1');
 ```
 
-En C#, `const` requiere un valor de compilación. `readonly` es diferente: permite
-asignar el campo en su declaración o en el constructor y después impide modificarlo.
-Por tanto, `readonly` **no** equivale a una constante de tiempo de compilación.
+En C#, `const` requiere un valor de compilación. `readonly` es diferente:
+se aplica a un **campo de un tipo**, no a una variable local. Un campo de
+instancia `readonly` puede asignarse en su declaración o en el constructor de
+instancia; un campo `static readonly`, en su declaración o en el constructor
+estático. Por tanto, `readonly` **no** equivale a una constante de tiempo de
+compilación.
+
+Este fragmento declara los campos dentro de una clase; no son instrucciones
+sueltas para pegar dentro de un método:
 
 ```csharp
-const string Curso = "PHP-CSharp";
-static readonly DateTime Inicio = DateTime.UtcNow;
+public static class Configuracion
+{
+    public const string Curso = "PHP-CSharp";
+    public static readonly System.DateTime Inicio = System.DateTime.UtcNow;
+}
 ```
 
-Usa `const` cuando el valor pertenece literalmente al código y `readonly` cuando el
-valor se fija al construir o inicializar el objeto. No uses ambos solo por estilizar:
-la diferencia afecta dónde y cuándo puede asignarse el valor [@microsoft-csharp].
+El valor de `Inicio` se fija al inicializar el tipo, no al compilar. Desde otro
+punto del programa puedes leer `Configuracion.Curso` y `Configuracion.Inicio`.
+Usa `const` cuando el valor pertenece literalmente al código y `readonly` cuando
+se fija al construir el objeto o inicializar el tipo. La diferencia afecta dónde
+y cuándo puede asignarse el valor [@microsoft-csharp].
 
 ## Conversión: predice antes de sumar
 
@@ -133,8 +144,9 @@ string resultado = "3" + 3;
 
 **Por qué.** Los operadores se interpretan junto con los tipos de sus operandos. No
 copies una expresión de un lenguaje al otro suponiendo igual significado. La cadena
-no numérica `'3a'` puede producir una advertencia o un comportamiento problemático en
-PHP al usarla como número; no es una técnica recomendada ni un dato de prueba válido.
+`'3a'` empieza con un número, pero no es una cadena numérica válida completa:
+en PHP 8, `'3a' + 3` produce `6` y una advertencia `E_WARNING`. Que se obtenga
+un resultado no significa que la entrada sea válida; no dependas de esta conversión.
 Valida y convierte de forma explícita antes de calcular [@php-manual].
 
 **Comprobación de error.** Si esperabas `6` en C#, convierte el texto validado a un

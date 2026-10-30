@@ -9,9 +9,11 @@ contenidos que debas aprobar para comprender la Semana 1.
 ::: {.callout-important}
 ## Antes de empezar
 
-Estos pasos se verificaron en Linux. No se ejecutaron en Windows ni macOS. Los
-archivos bajo `ebook/examples/devcontainers/` son ejemplos para **copiar**; no
-son configuraciones activas y no funcionan ejecutándolos desde esa carpeta.
+En Linux se verificaron los ejemplos de lenguaje y la ruta de ejecución con
+Docker Compose. No se ejecutaron estas comprobaciones en Windows ni macOS,
+ni se probó la integración real de VS Code con Dev Containers. Los archivos
+bajo `ebook/examples/devcontainers/` son ejemplos para **copiar**; no son
+configuraciones activas y no funcionan ejecutándolos desde esa carpeta.
 :::
 
 ## Elegir una ruta

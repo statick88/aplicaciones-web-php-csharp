@@ -8,7 +8,7 @@ from html.parser import HTMLParser
 import re
 import sys
 from pathlib import Path
-from urllib.parse import urlparse
+from urllib.parse import unquote, urlparse
 import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -35,11 +35,97 @@ class ImageAltChecker(HTMLParser):
     def __init__(self) -> None:
         super().__init__()
         self.missing: list[str] = []
+        self.ids: set[str] = set()
+        self.targets: list[str] = []
+        self.bootstrap: list[dict[str, str | None]] = []
 
     def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
         values = dict(attrs)
         if tag == "img" and not (values.get("alt") or "").strip():
             self.missing.append(values.get("src") or "sin src")
+        for anchor in (values.get("id"), values.get("name") if tag == "a" else None):
+            if anchor:
+                self.ids.add(anchor)
+        for attr in ("href", "src", "poster", "data"):
+            if attr == "data" and tag != "object":
+                continue
+            if values.get(attr) and values[attr] not in self.targets:
+                self.targets.append(values[attr])
+        if tag == "link" and "stylesheet" in (values.get("rel") or "").split():
+            if re.match(r"bootstrap(?!-icons)(?:[.-])", Path(urlparse(values.get("href") or "").path).name):
+                self.bootstrap.append(values)
+
+    handle_startendtag = handle_starttag
+
+
+def configured_chapters(text: str) -> tuple[str, ...]:
+    """Read Quarto's scalar chapter entries (including nested part/chapter lists)."""
+    return tuple(dict.fromkeys(re.findall(
+        r"(?m)^\s*(?:-\s*|(?:-\s*)?file:\s*)[\"']?([^\s\"'#]+\.qmd)[\"']?\s*(?:#.*)?$", text)))
+
+
+def check_rendered(chapters: tuple[str, ...], errors: list[str]) -> None:
+    output = BOOK / "_book"
+    documents: dict[Path, ImageAltChecker] = {}
+
+    def document(path: Path) -> ImageAltChecker:
+        if path not in documents:
+            parsed = ImageAltChecker()
+            parsed.feed(path.read_text(encoding="utf-8"))
+            documents[path] = parsed
+        return documents[path]
+
+    for chapter in chapters:
+        relative = str(Path(chapter).with_suffix(".html"))
+        path = output / relative
+        if not path.is_file():
+            fail(errors, f"falta artefacto renderizado: ebook/_book/{relative}")
+            continue
+        html = document(path)
+        for src in html.missing:
+            fail(errors, f"imagen HTML sin texto alternativo en {relative}: {src}")
+        for target in html.targets:
+            parsed = urlparse(target)
+            if parsed.scheme or parsed.netloc:
+                continue
+            destination = ((output / unquote(parsed.path).lstrip("/")) if parsed.path.startswith("/")
+                           else (path.parent / unquote(parsed.path)) if parsed.path else path)
+            destination = destination.resolve()
+            if not destination.is_relative_to(output.resolve()):
+                fail(errors, f"destino local fuera del libro en {relative}: {target}")
+                continue
+            if destination.is_dir():
+                destination /= "index.html"
+            if not destination.is_file():
+                fail(errors, f"destino local inexistente en {relative}: {target}")
+            elif parsed.fragment and destination.suffix == ".html":
+                if unquote(parsed.fragment) not in document(destination).ids:
+                    fail(errors, f"ancla local inexistente en {relative}: {target}")
+
+        # The linked Bootstrap default palette matters, not Quarto's initial body class.
+        if relative == "index.html" or html.bootstrap:
+            solar = False
+            if len(html.bootstrap) == 1:
+                link = html.bootstrap[0]
+                css = (path.parent / unquote(urlparse(link.get("href") or "").path)).resolve()
+                if css.is_relative_to(output.resolve()) and css.is_file():
+                    text = css.read_text(encoding="utf-8")
+                    # First declarations are Bootstrap's default; later dark/light overrides do not count.
+                    bg = re.search(r"--bs-body-bg:\s*([^;}]+)", text)
+                    fg = re.search(r"--bs-body-color:\s*([^;}]+)", text)
+                    solar = (link.get("data-mode") == "dark" and bg is not None and fg is not None
+                             and bg[1].strip().lower() == "#002b36"
+                             and fg[1].strip().lower() == "#adb5bd")
+            if not solar:
+                fail(errors, f"tema Solar oscuro no predeterminado en {relative}")
+
+    pdf = output / "aplicaciones-web-php-csharp-semana1.pdf"
+    if not pdf.is_file():
+        fail(errors, f"falta PDF renderizado: {pdf.relative_to(ROOT)}")
+    else:
+        with pdf.open("rb") as stream:
+            if stream.read(5) != b"%PDF-":
+                fail(errors, f"firma PDF inválida: {pdf.relative_to(ROOT)}")
 
 
 def fail(errors: list[str], message: str) -> None:
@@ -53,7 +139,8 @@ def local_path(target: str) -> bool:
 
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--rendered", action="store_true", help="comprueba artefactos ya renderizados")
+    parser.add_argument("--rendered", action="store_true",
+                        help="comprueba páginas configuradas, enlaces, tema Solar oscuro y firma PDF")
     args = parser.parse_args()
     errors: list[str] = []
 
@@ -70,7 +157,13 @@ def main() -> int:
             except ET.ParseError as exc:
                 fail(errors, f"SVG inválido ebook/{relative}: {exc}")
 
-    qmd_files = [BOOK / chapter for chapter in CHAPTERS if (BOOK / chapter).is_file()]
+    config = BOOK / "_quarto.yml"
+    text = config.read_text(encoding="utf-8") if config.is_file() else ""
+    chapters = tuple(dict.fromkeys((*CHAPTERS, *configured_chapters(text))))
+    for chapter in chapters:
+        if chapter not in CHAPTERS and not (BOOK / chapter).is_file():
+            fail(errors, f"falta la superficie requerida: ebook/{chapter}")
+    qmd_files = [BOOK / chapter for chapter in chapters if (BOOK / chapter).is_file()]
     keys = set()
     bib = BOOK / "references.bib"
     if bib.is_file():
@@ -98,9 +191,7 @@ def main() -> int:
         if image in content and prerequisite not in content[:content.index(image)]:
             fail(errors, "el demo público de C# usa csharp-app:latest sin explicar cómo construir la imagen")
 
-    config = BOOK / "_quarto.yml"
     if config.is_file():
-        text = config.read_text(encoding="utf-8")
         if FUTURE_WEEK_RE.search(text):
             fail(errors, "la configuración incluye capítulos de semanas futuras")
         for chapter in CHAPTERS:
@@ -108,19 +199,7 @@ def main() -> int:
                 fail(errors, f"capítulo no configurado: {chapter}")
 
     if args.rendered:
-        rendered = ("index.html", "chapters/01-web-foundations.html", "chapters/02-variables-types-scope.html", "chapters/03-week1-practice-review.html", "chapters/04-development-environment.html")
-        for relative in rendered:
-            html_path = BOOK / "_book" / relative
-            if not html_path.is_file():
-                fail(errors, f"falta artefacto renderizado: ebook/_book/{relative}")
-            else:
-                images = ImageAltChecker()
-                images.feed(html_path.read_text(encoding="utf-8"))
-                for src in images.missing:
-                    fail(errors, f"imagen HTML sin texto alternativo en {relative}: {src}")
-        pdf = BOOK / "_book" / "aplicaciones-web-php-csharp-semana1.pdf"
-        if not pdf.is_file():
-            fail(errors, f"falta PDF renderizado: {pdf.relative_to(ROOT)}")
+        check_rendered(chapters, errors)
 
     if errors:
         print("Comprobación estructural fallida:", file=sys.stderr)

@@ -22,10 +22,12 @@ es necesario confundir una solicitud HTTP con el HTML que finalmente se ve.
 
 ## P3: tipos {#p3-respuesta}
 
-La expresión PHP con cadenas merece una ejecución o consulta de la documentación:
-las conversiones dependen de los operandos y de la versión. En C#, `8 + 2` con
-enteros expresa suma numérica. La lección no es adivinar una equivalencia, sino
-identificar tipos antes de comparar resultados. [Volver a P3](chapters/03-week1-practice-review.qmd#p3)
+En PHP, `"8" + "2"` produce el entero `10`: el operador `+` suma y convierte
+estas dos cadenas numéricas enteras a `int`. En C#, `8 + 2` también produce
+el entero `10`, pero los operandos ya son `int`. En estos casos coincide el
+resultado; difieren los tipos de entrada y la conversión que realiza PHP.
+No lo confundas con la concatenación: en C#, `"8" + "2"` produce `"82"`.
+Identifica los tipos antes de comparar expresiones [@php-manual; @microsoft-csharp]. [Volver a P3](chapters/03-week1-practice-review.qmd#p3)
 
 ## P4: interpolación {#p4-respuesta}
 
