@@ -1,0 +1,14 @@
+# Fuentes y política de uso
+
+## Política de fuentes
+
+Los contenidos de Semana 1 se organizan primero a partir de la documentación oficial de la asignatura [@blackboard-s1c1; @blackboard-s1c2; @blackboard-task1]. Esos enlaces pueden pedir autenticación institucional. Este libro los enlaza y parafrasea de forma original; no copia ni redistribuye material privado del aula.
+
+Las fuentes técnicas complementarias se usan para verificar sintaxis, plataformas y herramientas, no para ampliar el currículo más allá de Semana 1. Cuando haya una diferencia entre una explicación editorial y una fuente primaria, prevalece la fuente primaria. Los ejemplos de los repositorios de práctica se identifican como evidencia de trabajo existente [@practice-repo; @assignment-repo], no como una afirmación de que todo el código siga MVC ni como requisito adicional.
+
+Las referencias se consultaron el **30 de octubre de 2026**. La bibliografía distingue el material oficial del curso de la documentación técnica suplementaria.
+
+## Bibliografía
+
+::: {#refs}
+:::

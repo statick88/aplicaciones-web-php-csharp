@@ -1,0 +1,8 @@
+_book/
+.quarto/
+_freeze/
+**/bin/
+**/obj/
+
+/.quarto/
+**/*.quarto_ipynb

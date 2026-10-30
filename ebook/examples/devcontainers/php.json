@@ -1,0 +1,7 @@
+{
+  "name": "Semana 1 PHP",
+  "dockerComposeFile": "../compose.yaml",
+  "service": "app",
+  "workspaceFolder": "/var/www/html",
+  "shutdownAction": "none"
+}

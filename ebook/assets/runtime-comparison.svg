@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="320" viewBox="0 0 960 320" role="img" aria-labelledby="title desc">
+  <title id="title">Comparación inicial de ejecución de PHP y C sharp</title>
+  <desc id="desc">Dos rutas muestran que PHP y C sharp reciben una solicitud, ejecutan reglas y devuelven una respuesta web.</desc>
+  <style>text{font-family:system-ui,sans-serif;fill:#172554}.box{fill:#f8fafc;stroke:#475569;stroke-width:2}.php{fill:#f5f3ff;stroke:#7c3aed}.cs{fill:#ecfdf5;stroke:#059669}.arrow{stroke:#334155;stroke-width:3;marker-end:url(#p)}</style>
+  <defs><marker id="p" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#334155"/></marker></defs>
+  <text x="480" y="36" text-anchor="middle" font-size="25">Mismo propósito web, herramientas distintas</text>
+  <rect class="box" x="45" y="75" width="160" height="70" rx="10"/><text x="125" y="117" text-anchor="middle" font-size="20">Solicitud</text>
+  <rect class="php" x="315" y="65" width="260" height="90" rx="10"/><text x="445" y="105" text-anchor="middle" font-size="22">PHP</text><text x="445" y="132" text-anchor="middle" font-size="16">intérprete y aplicación</text>
+  <rect class="cs" x="315" y="190" width="260" height="90" rx="10"/><text x="445" y="230" text-anchor="middle" font-size="22">C# / .NET</text><text x="445" y="257" text-anchor="middle" font-size="16">aplicación ASP.NET</text>
+  <rect class="box" x="700" y="125" width="190" height="70" rx="10"/><text x="795" y="167" text-anchor="middle" font-size="20">Respuesta web</text>
+  <line class="arrow" x1="210" y1="108" x2="308" y2="108"/><line class="arrow" x1="210" y1="128" x2="308" y2="226"/><line class="arrow" x1="580" y1="108" x2="693" y2="148"/><line class="arrow" x1="580" y1="236" x2="693" y2="174"/>
+</svg>

@@ -1,0 +1,92 @@
+# Respuestas de autoevaluación {#respuestas-autoevaluacion}
+
+Estas respuestas muestran una forma de razonar. Compáralas con tus notas después
+de contestar las preguntas de [auto evaluación de Semana 1](chapters/03-week1-practice-review.qmd#autoevaluacion-semana1).
+No asignan puntos, no guardan progreso y no certifican una evaluación.
+
+## P1: historia y propósito {#p1-respuesta}
+
+Una página estática entrega contenido ya preparado. Una dinámica puede construir
+parte de la respuesta con datos de la solicitud, por ejemplo una operación
+seleccionada. Para hablar de la evolución de PHP verificaría la versión y sus
+cambios en las notas de publicación oficiales, no en un recuerdo o tutorial
+sin fecha. [Volver a P1](chapters/03-week1-practice-review.qmd#p1)
+
+## P2: HTTP {#p2-respuesta}
+
+La solicitud es lo que el navegador envía al servidor, incluidos los datos que
+la calculadora necesita. El procesamiento aplica una regla a esos datos. La
+respuesta es lo que el servidor devuelve para que el navegador lo muestre. No
+es necesario confundir una solicitud HTTP con el HTML que finalmente se ve.
+[Volver a P2](chapters/03-week1-practice-review.qmd#p2)
+
+## P3: tipos {#p3-respuesta}
+
+La expresión PHP con cadenas merece una ejecución o consulta de la documentación:
+las conversiones dependen de los operandos y de la versión. En C#, `8 + 2` con
+enteros expresa suma numérica. La lección no es adivinar una equivalencia, sino
+identificar tipos antes de comparar resultados. [Volver a P3](chapters/03-week1-practice-review.qmd#p3)
+
+## P4: interpolación {#p4-respuesta}
+
+Los dos fragmentos pretenden producir “Ana tiene 2 intentos.”. En PHP las
+variables aparecen como `$nombre` y `$intentos` dentro de comillas dobles. En
+C#, el prefijo `$` se aplica a la cadena y las expresiones van entre llaves.
+Una salida semejante no significa que la sintaxis sea idéntica.
+[Volver a P4](chapters/03-week1-practice-review.qmd#p4)
+
+## P5: constantes {#p5-respuesta}
+
+Elegiría una constante para una regla que el programa no debe reasignar, como
+una tasa de ejemplo durante esa ejecución. Elegiría una variable para una
+entrada que cambia, como `base` o `baseImponible`. La elección debe explicar el
+rol del dato; no es una decoración del código. [Volver a P5](chapters/03-week1-practice-review.qmd#p5)
+
+## P6: alcance {#p6-respuesta}
+
+Un parámetro aparece en la firma de la función y en cada llamada, por lo que el
+lector puede reconocer de dónde llega el dato. `global` depende de un nombre
+externo y oculta esa relación. Pasar parámetros no resuelve todos los diseños,
+pero es una opción clara para el ejemplo de Semana 1.
+[Volver a P6](chapters/03-week1-practice-review.qmd#p6)
+
+## P7: depuración {#p7-respuesta}
+
+Anotaría (1) los valores y tipos que llegaron, incluido el divisor `0`; (2) el
+operador y la rama de procesamiento que se ejecutó; y (3) el resultado o aviso
+exacto mostrado. Con esas observaciones puedo formular una hipótesis sin
+atribuir el problema automáticamente al navegador, PHP o C#.
+[Volver a P7](chapters/03-week1-practice-review.qmd#p7)
+
+## P8: comprobación {#p8-respuesta}
+
+Una tabla suficiente tiene columnas para entrada A, operación, entrada B,
+predicción, resultado observado y explicación. Incluye `8+2`, `8-2`, `8*2`,
+`8/2`, un divisor `0` y una entrada no numérica. Las últimas filas documentan
+el comportamiento declarado: no exigen construir aquí un sistema nuevo de
+validación. [Volver a P8](chapters/03-week1-practice-review.qmd#p8)
+
+## P9: MVC {#p9-respuesta}
+
+Afirma que MVC es la forma elegida para organizar las prácticas web que lo usan.
+No afirma que todos los archivos existentes ya estén separados en modelo, vista
+y controlador. El `php/src/home.php` de facturas sigue siendo monolítico y este
+libro no lo modifica; además, las facturas son un experimento adicional y no
+una prueba de requisito de Semana 1. [Volver a P9](chapters/03-week1-practice-review.qmd#p9)
+
+## P10: transferencia {#p10-respuesta}
+
+Para Celsius a Fahrenheit, la entrada es una temperatura Celsius, el
+procesamiento puede ser `C * 9 / 5 + 32`, y la salida es la temperatura
+convertida con su unidad. En PHP predeciría que una entrada numérica concreta,
+por ejemplo `0`, produce `32`; en C# haría la misma predicción antes de correr
+un fragmento con un tipo numérico apropiado. La comprobación compara la regla y
+el valor observado, no solo que el programa compile.
+[Volver a P10](chapters/03-week1-practice-review.qmd#p10)
+
+## Cómo usar una discrepancia
+
+Si tu respuesta no coincide, vuelve a la pregunta enlazada, localiza qué
+suposición hiciste sobre entrada, tipo o alcance y prueba un caso pequeño.
+Consultar una pista o estas soluciones puede orientar la siguiente prueba, pero
+no es evidencia de que la hayas realizado.

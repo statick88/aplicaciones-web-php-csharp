@@ -1,0 +1,174 @@
+# Entorno de desarrollo opcional {#entorno-desarrollo}
+
+El objetivo sigue siendo aprender PHP y C#, no dominar una herramienta de
+contenedores. Elige una de las dos rutas de esta página y aplica las mismas
+comprobaciones de los capítulos **Fundamentos web** y **Variables, tipos y
+alcance**. Docker Compose y Dev Containers son alternativas de ejecución, no
+contenidos que debas aprobar para comprender la Semana 1.
+
+::: {.callout-important}
+## Antes de empezar
+
+Estos pasos se verificaron en Linux. No se ejecutaron en Windows ni macOS. Los
+archivos bajo `ebook/examples/devcontainers/` son ejemplos para **copiar**; no
+son configuraciones activas y no funcionan ejecutándolos desde esa carpeta.
+:::
+
+## Elegir una ruta
+
+| Ruta | Úsala cuando | Idea principal |
+|---|---|---|
+| A. VS Code + terminal Compose | quieres editar en tu host y controlar el stack desde una terminal | VS Code es el editor; Compose crea los servicios |
+| B. Dev Containers | ya tienes un contenedor en ejecución o quieres abrir una copia de configuración | VS Code abre el estándar Dev Container; Docker sigue siendo tecnología separada |
+
+Dev Containers es una especificación abierta con integración en VS Code; Docker
+no es un producto de Microsoft [@devcontainers; @vscode-containers]. En ambos
+casos, la aplicación `app` es la que montará el código y el navegador, si se
+usa, verá la dirección local indicada por Compose.
+
+## Compatibilidad del host
+
+| Host | Ruta de Docker documentada | Nota de arquitectura |
+|---|---|---|
+| Windows | WSL2 con Docker Desktop | Intel/AMD y Apple Silicon no aplican igual; consulta los requisitos de Desktop antes de instalar [@docker-docs] |
+| Linux | Docker Engine; Docker Desktop no es requisito | la verificación actual fue aquí |
+| macOS | Docker Desktop es el flujo documentado; Colima es una alternativa de compatibilidad no validada aquí | distingue Intel/AMD de Apple Silicon antes de elegir la práctica C# con base de datos |
+
+No ejecutes `sudo`, cambios de grupo, instalaciones globales ni cambios de
+seguridad del host desde esta guía. Sigue la documentación oficial de tu
+plataforma para preparar Docker [@docker-docs]. Que un host pueda ejecutar un
+contenedor simple no prueba que toda la práctica, y especialmente la base de
+datos, sea compatible.
+
+## Límite importante de SQL Server
+
+La práctica C# usa SQL Server como servicio `db`. La documentación primaria de
+SQL Server en contenedores Linux indica soporte para Linux x86-64 (Intel/AMD).
+La emulación QEMU o Rosetta no está probada ni soportada [@sqlserver-containers].
+Por ello no se promete que el stack C# con SQL Server funcione de manera nativa
+en Apple Silicon, ni se reemplaza silenciosamente por otra base de datos.
+
+Los ejemplos de lenguaje que no dependen de la base de datos pueden ejecutarse
+con imágenes multi-arquitectura de PHP o del SDK .NET cuando estén disponibles.
+Otra opción es un SQL Server x64 remoto, pero exige configurar explícitamente
+la conexión: no viene configurado por este repositorio. Esta limitación no
+cambia las comparaciones de variables, tipos, constantes o alcance.
+
+## Ruta A: VS Code y terminal Compose
+
+Esta ruta no requiere usar una ventana especial de VS Code. Abre la carpeta del
+repositorio en el editor y ejecuta los comandos desde la raíz del repositorio,
+no desde `php/src` ni `csharp/src`.
+
+### PHP
+
+1. Desde la raíz, lee la [guía PHP del repositorio](https://github.com/statick88/aplicaciones-web-php-csharp/blob/main/php/README.md).
+2. Comprueba que el puerto local `127.0.0.1:8080` no esté ocupado por el stack
+   C#. Solo un stack puede usar ese puerto a la vez.
+3. Inicia PHP si deseas observar la página:
+
+   ```bash
+   docker compose -f php/compose.yaml up -d --build
+   ```
+
+4. Abre `http://127.0.0.1:8080` y realiza una predicción pequeña: ¿qué debería
+   mostrar el ejemplo de variables o la calculadora de la entrega separada?
+5. Para alternar sin borrar servicios ni volúmenes, desde la raíz ejecuta:
+
+   ```bash
+   docker compose -f php/compose.yaml stop
+   ```
+
+`stop` conserva los servicios y sus volúmenes para el siguiente inicio. Esta
+guía no usa `down -v`, comandos de borrado ni restauraciones automáticas.
+
+### C# / ASP.NET Core
+
+1. Desde la raíz, lee la [guía C# del repositorio](https://github.com/statick88/aplicaciones-web-php-csharp/blob/main/csharp/README.md).
+2. Detén antes el stack PHP si está usando `127.0.0.1:8080`:
+
+   ```bash
+   docker compose -f php/compose.yaml stop
+   ```
+
+3. En un host compatible con su SQL Server, inicia la práctica:
+
+   ```bash
+   docker compose -f csharp/compose.yaml up -d --build
+   ```
+
+4. Observa en `http://127.0.0.1:8080` un ejemplo existente y compáralo con la
+   misma intención en PHP; no supongas paridad completa de todas las pantallas.
+5. Al terminar o antes de volver a PHP, conserva sus volúmenes:
+
+   ```bash
+   docker compose -f csharp/compose.yaml stop
+   ```
+
+La imagen actual de PHP parte de PHP 8.5.12 y la C# de SDK 10.0.403; esos datos
+identifican los entornos existentes, no una promesa de que fueron ejecutados en
+cada host descrito [@practice-repo].
+
+## Ruta B: Dev Containers
+
+Un Dev Container abre el proyecto dentro de un contenedor para que el editor y
+la terminal integrada compartan ese contexto. No reemplaza Compose: esta
+configuración le indica a VS Code qué archivo Compose y qué servicio usar.
+Puedes adjuntarte a un contenedor `app` ya iniciado o copiar una configuración
+al proyecto y después abrir la carpeta en un contenedor.
+
+### Copiar la configuración PHP
+
+1. Desde la **raíz del repositorio**, crea manualmente `php/.devcontainer/` si
+   aún no existe y copia el contenido de
+   `ebook/examples/devcontainers/php.json` a
+   `php/.devcontainer/devcontainer.json`.
+2. Confirma que `dockerComposeFile` queda como `../compose.yaml`, que el
+   servicio es `app` y que `workspaceFolder` es `/var/www/html`.
+3. En VS Code usa el flujo de Dev Containers para abrir la carpeta `php/` o
+   adjúntate al `app` PHP que ya esté ejecutándose.
+4. Ejecuta la comprobación de variables indicada en la guía PHP y registra el
+   resultado observado. No se afirma aquí que una extensión del editor esté
+   instalada.
+
+### Copiar la configuración C#
+
+1. Desde la **raíz del repositorio**, crea manualmente `csharp/.devcontainer/`
+   si aún no existe y copia el contenido de
+   `ebook/examples/devcontainers/csharp.json` a
+   `csharp/.devcontainer/devcontainer.json`.
+2. Confirma `dockerComposeFile: ../compose.yaml`, servicio `app` y
+   `workspaceFolder: /app`.
+3. Abre `csharp/` mediante el flujo Dev Containers o adjúntate al `app` C# que
+   ya esté ejecutándose, respetando antes el límite x86-64 de SQL Server.
+4. Usa la comprobación descrita en la guía C# y explica qué verificó; no la
+   confundas con una prueba de todas las rutas web.
+
+Los ejemplos deliberadamente no montan el socket Docker, no usan modo
+`privileged` y no fuerzan apagado automático: `shutdownAction` es `none`.
+No agregan redes, restauraciones de paquetes ni comandos automáticos. Eso deja
+las decisiones de host y de ciclo de vida bajo tu control.
+
+## Comprobación de aprendizaje, no de plataforma
+
+Después de cualquiera de las rutas, vuelve al objetivo de Semana 1:
+
+1. elige un valor de entrada y predice una salida;
+2. localiza entrada, procesamiento y salida en el ejemplo;
+3. contrasta PHP y C# sin exigir que tengan la misma pantalla;
+4. anota si el límite fue del código, del contenedor, del puerto o de la
+   compatibilidad de SQL Server.
+
+Si no puedes iniciar el stack C# en Apple Silicon, aún puedes estudiar los
+fragmentos y completar la comparación conceptual. No presentes esa lectura
+como ejecución verificada del servicio SQL Server.
+
+## Referencias de operación
+
+- [Documentación de Docker Engine](https://docs.docker.com/engine/install/)
+  para la preparación específica del host [@docker-docs].
+- [Especificación Dev Container](https://containers.dev/) y
+  [uso de contenedores en VS Code](https://code.visualstudio.com/docs/devcontainers/containers)
+  para el flujo del editor [@devcontainers; @vscode-containers].
+- [SQL Server en contenedores Linux](https://learn.microsoft.com/sql/linux/install-upgrade/quickstart-install-docker)
+  para el límite x86-64 y soporte de emulación [@sqlserver-containers].

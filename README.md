@@ -6,6 +6,7 @@ Repositorio público único de prácticas educativas de Aplicaciones Web, no de 
 | --- | --- | --- |
 | PHP | [`php/`](php/) | [README de PHP](php/README.md) |
 | C# / ASP.NET Core | [`csharp/`](csharp/) | [README de C#](csharp/README.md) |
+| Ebook de Semana 1 | [`ebook/`](ebook/) | [README del ebook](ebook/README.md) |
 
 > La entrega pública ya existente es [aplicaciones-web-semana1](https://github.com/statick88/aplicaciones-web-semana1): sitio personal HTML/CSS y calculadora PHP. El commit `ff3d1d7` de esa entrega ya fue comprobado (lint de 3 archivos y 12 pruebas). Estas prácticas son ejercicios adicionales y no duplican esa entrega.
 
@@ -24,6 +25,10 @@ docker compose -f csharp/compose.yaml stop
 ```
 
 Las instrucciones y comprobaciones propias de cada práctica están en sus README independientes.
+
+## Ebook de Semana 1
+
+El ebook estático de repaso se mantiene en [`ebook/`](ebook/) y cubre únicamente la Semana 1. Su URL prevista es [https://statick88.github.io/aplicaciones-web-php-csharp/](https://statick88.github.io/aplicaciones-web-php-csharp/); el despliegue queda pendiente de la primera ejecución verde del flujo de GitHub Pages.
 
 ## Semana 1 — avance verificado
 

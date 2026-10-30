@@ -1,0 +1,20 @@
+/* Ajustes discretos para lectura sostenida, compatibles con el tema de Quarto. */
+main.content, .page-columns .content {
+  max-width: 78ch;
+}
+
+p, li {
+  line-height: 1.65;
+}
+
+figcaption, .figure-caption {
+  line-height: 1.45;
+}
+
+.callout {
+  border-radius: 0.25rem;
+}
+
+.table {
+  font-size: 0.95rem;
+}
