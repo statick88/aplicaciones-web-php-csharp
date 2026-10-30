@@ -1,4 +1,4 @@
-# aplicaciones-web-practicas
+# aplicaciones-web-php-csharp
 
 Repositorio público único de prácticas educativas de Aplicaciones Web, no de producción. Reúne los mismos ejercicios del curso en dos implementaciones por tecnología; el avance real se indica por separado en cada directorio, por lo que no se declara paridad completa.
 
