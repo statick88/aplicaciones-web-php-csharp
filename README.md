@@ -28,7 +28,9 @@ Las instrucciones y comprobaciones propias de cada práctica están en sus READM
 
 ## Ebook de Semana 1
 
-El ebook estático de repaso se mantiene en [`ebook/`](ebook/) y cubre únicamente la Semana 1. Su URL prevista es [https://statick88.github.io/aplicaciones-web-php-csharp/](https://statick88.github.io/aplicaciones-web-php-csharp/); el despliegue queda pendiente de la primera ejecución verde del flujo de GitHub Pages.
+El ebook estático de repaso se mantiene en [`ebook/`](ebook/) y cubre únicamente la Semana 1. Está publicado en [GitHub Pages](https://statick88.github.io/aplicaciones-web-php-csharp/), con [PDF descargable](https://statick88.github.io/aplicaciones-web-php-csharp/aplicaciones-web-php-csharp-semana1.pdf).
+
+El [flujo de publicación](https://github.com/statick88/aplicaciones-web-php-csharp/actions/workflows/ebook.yml) verifica y genera ambos formatos antes de desplegar. Pages solo sirve el libro estático; los ejercicios PHP y C# se ejecutan en sus entornos de desarrollo.
 
 ## Semana 1 — avance verificado
 
