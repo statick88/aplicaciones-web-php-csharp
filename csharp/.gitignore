@@ -1,0 +1,25 @@
+# .NET build artifacts
+bin/
+obj/
+
+# User-specific / IDE
+*.user
+.vs/
+.vscode/
+.idea/
+
+# Environment and local agent state
+.env
+.env.*
+.atl/
+
+# Python test cache
+__pycache__/
+*.pyc
+
+# Logs and local/private key material
+*.log
+keys/
+*.key
+*.pem
+*.pfx

@@ -1,0 +1,27 @@
+# Keep the build context small and safe.
+.git
+.gitignore
+.env
+.env.*
+!.env.example
+
+# Docker files themselves
+Dockerfile
+compose.yaml
+compose.*.yaml
+.dockerignore
+
+# Build artifacts
+bin/
+obj/
+
+# Docs and notes
+README.md
+*.md
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp

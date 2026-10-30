@@ -1,0 +1,91 @@
+@model Facturas.Models.Factura
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facturas</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <h2>Ingreso de facturas</h2>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    <!-- Numero de factura-->
+                    <div class="mb-3">
+                        <label asp-for="NumeroFactura" class="form-label">Numero de factura</label>
+                        <input asp-for="NumeroFactura" class="form-control" required>
+                    </div>
+                    <!-- cedula-->
+                    <div class="mb-3">
+                        <label asp-for="Cedula" class="form-label">Cédula</label>
+                        <input asp-for="Cedula" class="form-control" required>
+                    </div>
+                    <!-- nombre-->
+                    <div class="mb-3">
+                        <label asp-for="Nombre" class="form-label">Nombre</label>
+                        <input asp-for="Nombre" class="form-control" required>
+                    </div>
+                    <!-- telefono-->
+                    <div class="mb-3">
+                        <label asp-for="Telefono" class="form-label">Teléfono</label>
+                        <input asp-for="Telefono" class="form-control" required>
+                    </div>
+                    <!-- Direccion-->
+                    <div class="mb-3">
+                        <label asp-for="Direccion" class="form-label">Dirección</label>
+                        <input asp-for="Direccion" class="form-control" required>
+                    </div>
+                    <!-- mail-->
+                    <div class="mb-3">
+                        <label asp-for="Mail" class="form-label">Correo Electrónico</label>
+                        <input asp-for="Mail" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-outline-success">
+                            Guardar
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+        <p class="text-center mt-3">
+            <a asp-action="Variables">Demo: variables y ámbito en C# (S1C2)</a>
+        </p>
+
+    </div>
+
+    @if (Model.Enviada)
+    {
+        <div class="card mt-4 shadow">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">Datos de la Factura</h5>
+            </div>
+            <div class="card-body">
+                <p><strong>Numero:</strong> @Model.NumeroFactura </p>
+                <p><strong>Nombres:</strong> @Model.Nombre </p>
+                <p><strong>Cédula:</strong> @Model.Cedula </p>
+                <p><strong>Dirección:</strong> @Model.Direccion </p>
+                <p><strong>Teléfono:</strong> @Model.Telefono </p>
+                <p><strong>Correo Electrónico:</strong> @Model.Mail </p>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="card mt-4 shadow">
+            <div class="card-header bg-danger text-white">
+                <h1 class="mb-0">El metodo no es POST</h1>
+            </div>
+
+        </div>
+    }
+
+</body>
+</html>

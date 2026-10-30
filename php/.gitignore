@@ -1,0 +1,15 @@
+# Local environment and agent state
+.env
+.env.*
+.atl/
+
+# Caches and logs
+.cache/
+*.cache
+*.log
+
+# Local/private key material
+keys/
+*.key
+*.pem
+*.pfx

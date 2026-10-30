@@ -1,0 +1,42 @@
+# PHP practice stack: edit files in ./src on the host, refresh the browser.
+# MariaDB stores the invoices (same role SQL Server plays for the .NET stack).
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "127.0.0.1:8080:80" # Use 0.0.0.0 only when other devices need access
+    environment:
+      - DB_HOST=db
+      - DB_NAME=facturas
+      - DB_USER=app
+      - DB_PASSWORD=${MARIADB_PASSWORD:-Practicas2026!}
+    volumes:
+      - ./src:/var/www/html # Bind mount for live changes (PHP is interpreted: no rebuild needed)
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+  db:
+    image: mariadb:12.3 # 12.3 = current LTS branch (12.3.3)
+    environment:
+      - MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD:-Practicas2026!} # Dev-only fallback; override in .env
+      - MARIADB_DATABASE=facturas
+      - MARIADB_USER=app
+      - MARIADB_PASSWORD=${MARIADB_PASSWORD:-Practicas2026!}
+    ports:
+      - "127.0.0.1:3306:3306" # Publish only on loopback for host tools
+    volumes:
+      - db-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 30s
+    restart: unless-stopped
+
+volumes:
+  db-data:

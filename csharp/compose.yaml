@@ -1,0 +1,43 @@
+# C# MVC practice stack: edit ./src on the host, dotnet watch rebuilds automatically,
+# SQL Server stores the invoices via EF Core.
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "127.0.0.1:8080:8080" # loopback only; PHP stack stopped, .NET owns 8080
+    environment:
+      - ConnectionStrings__Facturas=Server=db,1433;Database=Facturas;User Id=sa;Password=${MSSQL_SA_PASSWORD:-Practicas2026!};TrustServerCertificate=True
+    volumes:
+      - ./src:/app   # Bind mount for live changes (dotnet watch detects them)
+      - /app/bin     # Keep compiled artifacts out of your editor view
+      - /app/obj
+      - data-protection-keys:/root/.aspnet/DataProtection-Keys
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      - ACCEPT_EULA=Y
+      # Development-only fallback password. Override it with MSSQL_SA_PASSWORD in a .env file.
+      - MSSQL_SA_PASSWORD=${MSSQL_SA_PASSWORD:-Practicas2026!}
+      - MSSQL_MEMORY_LIMIT_MB=2048
+    ports:
+      - "127.0.0.1:1433:1433" # Publish only on loopback for host tools
+    volumes:
+      - db-data:/var/opt/mssql
+    healthcheck:
+      test: ["CMD-SHELL", "/opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P \"$$MSSQL_SA_PASSWORD\" -C -Q \"SELECT 1\" -b > /dev/null 2>&1 || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 30s
+    restart: unless-stopped
+
+volumes:
+  db-data:
+  data-protection-keys:

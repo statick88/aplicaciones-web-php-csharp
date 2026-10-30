@@ -1,0 +1,17 @@
+# Private orchestration state and browser captures
+/.atl/
+/.playwright-mcp/
+/odd/
+
+# Local environment, secrets, keys, logs, and build artifacts
+.env
+.env.*
+__pycache__/
+*.pyc
+bin/
+obj/
+keys/
+*.pem
+*.key
+*.pfx
+*.log
