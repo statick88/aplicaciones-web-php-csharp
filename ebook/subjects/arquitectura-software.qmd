@@ -11,14 +11,17 @@ sustituye la clase ni registra calificaciones [@blackboard-arq-s1].
 |---|---|---|
 | 1 | Del análisis a las decisiones de diseño y arquitectura | [Diseño y arquitectura: de la necesidad a las decisiones](arquitectura-software/semana-01/01-diseno-arquitectura.qmd) |
 | 1 | Tipos, dominios de uso y mitos del software | [Software: tipos, dominios y mitos](arquitectura-software/semana-01/02-dominios-mitos.qmd) |
+| 1 | Caso integrado, práctica y autoevaluación formativa | [Práctica integrada y autoevaluación](arquitectura-software/semana-01/03-practica-autoevaluacion.qmd) |
 
 ## Alcance de la semana actual
 
 La primera lectura conecta necesidades, atributos de calidad, módulos y estilos
 sin presentar una receta universal. La segunda ayuda a clasificar software por su
 función técnica y por el problema que atiende, y a detectar cuatro mitos que
-conducen a decisiones apresuradas. Ambas incluyen ejercicios breves con
-retroalimentación para estudiar de manera autónoma.
+conducen a decisiones apresuradas. La tercera lectura propone un caso integrado,
+un ejercicio análogo y una autoevaluación con retroalimentación razonada. Todo el
+material es formativo para estudiar de manera autónoma, no una tarea nueva ni una
+calificación.
 
 El enlace oficial también propone un
 [ejercicio formativo en Educaplay](https://es.educaplay.com/recursos-educativos/31153075-introduccion_al_diseno_y_arquitectura_de_software.html).
@@ -33,5 +36,5 @@ ni asigna una nota.
 4. Explica qué evidencia faltaría para sostener una conclusión arquitectónica.
 
 La cobertura se ampliará únicamente cuando haya temas oficiales verificados. La
-práctica integrada y la autoevaluación extensa de Arquitectura no forman parte de
-esta entrega de Semana 1.
+práctica y sus respuestas de Arquitectura viven juntas en la tercera lectura de esta
+Semana 1; las respuestas de Aplicaciones Web siguen en su página propia.

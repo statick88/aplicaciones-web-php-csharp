@@ -51,7 +51,8 @@ reproduce exportaciones privadas de Blackboard.
 La autoevaluación es manual. Para cada práctica, conserve una predicción, el comando
 o acción realizada, la evidencia observada y una explicación breve. Revise después
 las [respuestas razonadas](answers.qmd), corrija su explicación y decida un paso
-siguiente. No hay LMS, puntos, cuentas ni una promesa de dominio automático.
+siguiente. En Arquitectura, las respuestas están junto a la práctica integrada de
+Semana 1. No hay LMS, puntos, cuentas ni una promesa de dominio automático.
 
 ## Alcance de esta edición
 

@@ -1,0 +1,294 @@
+# Práctica integrada y autoevaluación de la Semana 1
+
+**Propósito.** Esta propuesta de estudio integra los conceptos de la Semana 1 para
+preparar una evaluación: no es una nueva tarea institucional ni un diseño de
+producción. Trabajarás sobre el caso ficticio de reservas de biblioteca ya usado en
+la teoría, con decisiones que puedes explicar y comprobar de forma observable.
+
+## Ruta de trabajo
+
+1. Lee el caso y escribe una primera decisión antes de abrir una pista.
+2. Compara tu explicación con el ejemplo parcial; no copies su forma sin revisar el
+   contexto.
+3. Resuelve el ejercicio análogo con tus propios supuestos y contrasta después la
+   autoevaluación.
+
+::: {.callout-important}
+## Qué se espera en esta práctica
+
+No hay ejecución, nota ni evidencia de rendimiento que producir. Conserva una hoja
+con una necesidad, clasificaciones, una decisión justificada, un esquema de
+responsabilidades y un criterio observable. Diseños alternativos son válidos cuando
+mantienen las reglas y explican sus consecuencias.
+:::
+
+## Caso guiado: una reserva sin promesas duplicadas
+
+Una biblioteca permite que estudiantes soliciten un ejemplar. Dos solicitudes pueden
+llegar cuando queda una sola copia. El equipo quiere confirmar únicamente una reserva
+activa y avisar el resultado. La pantalla actual consulta los datos y envía correos
+por su cuenta.
+
+### 1. Del enunciado a la clasificación
+
+| Pregunta | Respuesta de trabajo | Por qué importa |
+|---|---|---|
+| Necesidad | No confirmar dos reservas activas para el mismo ejemplar. | Hace explícita la regla antes de elegir tecnología. |
+| Tipo técnico | La interfaz de reserva es software de aplicación. | Ayuda directamente a una persona a completar una tarea. |
+| Dominio | Educativo, pues organiza un recurso de aprendizaje. | El dominio describe la finalidad, no el lenguaje usado. |
+| Función principal | Registrar o rechazar una solicitud según disponibilidad. | Separa el comportamiento esperado de la forma de implementarlo. |
+
+El sistema operativo que sostiene el servidor es, sin ambigüedad, software de
+sistema: administra recursos y sirve de base a programas. Esa clasificación no
+convierte por sí sola a cada componente ni a todo gestor de datos en software de
+sistema. También conviene separar las herramientas: un lenguaje expresa el programa,
+un editor ayuda a escribirlo y el runtime proporciona condiciones de ejecución.
+
+### 2. Decisión de diseño y arquitectura
+
+La decisión propuesta es concentrar la regla en un módulo `Reservas`. La pantalla
+pide `solicitar(ejemplar, persona)`; `Reservas` consulta una interfaz de
+`Disponibilidad` que comprueba y marca la copia como una sola operación. Cuando hay
+resultado final, `Notificaciones` comunica la confirmación o el rechazo.
+
+Esta es una decisión de **diseño** porque distribuye responsabilidades. Adquiere
+alcance **arquitectónico** si esa interfaz y su regla condicionan varias pantallas,
+equipos o despliegues. En ambos casos el análisis la precede: identifica actores,
+regla y resultado sin decidir todavía tablas, servidores o lenguaje.
+
+| Responsabilidad | Interfaz o entrada | Resultado que entrega |
+|---|---|---|
+| Pantalla | datos de ejemplar y persona | muestra un resultado, sin cambiar inventario |
+| `Reservas` | `solicitar(ejemplar, persona)` | confirmación o rechazo con motivo |
+| `Disponibilidad` | comprobar y marcar | una sola copia marcada o no disponible |
+| `Notificaciones` | resultado final | aviso preparado para la persona |
+
+La separación reduce el acoplamiento: cambiar el medio de aviso no debe exigir que
+la pantalla conozca la regla de inventario. A la vez, `Reservas` mantiene cohesión si
+sus tareas se relacionan con decidir una reserva, no con presentar pantallas o
+administrar correos. No se recomienda reintentar ciegamente una solicitud: repetir
+una operación no idempotente podría crear otra reserva. Ante un fallo se define qué
+resultado quedó registrado y cómo se consulta o resuelve antes de intentar de nuevo.
+
+### 3. Criterio de calidad y comprobación
+
+El criterio propuesto es **consistencia** de la regla: ante dos solicitudes
+controladas para el mismo ejemplar disponible, se observa una confirmación, un
+rechazo y una sola reserva activa en el registro. Esto comprueba comportamiento
+funcional y consistencia de datos; no demuestra que el servicio esté disponible. La
+**disponibilidad** pregunta, en cambio, si el servicio puede atender solicitudes
+cuando falla un componente o existe una interrupción. Son cualidades relacionadas,
+pero no intercambiables.
+
+::: {.callout-note collapse="true" title="Ejemplo parcial trabajado"}
+**Registro de decisión breve.** Contexto: queda un ejemplar y pueden coincidir dos
+solicitudes. Decisión: `Reservas` usa una operación de disponibilidad que comprueba y
+marca de forma atómica. Alternativa descartada por ahora: dejar que cada pantalla
+actualice disponibilidad; duplica una regla crítica y aumenta el riesgo de cambios
+inconsistentes. Consecuencia: las pantallas dependen de una interfaz estable, pero el
+equipo debe definir el resultado de una solicitud interrumpida.
+
+El ejemplo no decide si el sistema será monolito o microservicios. Un monolito por
+capas puede respetar estas fronteras; separar servicios solo sería razonable con una
+necesidad y costo de operación justificados.
+:::
+
+### 4. Mito que el caso ayuda a evitar
+
+Decir «si la demostración reserva un libro, está terminado» omite autorizaciones,
+registros, casos de concurrencia y condiciones de operación. La demostración aporta
+una señal, pero el criterio observable anterior agrega evidencia sobre una regla
+importante. No convierte la práctica en una garantía de seguridad, disponibilidad ni
+calidad total.
+
+## Ejercicio análogo: préstamo de equipos
+
+Ahora una sala de innovación presta una cámara a estudiantes. Hay una cámara libre y
+dos solicitudes pueden coincidir. Propón una solución para estudiar; no implementes
+ni supongas que existe una plataforma institucional.
+
+::: {.callout-tip collapse="true" title="Pista opcional"}
+Empieza por la regla que no debe romperse. Después nombra una responsabilidad que la
+proteja y una observación que podría refutar tu propuesta.
+:::
+
+### Entregables y criterios observables
+
+Entrega en tus apuntes los cinco elementos siguientes:
+
+1. La necesidad en una oración y la clasificación por tipo técnico, dominio y función.
+2. Una distinción entre lo que descubres en análisis y lo que decides en diseño o
+   arquitectura.
+3. Una tabla pequeña con al menos dos responsabilidades, una interfaz y sus
+   resultados.
+4. Un registro de decisión con contexto, alternativa considerada, consecuencia y un
+   estilo compatible con su justificación; no existe un estilo universalmente mejor.
+5. Un criterio de calidad y una comprobación observable que distinga consistencia de
+   disponibilidad cuando corresponda.
+
+Puedes elegir capas, cliente-servidor o un monolito con fronteras claras si explicas
+qué problema atiende. Un esquema cumple cuando permite reconocer quién protege la
+regla, qué recibe cada parte y qué observación esperas. No cumple solo por usar
+nombres técnicos ni por dibujar más cajas.
+
+### Lista de revisión sin puntaje
+
+- [ ] ¿Puedo señalar una regla del dominio sin nombrar una tecnología?
+- [ ] ¿Distinguí la finalidad del producto de las herramientas para construirlo?
+- [ ] ¿Mi interfaz evita que la pantalla cambie directamente el estado crítico?
+- [ ] ¿Mi comprobación describe una entrada o condición y un resultado observable?
+- [ ] ¿Expliqué una consecuencia o límite de mi decisión?
+- [ ] ¿Sé qué concepto debo releer si no pude justificar una frontera?
+
+Vuelve a [necesidad, módulos y cualidades](01-diseno-arquitectura.qmd) para revisar
+análisis, interfaces, vistas y estilos; vuelve a [tipos, dominios y mitos](02-dominios-mitos.qmd)
+para revisar clasificaciones y afirmaciones absolutas.
+
+## Autoevaluación formativa
+
+Responde primero con tus palabras. Las preguntas son originales para el estudio de
+esta semana: no se copian de Educaplay ni representan calificación oficial.
+
+### 1. De necesidad a decisión
+
+Una coordinación pide «que las reservas sean claras». ¿Qué preguntas de análisis
+harías antes de decidir una interfaz, y cuándo explicarías que la decisión tiene
+alcance arquitectónico?
+
+::: {.callout-note collapse="true" title="Retroalimentación razonada — 1"}
+Primero aclararía actores, qué significa «clara», qué regla protege una reserva y qué
+resultado debe ver cada persona. Eso evita convertir una frase ambigua en una tabla o
+API prematura. Propondría una interfaz después de identificar la regla y los límites.
+La llamaría arquitectónica si condiciona a varias partes, contratos o cambios futuros;
+si solo organiza un detalle local, sigue siendo diseño con menor alcance.
+:::
+
+### 2. Fronteras, acoplamiento y cohesión
+
+Una pantalla valida disponibilidad, registra reservas y compone correos. Propón una
+frontera de módulos y explica qué cambio quedaría localizado.
+
+::: {.callout-note collapse="true" title="Retroalimentación razonada — 2"}
+Una respuesta posible separa pantalla, `Reservas` y `Notificaciones`. `Reservas`
+concentra la regla y expone una operación; la pantalla presenta el resultado y
+Notificaciones compone el aviso. Cambiar el proveedor o formato del correo afecta
+principalmente a Notificaciones, por menor acoplamiento. La frontera es útil solo si
+las responsabilidades realmente cambian por razones distintas; dividir cada función
+sin necesidad puede reducir cohesión.
+:::
+
+### 3. Vista y notación
+
+Para explicar que una persona solicita una cámara y que el sistema la confirma o
+rechaza, ¿elegirías caso de uso, clases o secuencia? Indica también una vista que no
+resuelve por sí sola ese diagrama.
+
+::: {.callout-note collapse="true" title="Retroalimentación razonada — 3"}
+Un caso de uso es una elección directa para mostrar actor y meta; una secuencia sirve
+si importa mostrar los mensajes del escenario. Un diagrama de clases ayuda a discutir
+conceptos y relaciones, no sustituye esa interacción. La vista conceptual aclara
+cámara, persona y préstamo; la lógica muestra componentes que colaboran; la física
+ubica ejecuciones y datos. Elegir una no elimina la pregunta de las otras.
+:::
+
+### 4. Estilo con contexto
+
+El equipo tiene una aplicación pequeña, un despliegue conocido y pocas fronteras
+estables. ¿Por qué «microservicios» no es automáticamente la mejor respuesta? Da una
+alternativa compatible.
+
+::: {.callout-note collapse="true" title="Retroalimentación razonada — 4"}
+Microservicios agregan coordinación de despliegues, fallos y datos; sin una necesidad
+que compense esos costos pueden oscurecer el problema. Un monolito organizado por
+capas, atendido en cliente-servidor, puede conservar interfaces y módulos cohesivos.
+La elección depende de restricciones, cambios esperados y evidencia, no de una
+jerarquía universal de estilos.
+:::
+
+### 5. Dos cualidades distintas
+
+Dos solicitudes coincidentes producen una confirmación y un rechazo, pero el servicio
+estuvo caído una hora por un fallo externo. ¿Qué evidencia tienes y qué evidencia falta?
+
+::: {.callout-note collapse="true" title="Retroalimentación razonada — 5"}
+El escenario aporta evidencia limitada de consistencia: no se prometió dos veces la
+misma copia. No demuestra disponibilidad, porque el servicio no atendió durante la
+interrupción. Para hablar de disponibilidad se definen condiciones de fallo, tiempo o
+nivel de servicio y cómo se observará la atención o degradación; para rendimiento se
+necesitaría además una carga y una medida, que esta práctica no inventa.
+:::
+
+### 6. Tipo, dominio y herramientas
+
+Clasifica el sistema operativo de un servidor, el portal de préstamos y el editor que
+usa el equipo. Luego explica por qué Python y su runtime no responden a la misma
+pregunta que «educativo».
+
+::: {.callout-note collapse="true" title="Retroalimentación razonada — 6"}
+El sistema operativo es software de sistema; el portal es software de aplicación y
+puede pertenecer al dominio educativo; el editor es software de desarrollo. Python es
+un lenguaje y el runtime aporta el entorno para ejecutar programas: describen medios
+técnicos diferentes. «Educativo» describe la finalidad del portal. Por eso no se
+comparan como etiquetas rivales ni se infiere la categoría de una base de datos solo
+por su nombre.
+:::
+
+### 7. Mito: sumar personas tarde
+
+Un proyecto se atrasa y alguien propone añadir cinco personas mañana. ¿Qué condición
+revisarías antes de aceptar o rechazar la propuesta?
+
+::: {.callout-note collapse="true" title="Retroalimentación razonada — 7"}
+Revisaría el cuello de botella, el tiempo para conocer el contexto y si existen tareas
+independientes, bien especificadas y con incorporación preparada. Si el trabajo exige
+coordinación intensa, sumar personas puede aumentar comunicación y errores al inicio.
+No es una prohibición absoluta: una tarea aislada y preparada podría repartirse. La
+respuesta responsable explica esa condición en lugar de prometer que más personas
+siempre aceleran.
+:::
+
+### 8. Mito: «funciona, está terminado»
+
+Una demostración registra un préstamo correctamente. Nombra dos clases de evidencia
+que aún podrían faltar antes de declarar terminado el producto.
+
+::: {.callout-note collapse="true" title="Retroalimentación razonada — 8"}
+Podrían faltar evidencia de autorización —quién puede prestar o administrar— y de
+casos de falla o concurrencia, además de documentación y condiciones de entrega. Que
+un camino funcione confirma ese escenario, no seguridad, mantenibilidad u operación.
+Qué pedir depende del contexto, pero una definición explícita de terminado evita
+confundir una demostración con una conclusión total.
+:::
+
+### 9. Mito: «cada cambio es fácil»
+
+Cambiar una regla de préstamo afecta la pantalla, una interfaz compartida y registros
+históricos. ¿Cómo razonarías su costo sin asumir que todo cambio es difícil?
+
+::: {.callout-note collapse="true" title="Retroalimentación razonada — 9"}
+Rastrearía módulos, contratos, datos existentes y personas afectadas antes de estimar,
+y probaría el comportamiento que depende de la regla. Es posible que un texto aislado
+sea fácil de cambiar; aquí las dependencias compartidas sugieren más riesgo y
+coordinación. La lección no es negar la evolución, sino distinguir cambios locales de
+cambios que atraviesan fronteras.
+:::
+
+### 10. Mito: «no hace falta documentación»
+
+El equipo recuerda hoy por qué rechazó que cada pantalla actualizara inventario. ¿Qué
+documentarías para que esa razón sobreviva a un cambio de equipo?
+
+::: {.callout-note collapse="true" title="Retroalimentación razonada — 10"}
+Registraría el contexto de solicitudes coincidentes, la decisión de centralizar la
+regla, la alternativa de actualizar desde cada pantalla, sus consecuencias y el
+criterio observable de una sola reserva activa. El código puede mostrar una llamada,
+pero no siempre por qué se eligió ni qué supuesto debe conservarse. Una nota breve y
+cercana a la decisión puede ser suficiente para este alcance; no exige documentación
+exhaustiva sin propósito.
+:::
+
+## Cierre
+
+La práctica se completa al poder defender una decisión con necesidad, frontera y
+observación, no al acertar una lista de letras. Si una respuesta fue débil, regresa al
+concepto enlazado, ajusta el supuesto y escribe qué evidencia pedirías después.

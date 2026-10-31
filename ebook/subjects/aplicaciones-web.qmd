@@ -19,7 +19,7 @@ curso ni registra calificaciones.
 El recorrido cubre fundamentos de la web, valores y alcance, y la práctica guiada
 que los conecta. El entorno de desarrollo es opcional: ayuda a observar los ejemplos,
 pero no reemplaza el razonamiento sobre la petición, el programa y la respuesta.
-Las respuestas razonadas de la autoevaluación están al final del libro.
+Las respuestas razonadas de la autoevaluación están en [Respuestas de autoevaluación](../answers.qmd).
 
 ## Ciclo de estudio
 
