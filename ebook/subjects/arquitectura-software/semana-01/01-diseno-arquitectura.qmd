@@ -66,8 +66,8 @@ y razón para que no haya que adivinarla después.
 
 ![Mapa conceptual de una reserva: la persona solicita una reserva; el módulo Reservas consulta Catálogo y comunica el resultado.](../../../assets/arquitectura-semana1.svg){fig-alt="Mapa conceptual accesible: una persona solicita una reserva; Reservas consulta la disponibilidad en Catálogo y devuelve confirmación o rechazo. Las interfaces conectan los módulos."}
 
-*Figura 1. Mapa conceptual de responsabilidades e interfaces para conversar sobre
-una reserva; es un esquema informal, no un diagrama UML formal.*
+*Nota.* El mapa es un esquema informal de responsabilidades e interfaces, no un
+diagrama UML formal.
 
 ## Caso guiado: reservar sin duplicar una promesa
 

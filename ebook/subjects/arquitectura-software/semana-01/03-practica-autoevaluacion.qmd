@@ -56,12 +56,16 @@ alcance **arquitectónico** si esa interfaz y su regla condicionan varias pantal
 equipos o despliegues. En ambos casos el análisis la precede: identifica actores,
 regla y resultado sin decidir todavía tablas, servidores o lenguaje.
 
+::: {.table-responsive tabindex="0" role="region" aria-label="Tabla de responsabilidades e interfaces"}
+
 | Responsabilidad | Interfaz o entrada | Resultado que entrega |
 |---|---|---|
 | Pantalla | datos de ejemplar y persona | muestra un resultado, sin cambiar inventario |
 | `Reservas` | `solicitar(ejemplar, persona)` | confirmación o rechazo con motivo |
 | `Disponibilidad` | comprobar y marcar | una sola copia marcada o no disponible |
 | `Notificaciones` | resultado final | aviso preparado para la persona |
+
+:::
 
 La separación reduce el acoplamiento: cambiar el medio de aviso no debe exigir que
 la pantalla conozca la regla de inventario. A la vez, `Reservas` mantiene cohesión si
