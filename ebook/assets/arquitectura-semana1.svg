@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="360" viewBox="0 0 960 360" role="img" aria-labelledby="title desc">
+  <title id="title">Responsabilidades para reservar un ejemplar</title>
+  <desc id="desc">Una persona solicita una reserva. El módulo Reservas consulta una interfaz de disponibilidad del Catálogo y devuelve confirmación o rechazo; Notificaciones recibe el resultado final.</desc>
+  <style>text{font-family:system-ui,sans-serif;fill:#172554}.box{fill:#eff6ff;stroke:#2563eb;stroke-width:2}.interface{fill:#ecfdf5;stroke:#0f766e;stroke-width:2}.arrow{stroke:#0f766e;stroke-width:3;marker-end:url(#arrow)}</style>
+  <defs><marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#0f766e"/></marker></defs>
+  <rect class="box" x="45" y="130" width="180" height="95" rx="12"/><text x="135" y="168" text-anchor="middle" font-size="23">Persona</text><text x="135" y="198" text-anchor="middle" font-size="16">solicita reserva</text>
+  <rect class="box" x="340" y="130" width="190" height="95" rx="12"/><text x="435" y="168" text-anchor="middle" font-size="23">Reservas</text><text x="435" y="198" text-anchor="middle" font-size="16">coordina la regla</text>
+  <rect class="interface" x="650" y="50" width="230" height="95" rx="12"/><text x="765" y="88" text-anchor="middle" font-size="22">Catálogo</text><text x="765" y="117" text-anchor="middle" font-size="16">Disponibilidad</text>
+  <rect class="interface" x="650" y="225" width="230" height="95" rx="12"/><text x="765" y="263" text-anchor="middle" font-size="22">Notificaciones</text><text x="765" y="292" text-anchor="middle" font-size="16">resultado final</text>
+  <line class="arrow" x1="230" y1="165" x2="333" y2="165"/><text x="280" y="145" text-anchor="middle" font-size="16">interfaz</text>
+  <line class="arrow" x1="535" y1="145" x2="643" y2="103"/><text x="588" y="101" text-anchor="middle" font-size="16">consulta</text>
+  <line class="arrow" x1="535" y1="205" x2="643" y2="262"/><text x="588" y="254" text-anchor="middle" font-size="16">comunica</text>
+</svg>

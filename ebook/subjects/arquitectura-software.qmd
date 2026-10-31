@@ -1,0 +1,37 @@
+# Arquitectura de Software
+
+Esta asignatura incorpora su **Semana 1** como una base para explicar y justificar
+decisiones antes de practicar soluciones más amplias. El recorrido parte de los
+contenidos oficiales verificados, los desarrolla con ejemplos originales y no
+sustituye la clase ni registra calificaciones [@blackboard-arq-s1].
+
+## Cobertura actual
+
+| Semana | Tema y propósito | Lectura |
+|---|---|---|
+| 1 | Del análisis a las decisiones de diseño y arquitectura | [Diseño y arquitectura: de la necesidad a las decisiones](arquitectura-software/semana-01/01-diseno-arquitectura.qmd) |
+| 1 | Tipos, dominios de uso y mitos del software | [Software: tipos, dominios y mitos](arquitectura-software/semana-01/02-dominios-mitos.qmd) |
+
+## Alcance de la semana actual
+
+La primera lectura conecta necesidades, atributos de calidad, módulos y estilos
+sin presentar una receta universal. La segunda ayuda a clasificar software por su
+función técnica y por el problema que atiende, y a detectar cuatro mitos que
+conducen a decisiones apresuradas. Ambas incluyen ejercicios breves con
+retroalimentación para estudiar de manera autónoma.
+
+El enlace oficial también propone un
+[ejercicio formativo en Educaplay](https://es.educaplay.com/recursos-educativos/31153075-introduccion_al_diseno_y_arquitectura_de_software.html).
+Es un recurso para contrastar ideas: este cuaderno no afirma que se haya completado
+ni asigna una nota.
+
+## Ruta de estudio
+
+1. Formula una respuesta antes de abrir la retroalimentación.
+2. Relaciona una necesidad concreta con una decisión y una comprobación observable.
+3. Distingue el concepto técnico de su dominio de uso antes de clasificarlo.
+4. Explica qué evidencia faltaría para sostener una conclusión arquitectónica.
+
+La cobertura se ampliará únicamente cuando haya temas oficiales verificados. La
+práctica integrada y la autoevaluación extensa de Arquitectura no forman parte de
+esta entrega de Semana 1.

@@ -13,9 +13,10 @@ documentación oficial de la asignatura ni registra calificaciones.
 2. Lee el concepto, predice el resultado de un ejemplo y realiza la práctica.
 3. Conserva una observación concreta y contrástala con la retroalimentación.
 
-Actualmente está disponible [Aplicaciones Web con PHP y C#](subjects/aplicaciones-web.qmd),
-con su Semana 1. Su tabla de cobertura enlaza las lecturas de fundamentos,
-variables y alcance, práctica y entorno opcional.
+Actualmente están disponibles [Aplicaciones Web con PHP y C#](subjects/aplicaciones-web.qmd)
+y [Arquitectura de Software](subjects/arquitectura-software.qmd), ambas con su
+Semana 1. Cada introducción delimita su cobertura y enlaza las lecturas que ya
+pueden estudiarse; las semanas posteriores no se adelantan por inferencia.
 
 ## Un ciclo de práctica
 
