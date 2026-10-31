@@ -1,44 +1,60 @@
 ---
-title: "Cómo usar este libro"
+title: "Cómo usar este cuaderno"
 ---
 
-Este libro acompaña únicamente la **Semana 1** de Aplicaciones Web con PHP y C#. Su propósito es transformar cada práctica en una oportunidad para explicar, ejecutar y comprobar ideas; no sustituye la documentación oficial de la asignatura ni registra calificaciones.
+Este cuaderno de Ingeniería de Software crece por **asignatura y semana** para
+preparar evaluaciones mediante teoría, ejemplos resueltos, práctica y
+autoevaluación. Cada parte declara su cobertura actual: no sustituye la
+documentación oficial de la asignatura ni registra calificaciones.
 
 ## Ruta rápida
 
-1. Lea la sección que corresponde a la clase o práctica actual.
-2. Complete el ciclo de práctica antes de abrir las respuestas razonadas.
-3. Anote una duda concreta y vuelva a la fuente primaria indicada.
+1. Elige la asignatura y la semana que estás cursando en la navegación.
+2. Lee el concepto, predice el resultado de un ejemplo y realiza la práctica.
+3. Conserva una observación concreta y contrástala con la retroalimentación.
 
-La lectura comienza con [Fundamentos de la web](chapters/01-web-foundations.qmd) y continúa con [variables, tipos y alcance](chapters/02-variables-types-scope.qmd). La [práctica y repaso](chapters/03-week1-practice-review.qmd) reúne el trabajo de la semana; el capítulo de [entorno de desarrollo](chapters/04-development-environment.qmd) propone rutas opcionales para ejecutarlo.
+Actualmente está disponible [Aplicaciones Web con PHP y C#](subjects/aplicaciones-web.qmd),
+con su Semana 1. Su tabla de cobertura enlaza las lecturas de fundamentos,
+variables y alcance, práctica y entorno opcional.
 
 ## Un ciclo de práctica
 
-Repita este ciclo para cada ejercicio. El objetivo no es acertar a la primera, sino hacer visible qué evidencia sostiene una respuesta.
+Repita este ciclo para cada ejercicio. El objetivo no es acertar a la primera,
+sino hacer visible qué evidencia sostiene una respuesta.
 
 1. **Prediga.** Antes de ejecutar, escriba qué espera que ocurra y por qué.
-2. **Explique.** Lea el concepto y describa con sus palabras qué dato entra, qué regla se aplica y qué resultado debería salir.
+2. **Explique.** Describa qué dato entra, qué regla se aplica y qué resultado debería salir.
 3. **Ejecute.** Pruebe un ejemplo pequeño en el repositorio de práctica o en su entorno local.
-4. **Compruebe.** Compare la salida y los errores con su predicción. Use las pruebas disponibles cuando el ejercicio las incluya.
+4. **Compruebe.** Compare la salida y los errores con su predicción.
 5. **Reflexione.** Registre qué cambió entre la hipótesis y la evidencia, y formule el siguiente experimento.
 
-Los avisos desplegables de pista y solución ayudan a dosificar la ayuda: primero intente resolver; después contraste su razonamiento. En HTML pueden contraerse y en PDF permanecen como bloques claramente etiquetados.
+Los avisos desplegables de pista y solución ayudan a dosificar la ayuda: primero
+intente resolver; después contraste su razonamiento. En HTML pueden contraerse y
+en PDF permanecen como bloques claramente etiquetados.
 
 ## Qué fuentes tienen prioridad
 
-| Prioridad | Uso en este libro |
+| Prioridad | Uso en este cuaderno |
 |---|---|
-| Documentación oficial de la asignatura | Define los temas y la práctica de Semana 1. Puede requerir inicio de sesión en Blackboard. |
-| Documentación técnica primaria | Aclara el comportamiento de PHP, C#, ASP.NET y las herramientas. |
+| Documentación oficial de la asignatura | Define los temas y la práctica de cada semana. Puede requerir inicio de sesión en Blackboard. |
+| Documentación técnica primaria | Aclara el comportamiento de lenguajes, plataformas y herramientas. |
 | Repositorios de práctica verificados | Ofrecen ejemplos para observar, no requisitos nuevos. |
 | Explicación editorial | Une las fuentes con lenguaje didáctico original; no reemplaza a las anteriores. |
 
-Consulte la [política de fuentes y bibliografía](references.qmd) para las referencias completas y la fecha de consulta. Este texto parafrasea el material del curso; no reproduce exportaciones privadas de Blackboard.
+Consulte la [política de fuentes y bibliografía](references.qmd) para las referencias
+completas y la fecha de consulta. Este texto parafrasea el material del curso; no
+reproduce exportaciones privadas de Blackboard.
 
 ## Autoevaluación formativa
 
-La autoevaluación es manual. Para cada práctica, conserve una predicción, el comando o acción realizada, la evidencia observada y una explicación breve. Revise después las [respuestas razonadas](answers.qmd), corrija su explicación y decida un paso siguiente. No hay LMS, puntos, cuentas ni una promesa de dominio automático.
+La autoevaluación es manual. Para cada práctica, conserve una predicción, el comando
+o acción realizada, la evidencia observada y una explicación breve. Revise después
+las [respuestas razonadas](answers.qmd), corrija su explicación y decida un paso
+siguiente. No hay LMS, puntos, cuentas ni una promesa de dominio automático.
 
 ## Alcance de esta edición
 
-Esta edición termina en Semana 1. Patrones, arquitectura, pruebas y otros temas se incorporarán únicamente cuando el progreso real de la asignatura los alcance. Docker y Dev Containers aparecen como rutas de ejecución opcionales: el aprendizaje central es PHP, C# y la web, no una herramienta concreta.
+La cobertura publicada depende del avance real y las fuentes verificadas de cada
+asignatura. No se añaden temarios futuros por inferencia. En Aplicaciones Web, Docker
+y Dev Containers aparecen como rutas de ejecución opcionales: el aprendizaje central
+es PHP, C# y la web, no una herramienta concreta.

@@ -1,0 +1,32 @@
+# Aplicaciones Web con PHP y C#
+
+Esta asignatura abre el cuaderno con su **Semana 1**. Combina teoría, ejemplos
+resueltos, práctica y autoevaluación para preparar la evaluación a partir de las
+fuentes oficiales y de observaciones propias; no sustituye la documentación del
+curso ni registra calificaciones.
+
+## Cobertura actual
+
+| Semana | Tema y propósito | Lectura |
+|---|---|---|
+| 1 | Petición, respuesta HTTP y responsabilidades web | [Fundamentos de la web](../chapters/01-web-foundations.qmd) |
+| 1 | Variables, tipos, conversiones y alcance en PHP y C# | [Valores, tipos y alcance](../chapters/02-variables-types-scope.qmd) |
+| 1 | Repaso práctico con predicciones y evidencia | [Práctica y repaso](../chapters/03-week1-practice-review.qmd) |
+| 1 | Rutas opcionales para ejecutar los ejemplos | [Entorno de desarrollo](../chapters/04-development-environment.qmd) |
+
+## Alcance de la semana actual
+
+El recorrido cubre fundamentos de la web, valores y alcance, y la práctica guiada
+que los conecta. El entorno de desarrollo es opcional: ayuda a observar los ejemplos,
+pero no reemplaza el razonamiento sobre la petición, el programa y la respuesta.
+Las respuestas razonadas de la autoevaluación están al final del libro.
+
+## Ciclo de estudio
+
+1. **Lee y predice** el resultado antes de ejecutar un ejemplo.
+2. **Explica** la entrada, la regla y la salida con tus palabras.
+3. **Practica y comprueba** con una observación concreta.
+4. **Contrasta** tu razonamiento con la retroalimentación y registra la siguiente duda.
+
+La cobertura se amplía solo cuando la asignatura avance y existan fuentes oficiales
+verificadas. Hasta entonces, esta página delimita la Semana 1 disponible.
