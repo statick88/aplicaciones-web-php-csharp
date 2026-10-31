@@ -16,20 +16,16 @@ book:
     - index.qmd
     - part: subjects/aplicaciones-web.qmd
       chapters:
-        - part: "Semana 1"
-          chapters:
-            - chapters/01-web-foundations.qmd
-            - chapters/02-variables-types-scope.qmd
-            - chapters/03-week1-practice-review.qmd
-            - chapters/04-development-environment.qmd
-            - answers.qmd
+        - chapters/01-web-foundations.qmd
+        - chapters/02-variables-types-scope.qmd
+        - chapters/03-week1-practice-review.qmd
+        - chapters/04-development-environment.qmd
+        - answers.qmd
     - part: subjects/arquitectura-software.qmd
       chapters:
-        - part: "Semana 1"
-          chapters:
-            - subjects/arquitectura-software/semana-01/01-diseno-arquitectura.qmd
-            - subjects/arquitectura-software/semana-01/02-dominios-mitos.qmd
-            - subjects/arquitectura-software/semana-01/03-practica-autoevaluacion.qmd
+        - subjects/arquitectura-software/semana-01/01-diseno-arquitectura.qmd
+        - subjects/arquitectura-software/semana-01/02-dominios-mitos.qmd
+        - subjects/arquitectura-software/semana-01/03-practica-autoevaluacion.qmd
     - references.qmd
 
 bibliography: references.bib

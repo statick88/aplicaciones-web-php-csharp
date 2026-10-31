@@ -14,6 +14,14 @@ El HTML usa **Solar oscuro por defecto**, un tema Bootstrap integrado de [Quarto
 
 El resultado se escribe en `ebook/_book/`. El libro declara la URL pública base `https://statick88.github.io/aplicaciones-web-php-csharp/`, por lo que los enlaces internos se resuelven desde el proyecto de Pages.
 
+## Organización por asignatura y semana
+
+Cada asignatura es una parte del libro. Quarto no admite una parte dentro de otra:
+las semanas se indican en la cobertura de la página de asignatura y en las rutas
+semanales de los capítulos nuevos, no mediante partes anidadas. Las rutas históricas
+de Web se conservan. Para otra semana, añada sus capítulos a la misma parte y actualice
+la tabla de cobertura con el material efectivamente verificado.
+
 ## Comprobación estructural
 
 ```bash
