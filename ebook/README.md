@@ -1,6 +1,6 @@
 # Cuaderno de estudio y práctica — Ingeniería de Software
 
-Libro Quarto en español que crece por asignatura y semana para preparar evaluaciones con teoría, ejemplos resueltos, práctica y autoevaluación. La cobertura actual es Aplicaciones Web con PHP y C#, Semana 1. El contenido es formativo y estático: GitHub Pages puede publicar el resultado HTML, pero no ejecuta PHP ni servicios .NET.
+Libro Quarto en español que crece por asignatura y semana para preparar evaluaciones con teoría, ejemplos resueltos, práctica y autoevaluación. Un solo libro y PDF reúnen índices independientes para Aplicaciones Web, Diseño y Arquitectura de Software, Gestión Empresarial y Emprendimiento, Inteligencia Artificial, Inteligencia de Negocios y Proyectos Informáticos. La cobertura redactada actual incluye Aplicaciones Web y las Semanas 1 y 2 verificadas de Diseño y Arquitectura de Software. El contenido es formativo y estático: GitHub Pages puede publicar el resultado HTML, pero no ejecuta PHP ni servicios .NET.
 
 ## Renderizado local
 
@@ -13,18 +13,24 @@ quarto render ebook
 El HTML usa **Solar oscuro por defecto**, un tema Bootstrap integrado de [Quarto para HTML](https://quarto.org/docs/output-formats/html-themes.html). `solarized` pertenece a las presentaciones reveal.js y no es el nombre del tema de este libro. Quarto puede emitir inicialmente `quarto-light` en el cuerpo y aplicar el modo mediante JavaScript: la comprobación inspecciona el enlace Bootstrap con `data-mode="dark"` y su paleta CSS predeterminada.
 
 La bibliografía central declara `nocite: '@*'` para conservar todas las entradas
-registradas, también cuando Quarto reutiliza capítulos sin cambios. Las citas de
-otros capítulos deben seguir teniendo destino en `references.html`.
+registradas, también cuando Quarto reutiliza capítulos sin cambios. No elimines
+esa declaración: las citas de otros capítulos deben seguir teniendo destino en
+`references.html`.
 
 El resultado se escribe en `ebook/_book/`. El libro declara la URL pública base `https://statick88.github.io/aplicaciones-web-php-csharp/`, por lo que los enlaces internos se resuelven desde el proyecto de Pages.
 
 ## Organización por asignatura y semana
 
-Cada asignatura es una parte del libro. Quarto no admite una parte dentro de otra:
-las semanas se indican en la cobertura de la página de asignatura y en las rutas
-semanales de los capítulos nuevos, no mediante partes anidadas. Las rutas históricas
-de Web se conservan. Para otra semana, añada sus capítulos a la misma parte y actualice
-la tabla de cobertura con el material efectivamente verificado.
+Cada asignatura tiene un índice propio dentro del libro compartido. Quarto no admite
+una parte dentro de otra: las semanas se indican en la cobertura de la página de
+asignatura y en las rutas semanales de los capítulos, no mediante partes anidadas.
+Los índices sin capítulos redactados aparecen como entradas de navegación válidas,
+sin partes vacías ni contenido inventado. Las rutas históricas de Web se conservan.
+Para otra semana, añada sus capítulos a la misma parte y actualice la tabla de
+cobertura con el material efectivamente verificado. En Diseño y Arquitectura de
+Software, la Semana 2 cubre el documento HTML oficial sobre actividades, flujo,
+tareas, patrones y modelos de proceso; los PDF asociados permanecen sin cuerpo
+verificado y no se presentan como cubiertos.
 
 Como apoyo transversal de Web, [Tablas de consulta HTTP](subjects/aplicaciones-web/consulta-http.qmd)
 resume siete métodos, idempotencia, datos en DevTools/PHP y estados frecuentes.
@@ -65,7 +71,7 @@ La comprobación lee las entradas escalares `.qmd`, `file:` y `part:` de la conf
 
 ## Publicación estática
 
-**Esta tarea no realizó ninguna publicación.** El flujo [`.github/workflows/ebook.yml`](../.github/workflows/ebook.yml) renderiza el HTML y el PDF con Quarto 1.10.19, comprueba su estructura y publica exclusivamente `ebook/_book/` en GitHub Pages. Se ejecuta al cambiar `ebook/**` o el propio flujo en `main`, y también puede iniciarse manualmente. La URL prevista es `https://statick88.github.io/aplicaciones-web-php-csharp/`; estará disponible después de la primera ejecución verde y de que GitHub Pages esté habilitado para el repositorio.
+El flujo [`.github/workflows/ebook.yml`](../.github/workflows/ebook.yml) renderiza el HTML y el PDF con Quarto 1.10.19, comprueba su estructura y publica exclusivamente `ebook/_book/` en GitHub Pages. Se ejecuta al cambiar `ebook/**` o el propio flujo en `main`, y también puede iniciarse manualmente. La URL prevista es `https://statick88.github.io/aplicaciones-web-php-csharp/`; estará disponible después de la primera ejecución verde y de que GitHub Pages esté habilitado para el repositorio.
 
 Cambiar el tema o renderizar localmente no actualiza el sitio público: es necesario publicar el nuevo resultado mediante el flujo. Mientras no se publique, Pages puede seguir mostrando el tema anterior.
 
@@ -76,10 +82,3 @@ GitHub Pages sirve archivos estáticos: permite leer el ebook HTML y descargar s
 Las fuentes oficiales de cada asignatura tienen prioridad. La documentación técnica complementa la explicación y los repositorios de práctica aportan ejemplos observables. No se publican exportaciones privadas de Blackboard ni se afirma el uso de software de coautoría no identificado.
 
 Para incorporar una semana futura: verifique primero las fuentes oficiales; agregue capítulos, ejercicios y retroalimentación explicativos y originales; actualice la cobertura semanal, la navegación y las referencias; después renderice y ejecute la comprobación estructural. No invente contenido curricular futuro.
-
-La primera lectura de Semana 2 de Arquitectura explica actividades, flujo, tareas
-y patrones de proceso mediante un caso original de reservas de biblioteca.
-
-La segunda lectura compara cascada, incremental, evolutivo y espiral; incluye
-práctica original y diez preguntas con retroalimentación. No resuelve evaluaciones
-institucionales ni presume que se hayan leído los PDF de la semana.
