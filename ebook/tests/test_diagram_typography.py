@@ -35,7 +35,7 @@ def digest(data):
     return hashlib.sha256(data).hexdigest()
 
 
-PORTABLE = ('request-response.svg', 'request-response-csharp.svg', 'runtime-comparison.svg', 'runtime-csharp.svg', 'scope.svg', 'scope-csharp.svg')
+PORTABLE = ('request-response.svg', 'request-response-csharp.svg', 'runtime-comparison.svg', 'runtime-csharp.svg', 'scope.svg', 'scope-csharp.svg', 'arquitectura-semana1.svg', 'arquitectura-semana2.svg')
 
 class DiagramTypography(unittest.TestCase):
     def test_editable_sources_keep_every_original_label(self):
@@ -112,6 +112,13 @@ class DiagramTypography(unittest.TestCase):
                     for key, value in element.attrib.items():
                         if key.endswith("href"):
                             self.assertTrue(value.startswith("#"), value)
+
+
+    def test_check_command_succeeds_without_writing(self):
+        assets = {name: (BOOK / "assets" / name).read_bytes() for name in LABEL_HASHES}
+        run = subprocess.run([sys.executable, str(BOOK / "scripts/render_diagram_fonts.py"), "--check"], capture_output=True, text=True)
+        self.assertEqual((run.returncode, run.stdout, run.stderr), (0, "Checked 8 portable Fira diagrams.\n", ""))
+        self.assertEqual(assets, {name: (BOOK / "assets" / name).read_bytes() for name in LABEL_HASHES})
 
 
 if __name__ == "__main__":

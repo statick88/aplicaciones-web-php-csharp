@@ -62,6 +62,18 @@ El enlace loopback, el document root aislado y `router.php` son parte de la
 protección: no omitas el router, no uses `0.0.0.0` ni sirvas la raíz del repositorio.
 `file://` y GitHub Pages no ejecutan PHP.
 
+## Figuras con tipografía portable
+
+Las ocho figuras originales usan contornos vectoriales de **FiraCode Nerd Font**;
+se conservan los originales con texto editable en [`diagrams/`](diagrams/README.md).
+Los SVG publicados no dependen de las fuentes instaladas por cada lector. Sus URLs,
+etiquetas, captions y textos alternativos se conservan. Las capturas PNG reales de
+DevTools no se alteran. El MCP nativo de Excalidraw sigue usando Excalifont: no se
+confunde esa limitación con la fuente real de las figuras publicadas.
+
+Para regenerar o validar los contornos, consulte `diagrams/README.md`. La validación
+sin escritura es `python3 ebook/scripts/render_diagram_fonts.py --check`.
+
 ## Comprobación estructural
 
 ```bash
