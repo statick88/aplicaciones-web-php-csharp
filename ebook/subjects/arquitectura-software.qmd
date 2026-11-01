@@ -38,3 +38,10 @@ ni asigna una nota.
 La cobertura se ampliará únicamente cuando haya temas oficiales verificados. La
 práctica y sus respuestas de Arquitectura viven juntas en la tercera lectura de esta
 Semana 1; las respuestas de Aplicaciones Web siguen en su página propia.
+
+## Semana 2: procesos de software
+
+La lectura desarrolla actividades, flujo, tareas y patrones a partir del documento
+HTML oficial verificado; no afirma cobertura de los PDF aún no leídos.
+
+- [Procesos de software: actividades, flujo y trabajo reutilizable](arquitectura-software/semana-02/01-procesos-flujo.qmd).
