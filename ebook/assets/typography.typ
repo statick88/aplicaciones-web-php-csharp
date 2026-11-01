@@ -1,6 +1,4 @@
-// Se carga en el encabezado, antes de generar la portada y el índice.
-// La ruta `font-paths` de Quarto hace que la familia provenga de los TTF incluidos.
-#set text(font: "FiraCode Nerd Font")
+// La prosa, la portada y los títulos conservan la tipografía proporcional de Quarto.
+// Solo el código usa los TTF Fira incluidos mediante `font-paths`.
 #set par(justify: true)
-#show heading: set text(font: "FiraCode Nerd Font")
 #show raw: set text(font: "FiraCode Nerd Font")

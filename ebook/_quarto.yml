@@ -50,7 +50,7 @@ format:
     toc-depth: 3
     number-sections: true
   typst:
-    mainfont: "FiraCode Nerd Font"
+    monofont: "FiraCode Nerd Font"
     output-file: aplicaciones-web-php-csharp-semana1.pdf
     toc: true
     number-sections: true
