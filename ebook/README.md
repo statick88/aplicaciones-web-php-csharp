@@ -79,3 +79,7 @@ Para incorporar una semana futura: verifique primero las fuentes oficiales; agre
 
 La primera lectura de Semana 2 de Arquitectura explica actividades, flujo, tareas
 y patrones de proceso mediante un caso original de reservas de biblioteca.
+
+La segunda lectura compara cascada, incremental, evolutivo y espiral; incluye
+práctica original y diez preguntas con retroalimentación. No resuelve evaluaciones
+institucionales ni presume que se hayan leído los PDF de la semana.
