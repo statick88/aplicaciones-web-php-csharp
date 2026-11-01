@@ -35,6 +35,8 @@ def digest(data):
     return hashlib.sha256(data).hexdigest()
 
 
+PORTABLE = ('request-response.svg', 'request-response-csharp.svg')
+
 class DiagramTypography(unittest.TestCase):
     def test_editable_sources_keep_every_original_label(self):
         for filename, expected in LABEL_HASHES.items():
@@ -77,6 +79,39 @@ class DiagramTypography(unittest.TestCase):
             run = subprocess.run([sys.executable, str(book / "scripts/render_diagram_fonts.py"), "--check"], capture_output=True, text=True)
             self.assertEqual((run.returncode, run.stdout, run.stderr), (1, "", "Stale diagram: request-response.svg\n"))
             self.assertEqual(before, {name: (book / "assets" / name).read_bytes() for name in (*LABEL_HASHES, *CAPTURE_HASHES)})
+
+
+    def test_all_original_diagrams_have_portable_exact_fira_outlines(self):
+        for filename in PORTABLE:
+            expected = LABEL_HASHES[filename]
+            with self.subTest(diagram=filename):
+                output = ET.parse(BOOK / "assets" / filename).getroot()
+                self.assertEqual(list(output.iter(SVG + "text")), [])
+                self.assertEqual(list(output.iter(SVG + "image")), [])
+                self.assertTrue(list(output.iter(SVG + "path")))
+                self.assertEqual(output.get("role"), "img")
+                self.assertTrue(output.find(SVG + "title").text)
+                self.assertTrue(output.find(SVG + "desc").text)
+                meta = json.loads(output.find(SVG + "metadata").text)
+                self.assertEqual(meta["font_family"], "FiraCode Nerd Font")
+                self.assertEqual(meta["rendering"], "glyph-outlines")
+                self.assertEqual(digest(json.dumps(meta["labels"], ensure_ascii=False).encode()), expected)
+                source = BOOK / "diagrams" / filename
+                self.assertTrue(source.is_file())
+                self.assertEqual(meta["source_sha256"], digest(source.read_bytes()))
+                editable = ET.parse(source).getroot()
+                labels = [" ".join("".join(e.itertext()).split()) for e in editable.iter(SVG + "text")]
+                self.assertEqual(labels, meta["labels"])
+                self.assertEqual(output.findtext(SVG + "title"), editable.findtext(SVG + "title"))
+                self.assertEqual(output.findtext(SVG + "desc"), editable.findtext(SVG + "desc"))
+                self.assertEqual(len(meta["font_sha256"]), 2)
+                self.assertIn("FiraCode Nerd Font", source.read_text())
+                for name, sha in meta["font_sha256"].items():
+                    self.assertEqual(sha, digest((BOOK / "assets/fonts/fira-code-nerd" / name).read_bytes()))
+                for element in output.iter():
+                    for key, value in element.attrib.items():
+                        if key.endswith("href"):
+                            self.assertTrue(value.startswith("#"), value)
 
 
 if __name__ == "__main__":
