@@ -15,12 +15,7 @@
   font-display: swap;
 }
 
-/* La familia solicitada se aplica al cuerpo, títulos y código; no solo como fallback. */
-body {
-  font-family: "FiraCode Nerd Font", monospace;
-}
-
-h1, h2, h3, h4, h5, h6,
+/* La prosa y los títulos usan la tipografía proporcional del tema; el código conserva Fira. */
 code, pre, kbd, samp {
   font-family: "FiraCode Nerd Font", monospace;
 }

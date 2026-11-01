@@ -34,10 +34,12 @@ verificado y no se presentan como cubiertos.
 
 ## Tipografía distribuida
 
-El HTML y el PDF usan **FiraCode Nerd Font** para prosa, títulos y código. Las
-variantes Regular y Bold están autocontenidas en `assets/fonts/fira-code-nerd/`;
-el PDF configura esa ruta de proyecto y declara `mainfont` para aplicar la familia
-también a portada e índice, sin depender de una instalación global.
+El HTML usa la tipografía proporcional estándar del tema de Quarto, y el PDF
+conserva la fuente proporcional predeterminada de Quarto para prosa, portada,
+índice y títulos. **FiraCode Nerd Font** se mantiene solo para el código y en
+las ocho figuras existentes, que no cambian con este ajuste de lectura.
+Las variantes Regular y Bold están autocontenidas en `assets/fonts/fira-code-nerd/`;
+el PDF conserva esa ruta de proyecto para el código, sin instalación global.
 Los archivos se distribuyen sin modificación bajo SIL Open Font License 1.1. La
 carpeta incluye el texto completo de la licencia y la atribución/procedencia.
 Los párrafos de lectura se justifican en ambos márgenes; navegación, código y tablas

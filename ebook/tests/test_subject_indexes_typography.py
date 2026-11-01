@@ -88,12 +88,13 @@ class SubjectIndexesAndTypography(unittest.TestCase):
         self.assertIn("SIL Open Font License 1.1", attribution)
 
         config = CONFIG.read_text()
-        self.assertIn('mainfont: "FiraCode Nerd Font"', config)
+        self.assertNotIn('mainfont: "FiraCode Nerd Font"', config)
+        self.assertIn('monofont: "FiraCode Nerd Font"', config)
         self.assertIn("font-paths:", config)
         self.assertIn("assets/fonts/fira-code-nerd", config)
         self.assertIn("include-in-header: assets/typography.typ", config)
 
-    def test_html_uses_bundled_fira_and_justifies_only_reading_prose(self):
+    def test_proportional_book_text_keeps_fira_code_and_justified_prose(self):
         css = (ROOT / "assets/styles.css").read_text()
         self.assertIn("@font-face", css)
         self.assertRegex(css, r"\.csl-entry\s*\{[^}]*overflow-wrap:\s*anywhere")
@@ -101,13 +102,14 @@ class SubjectIndexesAndTypography(unittest.TestCase):
         self.assertRegex(css, r"main\.content :not\(pre\) > code\s*\{[^}]*white-space:\s*normal")
         self.assertIn("FiraCodeNerdFont-Regular.ttf", css)
         self.assertIn("FiraCodeNerdFont-Bold.ttf", css)
-        self.assertRegex(css, r"body\s*\{[^}]*font-family:\s*\"FiraCode Nerd Font\"")
+        self.assertNotRegex(css, r"(?:body|h[1-6])[^\{]*\{[^}]*font-family:\s*\"FiraCode Nerd Font\"")
+        self.assertRegex(css, r"code,\s*pre,\s*kbd,\s*samp\s*\{[^}]*font-family:\s*\"FiraCode Nerd Font\"")
         self.assertRegex(css, r"main[^,{]*p[^\{]*\{[^}]*text-align:\s*justify")
         self.assertNotRegex(css, r"(?:code|pre|table|nav)[^\{]*\{[^}]*text-align:\s*justify")
 
         typst = (ROOT / "assets/typography.typ").read_text()
-        self.assertIn('#set text(font: "FiraCode Nerd Font")', typst)
-        self.assertIn('#show heading: set text(font: "FiraCode Nerd Font")', typst)
+        self.assertNotIn('#set text(font: "FiraCode Nerd Font")', typst)
+        self.assertNotIn('#show heading: set text(font: "FiraCode Nerd Font")', typst)
         self.assertIn('#show raw: set text(font: "FiraCode Nerd Font")', typst)
         self.assertIn("#set par(justify: true)", typst)
 

@@ -16,6 +16,32 @@ bajo `ebook/examples/devcontainers/` son ejemplos para **copiar**; no son
 configuraciones activas y no funcionan ejecutándolos desde esa carpeta.
 :::
 
+## Qué vas a preparar
+
+Prepararás **dos escenarios alternativos**, cada uno con dos contenedores: uno
+para la aplicación y otro para su base de datos. No necesitas instalar PHP,
+.NET, MariaDB ni SQL Server directamente en tu computadora para esta ruta.
+
+| Escenario | Servicio `app` | Servicio `db` |
+|---|---|---|
+| PHP + MariaDB | Apache, PHP y las extensiones `pdo_mysql` y `mysqli` | MariaDB |
+| .NET + SQL Server | Aplicación ASP.NET Core MVC con `dotnet watch` | SQL Server |
+
+Una **imagen** contiene el entorno de ejecución; un **contenedor** lo ejecuta.
+Un **volumen** conserva los archivos de la base de datos aunque detengas el
+contenedor. **Compose** describe los servicios y crea la red que los conecta.
+Los archivos `php/compose.yaml`, `csharp/compose.yaml` y sus respectivos
+`Dockerfile` ya existen: no debes crear otro proyecto para seguir esta práctica.
+
+::: {.callout-warning}
+## Entorno local, no receta de producción
+
+Ambas aplicaciones usan `127.0.0.1:8080`: inicia **una por vez**. Los puertos de
+las bases también se publican solo en loopback. La práctica .NET utiliza `sa` y
+`TrustServerCertificate=True`; estas decisiones de desarrollo no deben copiarse
+como configuración de seguridad de una aplicación en producción.
+:::
+
 ## Elegir una ruta
 
 | Ruta | Úsala cuando | Idea principal |
@@ -58,58 +84,231 @@ cambia las comparaciones de variables, tipos, constantes o alcance.
 
 ## Ruta A: VS Code y terminal Compose
 
-Esta ruta no requiere usar una ventana especial de VS Code. Abre la carpeta del
-repositorio en el editor y ejecuta los comandos desde la raíz del repositorio,
-no desde `php/src` ni `csharp/src`.
+Esta ruta no requiere una ventana especial de VS Code. Ejecuta los comandos
+siguientes desde la **raíz del repositorio**, no desde `php/src` ni `csharp/src`.
+
+### Preparación común
+
+**1. Abre el proyecto.** Si todavía no tienes una copia, puedes obtenerla así:
+
+```bash
+git clone https://github.com/statick88/aplicaciones-web-php-csharp.git
+cd aplicaciones-web-php-csharp
+```
+
+Si ya tienes una copia, abre su carpeta: no vuelvas a clonarla. En la raíz deben
+estar las carpetas `php/`, `csharp/` y `ebook/`.
+
+**2. Comprueba Docker y Compose.**
+
+```bash
+docker --version
+docker compose version
+docker info
+```
+
+Los dos primeros comandos identifican las herramientas; `docker info` comprueba
+el acceso al motor. Si este último falla, resuelve la preparación de Docker con
+la documentación de tu plataforma antes de investigar PHP o .NET. No necesitas
+instalar los lenguajes ni los motores de base de datos en el host. La primera
+construcción sí necesita acceso a los registros para descargar las imágenes.
+
+**3. Decide qué escenario usar.** Los dos necesitan el puerto `8080` del host;
+MariaDB publica además `3306` y SQL Server `1433`. Si otra aplicación ocupa uno
+de esos puertos, identifica el conflicto antes de arrancar; no borres datos ni
+modifiques servicios del host automáticamente.
+
+::: {.callout-warning}
+## Configura las contraseñas antes del primer arranque
+
+Los Compose incluyen contraseñas de respaldo solo para desarrollo. Los archivos
+`.env` que prepararás están ignorados por Git: no publiques sus valores ni los
+incluyas en capturas. Los marcadores entre `<` y `>` deben reemplazarse completos
+por contraseñas propias antes de ejecutar los comandos.
+
+Si ya habías iniciado una base y su volumen contiene datos, **cambiar `.env` no
+equivale a cambiar la contraseña almacenada en esa base**. Verifica las
+credenciales existentes o realiza un cambio explícito dentro del motor; no
+elimines el volumen para corregir una discrepancia.
+:::
 
 ### PHP
 
-1. Desde la raíz, lee la [guía PHP del repositorio](https://github.com/statick88/aplicaciones-web-php-csharp/blob/main/php/README.md).
-2. Comprueba que el puerto local `127.0.0.1:8080` no esté ocupado por el stack
-   C#. Solo un stack puede usar ese puerto a la vez.
-3. Inicia PHP si deseas observar la página:
+El escenario usa `php/Dockerfile` y `php/compose.yaml`. El primero prepara
+Apache, PHP 8.5.12 y las extensiones `pdo_mysql` y `mysqli`; Compose conecta
+`app` con MariaDB. Puedes consultar también la
+[guía PHP del repositorio](https://github.com/statick88/aplicaciones-web-php-csharp/blob/main/php/README.md).
 
-   ```bash
-   docker compose -f php/compose.yaml up -d --build
-   ```
+**1. Crea `php/.env` con tu editor.** Usa dos contraseñas distintas:
 
-4. Abre `http://127.0.0.1:8080` y realiza una predicción pequeña: ¿qué debería
-   mostrar el ejemplo de variables o la calculadora de la entrega separada?
-5. Para alternar sin borrar servicios ni volúmenes, desde la raíz ejecuta:
+```dotenv
+MARIADB_PASSWORD='<CLAVE_PROPIA_PARA_LA_APLICACION>'
+MARIADB_ROOT_PASSWORD='<OTRA_CLAVE_PROPIA_PARA_ROOT>'
+```
 
-   ```bash
-   docker compose -f php/compose.yaml stop
-   ```
+`MARIADB_PASSWORD` configura tanto el usuario de la base como `DB_PASSWORD` en
+la aplicación. La aplicación usa el usuario `app` y la base `facturas`, no el
+usuario administrador `root`. No tienes que crear esos nombres manualmente:
+MariaDB los prepara mediante las variables del Compose en su inicialización.
 
-`stop` conserva los servicios y sus volúmenes para el siguiente inicio. Esta
-guía no usa `down -v`, comandos de borrado ni restauraciones automáticas.
+**2. Valida la configuración y levanta el escenario.** Si habías iniciado el
+escenario C#, detenlo primero como se indica en su sección de apagado.
+
+```bash
+docker compose --env-file php/.env -f php/compose.yaml config --quiet
+docker compose --env-file php/.env -f php/compose.yaml up -d --build
+```
+
+`--env-file` selecciona explícitamente las variables, `-f` el archivo del
+escenario, `--build` construye la imagen de la aplicación y `-d` deja los
+servicios ejecutándose en segundo plano. El primer comando valida el modelo
+sin imprimir las contraseñas; no comprueba que la base acepte conexiones.
+
+**3. Revisa el estado.**
+
+```bash
+docker compose --env-file php/.env -f php/compose.yaml ps
+```
+
+Busca los servicios `app` y `db`. La base puede aparecer inicialmente como
+`starting`; `app` depende de que la comprobación de salud de MariaDB termine
+correctamente. Si hay un problema, consulta cada servicio por separado:
+
+```bash
+docker compose --env-file php/.env -f php/compose.yaml logs --tail=80 db
+docker compose --env-file php/.env -f php/compose.yaml logs --tail=80 app
+```
+
+**4. Comprueba la aplicación y un guardado real.** Abre
+`http://127.0.0.1:8080`. Ver una página confirma que responde PHP/Apache, pero no
+prueba por sí solo que PHP pueda guardar en MariaDB.
+
+Para comprobar el recorrido completo, abre `http://127.0.0.1:8080/home.php`,
+completa el formulario con **datos ficticios** y presiona **Guardar**. En este
+proyecto, `php/src/home.php` abre la conexión mediante PDO al recibir el POST,
+crea la tabla `facturas` con `CREATE TABLE IF NOT EXISTS` y después ejecuta el
+`INSERT` parametrizado. No hay un archivo SQL de inicio que debas importar.
+El resultado esperado incluye **“Guardada en MariaDB”** y el identificador de la
+fila. Si aparece **“No se pudo guardar en la base de datos”**, revisa el error y
+las credenciales; no consideres exitoso el ejercicio solo porque el formulario
+se haya mostrado.
+
+**5. Edita el código y detén sin borrar datos.** `php/src` está montado en
+`/var/www/html`: para cambios de PHP normalmente basta con guardar el archivo y
+recargar el navegador. Reconstruye si modificas el `Dockerfile` o sus extensiones.
+
+```bash
+docker compose --env-file php/.env -f php/compose.yaml stop
+```
+
+Para volver a iniciar, reutiliza el mismo comando `up -d --build` del paso 2.
 
 ### C# / ASP.NET Core
 
-1. Desde la raíz, lee la [guía C# del repositorio](https://github.com/statick88/aplicaciones-web-php-csharp/blob/main/csharp/README.md).
-2. Detén antes el stack PHP si está usando `127.0.0.1:8080`:
+El escenario usa `csharp/Dockerfile` y `csharp/compose.yaml`: un contenedor con
+SDK .NET 10.0.403 y `dotnet watch`, y otro con SQL Server 2022. Consulta también
+la [guía C# del repositorio](https://github.com/statick88/aplicaciones-web-php-csharp/blob/main/csharp/README.md).
+Antes de empezar, respeta el límite x86-64 explicado arriba. El Compose declara
+`ACCEPT_EULA=Y`: revisa los términos de Microsoft antes de utilizar la imagen.
 
-   ```bash
-   docker compose -f php/compose.yaml stop
-   ```
+**1. Libera el puerto y crea `csharp/.env`.** Si ya preparaste PHP con los pasos
+anteriores y sigue encendido, detenlo:
 
-3. En un host compatible con su SQL Server, inicia la práctica:
+```bash
+docker compose --env-file php/.env -f php/compose.yaml stop
+```
 
-   ```bash
-   docker compose -f csharp/compose.yaml up -d --build
-   ```
+Si comienzas directamente por .NET y no has preparado PHP, omite ese comando.
+Luego crea el archivo con tu editor:
 
-4. Observa en `http://127.0.0.1:8080` un ejemplo existente y compáralo con la
-   misma intención en PHP; no supongas paridad completa de todas las pantallas.
-5. Al terminar o antes de volver a PHP, conserva sus volúmenes:
+```dotenv
+MSSQL_SA_PASSWORD='<CLAVE_PROPIA_FUERTE_PARA_SQL_SERVER>'
+```
 
-   ```bash
-   docker compose -f csharp/compose.yaml stop
-   ```
+Reemplaza el marcador por una contraseña propia; se recomienda al menos 16
+caracteres combinando mayúsculas, minúsculas, números y símbolos como `!`, `_`
+o `-`. Evita `;` en este ejemplo: la contraseña se interpola directamente en
+la cadena de conexión. El mismo valor configura SQL Server y la variable
+`ConnectionStrings__Facturas` de la aplicación.
 
-La imagen actual de PHP parte de PHP 8.5.12 y la C# de SDK 10.0.403; esos datos
-identifican los entornos existentes, no una promesa de que fueron ejecutados en
-cada host descrito [@practice-repo].
+**2. Valida y construye.**
+
+```bash
+docker compose --env-file csharp/.env -f csharp/compose.yaml config --quiet
+docker compose --env-file csharp/.env -f csharp/compose.yaml up -d --build
+```
+
+No necesitas ejecutar `dotnet new` ni instalar el SDK en el host: el proyecto
+MVC ya está en `csharp/src` y el SDK está dentro de `app`.
+
+**3. Espera a SQL Server y revisa los registros.**
+
+```bash
+docker compose --env-file csharp/.env -f csharp/compose.yaml ps
+docker compose --env-file csharp/.env -f csharp/compose.yaml logs --tail=100 db
+docker compose --env-file csharp/.env -f csharp/compose.yaml logs --tail=100 app
+```
+
+La comprobación de salud de `db` ejecuta una consulta con `sqlcmd`; `app` espera
+a que termine correctamente. Ese estado confirma que responde el motor, no que
+el formulario de la aplicación ya haya guardado una factura.
+
+**4. Comprueba las migraciones y el formulario.** Al iniciar, `Program.cs`
+ejecuta `Database.Migrate()`: aplica las migraciones pendientes de EF Core en la
+base `Facturas`. Para este arranque no debes ejecutar manualmente
+`dotnet ef database update`. Si una migración falla, la aplicación puede no
+iniciar: revisa los registros de `app`, no solo los de SQL Server.
+
+Abre `http://127.0.0.1:8080` y completa el formulario con datos ficticios. El POST
+llega a `HomeController`, agrega la entidad y llama a `SaveChanges()`. El envío
+exitoso vuelve mostrando los datos; esta aplicación no tiene un mensaje
+específico de “conexión correcta” ni un endpoint de salud propio. No inventes
+esa evidencia: el recorrido que debes comprobar es formulario, POST y guardado.
+
+**5. Edita y detén el escenario.** `csharp/src` está montado en `/app`;
+`dotnet watch` detecta cambios y recompila durante el desarrollo.
+
+```bash
+docker compose --env-file csharp/.env -f csharp/compose.yaml stop
+```
+
+Para retomar, usa el mismo comando `up -d --build` del paso 2.
+
+### Direcciones y persistencia
+
+| Servicio | Desde el navegador o una herramienta del host | Desde `app` |
+|---|---|---|
+| Aplicación PHP o .NET | `http://127.0.0.1:8080` | No aplica |
+| MariaDB | `127.0.0.1:3306` | `db:3306` |
+| SQL Server | `127.0.0.1:1433` | `db:1433` |
+
+Dentro de `app`, `localhost` es el propio contenedor de la aplicación. La base
+se encuentra por el nombre de servicio **`db`**, que resuelve la red de Compose.
+No hay phpMyAdmin ni un administrador web de SQL Server configurados: la
+página en `8080` es la aplicación de práctica.
+
+MariaDB guarda sus archivos en un volumen montado en `/var/lib/mysql`; SQL
+Server en `/var/opt/mssql`. Son datos distintos del código montado desde `src`.
+`stop` conserva contenedores y volúmenes. Reutiliza el mismo escenario y nombre
+de proyecto: cambiar de proyecto puede seleccionar otros volúmenes.
+**No ejecutes `down -v` como solución de problemas:** puede eliminar los datos.
+
+### Si algo falla
+
+| Síntoma | Qué revisar primero |
+|---|---|
+| Docker no responde o no permite el acceso | `docker info` y la preparación del motor en tu host |
+| No encuentra `.env` o `compose.yaml` | La raíz del repositorio y los argumentos `--env-file` y `-f` |
+| Puerto ocupado | El otro escenario o un servicio local que ya usa `8080`, `3306` o `1433` |
+| `db` permanece iniciando o queda `unhealthy` | Registros de `db`, recursos disponibles y, para SQL Server, contraseña y arquitectura |
+| Error de autenticación | Coincidencia de credenciales y si el volumen ya tenía otra contraseña; no lo borres |
+| PHP muestra el formulario pero no guarda | POST a `/home.php`, mensaje de error y conexión PDO |
+| .NET no inicia o falla al enviar | Registros de `app`, migraciones y conexión usada por `SaveChanges()` |
+
+Que un contenedor figure en `ps` no prueba todo el escenario. Separa siempre
+cuatro comprobaciones: configuración válida, servicios disponibles, respuesta
+HTTP y persistencia de un registro de prueba. No se promete aquí ejecución en
+hosts o integraciones que no se hayan verificado.
 
 ## Ruta B: Dev Containers
 
