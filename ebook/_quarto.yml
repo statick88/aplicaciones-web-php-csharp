@@ -31,6 +31,7 @@ book:
         - subjects/arquitectura-software/semana-01/02-dominios-mitos.qmd
         - subjects/arquitectura-software/semana-01/03-practica-autoevaluacion.qmd
         - subjects/arquitectura-software/semana-02/01-procesos-flujo.qmd
+        - subjects/arquitectura-software/semana-02/02-modelos-practica-autoevaluacion.qmd
     - references.qmd
 
 bibliography: references.bib
