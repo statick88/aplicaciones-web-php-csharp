@@ -35,7 +35,7 @@ def digest(data):
     return hashlib.sha256(data).hexdigest()
 
 
-PORTABLE = ('request-response.svg', 'request-response-csharp.svg', 'runtime-comparison.svg', 'runtime-csharp.svg')
+PORTABLE = ('request-response.svg', 'request-response-csharp.svg', 'runtime-comparison.svg', 'runtime-csharp.svg', 'scope.svg', 'scope-csharp.svg')
 
 class DiagramTypography(unittest.TestCase):
     def test_editable_sources_keep_every_original_label(self):
