@@ -3,6 +3,7 @@ project:
   output-dir: _book
   resources:
     - examples/http-methods/**
+    - assets/fonts/fira-code-nerd/**
 
 book:
   output-file: aplicaciones-web-php-csharp-semana1
@@ -49,9 +50,13 @@ format:
     toc-depth: 3
     number-sections: true
   typst:
+    mainfont: "FiraCode Nerd Font"
     output-file: aplicaciones-web-php-csharp-semana1.pdf
     toc: true
     number-sections: true
+    font-paths:
+      - assets/fonts/fira-code-nerd
+    include-in-header: assets/typography.typ
 
 execute:
   freeze: auto
