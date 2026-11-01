@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="430" viewBox="0 0 680 430" role="img" aria-labelledby="title desc">
+  <title id="title">Alcance y dependencia explícita en PHP</title>
+  <desc id="desc">Una función PHP recibe iva mediante un parámetro, de modo que la dependencia exterior queda explícita dentro del ámbito local de la función.</desc>
+  <style>
+    text { font-family: "FiraCode Nerd Font"; fill: #172554; }
+    .heading { font-size: 30px; font-weight: 700; }
+    .label { font-size: 25px; font-weight: 700; }
+    .copy { font-size: 24px; }
+    .code { font-family: "FiraCode Nerd Font"; font-size: 24px; }
+    .panel { stroke-width: 3px; }
+    .inner { fill: #ffffff; stroke-width: 2px; }
+  </style>
+  <rect width="680" height="430" fill="#ffffff"/>
+  <text class="heading" x="340" y="42" text-anchor="middle">Alcance en PHP</text>
+  <rect class="panel" x="24" y="70" width="632" height="330" rx="16" fill="#eff6ff" stroke="#1d4ed8"/>
+  <text class="heading" x="52" y="108">Dependencia explícita</text>
+  <text class="label" x="52" y="148">Contexto exterior</text>
+  <text class="code" x="52" y="181">$iva = 0.19;</text>
+  <rect class="inner" x="48" y="202" width="584" height="142" rx="10" stroke="#60a5fa"/>
+  <text class="label" x="68" y="234">Función: ámbito local</text>
+  <text class="code" x="68" y="268">function total($precio, $iva) {</text>
+  <text class="code" x="92" y="300">return $precio * (1 + $iva);</text>
+  <text class="code" x="68" y="328">}</text>
+  <text class="copy" x="52" y="378">El parámetro declara la dependencia.</text>
+</svg>
