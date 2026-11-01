@@ -6,7 +6,7 @@ Repositorio público único de prácticas educativas de Aplicaciones Web, no de 
 | --- | --- | --- |
 | PHP | [`php/`](php/) | [README de PHP](php/README.md) |
 | C# / ASP.NET Core | [`csharp/`](csharp/) | [README de C#](csharp/README.md) |
-| Ebook de Semana 1 | [`ebook/`](ebook/) | [README del ebook](ebook/README.md) |
+| Cuaderno de estudio y práctica | [`ebook/`](ebook/) | [README del ebook](ebook/README.md) |
 
 > La entrega pública ya existente es [aplicaciones-web-semana1](https://github.com/statick88/aplicaciones-web-semana1): sitio personal HTML/CSS y calculadora PHP. El commit `ff3d1d7` de esa entrega ya fue comprobado (lint de 3 archivos y 12 pruebas). Estas prácticas son ejercicios adicionales y no duplican esa entrega.
 
@@ -26,11 +26,11 @@ docker compose -f csharp/compose.yaml stop
 
 Las instrucciones y comprobaciones propias de cada práctica están en sus README independientes.
 
-## Ebook de Semana 1
+## Cuaderno de estudio y práctica
 
-El ebook estático de repaso se mantiene en [`ebook/`](ebook/) y cubre únicamente la Semana 1. Está publicado en [GitHub Pages](https://statick88.github.io/aplicaciones-web-php-csharp/), con [PDF descargable](https://statick88.github.io/aplicaciones-web-php-csharp/aplicaciones-web-php-csharp-semana1.pdf).
+El ebook estático en [`ebook/`](ebook/) crece por asignatura y semana para preparar evaluaciones con teoría, ejemplos resueltos, práctica y autoevaluación. Actualmente incluye Aplicaciones Web con PHP y C#, Semana 1. Su publicación existente permanece en [GitHub Pages](https://statick88.github.io/aplicaciones-web-php-csharp/), con el [PDF descargable](https://statick88.github.io/aplicaciones-web-php-csharp/aplicaciones-web-php-csharp-semana1.pdf) que conserva el nombre técnico `aplicaciones-web-php-csharp-semana1.pdf` por compatibilidad con enlaces públicos heredados.
 
-El [flujo de publicación](https://github.com/statick88/aplicaciones-web-php-csharp/actions/workflows/ebook.yml) verifica y genera ambos formatos antes de desplegar. Pages solo sirve el libro estático; los ejercicios PHP y C# se ejecutan en sus entornos de desarrollo.
+Esta tarea no publicó cambios. El [flujo de publicación](https://github.com/statick88/aplicaciones-web-php-csharp/actions/workflows/ebook.yml) verifica y genera ambos formatos antes de desplegar. Pages solo sirve el libro estático; los ejercicios PHP y C# se ejecutan en sus entornos de desarrollo.
 
 ## Semana 1 — avance verificado
 

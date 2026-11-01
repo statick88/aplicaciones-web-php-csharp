@@ -6,19 +6,26 @@ book:
   output-file: aplicaciones-web-php-csharp-semana1
   downloads: [pdf]
   favicon: assets/favicon.svg
-  title: "Aplicaciones Web con PHP y C# — Semana 1"
+  title: "Cuaderno de estudio y práctica — Ingeniería de Software"
   author: "Diego Saavedra"
-  subtitle: "Fundamentos web, variables y práctica guiada"
+  subtitle: "Teoría, práctica y preparación para evaluaciones por asignatura y semana"
   site-url: "https://statick88.github.io/aplicaciones-web-php-csharp/"
   repo-url: "https://github.com/statick88/aplicaciones-web-php-csharp"
   repo-actions: [issue]
   chapters:
     - index.qmd
-    - chapters/01-web-foundations.qmd
-    - chapters/02-variables-types-scope.qmd
-    - chapters/03-week1-practice-review.qmd
-    - chapters/04-development-environment.qmd
-    - answers.qmd
+    - part: subjects/aplicaciones-web.qmd
+      chapters:
+        - chapters/01-web-foundations.qmd
+        - chapters/02-variables-types-scope.qmd
+        - chapters/03-week1-practice-review.qmd
+        - chapters/04-development-environment.qmd
+        - answers.qmd
+    - part: subjects/arquitectura-software.qmd
+      chapters:
+        - subjects/arquitectura-software/semana-01/01-diseno-arquitectura.qmd
+        - subjects/arquitectura-software/semana-01/02-dominios-mitos.qmd
+        - subjects/arquitectura-software/semana-01/03-practica-autoevaluacion.qmd
     - references.qmd
 
 bibliography: references.bib

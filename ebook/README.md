@@ -1,6 +1,6 @@
-# Ebook de Aplicaciones Web con PHP y C# — Semana 1
+# Cuaderno de estudio y práctica — Ingeniería de Software
 
-Libro Quarto en español para repasar únicamente la primera semana de la asignatura. El contenido es formativo y estático: GitHub Pages puede publicar el resultado HTML, pero no ejecuta PHP ni servicios .NET.
+Libro Quarto en español que crece por asignatura y semana para preparar evaluaciones con teoría, ejemplos resueltos, práctica y autoevaluación. La cobertura actual es Aplicaciones Web con PHP y C#, Semana 1. El contenido es formativo y estático: GitHub Pages puede publicar el resultado HTML, pero no ejecuta PHP ni servicios .NET.
 
 ## Renderizado local
 
@@ -13,6 +13,14 @@ quarto render ebook
 El HTML usa **Solar oscuro por defecto**, un tema Bootstrap integrado de [Quarto para HTML](https://quarto.org/docs/output-formats/html-themes.html). `solarized` pertenece a las presentaciones reveal.js y no es el nombre del tema de este libro. Quarto puede emitir inicialmente `quarto-light` en el cuerpo y aplicar el modo mediante JavaScript: la comprobación inspecciona el enlace Bootstrap con `data-mode="dark"` y su paleta CSS predeterminada.
 
 El resultado se escribe en `ebook/_book/`. El libro declara la URL pública base `https://statick88.github.io/aplicaciones-web-php-csharp/`, por lo que los enlaces internos se resuelven desde el proyecto de Pages.
+
+## Organización por asignatura y semana
+
+Cada asignatura es una parte del libro. Quarto no admite una parte dentro de otra:
+las semanas se indican en la cobertura de la página de asignatura y en las rutas
+semanales de los capítulos nuevos, no mediante partes anidadas. Las rutas históricas
+de Web se conservan. Para otra semana, añada sus capítulos a la misma parte y actualice
+la tabla de cobertura con el material efectivamente verificado.
 
 ## Comprobación estructural
 
@@ -32,11 +40,11 @@ Pruebas aisladas del comprobador (sin dependencias adicionales):
 python3 -B -m unittest discover -s ebook/tests -v
 ```
 
-La comprobación lee las entradas escalares `.qmd` de la configuración actual (también en listas anidadas); no es un analizador YAML general. No navega la red ni valida que Blackboard sea accesible: algunos enlaces del curso requieren autenticación. Comprueba referencias HTML `href`, `src`, `poster` y datos de objetos; no ejecuta JavaScript ni inspecciona recursos referidos desde CSS. La firma PDF no garantiza la integridad de todas sus páginas. La existencia de archivos y anclas no demuestra corrección pedagógica ni equivalencia entre HTML y PDF; tampoco reemplaza la revisión de ejemplos ejecutables en sus herramientas correspondientes.
+La comprobación lee las entradas escalares `.qmd`, `file:` y `part:` de la configuración actual (también en listas anidadas); no es un analizador YAML general. No navega la red ni valida que Blackboard sea accesible: algunos enlaces del curso requieren autenticación. Comprueba referencias HTML `href`, `src`, `poster` y datos de objetos; no ejecuta JavaScript ni inspecciona recursos referidos desde CSS. La firma PDF no garantiza la integridad de todas sus páginas. La existencia de archivos y anclas no demuestra corrección pedagógica ni equivalencia entre HTML y PDF; tampoco reemplaza la revisión de ejemplos ejecutables en sus herramientas correspondientes.
 
 ## Publicación estática
 
-El flujo [`.github/workflows/ebook.yml`](../.github/workflows/ebook.yml) renderiza el HTML y el PDF con Quarto 1.10.19, comprueba su estructura y publica exclusivamente `ebook/_book/` en GitHub Pages. Se ejecuta al cambiar `ebook/**` o el propio flujo en `main`, y también puede iniciarse manualmente. La URL prevista es `https://statick88.github.io/aplicaciones-web-php-csharp/`; estará disponible después de la primera ejecución verde y de que GitHub Pages esté habilitado para el repositorio.
+**Esta tarea no realizó ninguna publicación.** El flujo [`.github/workflows/ebook.yml`](../.github/workflows/ebook.yml) renderiza el HTML y el PDF con Quarto 1.10.19, comprueba su estructura y publica exclusivamente `ebook/_book/` en GitHub Pages. Se ejecuta al cambiar `ebook/**` o el propio flujo en `main`, y también puede iniciarse manualmente. La URL prevista es `https://statick88.github.io/aplicaciones-web-php-csharp/`; estará disponible después de la primera ejecución verde y de que GitHub Pages esté habilitado para el repositorio.
 
 Cambiar el tema o renderizar localmente no actualiza el sitio público: es necesario publicar el nuevo resultado mediante el flujo. Mientras no se publique, Pages puede seguir mostrando el tema anterior.
 
@@ -44,10 +52,6 @@ GitHub Pages sirve archivos estáticos: permite leer el ebook HTML y descargar s
 
 ## Alcance editorial
 
-Las fuentes oficiales del curso tienen prioridad. La documentación técnica complementa la explicación y los repositorios de práctica aportan ejemplos observables. No se publican exportaciones privadas de Blackboard ni se afirma el uso de software de coautoría no identificado. Las futuras semanas esperan el progreso efectivo del curso.
+Las fuentes oficiales de cada asignatura tienen prioridad. La documentación técnica complementa la explicación y los repositorios de práctica aportan ejemplos observables. No se publican exportaciones privadas de Blackboard ni se afirma el uso de software de coautoría no identificado.
 
-## Revisión de la integración
-
-La ampliación por asignatura se prepara en una cadena de revisión. Este punto es
-solo el seguimiento en borrador: no debe integrarse a la rama principal hasta
-revisar sus unidades, resolver las comprobaciones pendientes y aprobar el alcance.
+Para incorporar una semana futura: verifique primero las fuentes oficiales; agregue capítulos, ejercicios y retroalimentación explicativos y originales; actualice la cobertura semanal, la navegación y las referencias; después renderice y ejecute la comprobación estructural. No invente contenido curricular futuro.

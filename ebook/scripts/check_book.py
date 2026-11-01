@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Minimal structural checks for the Week 1 Quarto book."""
+"""Minimal structural checks for the subject- and week-based Quarto book."""
 
 from __future__ import annotations
 
@@ -28,7 +28,6 @@ IMAGE_RE = re.compile(r"!\[([^\]]*)\]\(([^)]+)\)")
 CITE_RE = re.compile(r"(?<!\w)@([A-Za-z0-9_:-]+)")
 BIB_RE = re.compile(r"@\w+\s*\{\s*([^,\s]+)", re.I)
 TODO_RE = re.compile(r"(?m)^\s*(?:<!--\s*)?(?:TODO|TBD|PLACEHOLDER)(?:\s*[:>]|\s*$)")
-FUTURE_WEEK_RE = re.compile(r"chapters/(?:0[5-9]|[1-9]\d)-|semana\s+[2-9]\b", re.I)
 
 
 class ImageAltChecker(HTMLParser):
@@ -59,9 +58,13 @@ class ImageAltChecker(HTMLParser):
 
 
 def configured_chapters(text: str) -> tuple[str, ...]:
-    """Read Quarto's scalar chapter entries (including nested part/chapter lists)."""
+    """Read scalar Quarto chapter, file, and file-based part entries.
+
+    This bounded extraction supports the book structures used here, including
+    nested lists; it is not a general YAML parser.
+    """
     return tuple(dict.fromkeys(re.findall(
-        r"(?m)^\s*(?:-\s*|(?:-\s*)?file:\s*)[\"']?([^\s\"'#]+\.qmd)[\"']?\s*(?:#.*)?$", text)))
+        r"(?m)^\s*(?:-\s*|(?:-\s*)?(?:file|part):\s*)[\"']?([^\s\"'#]+\.qmd)[\"']?\s*(?:#.*)?$", text)))
 
 
 def check_rendered(chapters: tuple[str, ...], errors: list[str]) -> None:
@@ -140,7 +143,7 @@ def local_path(target: str) -> bool:
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--rendered", action="store_true",
-                        help="comprueba páginas configuradas, enlaces, tema Solar oscuro y firma PDF")
+                        help="comprueba páginas configuradas, enlaces, anclas, tema Solar oscuro y firma PDF")
     args = parser.parse_args()
     errors: list[str] = []
 
@@ -192,8 +195,6 @@ def main() -> int:
             fail(errors, "el demo público de C# usa csharp-app:latest sin explicar cómo construir la imagen")
 
     if config.is_file():
-        if FUTURE_WEEK_RE.search(text):
-            fail(errors, "la configuración incluye capítulos de semanas futuras")
         for chapter in CHAPTERS:
             if chapter not in text:
                 fail(errors, f"capítulo no configurado: {chapter}")
