@@ -1,13 +1,47 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="960" height="360" viewBox="0 0 960 360" role="img" aria-labelledby="title desc">
-  <title id="title">Responsabilidades para reservar un ejemplar</title>
-  <desc id="desc">Una persona solicita una reserva. El módulo Reservas consulta una interfaz de disponibilidad del Catálogo y devuelve confirmación o rechazo; Notificaciones recibe el resultado final.</desc>
-  <style>text{font-family:system-ui,sans-serif;fill:#172554}.box{fill:#eff6ff;stroke:#2563eb;stroke-width:2}.interface{fill:#ecfdf5;stroke:#0f766e;stroke-width:2}.arrow{stroke:#0f766e;stroke-width:3;marker-end:url(#arrow)}</style>
-  <defs><marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#0f766e"/></marker></defs>
-  <rect class="box" x="45" y="130" width="180" height="95" rx="12"/><text x="135" y="168" text-anchor="middle" font-size="23">Persona</text><text x="135" y="198" text-anchor="middle" font-size="16">solicita reserva</text>
-  <rect class="box" x="340" y="130" width="190" height="95" rx="12"/><text x="435" y="168" text-anchor="middle" font-size="23">Reservas</text><text x="435" y="198" text-anchor="middle" font-size="16">coordina la regla</text>
-  <rect class="interface" x="650" y="50" width="230" height="95" rx="12"/><text x="765" y="88" text-anchor="middle" font-size="22">Catálogo</text><text x="765" y="117" text-anchor="middle" font-size="16">Disponibilidad</text>
-  <rect class="interface" x="650" y="225" width="230" height="95" rx="12"/><text x="765" y="263" text-anchor="middle" font-size="22">Notificaciones</text><text x="765" y="292" text-anchor="middle" font-size="16">resultado final</text>
-  <line class="arrow" x1="230" y1="165" x2="333" y2="165"/><text x="280" y="145" text-anchor="middle" font-size="16">interfaz</text>
-  <line class="arrow" x1="535" y1="145" x2="643" y2="103"/><text x="588" y="101" text-anchor="middle" font-size="16">consulta</text>
-  <line class="arrow" x1="535" y1="205" x2="643" y2="262"/><text x="588" y="254" text-anchor="middle" font-size="16">comunica</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="720" viewBox="0 0 680 720" role="img" aria-labelledby="title desc">
+  <title id="title">Flujo de responsabilidades de una reserva</title>
+  <desc id="desc">La Persona solicita una reserva a Reservas. Reservas pide a Catálogo comprobar y marcar la disponibilidad técnica del ejemplar. Catálogo devuelve el resultado a Reservas por el recorrido exterior. Reservas confirma o rechaza a la Persona y entrega el resultado final a Notificaciones.</desc>
+  <style>
+    text { font-family: system-ui, sans-serif; fill: #172554; }
+    .heading { font-size: 30px; font-weight: 700; }
+    .name { font-size: 27px; font-weight: 700; }
+    .copy { font-size: 24px; }
+    .node { stroke-width: 3px; }
+    .arrow { fill: none; stroke: #0f766e; stroke-width: 3px; marker-end: url(#arrowhead); }
+    .label { font-size: 24px; font-weight: 700; fill: #134e4a; }
+  </style>
+  <defs><marker id="arrowhead" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="10" refX="10" refY="5" orient="auto"><path d="M0 0 L12 5 L0 10 Z" fill="#0f766e"/></marker></defs>
+  <rect width="680" height="720" fill="#ffffff"/>
+  <text class="heading" x="340" y="48" text-anchor="middle">Reserva: responsabilidades y flujo</text>
+  <path class="arrow" d="M40 520 H20 V100 H660 V240 H648"/>
+  <text class="label" x="340" y="88" text-anchor="middle">resultado</text>
+  <rect class="node" x="40" y="160" width="200" height="140" rx="16" fill="#eff6ff" stroke="#1d4ed8"/>
+  <text class="name" x="140" y="202" text-anchor="middle">Persona</text>
+  <text class="copy" x="140" y="240" text-anchor="middle">solicita</text>
+  <text class="copy" x="140" y="270" text-anchor="middle">una reserva</text>
+  <rect class="node" x="420" y="160" width="220" height="140" rx="16" fill="#eff6ff" stroke="#1d4ed8"/>
+  <text class="name" x="530" y="202" text-anchor="middle">Reservas</text>
+  <text class="copy" x="530" y="240" text-anchor="middle">coordina</text>
+  <text class="copy" x="530" y="270" text-anchor="middle">la regla</text>
+  <path class="arrow" d="M242 185 H410"/>
+  <text class="label" x="330" y="145" text-anchor="middle">solicitud</text>
+  <path class="arrow" d="M418 270 H250"/>
+  <text class="label" x="330" y="315" text-anchor="middle">confirma</text>
+  <text class="copy" x="330" y="345" text-anchor="middle">o rechaza</text>
+  <rect class="node" x="40" y="430" width="220" height="180" rx="16" fill="#ecfdf5" stroke="#0f766e"/>
+  <text class="name" x="150" y="473" text-anchor="middle">Catálogo</text>
+  <text class="copy" x="150" y="512" text-anchor="middle">disponibilidad</text>
+  <text class="copy" x="150" y="544" text-anchor="middle">técnica del</text>
+  <text class="copy" x="150" y="576" text-anchor="middle">ejemplar</text>
+  <path class="arrow" d="M500 302 V370 H150 V422"/>
+  <text class="label" x="350" y="410" text-anchor="middle">comprueba y marca</text>
+  <rect class="node" x="420" y="470" width="220" height="140" rx="16" fill="#fff7ed" stroke="#c2410c"/>
+  <text class="name" x="530" y="511" text-anchor="middle">Notificaciones</text>
+  <text class="copy" x="530" y="550" text-anchor="middle">recibe el</text>
+  <text class="copy" x="530" y="580" text-anchor="middle">resultado</text>
+  <path class="arrow" d="M530 302 V462"/>
+  <text class="label" x="550" y="402">resultado</text>
+  <text class="label" x="550" y="442">final</text>
+  <text class="copy" x="340" y="660" text-anchor="middle">Esquema informal de responsabilidades.</text>
+  <text class="copy" x="340" y="692" text-anchor="middle">No es UML ni una implementación.</text>
 </svg>
