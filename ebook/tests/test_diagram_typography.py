@@ -52,5 +52,32 @@ class DiagramTypography(unittest.TestCase):
             self.assertEqual(digest((BOOK / "assets" / filename).read_bytes()), expected, filename)
 
 
+    @unittest.skipUnless(shutil.which("rsvg-convert") and shutil.which("fc-match"), "Optional local diagram renderer is unavailable")
+    def test_renderer_round_trip_and_stale_check_without_state_change(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            book = Path(tmp) / "ebook"
+            for directory in ["diagrams", "scripts", "assets/fonts/fira-code-nerd"]:
+                shutil.copytree(BOOK / directory, book / directory)
+            for name in (*LABEL_HASHES, *CAPTURE_HASHES):
+                shutil.copy2(BOOK / "assets" / name, book / "assets" / name)
+            command = [sys.executable, str(book / "scripts/render_diagram_fonts.py")]
+            run = subprocess.run(command, capture_output=True, text=True)
+            self.assertEqual((run.returncode, run.stdout, run.stderr), (0, "Rendered 8 portable Fira diagrams.\n", ""))
+            run = subprocess.run(command + ["--check"], capture_output=True, text=True)
+            self.assertEqual((run.returncode, run.stdout, run.stderr), (0, "Checked 8 portable Fira diagrams.\n", ""))
+            for name, sha in CAPTURE_HASHES.items():
+                self.assertEqual(digest((book / "assets" / name).read_bytes()), sha)
+            for name in LABEL_HASHES:
+                root = ET.parse(book / "assets" / name).getroot()
+                self.assertFalse(list(root.iter(SVG + "text")))
+                self.assertTrue(list(root.iter(SVG + "path")))
+            source = book / "diagrams/request-response.svg"
+            source.write_bytes(source.read_bytes() + b"\n")
+            before = {name: (book / "assets" / name).read_bytes() for name in (*LABEL_HASHES, *CAPTURE_HASHES)}
+            run = subprocess.run([sys.executable, str(book / "scripts/render_diagram_fonts.py"), "--check"], capture_output=True, text=True)
+            self.assertEqual((run.returncode, run.stdout, run.stderr), (1, "", "Stale diagram: request-response.svg\n"))
+            self.assertEqual(before, {name: (book / "assets" / name).read_bytes() for name in (*LABEL_HASHES, *CAPTURE_HASHES)})
+
+
 if __name__ == "__main__":
     unittest.main()
