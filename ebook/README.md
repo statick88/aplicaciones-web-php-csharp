@@ -45,3 +45,9 @@ GitHub Pages sirve archivos estáticos: permite leer el ebook HTML y descargar s
 ## Alcance editorial
 
 Las fuentes oficiales del curso tienen prioridad. La documentación técnica complementa la explicación y los repositorios de práctica aportan ejemplos observables. No se publican exportaciones privadas de Blackboard ni se afirma el uso de software de coautoría no identificado. Las futuras semanas esperan el progreso efectivo del curso.
+
+## Revisión de la integración
+
+La ampliación por asignatura se prepara en una cadena de revisión. Este punto es
+solo el seguimiento en borrador: no debe integrarse a la rama principal hasta
+revisar sus unidades, resolver las comprobaciones pendientes y aprobar el alcance.
