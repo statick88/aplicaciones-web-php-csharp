@@ -1,7 +1,44 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="960" height="310" viewBox="0 0 960 310" role="img" aria-labelledby="title desc">
-  <title id="title">Alcance de una variable</title>
-  <desc id="desc">Una variable declarada fuera de una función tiene alcance exterior y un parámetro existe dentro de la función, donde se recomienda pasar los datos necesarios.</desc>
-  <style>text{font-family:system-ui,sans-serif;fill:#172554}.outer{fill:#eff6ff;stroke:#2563eb;stroke-width:3}.inner{fill:#f0fdf4;stroke:#16a34a;stroke-width:3}.code{font-family:monospace;font-size:20px}</style>
-  <rect class="outer" x="55" y="45" width="850" height="220" rx="14"/><text x="85" y="82" font-size="22">Alcance exterior</text><text class="code" x="100" y="120">$iva = 0.19;</text><text class="code" x="100" y="235">// Evita depender de un valor exterior sin declararlo.</text>
-  <rect class="inner" x="385" y="100" width="450" height="105" rx="12"/><text x="415" y="135" font-size="21">Función: alcance local</text><text class="code" x="415" y="175">calcularTotal($precio, $iva)</text><text x="720" y="235" text-anchor="end" font-size="17">El parámetro hace explícita la dependencia.</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="900" viewBox="0 0 680 900" role="img" aria-labelledby="title desc">
+  <title id="title">Alcance en PHP y C#</title>
+  <desc id="desc">PHP recibe la dependencia mediante un parámetro de función, sin capturar automáticamente la variable exterior. C# distingue una variable exterior, descuento dentro de un bloque y tasa como parámetro local del método Total, cuya firma se representa de forma abreviada.</desc>
+  <style>
+    text { font-family: system-ui, sans-serif; fill: #172554; }
+    .heading { font-size: 30px; font-weight: 700; }
+    .label { font-size: 25px; font-weight: 700; }
+    .copy { font-size: 24px; }
+    .code { font-family: ui-monospace, monospace; font-size: 24px; }
+    .panel { stroke-width: 3px; }
+    .inner { fill: #ffffff; stroke-width: 2px; }
+  </style>
+  <rect width="680" height="900" fill="#ffffff"/>
+  <text class="heading" x="340" y="42" text-anchor="middle">Alcance: dependencias y contextos</text>
+  <rect class="panel" x="24" y="70" width="632" height="320" rx="16" fill="#eff6ff" stroke="#1d4ed8"/>
+  <text class="heading" x="52" y="105">PHP: dependencia explícita</text>
+  <text class="label" x="52" y="140">Contexto exterior</text>
+  <text class="code" x="52" y="171">$iva = 0.19;</text>
+  <rect class="inner" x="48" y="192" width="584" height="142" rx="10" stroke="#60a5fa"/>
+  <text class="label" x="68" y="224">Función: ámbito local</text>
+  <text class="code" x="68" y="258">function total($precio, $iva) {</text>
+  <text class="code" x="92" y="290">return $precio * (1 + $iva);</text>
+  <text class="code" x="68" y="318">}</text>
+  <text class="copy" x="52" y="365">El parámetro declara la dependencia.</text>
+  <rect class="panel" x="24" y="420" width="632" height="455" rx="16" fill="#f0fdf4" stroke="#15803d"/>
+  <text class="heading" x="52" y="456">C#: exterior, bloque y parámetro</text>
+  <text class="label" x="52" y="493">Contexto exterior</text>
+  <text class="code" x="52" y="526">int iva = 19;</text>
+  <rect class="inner" x="48" y="545" width="280" height="210" rx="10" stroke="#4ade80"/>
+  <text class="label" x="68" y="585">Bloque</text>
+  <text class="code" x="68" y="620">{</text>
+  <text class="code" x="88" y="650">int descuento</text>
+  <text class="code" x="112" y="680">= 10;</text>
+  <text class="code" x="68" y="710">}</text>
+  <text class="copy" x="68" y="744">Local al bloque</text>
+  <rect class="inner" x="348" y="545" width="284" height="210" rx="10" stroke="#4ade80"/>
+  <text class="label" x="368" y="585">Parámetro</text>
+  <text class="code" x="368" y="625">int tasa</text>
+  <text class="copy" x="368" y="665">En la firma de</text>
+  <text class="code" x="368" y="697">Total(...)</text>
+  <text class="copy" x="368" y="737">Local al método</text>
+  <text class="copy" x="52" y="797">descuento: accesible solo dentro del bloque.</text>
+  <text class="copy" x="52" y="838">El parámetro pertenece al método.</text>
 </svg>
