@@ -1,0 +1,13 @@
+:root { color-scheme: light dark; font-family: system-ui, sans-serif; }
+body { margin: 0; background: #f5f7fa; color: #17212b; }
+main { max-width: 52rem; margin: 0 auto; padding: 2rem 1rem; }
+.actions { display: flex; flex-wrap: wrap; gap: .75rem; margin: 1.5rem 0; }
+button { border: 0; border-radius: .4rem; padding: .7rem 1rem; background: #1261a0; color: white; font: inherit; cursor: pointer; }
+button:focus-visible { outline: .2rem solid #f59e0b; outline-offset: .15rem; }
+pre { min-height: 12rem; overflow: auto; padding: 1rem; border-radius: .4rem; background: #102a43; color: #f0f4f8; white-space: pre-wrap; }
+.note { border-left: .3rem solid #1261a0; padding-left: 1rem; }
+code { overflow-wrap: anywhere; }
+@media (prefers-color-scheme: dark) {
+  body { background: #0b1f2a; color: #e5eef5; }
+  button { background: #2f87c7; }
+}
