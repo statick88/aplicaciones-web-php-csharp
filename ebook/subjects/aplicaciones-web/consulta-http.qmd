@@ -1,0 +1,99 @@
+# Tablas de consulta HTTP
+
+Usa estas tablas al estudiar el ciclo petición/respuesta y al inspeccionar **Network
+(Red)** del navegador. Son una referencia técnica de apoyo, no una nueva semana del
+temario. Las rutas de productos son ejemplos didácticos: no son servicios del repositorio.
+
+## Métodos: qué le pides al servidor
+
+El **método** expresa la intención de la petición. La **ruta** identifica el recurso;
+la API define sus reglas y los formatos que acepta.
+
+::: {.table-responsive tabindex="0" role="region" aria-label="Consulta de métodos HTTP"}
+| Método | Qué significa | Ejemplo de petición |
+|---|---|---|
+| `GET` | Obtener una representación del recurso, sin solicitar su modificación. | `GET /productos` |
+| `POST` | Pedir que el recurso procese los datos enviados; puede crear otro recurso o ejecutar una operación definida por la API. | `POST /productos` |
+| `PUT` | Crear o reemplazar el estado del recurso identificado mediante la representación enviada. No equivale a cambiar solo un campo. | `PUT /productos/42` |
+| `PATCH` | Aplicar cambios parciales según un formato de parche y las reglas de la API. | `PATCH /productos/42` |
+| `DELETE` | Solicitar que se retire la asociación entre la URL y el recurso. No garantiza borrado físico inmediato de archivos o registros. | `DELETE /productos/42` |
+| `HEAD` | Pedir las cabeceras que corresponderían a `GET`, pero sin cuerpo de respuesta. | `HEAD /productos/42` |
+| `OPTIONS` | Consultar opciones de comunicación del destino. También se utiliza en las comprobaciones previas de CORS. | `OPTIONS /productos/42` |
+:::
+
+**PUT frente a PATCH.** Para un producto con nombre y precio, `PUT` envía su
+representación de reemplazo conforme al contrato; un parche puede cambiar solo el
+precio. No basta con cambiar el verbo: el servidor debe implementar la operación y
+validar el formato. `POST` no significa exclusivamente «crear».
+
+## Seguridad semántica e idempotencia
+
+**Seguro**, en HTTP, significa que el cliente no solicita cambiar el estado del
+recurso; no significa que haya cifrado, autenticación o permisos. **Idempotente**
+significa que repetir la misma petición tiene el mismo efecto pretendido sobre el
+servidor que enviarla una vez, no que devuelva siempre el mismo cuerpo o estado.
+
+::: {.table-responsive tabindex="0" role="region" aria-label="Seguridad semántica e idempotencia HTTP"}
+| Método | ¿Seguro según HTTP? | ¿Idempotente por su semántica? |
+|---|---|---|
+| `GET`, `HEAD`, `OPTIONS` | Sí | Sí |
+| `PUT`, `DELETE` | No | Sí |
+| `POST`, `PATCH` | No | No está garantizado |
+:::
+
+Por ejemplo, un primer `DELETE` puede responder `204` y el siguiente `404`: el
+recurso sigue ausente y la operación puede seguir siendo idempotente. Un `PATCH`
+que fija un precio puede ser idempotente, pero uno que lo incrementa no lo es.
+No repitas automáticamente un `POST` ante una duda: podría duplicar una operación.
+Practica modificaciones y borrados solo en un simulador local o con datos desechables.
+
+## Dónde van los datos y dónde verlos
+
+::: {.table-responsive tabindex="0" role="region" aria-label="Datos HTTP en DevTools y PHP"}
+| Dato | Dónde buscar en DevTools | Interpretación en PHP |
+|---|---|---|
+| Método y URL | **Headers → General**: Request Method y Request URL. | `$_SERVER['REQUEST_METHOD']` identifica el verbo. |
+| Query, como `?categoria=libros` | URL y **Payload → Query String Parameters**, cuando aparezca esa sección. | `$_GET` contiene los parámetros de la URL, incluso si el método es `POST` u otro. |
+| Formulario enviado por `POST` | **Payload → Form Data**. | `$_POST` para los tipos de formulario que PHP procesa, no para cualquier cuerpo. |
+| JSON enviado por `POST`, `PUT` o `PATCH` | **Payload**, como contenido enviado; comprueba también `Content-Type`. | Leer `php://input`, decodificar y validar el JSON según el contrato. No esperar que aparezca en `$_POST`. |
+| Cabeceras de la petición | **Headers → Request Headers**. | `Content-Type` describe el formato enviado; `Accept`, el formato de respuesta preferido. |
+| Resultado del servidor | Estado en **Headers → General**; contenido en **Response**. | El programa emite un estado, cabeceras y, cuando corresponde, un cuerpo. |
+:::
+
+La query puede acompañar distintos métodos: **no es exclusiva de GET**. En
+`fetch()` del navegador no envíes cuerpo con `GET` ni `HEAD`. En `DELETE`, no supongas
+que un cuerpo tiene un significado estándar: sigue el contrato de la API.
+Los nombres y la organización de las pestañas pueden variar entre navegadores.
+
+## Estados: qué respondió el servidor
+
+Un método no es un estado: `POST` describe lo solicitado; `201` describe su
+resultado. Ningún verbo garantiza por sí solo un código de éxito.
+
+::: {.table-responsive tabindex="0" role="region" aria-label="Consulta de códigos de estado HTTP"}
+| Estado | Qué significa | Qué comprobar |
+|---|---|---|
+| `200 OK` | Petición atendida con éxito. | Leer el contenido; no deducir que es JSON solo por el código. |
+| `201 Created` | Se creó uno o más recursos. | Revisar el recurso devuelto y `Location`, si se proporciona. |
+| `204 No Content` | Éxito sin cuerpo de respuesta. | No intentar interpretar un JSON que no existe. |
+| `400 Bad Request` | El servidor considera incorrecta la petición. | Sintaxis, parámetros y mensaje recibido. |
+| `401 Unauthorized` | Faltan credenciales de autenticación válidas. | No confundir autenticación con permisos. |
+| `403 Forbidden` | El servidor entiende la petición, pero se niega a atenderla. | Permisos y políticas; identificarse no garantiza acceso. |
+| `404 Not Found` | No se encontró el recurso o el servidor no revela su existencia. | URL e identificador; no implica por sí solo un fallo del programa. |
+| `405 Method Not Allowed` | Ese recurso no admite el método solicitado. | Cabecera `Allow` y documentación de la ruta. |
+| `415 Unsupported Media Type` | No se acepta el formato del contenido enviado. | `Content-Type` y formato del cuerpo. |
+| `500 Internal Server Error` | Fallo interno al procesar la petición. | Evidencia del servidor; no atribuirlo automáticamente al navegador. |
+:::
+
+**Lectura razonada.** Si ves `PATCH /productos/42` con estado `415`, el verbo es
+`PATCH`, no `415`. Compara el formato de parche esperado con el `Content-Type` y
+el cuerpo que realmente enviaste antes de cambiar la URL o repetir la petición.
+Si una respuesta `HEAD` no muestra cuerpo, no lo trates como un error: es lo esperado.
+
+## Fuentes de consulta
+
+Referencia técnica: [MDN: métodos HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Methods),
+[MDN: estados HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status),
+[HTTP Semantics, RFC 9110](https://www.rfc-editor.org/rfc/rfc9110.html)
+y [PATCH, RFC 5789](https://www.rfc-editor.org/rfc/rfc5789.html).
+Para entradas PHP, consulta el [manual de variables externas](https://www.php.net/manual/en/language.variables.external.php).
