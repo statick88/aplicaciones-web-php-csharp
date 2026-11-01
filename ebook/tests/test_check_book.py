@@ -78,6 +78,20 @@ class BookChecks(unittest.TestCase):
             config.write_text(config.read_text() + "    - appendix.qmd\n")
             self.put("appendix.qmd", "# Appendix\n")
 
+    def test_file_based_part_page_is_checked(self):
+        config = self.book / "_quarto.yml"
+        config.write_text(config.read_text() + "    - part: subjects/aplicaciones-web.qmd\n")
+        self.put("subjects/aplicaciones-web.qmd", "# Aplicaciones Web\n")
+        self.rejected("falta artefacto renderizado: ebook/_book/subjects/aplicaciones-web.html")
+
+    def test_subject_chapter_path_is_not_inferred_as_future_week(self):
+        config = self.book / "_quarto.yml"
+        config.write_text(config.read_text() + "    - chapters/05-arquitectura-fundamentos.qmd\n")
+        self.put("chapters/05-arquitectura-fundamentos.qmd", "# Fundamentos\n")
+        result = self.check()
+        self.assertEqual((result.returncode, result.stdout, result.stderr),
+                         (0, "Comprobación estructural correcta.\n", ""))
+
     def test_answers_images_checked(self):
         self.put("_book/answers.html", '<img src="bootstrap.css">')
         self.rejected("imagen HTML sin texto alternativo en answers.html: bootstrap.css")
