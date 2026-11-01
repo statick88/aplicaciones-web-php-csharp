@@ -160,10 +160,13 @@ local existe dentro de la función o método que la declara. Los parámetros son
 forma explícita de entregar valores a esa función; por eso son preferibles a depender
 de variables globales.
 
-![Diagrama de un ámbito exterior, un bloque y una función con su parámetro propio.](../assets/scope.svg){fig-alt="Comparación del alcance de una variable exterior, una variable de bloque y el parámetro local de una función."}
+Las reglas se comparan en el texto, mientras cada figura representa un solo lenguaje.
 
-*Figura 3. Un nombre es visible solo dentro de su ámbito; pasar un parámetro deja la
-dependencia a la vista.*
+![Alcance en PHP: una función recibe su dependencia como parámetro explícito dentro de su ámbito local.](../assets/scope.svg){fig-alt="Alcance en PHP con una variable exterior y una función que recibe esa dependencia mediante un parámetro explícito."}
+
+![Alcance en C#: se distinguen los contextos exterior, de bloque y del parámetro local al método.](../assets/scope-csharp.svg){fig-alt="Alcance en C# con una variable exterior, una variable local al bloque y un parámetro local al método."}
+
+*Un nombre es visible solo dentro de su ámbito; pasar un parámetro deja la dependencia a la vista.*
 
 PHP no crea un nuevo ámbito de variable solo por usar llaves de un `if` o bloque. C#
 sí delimita variables declaradas dentro de un bloque. Compara estas dos intenciones:

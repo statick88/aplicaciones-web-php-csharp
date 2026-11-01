@@ -1,11 +1,32 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="960" height="280" viewBox="0 0 960 280" role="img" aria-labelledby="title desc">
-  <title id="title">Solicitud y respuesta en una aplicación web</title>
-  <desc id="desc">Un navegador envía una solicitud HTTP a un servidor que procesa código PHP o C# y devuelve una respuesta al navegador.</desc>
-  <style>text{font-family:system-ui,sans-serif;fill:#172554}.box{fill:#eff6ff;stroke:#2563eb;stroke-width:2}.arrow{stroke:#0f766e;stroke-width:4;marker-end:url(#p)}</style>
-  <defs><marker id="p" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#0f766e"/></marker></defs>
-  <rect class="box" x="50" y="90" width="210" height="100" rx="12"/><text x="155" y="132" text-anchor="middle" font-size="24">Navegador</text><text x="155" y="163" text-anchor="middle" font-size="17">persona usuaria</text>
-  <rect class="box" x="375" y="90" width="210" height="100" rx="12"/><text x="480" y="132" text-anchor="middle" font-size="24">Servidor web</text><text x="480" y="163" text-anchor="middle" font-size="17">PHP o C# procesa</text>
-  <rect class="box" x="700" y="90" width="210" height="100" rx="12"/><text x="805" y="132" text-anchor="middle" font-size="24">Respuesta</text><text x="805" y="163" text-anchor="middle" font-size="17">HTML, estado o datos</text>
-  <line class="arrow" x1="265" y1="112" x2="368" y2="112"/><text x="316" y="92" text-anchor="middle" font-size="17">solicitud HTTP</text>
-  <line class="arrow" x1="590" y1="168" x2="693" y2="168"/><text x="642" y="210" text-anchor="middle" font-size="17">respuesta HTTP</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="370" viewBox="0 0 680 370" role="img" aria-labelledby="title desc">
+  <title id="title">Petición, PHP y respuesta HTML</title>
+  <desc id="desc">Flujo PHP: 1, el navegador envía una petición HTTP; 2, PHP ejecuta el programa en el servidor; 3, una respuesta con cuerpo HTML vuelve al navegador, que la muestra.</desc>
+  <style>
+    text { font-family: system-ui, sans-serif; fill: #172554; }
+    .client { fill: #eff6ff; stroke: #1d4ed8; stroke-width: 3; }
+    .program { fill: #f5f3ff; stroke: #6d28d9; stroke-width: 3; }
+    .response { fill: #ecfeff; stroke: #0f766e; stroke-width: 3; }
+    .arrow { fill: none; stroke: #0f172a; stroke-width: 3; marker-end: url(#arrow); }
+  </style>
+  <defs><marker id="arrow" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="10" refX="10" refY="5" orient="auto"><path d="M0 0 L12 5 L0 10 Z" fill="#0f172a"/></marker></defs>
+  <rect width="680" height="370" fill="#ffffff"/>
+  <text x="340" y="40" text-anchor="middle" font-size="30" font-weight="700">Flujo HTTP con PHP</text>
+  <text x="340" y="72" text-anchor="middle" font-size="24">El navegador recibe HTML, no código PHP.</text>
+  <rect class="client" x="30" y="105" width="180" height="120" rx="12"/>
+  <text x="120" y="143" text-anchor="middle" font-size="28" font-weight="700">1. Petición</text>
+  <text x="120" y="181" text-anchor="middle" font-size="26">Navegador</text>
+  <text x="120" y="209" text-anchor="middle" font-size="24">envía HTTP</text>
+  <rect class="program" x="240" y="105" width="200" height="120" rx="12"/>
+  <text x="340" y="143" text-anchor="middle" font-size="28" font-weight="700">2. PHP</text>
+  <text x="340" y="181" text-anchor="middle" font-size="24">Ejecuta el</text>
+  <text x="340" y="209" text-anchor="middle" font-size="24">programa</text>
+  <rect class="response" x="470" y="105" width="180" height="120" rx="12"/>
+  <text x="560" y="143" text-anchor="middle" font-size="26" font-weight="700">3. Respuesta</text>
+  <text x="560" y="181" text-anchor="middle" font-size="28" font-weight="700">HTML</text>
+  <text x="560" y="209" text-anchor="middle" font-size="24">al navegador</text>
+  <line class="arrow" x1="213" y1="165" x2="231" y2="165"/>
+  <line class="arrow" x1="443" y1="165" x2="461" y2="165"/>
+  <path class="arrow" d="M560 227 V255 H120 V232"/>
+  <text x="340" y="293" text-anchor="middle" font-size="24">El navegador recibe y muestra el HTML.</text>
+  <text x="340" y="332" text-anchor="middle" font-size="24">El servidor web coordina la petición HTTP.</text>
 </svg>

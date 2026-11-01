@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="560" viewBox="0 0 680 560" role="img" aria-labelledby="title desc">
+  <title id="title">Contextos de alcance en C#</title>
+  <desc id="desc">C# distingue una variable exterior, una variable local dentro de un bloque y un parámetro local del método Total.</desc>
+  <style>
+    text { font-family: system-ui, sans-serif; fill: #172554; }
+    .heading { font-size: 30px; font-weight: 700; }
+    .label { font-size: 25px; font-weight: 700; }
+    .copy { font-size: 24px; }
+    .code { font-family: ui-monospace, monospace; font-size: 24px; }
+    .panel { stroke-width: 3px; }
+    .inner { fill: #ffffff; stroke-width: 2px; }
+  </style>
+  <rect width="680" height="560" fill="#ffffff"/>
+  <text class="heading" x="340" y="42" text-anchor="middle">Alcance en C#</text>
+  <rect class="panel" x="24" y="70" width="632" height="460" rx="16" fill="#f0fdf4" stroke="#15803d"/>
+  <text class="heading" x="52" y="108">Exterior, bloque y parámetro</text>
+  <text class="label" x="52" y="150">Contexto exterior</text>
+  <text class="code" x="52" y="184">int iva = 19;</text>
+  <rect class="inner" x="48" y="210" width="280" height="225" rx="10" stroke="#4ade80"/>
+  <text class="label" x="68" y="250">Bloque</text>
+  <text class="code" x="68" y="288">{</text>
+  <text class="code" x="88" y="322">int descuento</text>
+  <text class="code" x="112" y="354">= 10;</text>
+  <text class="code" x="68" y="388">}</text>
+  <text class="copy" x="68" y="422">Local al bloque</text>
+  <rect class="inner" x="348" y="210" width="284" height="225" rx="10" stroke="#4ade80"/>
+  <text class="label" x="368" y="250">Parámetro</text>
+  <text class="code" x="368" y="292">int tasa</text>
+  <text class="copy" x="368" y="334">En la firma de</text>
+  <text class="code" x="368" y="368">Total(...)</text>
+  <text class="copy" x="368" y="422">Local al método</text>
+  <text class="copy" x="52" y="482">Cada nombre es accesible solo en su contexto.</text>
+</svg>

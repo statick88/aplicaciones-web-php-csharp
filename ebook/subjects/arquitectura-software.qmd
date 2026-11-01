@@ -1,0 +1,46 @@
+# Diseño y Arquitectura de Software
+
+Esta asignatura incorpora las **Semanas 1 y 2** a partir de contenidos oficiales
+verificados. El recorrido desarrolla explicaciones y casos originales para justificar
+decisiones de arquitectura y de proceso; no sustituye la clase, no resuelve tareas
+institucionales ni registra calificaciones [@blackboard-arq-s1; @blackboard-arq-s2].
+
+## Cobertura actual
+
+| Semana | Tema y propósito | Lectura |
+|---|---|---|
+| 1 | Del análisis a las decisiones de diseño y arquitectura | [Diseño y arquitectura: de la necesidad a las decisiones](arquitectura-software/semana-01/01-diseno-arquitectura.qmd) |
+| 1 | Tipos, dominios de uso y mitos del software | [Software: tipos, dominios y mitos](arquitectura-software/semana-01/02-dominios-mitos.qmd) |
+| 1 | Caso integrado, práctica y autoevaluación formativa | [Práctica integrada y autoevaluación](arquitectura-software/semana-01/03-practica-autoevaluacion.qmd) |
+| 2 | Actividades generales, flujo, tareas y patrones reutilizables | [Procesos de software: actividades, flujo y trabajo reutilizable](arquitectura-software/semana-02/01-procesos-flujo.qmd) |
+| 2 | Cascada, incremental, evolutivo y espiral; práctica y autoevaluación | [Modelos de proceso: comparación, práctica y autoevaluación](arquitectura-software/semana-02/02-modelos-practica-autoevaluacion.qmd) |
+
+## Alcance de la cobertura actual
+
+La Semana 1 conecta necesidades, atributos de calidad, módulos y estilos; también
+clasifica software y analiza mitos antes de una práctica integrada. La Semana 2
+explica cómo requisitos, diseño, implementación, pruebas y mantenimiento pueden
+organizarse en distintos flujos. Después compara cascada, incremental, evolutivo y
+espiral según estabilidad, entregas, retroalimentación y riesgos, con un caso original
+de reservas de biblioteca y diez preguntas razonadas.
+
+La cobertura de Semana 2 procede del documento HTML oficial verificado. El plan y
+otros archivos PDF quedaron sin cuerpo legible, por lo que no se afirma que estén
+cubiertas todas las fuentes, clases o evaluaciones de la semana. Todo el material es
+formativo para estudiar de manera autónoma, no una tarea nueva ni una calificación.
+
+El enlace oficial también propone un
+[ejercicio formativo en Educaplay](https://es.educaplay.com/recursos-educativos/31153075-introduccion_al_diseno_y_arquitectura_de_software.html).
+Es un recurso para contrastar ideas: este cuaderno no afirma que se haya completado
+ni asigna una nota.
+
+## Ruta de estudio
+
+1. Formula una respuesta antes de abrir la retroalimentación.
+2. Relaciona una necesidad concreta con una decisión y una comprobación observable.
+3. Distingue el concepto técnico de su dominio de uso antes de clasificarlo.
+4. Explica qué evidencia faltaría para sostener una conclusión arquitectónica.
+
+La cobertura se ampliará únicamente cuando haya temas oficiales verificados. Las
+prácticas y sus respuestas de Arquitectura viven en las lecturas de cada semana; las
+respuestas de Aplicaciones Web siguen en su página propia.

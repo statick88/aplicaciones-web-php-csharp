@@ -1,3 +1,30 @@
+/* Fira Code Nerd Font se distribuye localmente bajo SIL OFL 1.1. */
+@font-face {
+  font-family: "FiraCode Nerd Font";
+  src: url("fonts/fira-code-nerd/FiraCodeNerdFont-Regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "FiraCode Nerd Font";
+  src: url("fonts/fira-code-nerd/FiraCodeNerdFont-Bold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+/* La familia solicitada se aplica al cuerpo, títulos y código; no solo como fallback. */
+body {
+  font-family: "FiraCode Nerd Font", monospace;
+}
+
+h1, h2, h3, h4, h5, h6,
+code, pre, kbd, samp {
+  font-family: "FiraCode Nerd Font", monospace;
+}
+
 /* Ajustes discretos para lectura sostenida, compatibles con el tema de Quarto. */
 main.content, .page-columns .content {
   max-width: 78ch;
@@ -5,6 +32,55 @@ main.content, .page-columns .content {
 
 p, li {
   line-height: 1.65;
+}
+
+main.content p {
+  text-align: justify;
+  text-align-last: auto;
+  hyphens: auto;
+  overflow-wrap: break-word;
+}
+
+main.content pre,
+main.content code {
+  text-align: left;
+}
+
+/* Las rutas en línea pueden envolver; los bloques de código conservan su formato. */
+main.content :not(pre) > code {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+/* La fuente monoespaciada amplía algunas tablas: el desplazamiento queda local. */
+main.content table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+main.content .table-responsive {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+main.content .table-responsive > table {
+  display: table;
+  max-width: none;
+  overflow: visible;
+}
+
+@media (max-width: 575.98px) {
+  .nav-page,
+  .nav-page .pagination-link {
+    min-width: 0;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+}
+
+.csl-entry {
+  overflow-wrap: anywhere;
 }
 
 figcaption, .figure-caption {

@@ -21,10 +21,12 @@ o C#? Normalmente recibe una **respuesta HTTP**, cuyo cuerpo puede ser HTML, CSS
 JavaScript, una imagen o datos. El código del servidor se ejecuta antes y no se
 entrega como parte de la página.
 
-![Diagrama de una petición HTTP desde el navegador a una aplicación y de su respuesta HTML de vuelta al navegador.](../assets/request-response.svg){fig-alt="El navegador envía una petición HTTP a la aplicación; la aplicación procesa la petición y devuelve HTML al navegador."}
+Los dos recorridos comparten el mismo ciclo HTTP, pero se muestran por separado para
+que cada figura permita seguir una sola tecnología.
 
-*Figura 1. El cliente formula una petición; el servidor decide la respuesta antes de
-devolverla. El HTML viaja hacia el navegador, no el archivo fuente de PHP o C#.*
+![Flujo PHP: 1. petición del navegador; 2. PHP ejecuta el programa en el servidor; 3. una respuesta con cuerpo HTML vuelve al navegador.](../assets/request-response.svg){fig-alt="Flujo PHP con tres pasos: petición HTTP del navegador, ejecución del programa PHP en el servidor y respuesta HTML de vuelta al navegador."}
+
+![Flujo C#: 1. petición del navegador; 2. .NET ejecuta el programa C# en el servidor; 3. una respuesta con cuerpo HTML vuelve al navegador.](../assets/request-response-csharp.svg){fig-alt="Flujo C# con tres pasos: petición HTTP del navegador, ejecución del programa C# mediante .NET en el servidor y respuesta HTML de vuelta al navegador."}
 
 ## El ciclo mínimo HTTP
 
@@ -62,11 +64,15 @@ organiza archivos. El **runtime** interpreta o ejecuta el programa. Un **servido
 web** recibe HTTP y puede delegar la petición al runtime. En desarrollo pueden estar
 en el mismo equipo; sus funciones siguen siendo distintas.
 
+::: {.table-responsive tabindex="0" role="region" aria-label="Comparación de editor, runtime y servidor web"}
+
 | Pregunta | Editor | Runtime | Servidor web |
 |---|---|---|---|
 | ¿Escribe `index.php` o `Program.cs`? | Sí | No | No |
 | ¿Ejecuta el lenguaje? | No | Sí | Coordina o delega |
 | ¿Acepta una petición HTTP? | No | No necesariamente | Sí |
+
+:::
 
 ## PHP y C#: comparación inicial
 
@@ -81,10 +87,13 @@ Al compilar, C# produce código intermedio (IL); el runtime aplica compilación 
 cuando necesita ejecutar código. Es una comparación de rutas de ejecución, no una
 escala de calidad: la elección depende del contexto y del proyecto [@microsoft-csharp].
 
-![Comparación conceptual: PHP procesa código en su runtime y C# pasa por IL y JIT dentro de .NET antes de ejecutarse.](../assets/runtime-comparison.svg){fig-alt="PHP se ejecuta mediante su runtime. C# se compila a código intermedio y se ejecuta con el runtime de .NET y su compilador JIT."}
+Las figuras separan las rutas para que los pasos propios de cada plataforma no se
+mezclen. La comparación sigue en el texto: ambas producen una respuesta, aunque su
+preparación y ejecución no son idénticas.
 
-*Figura 2. Dos recorridos simplificados para razonar sobre runtimes; no mide
-rendimiento ni sustituye una medición de una aplicación concreta.*
+![Ruta de ejecución de PHP: durante la petición, el runtime ejecuta la aplicación; OPcache puede conservar código compilado.](../assets/runtime-comparison.svg){fig-alt="Ruta de ejecución de PHP durante una petición HTTP: el runtime PHP ejecuta la aplicación y OPcache puede conservar código compilado."}
+
+![Ruta de ejecución de C#: el proyecto se compila a IL antes de atender peticiones; durante la petición, el runtime .NET aplica JIT cuando hace falta y ejecuta el código.](../assets/runtime-csharp.svg){fig-alt="Ruta de ejecución de C# con preparación previa de código fuente a IL y ejecución durante la petición mediante el runtime .NET y JIT."}
 
 ### Ejemplo mental emparejado
 

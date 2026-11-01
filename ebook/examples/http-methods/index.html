@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Laboratorio local de métodos HTTP</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main>
+    <h1>Laboratorio local de métodos HTTP</h1>
+    <p>Envía datos ficticios a <code>api.php</code> y observa la petición en DevTools → Network. No se guarda ni elimina nada.</p>
+    <div class="actions" aria-label="Peticiones de ejemplo">
+      <button data-method="GET">GET con query</button>
+      <button data-method="POST">POST formulario</button>
+      <button data-method="PUT">PUT JSON</button>
+      <button data-method="PATCH">PATCH JSON</button>
+      <button data-method="DELETE">DELETE simulado</button>
+    </div>
+    <section aria-live="polite">
+      <h2>Respuesta</h2>
+      <pre id="result">Selecciona un método.</pre>
+    </section>
+    <p class="note"><strong>Solo local:</strong> abre esta página mediante <code>http://127.0.0.1</code> con el comando del README; no funciona desde <code>file://</code> ni desde GitHub Pages.</p>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
