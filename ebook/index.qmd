@@ -13,10 +13,19 @@ documentación oficial de la asignatura ni registra calificaciones.
 2. Lee el concepto, predice el resultado de un ejemplo y realiza la práctica.
 3. Conserva una observación concreta y contrástala con la retroalimentación.
 
-Actualmente están disponibles [Aplicaciones Web con PHP y C#](subjects/aplicaciones-web.qmd)
-y [Arquitectura de Software](subjects/arquitectura-software.qmd), ambas con su
-Semana 1. Cada introducción delimita su cobertura y enlaza las lecturas que ya
-pueden estudiarse; las semanas posteriores no se adelantan por inferencia.
+El libro reúne seis asignaturas en un solo volumen y un solo PDF. Cada enlace abre
+un índice independiente con su propia cobertura y ruta de lectura:
+
+- [Aplicaciones Web](subjects/aplicaciones-web.qmd)
+- [Diseño y Arquitectura de Software](subjects/arquitectura-software.qmd)
+- [Gestión Empresarial y Emprendimiento](subjects/gestion-empresarial-emprendimiento.qmd)
+- [Inteligencia Artificial](subjects/inteligencia-artificial.qmd)
+- [Inteligencia de Negocios](subjects/inteligencia-negocios.qmd)
+- [Proyectos Informáticos](subjects/proyectos-informaticos.qmd)
+
+Solo Aplicaciones Web y Diseño y Arquitectura de Software tienen capítulos de
+estudio verificados y redactados en esta edición. Los demás índices declaran la
+evidencia disponible sin mezclar respuestas ni adelantar contenido por inferencia.
 
 ## Un ciclo de práctica
 

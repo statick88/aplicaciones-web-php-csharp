@@ -1,4 +1,4 @@
-# Aplicaciones Web con PHP y C#
+# Aplicaciones Web
 
 Esta asignatura abre el cuaderno con su **Semana 1**. Combina teoría, ejemplos
 resueltos, práctica y autoevaluación para preparar la evaluación a partir de las
