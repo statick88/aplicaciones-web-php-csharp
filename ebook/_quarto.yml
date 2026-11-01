@@ -32,6 +32,10 @@ book:
         - subjects/arquitectura-software/semana-01/03-practica-autoevaluacion.qmd
         - subjects/arquitectura-software/semana-02/01-procesos-flujo.qmd
         - subjects/arquitectura-software/semana-02/02-modelos-practica-autoevaluacion.qmd
+    - subjects/gestion-empresarial-emprendimiento.qmd
+    - subjects/inteligencia-artificial.qmd
+    - subjects/inteligencia-negocios.qmd
+    - subjects/proyectos-informaticos.qmd
     - references.qmd
 
 bibliography: references.bib
