@@ -59,11 +59,15 @@ organiza archivos. El **runtime** interpreta o ejecuta el programa. Un **servido
 web** recibe HTTP y puede delegar la petición al runtime. En desarrollo pueden estar
 en el mismo equipo; sus funciones siguen siendo distintas.
 
+::: {.table-responsive tabindex="0" role="region" aria-label="Comparación de editor, runtime y servidor web"}
+
 | Pregunta | Editor | Runtime | Servidor web |
 |---|---|---|---|
 | ¿Escribe `index.php` o `Program.cs`? | Sí | No | No |
 | ¿Ejecuta el lenguaje? | No | Sí | Coordina o delega |
 | ¿Acepta una petición HTTP? | No | No necesariamente | Sí |
+
+:::
 
 ## PHP y C#: comparación inicial
 

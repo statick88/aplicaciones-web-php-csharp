@@ -22,6 +22,10 @@ semanales de los capítulos nuevos, no mediante partes anidadas. Las rutas hist�
 de Web se conservan. Para otra semana, añada sus capítulos a la misma parte y actualice
 la tabla de cobertura con el material efectivamente verificado.
 
+Como apoyo transversal de Web, [Tablas de consulta HTTP](subjects/aplicaciones-web/consulta-http.qmd)
+resume siete métodos, idempotencia, datos en DevTools/PHP y estados frecuentes.
+No presenta esta referencia como una nueva semana del programa.
+
 ## Comprobación estructural
 
 ```bash

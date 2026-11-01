@@ -20,6 +20,7 @@ book:
         - chapters/02-variables-types-scope.qmd
         - chapters/03-week1-practice-review.qmd
         - chapters/04-development-environment.qmd
+        - subjects/aplicaciones-web/consulta-http.qmd
         - answers.qmd
     - part: subjects/arquitectura-software.qmd
       chapters:
