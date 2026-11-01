@@ -76,3 +76,6 @@ GitHub Pages sirve archivos estáticos: permite leer el ebook HTML y descargar s
 Las fuentes oficiales de cada asignatura tienen prioridad. La documentación técnica complementa la explicación y los repositorios de práctica aportan ejemplos observables. No se publican exportaciones privadas de Blackboard ni se afirma el uso de software de coautoría no identificado.
 
 Para incorporar una semana futura: verifique primero las fuentes oficiales; agregue capítulos, ejercicios y retroalimentación explicativos y originales; actualice la cobertura semanal, la navegación y las referencias; después renderice y ejecute la comprobación estructural. No invente contenido curricular futuro.
+
+La primera lectura de Semana 2 de Arquitectura explica actividades, flujo, tareas
+y patrones de proceso mediante un caso original de reservas de biblioteca.
