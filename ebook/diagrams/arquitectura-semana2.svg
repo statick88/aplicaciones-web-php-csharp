@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="930" viewBox="0 0 680 930" role="img" aria-labelledby="title desc">
+  <title id="title">Actividades comunes y flujos de proceso contextuales</title>
+  <desc id="desc">Cinco actividades generales aparecen como recursos del proceso. Debajo, tres recorridos alternativos muestran una secuencia planificada, entregas incrementales y ciclos guiados por retroalimentación o riesgo. El diagrama no prescribe un único flujo para todo proyecto.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse" markerUnits="userSpaceOnUse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#17324d"/>
+    </marker>
+    <marker id="feedback-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse" markerUnits="userSpaceOnUse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#8b2c3b"/>
+    </marker>
+    <style>
+      .title { font: 700 28px "FiraCode Nerd Font"; fill: #102a43; }
+      .subtitle { font: 600 24px "FiraCode Nerd Font"; fill: #243b53; }
+      .label { font: 700 24px "FiraCode Nerd Font"; fill: #102a43; }
+      .body { font: 24px "FiraCode Nerd Font"; fill: #102a43; }
+      .activity { fill: #e8f1fb; stroke: #1769aa; stroke-width: 3; }
+      .lane { fill: #ffffff; stroke: #486581; stroke-width: 3; }
+      .badge { fill: #fff4d6; stroke: #b7791f; stroke-width: 3; }
+      .node { fill: #edf6ff; stroke: #486581; stroke-width: 2; }
+      .flow { fill: none; stroke: #17324d; stroke-width: 4; marker-end: url(#arrow); }
+      .feedback { fill: none; stroke: #8b2c3b; stroke-width: 4; stroke-dasharray: 10 8; marker-end: url(#feedback-arrow); }
+    </style>
+  </defs>
+
+  <rect x="0" y="0" width="680" height="930" rx="18" fill="#f8fbff"/>
+  <text x="340" y="42" text-anchor="middle" class="title">Actividades comunes, flujos distintos</text>
+  <text x="340" y="76" text-anchor="middle" class="subtitle">El contexto decide cómo recorrerlas</text>
+
+  <text x="40" y="116" class="label">Actividades que el proceso organiza</text>
+
+  <rect x="40" y="136" width="290" height="76" rx="14" class="activity"/>
+  <text x="185" y="168" text-anchor="middle" class="label">Requisitos</text>
+  <text x="185" y="198" text-anchor="middle" class="body">necesidad y reglas</text>
+
+  <rect x="350" y="136" width="290" height="76" rx="14" class="activity"/>
+  <text x="495" y="168" text-anchor="middle" class="label">Diseño</text>
+  <text x="495" y="198" text-anchor="middle" class="body">responsabilidades</text>
+
+  <rect x="40" y="224" width="290" height="76" rx="14" class="activity"/>
+  <text x="185" y="256" text-anchor="middle" class="label">Implementación</text>
+  <text x="185" y="286" text-anchor="middle" class="body">construcción</text>
+
+  <rect x="350" y="224" width="290" height="76" rx="14" class="activity"/>
+  <text x="495" y="256" text-anchor="middle" class="label">Pruebas</text>
+  <text x="495" y="286" text-anchor="middle" class="body">evidencia</text>
+
+  <rect x="195" y="312" width="290" height="76" rx="14" class="activity"/>
+  <text x="340" y="344" text-anchor="middle" class="label">Mantenimiento</text>
+  <text x="340" y="374" text-anchor="middle" class="body">cambio y mejora</text>
+
+  <text x="40" y="430" class="label">Tres organizaciones posibles</text>
+
+  <rect x="40" y="450" width="600" height="140" rx="16" class="lane"/>
+  <rect x="58" y="466" width="180" height="44" rx="12" class="badge"/>
+  <text x="148" y="496" text-anchor="middle" class="label">Secuencia</text>
+  <text x="264" y="496" class="body">requisitos claros</text>
+  <rect x="82" y="526" width="180" height="44" rx="10" class="node"/>
+  <text x="172" y="556" text-anchor="middle" class="body">planificar</text>
+  <path d="M 276 548 H 394" class="flow"/>
+  <rect x="408" y="526" width="180" height="44" rx="10" class="node"/>
+  <text x="498" y="556" text-anchor="middle" class="body">construir</text>
+
+  <rect x="40" y="604" width="600" height="140" rx="16" class="lane"/>
+  <rect x="58" y="620" width="180" height="44" rx="12" class="badge"/>
+  <text x="148" y="650" text-anchor="middle" class="label">Incrementos</text>
+  <text x="264" y="650" class="body">valor temprano</text>
+  <rect x="82" y="680" width="180" height="44" rx="10" class="node"/>
+  <text x="172" y="710" text-anchor="middle" class="body">entrega 1</text>
+  <path d="M 276 702 H 394" class="flow"/>
+  <rect x="408" y="680" width="180" height="44" rx="10" class="node"/>
+  <text x="498" y="710" text-anchor="middle" class="body">entrega 2</text>
+
+  <rect x="40" y="758" width="600" height="152" rx="16" class="lane"/>
+  <rect x="58" y="774" width="180" height="44" rx="12" class="badge"/>
+  <text x="148" y="804" text-anchor="middle" class="label">Ciclos</text>
+  <text x="264" y="804" class="body">cambio o riesgo</text>
+  <rect x="82" y="834" width="180" height="44" rx="10" class="node"/>
+  <text x="172" y="864" text-anchor="middle" class="body">hipótesis</text>
+  <path d="M 276 856 H 394" class="flow"/>
+  <rect x="408" y="834" width="180" height="44" rx="10" class="node"/>
+  <text x="498" y="864" text-anchor="middle" class="body">evidencia</text>
+  <path d="M 500 886 C 430 912, 250 912, 180 886" class="feedback"/>
+</svg>

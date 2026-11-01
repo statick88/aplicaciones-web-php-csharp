@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="420" viewBox="0 0 680 420" role="img" aria-labelledby="title desc">
+  <title id="title">Ejecución de PHP al atender una petición</title>
+  <desc id="desc">PHP atiende la petición mediante su runtime. OPcache puede conservar código compilado, por lo que no siempre se recompila.</desc>
+  <style>
+    text { font-family: "FiraCode Nerd Font"; fill: #172554; }
+    .panel { fill: #ffffff; stroke: #94a3b8; stroke-width: 3; }
+    .php { fill: #f5f3ff; stroke: #6d28d9; stroke-width: 3; }
+    .neutral { fill: #eff6ff; stroke: #1d4ed8; stroke-width: 3; }
+    .note { fill: #fff7ed; stroke: #c2410c; stroke-width: 3; }
+    .arrow { fill: none; stroke: #0f172a; stroke-width: 3; marker-end: url(#arrow); }
+  </style>
+  <defs><marker id="arrow" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="10" refX="10" refY="5" orient="auto"><path d="M0 0 L12 5 L0 10 Z" fill="#0f172a"/></marker></defs>
+  <rect width="680" height="420" fill="#ffffff"/>
+  <text x="340" y="40" text-anchor="middle" font-size="30" font-weight="700">PHP: ejecución durante la petición</text>
+  <rect class="panel" x="20" y="65" width="640" height="330" rx="16"/>
+  <rect class="note" x="25" y="90" width="630" height="65" rx="10"/>
+  <text x="340" y="117" text-anchor="middle" font-size="24">OPcache puede conservar código compilado;</text>
+  <text x="340" y="145" text-anchor="middle" font-size="24">no siempre se recompila.</text>
+  <text x="45" y="195" font-size="24" font-weight="700">Durante la petición</text>
+  <rect class="neutral" x="45" y="215" width="160" height="90" rx="10"/>
+  <text x="125" y="251" text-anchor="middle" font-size="25" font-weight="700">Petición</text>
+  <text x="125" y="283" text-anchor="middle" font-size="24">HTTP</text>
+  <rect class="php" x="235" y="215" width="230" height="90" rx="10"/>
+  <text x="350" y="251" text-anchor="middle" font-size="25" font-weight="700">Runtime PHP</text>
+  <text x="350" y="283" text-anchor="middle" font-size="24">ejecuta la app</text>
+  <rect class="neutral" x="485" y="215" width="160" height="90" rx="10"/>
+  <text x="565" y="251" text-anchor="middle" font-size="24">Respuesta</text>
+  <text x="565" y="283" text-anchor="middle" font-size="24">HTTP</text>
+  <line class="arrow" x1="207" y1="260" x2="227" y2="260"/>
+  <line class="arrow" x1="467" y1="260" x2="477" y2="260"/>
+  <text x="340" y="342" text-anchor="middle" font-size="24"><tspan x="340">El runtime produce la respuesta </tspan><tspan x="340" dy="32">de la aplicación.</tspan></text>
+</svg>
