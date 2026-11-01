@@ -24,7 +24,20 @@ la tabla de cobertura con el material efectivamente verificado.
 
 Como apoyo transversal de Web, [Tablas de consulta HTTP](subjects/aplicaciones-web/consulta-http.qmd)
 resume siete métodos, idempotencia, datos en DevTools/PHP y estados frecuentes.
-No presenta esta referencia como una nueva semana del programa.
+El [laboratorio PHP de métodos HTTP](subjects/aplicaciones-web/laboratorio-http-php.qmd)
+añade práctica local con cinco peticiones y capturas reales de DevTools Network. No
+presenta estas referencias como una nueva semana del programa.
+
+Para ejecutar el laboratorio desde la raíz del repositorio, se necesita PHP local:
+
+```bash
+php -S 127.0.0.1:8088 -t ebook/examples/http-methods ebook/examples/http-methods/router.php
+```
+
+Abre `http://127.0.0.1:8088/` y sigue `ebook/examples/http-methods/README.md`.
+El enlace loopback, el document root aislado y `router.php` son parte de la
+protección: no omitas el router, no uses `0.0.0.0` ni sirvas la raíz del repositorio.
+`file://` y GitHub Pages no ejecutan PHP.
 
 ## Comprobación estructural
 
