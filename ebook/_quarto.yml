@@ -1,6 +1,8 @@
 project:
   type: book
   output-dir: _book
+  resources:
+    - examples/http-methods/**
 
 book:
   output-file: aplicaciones-web-php-csharp-semana1
@@ -21,6 +23,7 @@ book:
         - chapters/03-week1-practice-review.qmd
         - chapters/04-development-environment.qmd
         - subjects/aplicaciones-web/consulta-http.qmd
+        - subjects/aplicaciones-web/laboratorio-http-php.qmd
         - answers.qmd
     - part: subjects/arquitectura-software.qmd
       chapters:

@@ -97,3 +97,4 @@ Referencia técnica: [MDN: métodos HTTP](https://developer.mozilla.org/en-US/do
 [HTTP Semantics, RFC 9110](https://www.rfc-editor.org/rfc/rfc9110.html)
 y [PATCH, RFC 5789](https://www.rfc-editor.org/rfc/rfc5789.html).
 Para entradas PHP, consulta el [manual de variables externas](https://www.php.net/manual/en/language.variables.external.php).
+Practica las cinco peticiones principales y su inspección real en [Laboratorio PHP: cinco métodos en DevTools](laboratorio-http-php.qmd).
