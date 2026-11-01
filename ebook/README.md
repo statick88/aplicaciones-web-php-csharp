@@ -12,6 +12,10 @@ quarto render ebook
 
 El HTML usa **Solar oscuro por defecto**, un tema Bootstrap integrado de [Quarto para HTML](https://quarto.org/docs/output-formats/html-themes.html). `solarized` pertenece a las presentaciones reveal.js y no es el nombre del tema de este libro. Quarto puede emitir inicialmente `quarto-light` en el cuerpo y aplicar el modo mediante JavaScript: la comprobación inspecciona el enlace Bootstrap con `data-mode="dark"` y su paleta CSS predeterminada.
 
+La bibliografía central declara `nocite: '@*'` para conservar todas las entradas
+registradas, también cuando Quarto reutiliza capítulos sin cambios. Las citas de
+otros capítulos deben seguir teniendo destino en `references.html`.
+
 El resultado se escribe en `ebook/_book/`. El libro declara la URL pública base `https://statick88.github.io/aplicaciones-web-php-csharp/`, por lo que los enlaces internos se resuelven desde el proyecto de Pages.
 
 ## Organización por asignatura y semana
