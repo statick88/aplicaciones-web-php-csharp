@@ -54,13 +54,18 @@ Fuentes oficiales: [Clase 1](https://uniandesec.blackboard.com/ultra/courses/_30
 
 Las facturas, la base de datos y los experimentos de persistencia son ejercicios adicionales. No son requisitos oficiales comprobados de Semana 1; el formulario POST no se presenta como validación robusta del servidor.
 
-## Semana 2 — plan pendiente
+## Semana 2 — plan pendiente (bloqueado)
 
-El contenido detallado de Semana 2 no se volvió a leer en esta sesión; se conservan estos encabezados y enlaces oficiales como plan, sin marcar implementación ni verificación.
+Las fuentes oficiales de Semana 2 requieren autenticación institucional en Blackboard con MFA y no fueron accesibles en esta sesión. Los enlaces y temas se conservan como plan pendiente, sin marcar implementación ni verificación. No se infiere contenido de Semana 2 desde lleroc/web (referencia técnica, no programa oficial).
+
+Fuentes oficiales intentadas (bloqueadas por autenticación):
+
+- [Semana 2, Clase 1](https://uniandesec.blackboard.com/ultra/courses/_3085_1/document/_334088_1?view=content&state=view) — Tipos de datos simples y variables de variables
+- [Semana 2, Clase 2](https://uniandesec.blackboard.com/ultra/courses/_3085_1/document/_334090_1?view=content&state=view) — Envío de variables por formulario: métodos GET y POST
+
+Temas del plan (no verificados):
 
 ### Clase 1 — Tipos de datos simples y variables de variables
-
-[Contenido Semana 2 Clase 1](https://uniandesec.blackboard.com/ultra/courses/_3085_1/document/_334088_1?view=content&state=view)
 
 - [ ] Tipos simples: `int`, `float`, `string`, `bool`.
 - [ ] Conversión implícita y explícita de tipos.
@@ -71,8 +76,6 @@ El contenido detallado de Semana 2 no se volvió a leer en esta sesión; se cons
 Estos puntos se conservan como plan; los ejemplos aislados existentes no certifican completar Semana 2.
 
 ### Clase 2 — Envío de variables por formulario: métodos GET y POST
-
-[Contenido Semana 2 Clase 2](https://uniandesec.blackboard.com/ultra/courses/_3085_1/document/_334090_1?view=content&state=view)
 
 - [ ] Formularios HTML y campos de entrada.
 - [ ] Comparación de métodos GET y POST.
