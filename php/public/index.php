@@ -19,7 +19,7 @@ declare(strict_types=1);
     <h1>PHP is running in Docker</h1>
     <p>PHP version: <code><?= PHP_VERSION ?></code></p>
     <p>Server time: <code><?= date('Y-m-d H:i:s') ?></code></p>
-    <p>Now edit <code>src/index.php</code> and refresh this page.</p>
+    <p>Now edit <code>public/index.php</code> and refresh this page.</p>
     <p>Practice: <a href="variables.php"><code>variables.php</code></a> (S1C2 variables &amp; scope) &middot; <a href="home.php"><code>home.php</code></a> (invoice exercise)</p>
 </body>
 </html>

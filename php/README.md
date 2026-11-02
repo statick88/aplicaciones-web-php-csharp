@@ -1,6 +1,6 @@
 # PHP Practice
 
-PHP technology implementation of the shared Week 1 course exercises in this repository, not a production application. See the [general repository guide](../README.md). Apache serves `src/`; MariaDB and the invoice page are extra experiments, outside the tested Week 1 requirements. `src/home.php` is currently monolithic and is **not** MVC.
+PHP technology implementation of the shared Week 1 course exercises in this repository, not a production application. See the [general repository guide](../README.md). Apache serves `public/` (the only folder exposed to the browser); MariaDB and the invoice page are extra experiments, outside the tested Week 1 requirements. `public/home.php` is currently monolithic and is **not** MVC.
 
 ## Quick start
 
@@ -38,10 +38,10 @@ docker compose run --rm --no-deps -T -v "$PWD:/practice:ro" app php /practice/te
 | HTTP request–response | Exercised |
 | Docker PHP 8.5.12 environment | Exercised |
 | PHP 5–8.5 history | Not yet verified |
-| `public/`, `src/`, `views/`, `config/`; `require`/`include` examples | Not yet verified |
+| `public/`, `src/`, `views/`, `config/`; `require`/`include` examples | Exercised (entry `public/variables.php` requires `config/`, `src/` and `views/`; checked by `tests/structure.php`) |
 | PHP variables and scalar types | Exercised |
-| Constants (`const`, `define`), nullable values and interpolation examples | Not yet verified |
-| Scope; prefer parameters to `global` | Existing scope exercise only; parameter recommendation remains unchecked |
+| Constants (`const`, `define`), nullable values and interpolation examples | Exercised (`php/config/config.php` declares `const`/`define`; null, `??` and interpolation in `src/variables.php`) |
+| Scope; prefer parameters to `global` | Exercised (`cursoDe(string $nombre)` receives a parameter; checked by `tests/variables.php`) |
 
 The invoice POST experiment does not claim robust server-side validation and is not an official Week 1 deliverable.
 
@@ -52,10 +52,14 @@ Compose binds services only to loopback. A `.env` can override development passw
 ## Project layout
 
 ```text
-compose.yaml       # Apache/PHP and MariaDB
-Dockerfile          # PHP 8.5 Apache image
-src/                # educational examples
-tests/variables.php # minimal exercised-topic check
+compose.yaml        # Apache/PHP and MariaDB (project mounted at /var/www/html)
+Dockerfile          # PHP 8.5 Apache image; DocumentRoot = public/
+public/             # web-exposed entry points (only folder served by Apache)
+src/                # logic of the educational examples
+views/              # presentation templates
+config/             # shared settings (const/define demo)
+tests/structure.php # layout check (public/src/views/config + require)
+tests/variables.php # exercised-topic check (types, constants, scope)
 ```
 
 ## Course references and next weeks

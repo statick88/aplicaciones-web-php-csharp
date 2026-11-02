@@ -1,4 +1,5 @@
-# PHP practice stack: edit files in ./src on the host, refresh the browser.
+# PHP practice stack: the whole project is mounted and Apache serves only
+# ./public on the host; refresh the browser after editing.
 # MariaDB stores the invoices (same role SQL Server plays for the .NET stack).
 services:
   app:
@@ -13,7 +14,7 @@ services:
       - DB_USER=app
       - DB_PASSWORD=${MARIADB_PASSWORD:-Practicas2026!}
     volumes:
-      - ./src:/var/www/html # Bind mount for live changes (PHP is interpreted: no rebuild needed)
+      - .:/var/www/html # Mount the project; DocumentRoot (public/) is set in the Dockerfile
     depends_on:
       db:
         condition: service_healthy
