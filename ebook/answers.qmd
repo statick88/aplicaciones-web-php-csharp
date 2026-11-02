@@ -72,7 +72,7 @@ validación. [Volver a P8](chapters/03-week1-practice-review.qmd#p8)
 
 Afirma que MVC es la forma elegida para organizar las prácticas web que lo usan.
 No afirma que todos los archivos existentes ya estén separados en modelo, vista
-y controlador. El `php/src/home.php` de facturas sigue siendo monolítico y este
+y controlador. El `php/public/home.php` de facturas sigue siendo monolítico y este
 libro no lo modifica; además, las facturas son un experimento adicional y no
 una prueba de requisito de Semana 1. [Volver a P9](chapters/03-week1-practice-review.qmd#p9)
 
