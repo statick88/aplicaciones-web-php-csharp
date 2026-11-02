@@ -85,7 +85,7 @@ cambia las comparaciones de variables, tipos, constantes o alcance.
 ## Ruta A: VS Code y terminal Compose
 
 Esta ruta no requiere una ventana especial de VS Code. Ejecuta los comandos
-siguientes desde la **raíz del repositorio**, no desde `php/src` ni `csharp/src`.
+siguientes desde la **raíz del repositorio**, no desde `php/public` ni `csharp/src`.
 
 ### Preparación común
 
@@ -185,7 +185,7 @@ prueba por sí solo que PHP pueda guardar en MariaDB.
 
 Para comprobar el recorrido completo, abre `http://127.0.0.1:8080/home.php`,
 completa el formulario con **datos ficticios** y presiona **Guardar**. En este
-proyecto, `php/src/home.php` abre la conexión mediante PDO al recibir el POST,
+proyecto, `php/public/home.php` abre la conexión mediante PDO al recibir el POST,
 crea la tabla `facturas` con `CREATE TABLE IF NOT EXISTS` y después ejecuta el
 `INSERT` parametrizado. No hay un archivo SQL de inicio que debas importar.
 El resultado esperado incluye **“Guardada en MariaDB”** y el identificador de la
@@ -193,9 +193,12 @@ fila. Si aparece **“No se pudo guardar en la base de datos”**, revisa el err
 las credenciales; no consideres exitoso el ejercicio solo porque el formulario
 se haya mostrado.
 
-**5. Edita el código y detén sin borrar datos.** `php/src` está montado en
-`/var/www/html`: para cambios de PHP normalmente basta con guardar el archivo y
-recargar el navegador. Reconstruye si modificas el `Dockerfile` o sus extensiones.
+**5. Edita el código y detén sin borrar datos.** El proyecto PHP completo está
+montado en `/var/www/html`, pero Apache solo sirve `public/` como DocumentRoot:
+la lógica (`src/`), las plantillas (`views/`) y la configuración (`config/`)
+quedan fuera de la URL. Para cambios de PHP normalmente basta con guardar el
+archivo y recargar el navegador. Reconstruye si modificas el `Dockerfile` o sus
+extensiones.
 
 ```bash
 docker compose --env-file php/.env -f php/compose.yaml stop

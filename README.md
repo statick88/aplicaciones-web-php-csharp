@@ -42,15 +42,15 @@ Fuentes oficiales: [Clase 1](https://uniandesec.blackboard.com/ultra/courses/_30
 - [x] Petición–respuesta HTTP: ejemplos ejercitados.
 - [x] Entorno Docker con PHP 8.5 aceptado para la práctica.
 - [ ] Historia de PHP 5 a 8.5: pendiente de practicar/verificar.
-- [x] Estructura `public/`, `src/`, `views/`, `config/` y `require`/`include`: documentada en `php/README.md`; `php/src/home.php` sigue monolítico por diseño (experimento).
+- [x] Estructura separada `public/`, `src/`, `views/`, `config/` y ejemplos `require`/`include`: ejercitados en `php/` (entrada `public/variables.php` con `require` de config, lógica y vista); documentada en `php/README.md`; `php/src/home.php` y `php/public/home.php` siguen monolíticos por diseño (experimento), no MVC.
 
 ### Clase 2 — .NET y variables
 
 - [x] Diferencia .NET/ASP.NET y comparación PHP/C#: ejemplos ejercitados.
 - [x] Declaración de variables, tipos e inferencia en PHP/C#: ejemplos ejercitados.
-- [x] Ejemplos específicos de valores nulos e interpolación: verificados (PHP `src/constantes-nulos-interpolacion.php`, C# `HomeController.Constantes`).
-- [x] Constantes (`const`/`define` en PHP y `const` en C#): verificadas.
-- [ ] Scope y ejemplo recomendado de pasar parámetros en vez de `global`: pendiente de verificar.
+- [x] Ejemplos específicos de valores nulos e interpolación: verificados (PHP `src/constantes-nulos-interpolacion.php`, C# `HomeController.Constantes`) y ejercitados en ambos stacks (`php/tests/variables.php`, demo `Home/Variables`).
+- [x] Constantes (`const`/`define` en PHP y `const` en C#): verificadas y ejercitadas en ambos stacks.
+- [x] Scope y ejemplo recomendado de pasar parámetros en vez de `global`: ejercitado en ambos stacks (`cursoDe()` / `CursoDe()`).
 
 Las facturas, la base de datos y los experimentos de persistencia son ejercicios adicionales. No son requisitos oficiales comprobados de Semana 1; el formulario POST no se presenta como validación robusta del servidor.
 

@@ -12,6 +12,12 @@ public class HomeController : Controller
     // Class scope: a field lives as long as the controller instance.
     private readonly string _curso = "Aplicaciones Web";
 
+    // Compile-time constant: the value must be known at build time (PHP: const/define).
+    public const string CursoConst = "Aplicaciones Web";
+
+    // Prefer passing a parameter over reading shared static state (PHP: global).
+    private static string CursoDe(string nombre) => $"Curso: {nombre}";
+
     public HomeController(FacturasDbContext db)
     {
         _db = db;
@@ -47,7 +53,7 @@ public class HomeController : Controller
     }
 
     // GET /Home/Variables -> S1C2 demo: declaration, typing and scope in C#
-    // (PHP counterpart: src/variables.php in the php/ stack)
+    // (PHP counterpart: public/variables.php in the php/ stack)
     public IActionResult Variables()
     {
         // Declaration: explicit types chosen by hand
@@ -60,6 +66,10 @@ public class HomeController : Controller
 
         // Explicit conversion truncates instead of rounding: 3.99 -> 3
         int parteEntera = (int)3.99;
+
+        // Nullable annotation: a value that may be absent (PHP counterpart: $docente = null)
+        string? apellido = null;
+        string nombreCompleto = apellido ?? "sin apellido"; // ?? replaces null with a default
 
         // Block scope: 'estado' is born and dies inside the if block
         if (inscrito)
@@ -78,6 +88,10 @@ public class HomeController : Controller
             new() { Concepto = "Ámbito de clase (campo)", Codigo = "private readonly string _curso = \"Aplicaciones Web\";", Resultado = _curso, Tipo = _curso.GetType().Name },
             new() { Concepto = "Ámbito de bloque", Codigo = "if (inscrito) { string estado = \"...\"; }", Resultado = "'estado' no existe fuera del bloque: no compilaría", Tipo = "—" },
             new() { Concepto = "Ámbito local (método)", Codigo = "string estudiante = \"Diego\"; // dentro de Variables()", Resultado = "'estudiante' no existe fuera del método", Tipo = "—" },
+            new() { Concepto = "const (valor de compilación)", Codigo = "public const string CursoConst = \"Aplicaciones Web\";", Resultado = CursoConst, Tipo = "String" },
+            new() { Concepto = "nullable y ??", Codigo = "string? apellido = null; string completo = apellido ?? \"sin apellido\";", Resultado = nombreCompleto, Tipo = nombreCompleto.GetType().Name },
+            new() { Concepto = "Interpolación de cadena", Codigo = "$\"Curso: {estudiante}\"", Resultado = $"Curso: {estudiante}", Tipo = "String" },
+            new() { Concepto = "Parámetro vs. estado compartido", Codigo = "CursoDe(\"Aplicaciones Web\")", Resultado = CursoDe("Aplicaciones Web"), Tipo = "String" },
         };
 
         return View(filas);

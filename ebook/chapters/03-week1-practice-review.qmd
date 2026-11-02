@@ -133,7 +133,7 @@ referencia oficial antes de generalizar [@php-manual; @microsoft-csharp].
 MVC es el patrón de organización adoptado para las prácticas web: separa la
 representación, el manejo de solicitudes y los datos del dominio para que sea
 más fácil localizar responsabilidades [@aspnet-mvc]. No convierte
-retroactivamente todo archivo en MVC. En particular, el `php/src/home.php`
+retroactivamente todo archivo en MVC. En particular, el `php/public/home.php`
 actual de las facturas es monolítico; este ebook no lo refactoriza y las
 facturas/persistencia no son requisitos oficiales comprobados de Semana 1
 [@practice-repo].

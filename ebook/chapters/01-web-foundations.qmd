@@ -140,7 +140,9 @@ responsabilidad. Nunca publiques contraseñas en `public/` ni en un repositorio.
 
 PHP ofrece `include` y `require` para incorporar archivos. Si falta un archivo,
 `include` emite una advertencia y el script puede continuar; `require` produce un
-error fatal y detiene la ejecución. Para configuración o código indispensable,
+error fatal y detiene la ejecución. Las variantes `include_once` y `require_once`
+se comportan igual, pero solo cargan cada archivo una vez, lo que evita declarar
+la misma función dos veces. Para configuración o código indispensable,
 `require` evita continuar con una aplicación incompleta. Comprueba la ruta y el
 mensaje; no silencies el problema con operadores de supresión [@php-manual].
 

@@ -3,6 +3,10 @@
 /.playwright-mcp/
 /odd/
 
+# Local working checklist (never committed)
+/.progress
+
+
 # Local environment, secrets, keys, logs, and build artifacts
 .env
 .env.*
