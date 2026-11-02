@@ -14,6 +14,17 @@ curso ni registra calificaciones.
 | 1 | Repaso práctico con predicciones y evidencia | [Práctica y repaso](../chapters/03-week1-practice-review.qmd) |
 | 1 | Rutas opcionales para ejecutar los ejemplos | [Entorno de desarrollo](../chapters/04-development-environment.qmd) |
 | Consulta transversal | Métodos, datos en DevTools/PHP y estados HTTP | [Tablas de consulta HTTP](aplicaciones-web/consulta-http.qmd) |
+| Consulta transversal | Métodos HTTP prácticos observados en DevTools | [Laboratorio PHP](aplicaciones-web/laboratorio-http-php.qmd) |
+
+## Navegación de la Semana 1
+
+| Tipo | Recurso |
+|---|---|
+| Teoría | [Fundamentos de la web](../chapters/01-web-foundations.qmd) y [Valores, tipos y alcance](../chapters/02-variables-types-scope.qmd) |
+| Ejemplos | Demostraciones ejecutables en el capítulo de valores y [Laboratorio PHP](aplicaciones-web/laboratorio-http-php.qmd); rutas opcionales en [Entorno de desarrollo](../chapters/04-development-environment.qmd) |
+| Ejercicios | [Práctica y repaso](../chapters/03-week1-practice-review.qmd) con predicciones; [Tablas de consulta HTTP](aplicaciones-web/consulta-http.qmd) como referencia durante la práctica |
+| Autoevaluación | [Autoevaluación de Semana 1](../chapters/03-week1-practice-review.qmd#autoevaluacion-semana1) y sus [respuestas razonadas](../answers.qmd) |
+| Entregas | Sitio personal y calculadora publicados en [aplicaciones-web-semana1](https://github.com/statick88/aplicaciones-web-semana1) |
 
 ## Alcance de la semana actual
 
