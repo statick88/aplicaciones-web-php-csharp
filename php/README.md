@@ -38,9 +38,9 @@ docker compose run --rm --no-deps -T -v "$PWD:/practice:ro" app php /practice/te
 | HTTP request–response | Exercised |
 | Docker PHP 8.5.12 environment | Exercised |
 | PHP 5–8.5 history | Not yet verified |
-| `public/`, `src/`, `views/`, `config/`; `require`/`include` examples | Not yet verified |
+| `public/`, `src/`, `views/`, `config/`; `require`/`include` examples | Documented (see below); `home.php` monolítico por diseño |
 | PHP variables and scalar types | Exercised |
-| Constants (`const`, `define`), nullable values and interpolation examples | Not yet verified |
+| Constants (`const`, `define`), nullable values and interpolation examples | Exercised (`src/constantes-nulos-interpolacion.php`, `tests/constantes-nulos-interpolacion.php`) |
 | Scope; prefer parameters to `global` | Existing scope exercise only; parameter recommendation remains unchecked |
 
 The invoice POST experiment does not claim robust server-side validation and is not an official Week 1 deliverable.
@@ -48,6 +48,13 @@ The invoice POST experiment does not claim robust server-side validation and is 
 ## Local data and security boundary
 
 Compose binds services only to loopback. A `.env` can override development passwords; it is intentionally ignored. Database data and local keys are for development practice, not production security.
+
+## Recommended project layout and include patterns
+
+The recommended separation is `public/`, `src/`, `views/`, `config/`. This repository keeps examples under `src/` and tests under `tests/`; `src/home.php` remains **monolithic by design** (invoice experiment, not reference MVC).
+
+- `require` vs `include`: `require` raises a fatal error if the file is missing; `include` only a warning. Use `require` for essential files.
+- `require_once`/`include_once`: ensure the file is included only once, avoiding duplicate class/function declarations.
 
 ## Project layout
 

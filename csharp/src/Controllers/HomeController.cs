@@ -24,11 +24,26 @@ public class HomeController : Controller
     [HttpPost]
     public IActionResult Index(Factura factura)
     {
+        if (!ModelState.IsValid)
+        {
+            return View(factura);
+        }
+
         _db.Facturas.Add(factura);
         _db.SaveChanges();   // INSERT INTO Facturas ...
 
         factura.Enviada = true;
         return View(factura);
+    }
+
+    // GET /Home/Constantes -> S1 demo: const, nullable e interpolación en C#
+    public IActionResult Constantes()
+    {
+        const int MAX = 10;
+        string? nullable = null;
+        string valor = nullable ?? "default";
+        string interp = $"Max={MAX}, valor={valor}";
+        return Content(interp);
     }
 
     // GET /Home/Variables -> S1C2 demo: declaration, typing and scope in C#
