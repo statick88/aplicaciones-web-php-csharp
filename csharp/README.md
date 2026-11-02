@@ -37,10 +37,10 @@ docker compose run --rm --no-deps -T app dotnet build --configuration Release --
 | Official topic | Status |
 | --- | --- |
 | .NET and ASP.NET differences | Exercised |
-| PHP/C# variables and constants | Variables/types exercised; PHP `const`/`define` and C# `const` remain unchecked |
+| PHP/C# variables and constants | Exercised: C# `const` in the demo; PHP `const`/`define` in `php/config/config.php` |
 | Explicit types and type inference | Exercised |
-| Nullable values and interpolation examples | Not yet verified |
-| Scope; prefer parameters to `global` | Parameter recommendation remains unchecked |
+| Nullable values and interpolation examples | Exercised (nullable, `??` and string interpolation in `CursoDe`) |
+| Scope; prefer parameters to `global` | Exercised (`CursoDe(string nombre)` receives a parameter) |
 
 ## Local data and security boundary
 
