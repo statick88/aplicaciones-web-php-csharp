@@ -1,6 +1,6 @@
 # Cuaderno de estudio y práctica — Ingeniería de Software
 
-Libro Quarto en español que crece por asignatura y semana para preparar evaluaciones con teoría, ejemplos resueltos, práctica y autoevaluación. Un solo libro y PDF reúnen índices independientes para Aplicaciones Web, Diseño y Arquitectura de Software, Gestión Empresarial y Emprendimiento, Inteligencia Artificial, Inteligencia de Negocios y Proyectos Informáticos. La cobertura redactada actual incluye Aplicaciones Web y las Semanas 1 y 2 verificadas de Diseño y Arquitectura de Software. El contenido es formativo y estático: GitHub Pages puede publicar el resultado HTML, pero no ejecuta PHP ni servicios .NET.
+Libro Quarto en español que crece por asignatura y semana para preparar evaluaciones con teoría, ejemplos resueltos, práctica y autoevaluación. Un solo libro y PDF reúnen índices independientes para Aplicaciones Web, Diseño y Arquitectura de Software, Gestión Empresarial y Emprendimiento, Inteligencia Artificial, Inteligencia de Negocios y Proyectos Informáticos. La cobertura redactada actual incluye las Semanas 1 y 2 de Aplicaciones Web y de Diseño y Arquitectura de Software. El contenido es formativo y estático: GitHub Pages puede publicar el resultado HTML, pero no ejecuta PHP ni servicios .NET.
 
 ## Renderizado local
 
@@ -31,6 +31,19 @@ cobertura con el material efectivamente verificado. En Diseño y Arquitectura de
 Software, la Semana 2 cubre el documento HTML oficial sobre actividades, flujo,
 tareas, patrones y modelos de proceso; los PDF asociados permanecen sin cuerpo
 verificado y no se presentan como cubiertos.
+
+## Aplicaciones Web — Semana 2
+
+La [Clase 1](subjects/aplicaciones-web/semana-02/01-tipos-cliente.qmd) desarrolla tipos,
+conversiones, contratos, variables de variables y Cliente CRUD; la
+[Clase 2](subjects/aplicaciones-web/semana-02/02-formularios-get-post.qmd) explica
+formularios GET/POST, validación, salida escapada, sesión y PRG. Ambas incluyen
+fragmentos PHP y C#, práctica local y cinco ejercicios con respuestas razonadas.
+El índice de la asignatura enlaza cada recorrido; Semana 1 y las otras asignaturas
+conservan sus rutas. El PDF mantiene su nombre técnico histórico por compatibilidad.
+
+El material parte de `semana2.md` y `semana2-clase2.md`, aportados para la práctica;
+no se afirma acceso renovado a Blackboard ni publicación de esta actualización.
 
 ## Tipografía distribuida
 

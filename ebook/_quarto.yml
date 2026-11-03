@@ -23,6 +23,8 @@ book:
         - chapters/02-variables-types-scope.qmd
         - chapters/03-week1-practice-review.qmd
         - chapters/04-development-environment.qmd
+        - subjects/aplicaciones-web/semana-02/01-tipos-cliente.qmd
+        - subjects/aplicaciones-web/semana-02/02-formularios-get-post.qmd
         - subjects/aplicaciones-web/consulta-http.qmd
         - subjects/aplicaciones-web/laboratorio-http-php.qmd
         - answers.qmd

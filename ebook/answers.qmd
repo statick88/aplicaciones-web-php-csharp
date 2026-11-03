@@ -4,6 +4,11 @@ Estas respuestas muestran una forma de razonar. Compáralas con tus notas despu�
 de contestar las preguntas de [auto evaluación de Semana 1](chapters/03-week1-practice-review.qmd#autoevaluacion-semana1).
 No asignan puntos, no guardan progreso y no certifican una evaluación.
 
+Para Semana 2, las soluciones están al final de cada clase:
+[tipos y Cliente](subjects/aplicaciones-web/semana-02/01-tipos-cliente.qmd#s2c1-respuestas)
+y [formularios GET/POST](subjects/aplicaciones-web/semana-02/02-formularios-get-post.qmd#s2c2-respuestas).
+
+
 ## P1: historia y propósito {#p1-respuesta}
 
 Una página estática entrega contenido ya preparado. Una dinámica puede construir

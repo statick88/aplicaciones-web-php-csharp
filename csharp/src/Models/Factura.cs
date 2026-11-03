@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Facturas.Models;
@@ -13,6 +14,7 @@ public class Factura
     public string Nombre { get; set; } = string.Empty;
     public string Telefono { get; set; } = string.Empty;
     public string Direccion { get; set; } = string.Empty;
+    [Required(ErrorMessage = "El correo es obligatorio.")]
     public string Mail { get; set; } = string.Empty;
 
     // True after a POST; decides which card the view renders (mirrors the PHP exercise).

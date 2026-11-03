@@ -1,0 +1,46 @@
+@model Facturas.Models.Semana2FormularioViewModel
+@{
+    string[] interesesSeleccionados = Model.Registro.Intereses ?? [];
+}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semana 2 — Formularios GET y POST</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+</head>
+<body class="bg-light">
+<div class="container mt-5 mb-5">
+    <nav class="mb-3"><a asp-controller="Home" asp-action="Index">Inicio/facturas</a> · <a asp-action="Tipos">Clase 1: tipos y Cliente</a></nav>
+    <div class="card shadow"><div class="card-header bg-primary text-white"><h1 class="h2 mb-0">Clase 2 — Formularios GET y POST</h1></div>
+    <div class="card-body">
+        <p>GET consulta sin cambiar registros; POST registra. <strong>POST no cifra:</strong> los datos reales requieren HTTPS.</p>
+        @if (Model.RegistroCorrecto) { <p class="alert alert-success" role="status">Registro correcto</p> }
+        @if (!ViewData.ModelState.IsValid) { <div class="alert alert-danger" role="alert"><h2 class="h5">Revise los datos</h2>@Html.ValidationSummary()</div> }
+        <h2 class="h4">Registrar cliente</h2>
+        <p>Los datos viven solamente en la sesión de este navegador; no se usa MySQL ni se alteran las facturas. Edad opcional: 16 a 99.</p>
+        <form asp-action="Registrar" method="post" novalidate class="mb-3">
+            <div class="mb-2"><label for="Nombre">Nombre</label><input id="Nombre" name="Nombre" required maxlength="80" value="@Model.Registro.Nombre" class="form-control">@Html.ValidationMessage("Nombre", new { @class = "text-danger" })</div>
+            <div class="mb-2"><label for="Correo">Correo</label><input id="Correo" name="Correo" type="email" required value="@Model.Registro.Correo" class="form-control">@Html.ValidationMessage("Correo", new { @class = "text-danger" })</div>
+            <div class="mb-2"><label for="Edad">Edad</label><input id="Edad" name="Edad" type="number" min="16" max="99" value="@Model.Registro.Edad" class="form-control">@Html.ValidationMessage("Edad", new { @class = "text-danger" })</div>
+            <div class="mb-2"><label for="Carrera">Carrera</label><select id="Carrera" name="Carrera" class="form-select"><option value="SOF" selected="@(Model.Registro.Carrera == "SOF" ? "selected" : null)">Software</option><option value="SIS" selected="@(Model.Registro.Carrera == "SIS" ? "selected" : null)">Sistemas</option>@if (Model.Registro.Carrera != "SOF" && Model.Registro.Carrera != "SIS") { <option value="@Model.Registro.Carrera" selected>@Model.Registro.Carrera</option> }</select>@Html.ValidationMessage("Carrera", new { @class = "text-danger" })</div>
+            <fieldset class="mb-3"><legend class="h6">Intereses</legend>
+                @foreach (var interes in new[] { ("web", "Web"), ("movil", "Móvil"), ("datos", "Datos") }) { <label class="me-3"><input type="checkbox" name="Intereses" value="@interes.Item1" checked="@interesesSeleccionados.Contains(interes.Item1)"> @interes.Item2</label> }
+                @Html.ValidationMessage("Intereses", new { @class = "text-danger d-block" })
+            </fieldset>
+            <button type="submit" class="btn btn-primary">Enviar a acción separada</button>
+            <button type="submit" formaction="@Url.Action("Index", "Semana2")" class="btn btn-outline-primary">Procesar en esta página</button>
+        </form>
+        <h2 class="h4">Consultar clientes con GET</h2>
+        <form asp-action="Index" method="get" class="mb-3"><label for="q">Nombre o correo</label><input id="q" type="search" name="q" value="@Model.Consulta"><button class="btn btn-secondary" type="submit">Buscar</button></form>
+        <p>Clientes registrados: @Model.TotalClientes</p>
+        @if (Model.TotalClientes > 0 && Model.Clientes.Count == 0) { <p>No hay coincidencias.</p> }
+        <ul>
+        @foreach (var cliente in Model.Clientes) { <li>#@cliente.Id — @cliente.Nombre — @cliente.Correo — Edad: @(cliente.Edad?.ToString() ?? "sin indicar") — @cliente.Carrera — @string.Join(", ", cliente.Intereses)</li> }
+        </ul>
+        <p>Razor codifica texto por defecto al renderizarlo. La validación se hace en el servidor, aun si el navegador modifica el formulario. La redirección 303 tras un registro evita repetir el POST al recargar.</p>
+    </div></div>
+</div>
+</body>
+</html>

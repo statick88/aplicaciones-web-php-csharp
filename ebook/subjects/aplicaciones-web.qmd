@@ -1,6 +1,6 @@
 # Aplicaciones Web
 
-Esta asignatura abre el cuaderno con su **Semana 1**. Combina teoría, ejemplos
+Esta asignatura reúne las **Semanas 1 y 2**. Combina teoría, ejemplos
 resueltos, práctica y autoevaluación para preparar la evaluación a partir de las
 fuentes oficiales y de observaciones propias; no sustituye la documentación del
 curso ni registra calificaciones.
@@ -13,6 +13,8 @@ curso ni registra calificaciones.
 | 1 | Variables, tipos, conversiones y alcance en PHP y C# | [Valores, tipos y alcance](../chapters/02-variables-types-scope.qmd) |
 | 1 | Repaso práctico con predicciones y evidencia | [Práctica y repaso](../chapters/03-week1-practice-review.qmd) |
 | 1 | Rutas opcionales para ejecutar los ejemplos | [Entorno de desarrollo](../chapters/04-development-environment.qmd) |
+| 2 · Clase 1 | Tipos, conversiones, variables de variables y Cliente CRUD en PHP/C# | [Tipos y Cliente](aplicaciones-web/semana-02/01-tipos-cliente.qmd#semana2-clase1-tipos-cliente) |
+| 2 · Clase 2 | Formularios GET/POST, validación y PRG en PHP/ASP.NET Core | [Formularios, GET y POST](aplicaciones-web/semana-02/02-formularios-get-post.qmd#semana2-clase2-formularios-get-post) |
 | Consulta transversal | Métodos, datos en DevTools/PHP y estados HTTP | [Tablas de consulta HTTP](aplicaciones-web/consulta-http.qmd) |
 | Consulta transversal | Métodos HTTP prácticos observados en DevTools | [Laboratorio PHP](aplicaciones-web/laboratorio-http-php.qmd) |
 
@@ -26,12 +28,27 @@ curso ni registra calificaciones.
 | Autoevaluación | [Autoevaluación de Semana 1](../chapters/03-week1-practice-review.qmd#autoevaluacion-semana1) y sus [respuestas razonadas](../answers.qmd) |
 | Entregas | Sitio personal y calculadora publicados en [aplicaciones-web-semana1](https://github.com/statick88/aplicaciones-web-semana1) |
 
-## Alcance de la semana actual
+## Navegación de la Semana 2
+
+| Tipo | Recurso |
+|---|---|
+| Teoría y ejemplos · Clase 1 | [Tipos, conversiones y Cliente](aplicaciones-web/semana-02/01-tipos-cliente.qmd#semana2-clase1-tipos-cliente) |
+| Teoría y ejemplos · Clase 2 | [Formularios, GET y POST](aplicaciones-web/semana-02/02-formularios-get-post.qmd#semana2-clase2-formularios-get-post) |
+| Ejercicios | [Clase 1](aplicaciones-web/semana-02/01-tipos-cliente.qmd#s2c1-ejercicios) y [Clase 2](aplicaciones-web/semana-02/02-formularios-get-post.qmd#s2c2-ejercicios) |
+| Respuestas razonadas | [Clase 1](aplicaciones-web/semana-02/01-tipos-cliente.qmd#s2c1-respuestas) y [Clase 2](aplicaciones-web/semana-02/02-formularios-get-post.qmd#s2c2-respuestas) |
+| Práctica local | Demos PHP `semana2-tipos.php` / `semana2.php` y MVC `/Semana2/Tipos` / `/Semana2`; instrucciones dentro de cada clase |
+
+La Semana 2 se basa en los materiales de ambas clases aportados para esta práctica;
+no declara una nueva entrega oficial ni una evaluación aprobada. PHP y ASP.NET Core
+se ejecutan localmente: este libro estático explica y enlaza el recorrido de estudio.
+
+## Alcance de las semanas actuales
 
 El recorrido cubre fundamentos de la web, valores y alcance, y la práctica guiada
 que los conecta. El entorno de desarrollo es opcional: ayuda a observar los ejemplos,
 pero no reemplaza el razonamiento sobre la petición, el programa y la respuesta.
-Las respuestas razonadas de la autoevaluación están en [Respuestas de autoevaluación](../answers.qmd).
+Las respuestas de Semana 1 están en [Respuestas de autoevaluación](../answers.qmd);
+las de Semana 2 se encuentran al final de cada clase.
 
 ## Ciclo de estudio
 
@@ -41,4 +58,4 @@ Las respuestas razonadas de la autoevaluación están en [Respuestas de autoeval
 4. **Contrasta** tu razonamiento con la retroalimentación y registra la siguiente duda.
 
 La cobertura se amplía solo cuando la asignatura avance y existan fuentes oficiales
-verificadas. Hasta entonces, esta página delimita la Semana 1 disponible.
+verificadas. Esta página delimita las Semanas 1 y 2 disponibles, sin anticipar semanas futuras.

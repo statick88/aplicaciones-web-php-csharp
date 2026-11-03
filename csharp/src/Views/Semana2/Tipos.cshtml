@@ -1,0 +1,17 @@
+@using Facturas.Models
+@{
+    var clientes = (IReadOnlyList<Cliente>)ViewData["Crud"]!;
+}
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Semana 2 — Tipos y Cliente</title><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"></head>
+<body class="bg-light"><div class="container mt-5 mb-5">
+<nav class="mb-3"><a asp-controller="Home" asp-action="Index">Inicio/facturas</a> · <a asp-action="Index">Clase 2: formularios</a></nav>
+<div class="card shadow"><div class="card-header bg-primary text-white"><h1 class="h2 mb-0">Clase 1 — Tipos, Dictionary y Cliente</h1></div><div class="card-body">
+<h2 class="h4">01. Tipos escalares y null</h2><p>@ViewData["Escalares"]</p>
+<h2 class="h4">02. Conversión explícita</h2><p>@ViewData["Casts"] C# no convierte automáticamente texto a número en una suma: use <code>int.Parse</code>/<code>TryParse</code> y valide la entrada.</p>
+<p>C# no hace el <em>type juggling</em> de PHP: se analiza texto de forma explícita antes de comparar números. @ViewData["Comparacion"]</p>
+<h2 class="h4">03. Tipado estático, nullable y alternativa a unión</h2><p>El compilador verifica <code>int</code>, <code>double</code>, <code>string</code> y <code>bool</code>. <code>string?</code> declara una referencia que puede faltar; no existe un modo <code>strict_types</code> por archivo porque C# ya es estáticamente tipado. Tampoco existe un parámetro nativo <code>int|string</code>: las sobrecargas tipadas muestran una búsqueda por id frente a otra por cédula.</p>
+<h2 class="h4">04. Sin variables de variables</h2><p>C# no usa la sintaxis PHP <code>$$campo</code>. Para claves dinámicas controladas se prefiere <code>Dictionary&lt;string, string&gt;</code>: ciudad = <strong>@ViewData["Diccionario"]</strong>. Nunca convierta nombres suministrados por usuarios en variables o propiedades.</p>
+<h2 class="h4">05. Cliente CRUD en memoria</h2><p>@ViewData["ResultadosCrud"]</p><ul>@foreach (var cliente in clientes) { <li>@cliente.Id — @cliente.Nombre — @cliente.Correo — teléfono: @(cliente.Telefono ?? "sin indicar")</li> }</ul>
+<p>El repositorio demuestra registrar, consultar, listar, actualizar y eliminar. Se crea para esta demostración y no persiste ni modifica la base de datos de facturas.</p>
+</div></div></div></body></html>

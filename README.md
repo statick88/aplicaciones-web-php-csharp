@@ -28,7 +28,7 @@ Las instrucciones y comprobaciones propias de cada práctica están en sus READM
 
 ## Cuaderno de estudio y práctica
 
-El ebook estático en [`ebook/`](ebook/) crece por asignatura y semana para preparar evaluaciones con teoría, ejemplos resueltos, práctica y autoevaluación. Actualmente incluye Aplicaciones Web con PHP y C#, Semana 1. Su publicación existente permanece en [GitHub Pages](https://statick88.github.io/aplicaciones-web-php-csharp/), con el [PDF descargable](https://statick88.github.io/aplicaciones-web-php-csharp/aplicaciones-web-php-csharp-semana1.pdf) que conserva el nombre técnico `aplicaciones-web-php-csharp-semana1.pdf` por compatibilidad con enlaces públicos heredados.
+El ebook estático en [`ebook/`](ebook/) crece por asignatura y semana para preparar evaluaciones con teoría, ejemplos resueltos, práctica y autoevaluación. La edición local incluye Aplicaciones Web con PHP y C#, Semanas 1 y 2 (ambas clases, ejemplos, ejercicios y respuestas). Su publicación existente permanece en [GitHub Pages](https://statick88.github.io/aplicaciones-web-php-csharp/), con el [PDF descargable](https://statick88.github.io/aplicaciones-web-php-csharp/aplicaciones-web-php-csharp-semana1.pdf) que conserva el nombre técnico `aplicaciones-web-php-csharp-semana1.pdf` por compatibilidad con enlaces públicos heredados.
 
 Esta tarea no publicó cambios. El [flujo de publicación](https://github.com/statick88/aplicaciones-web-php-csharp/actions/workflows/ebook.yml) verifica y genera ambos formatos antes de desplegar. Pages solo sirve el libro estático; los ejercicios PHP y C# se ejecutan en sus entornos de desarrollo.
 
@@ -54,34 +54,52 @@ Fuentes oficiales: [Clase 1](https://uniandesec.blackboard.com/ultra/courses/_30
 
 Las facturas, la base de datos y los experimentos de persistencia son ejercicios adicionales. No son requisitos oficiales comprobados de Semana 1; el formulario POST no se presenta como validación robusta del servidor.
 
-## Semana 2 — plan pendiente (bloqueado)
+## Semana 2 — práctica PHP verificada
 
-Las fuentes oficiales de Semana 2 requieren autenticación institucional en Blackboard con MFA y no fueron accesibles en esta sesión. Los enlaces y temas se conservan como plan pendiente, sin marcar implementación ni verificación. No se infiere contenido de Semana 2 desde lleroc/web (referencia técnica, no programa oficial).
+Fuentes de trabajo aportadas en la raíz: [Clase 1](semana2.md) y [Clase 2](semana2-clase2.md).
+Estos materiales permiten completar las prácticas sin volver a acceder a Blackboard.
+La contraparte C# de ambas clases está implementada y verificada (sección siguiente). El ebook incorpora [Clase 1](ebook/subjects/aplicaciones-web/semana-02/01-tipos-cliente.qmd) y [Clase 2](ebook/subjects/aplicaciones-web/semana-02/02-formularios-get-post.qmd), con práctica y respuestas; la actualización permanece local, sin publicar.
 
-Fuentes oficiales intentadas (bloqueadas por autenticación):
+### Clase 1 — Tipos simples, variables de variables y Cliente
 
-- [Semana 2, Clase 1](https://uniandesec.blackboard.com/ultra/courses/_3085_1/document/_334088_1?view=content&state=view) — Tipos de datos simples y variables de variables
-- [Semana 2, Clase 2](https://uniandesec.blackboard.com/ultra/courses/_3085_1/document/_334090_1?view=content&state=view) — Envío de variables por formulario: métodos GET y POST
+- [x] Tipos `int`, `float`, `string`, `bool` y `null`; comprobaciones de tipo.
+- [x] Conversión implícita y explícita; comparaciones flexibles y estrictas.
+- [x] Declaraciones de tipo, tipos unión y rechazo con `TypeError`.
+- [x] Variables de variables, propiedades dinámicas de `stdClass` y alternativa con arreglos.
+- [x] Clase `Cliente`: registrar, consultar, listar, actualizar correo y eliminar en memoria.
 
-Temas del plan (no verificados):
+Demo: [`php/public/semana2-tipos.php`](php/public/semana2-tipos.php).
+Pruebas: `php php/tests/semana2-tipos.php` y `php php/tests/semana2-cliente.php`.
 
-### Clase 1 — Tipos de datos simples y variables de variables
+### Clase 2 — Formularios GET y POST
 
-- [ ] Tipos simples: `int`, `float`, `string`, `bool`.
-- [ ] Conversión implícita y explícita de tipos.
-- [ ] Declaraciones de tipo y modo estricto.
-- [ ] Variables de variables y alternativa con arreglos.
-- [ ] Clase `Cliente` y métodos CRUD.
+- [x] Formulario con nombre, correo, edad opcional, carrera e intereses múltiples.
+- [x] Consulta GET por nombre/correo sin modificar registros.
+- [x] Recepción POST entre archivos y formulario autoprocesado (dos botones).
+- [x] Validación del servidor: tipos de entrada, nombre de hasta 80 caracteres, correo,
+  edad entre 16 y 99, listas permitidas de carreras e intereses.
+- [x] Normalización con `trim`, escape HTML al mostrar y conservación de valores tras errores.
+- [x] Registro/consulta de clientes en sesión y Post/Redirect/Get con estado 303.
 
-Estos puntos se conservan como plan; los ejemplos aislados existentes no certifican completar Semana 2.
+Demo: [`php/public/semana2.php`](php/public/semana2.php).
+Verificación HTTP aislada: `python3 -m unittest discover -s php/tests -p 'test_semana2_http.py' -v`
+(5 pruebas, con casos de límites y entradas manipuladas).
 
-### Clase 2 — Envío de variables por formulario: métodos GET y POST
+Los registros duran solo la sesión de práctica; no hay persistencia MySQL.
+POST no cifra: se requiere HTTPS para datos reales. La práctica incluye token CSRF.
+La guía de ejecución y los límites están en [PHP](php/README.md#week-2--completed-php-practice).
 
-- [ ] Formularios HTML y campos de entrada.
-- [ ] Comparación de métodos GET y POST.
-- [ ] Recepción de datos entre archivos PHP.
-- [ ] Validación de formato y saneamiento de entradas.
-- [ ] Formulario autoprocesado y patrón Post/Redirect/Get.
+## Semana 2 — contraparte C# / ASP.NET Core
+
+La práctica C# implementa la misma Semana 2 sin modificar PHP ni el experimento de facturas: [`/Semana2/Tipos`](csharp/src/Controllers/Semana2Controller.cs) cubre tipos, conversiones, nullable, `Dictionary` como alternativa tipada a `$$` y CRUD `Cliente` en memoria; [`/Semana2`](csharp/src/Views/Semana2/Index.cshtml) cubre búsqueda GET, dos destinos POST, validación, antiforgery, sesión por navegador y PRG 303. Las reglas y rutas están documentadas en [csharp/README.md](csharp/README.md#week-2-practice-aspnet-core-mvc).
+
+Para ejecución aislada sin SQL Server, el opt-in `PracticeOnly=true` solo omite la migración inicial existente; el comportamiento normal de compose no cambia. Desde `csharp/`, el comando documentado es:
+
+```bash
+docker compose run --rm --no-deps -e PracticeOnly=true -p 127.0.0.1:18083:8080 app dotnet run --no-launch-profile
+```
+
+Verificado con build Release (0 advertencias/errores), 15 pruebas (8 HTTP y 7 previas), recorrido en navegador y verificador independiente. Los registros solo duran la sesión; POST no cifra datos y HTTPS sigue siendo necesario para información real.
 
 ## Semana 3 en adelante
 

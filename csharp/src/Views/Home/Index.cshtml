@@ -44,6 +44,7 @@
                     <div class="mb-3">
                         <label asp-for="Mail" class="form-label">Correo Electrónico</label>
                         <input asp-for="Mail" class="form-control" required>
+                        <span asp-validation-for="Mail" class="text-danger"></span>
                     </div>
                     <div class="mb-3">
                         <button type="submit" class="btn btn-outline-success">
@@ -56,7 +57,9 @@
         </div>
 
         <p class="text-center mt-3">
-            <a asp-action="Variables">Demo: variables y ámbito en C# (S1C2)</a>
+            <a asp-action="Variables">Demo: variables y ámbito en C# (S1C2)</a> ·
+            <a asp-controller="Semana2" asp-action="Tipos">Semana 2 Clase 1: tipos y Cliente</a> ·
+            <a asp-controller="Semana2" asp-action="Index">Semana 2 Clase 2: formularios</a>
         </p>
 
     </div>

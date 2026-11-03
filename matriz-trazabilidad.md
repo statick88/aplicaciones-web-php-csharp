@@ -23,7 +23,7 @@ Fuentes oficiales de Semana 1: EVA `_334077_1` (Clase 1), `_334079_1` (Clase 2),
 | 1.4 | Estructura de proyecto `public/`, `src/`, `views/`, `config/` con `require`/`include` | `chapters/01-web-foundations.qmd` (carpetas + include/require/once) | Entrada `php/public/variables.php` con `require` de `config/`, `src/`, `views/`; `config/config.php` | — | `php tests/structure.php` → 10 PASS (local y en imagen); smoke: `src/`, `views/`, `config/` → 404 | — | Verificado |
 | 1.5 | MVC como introducción (no receta) | `chapters/01-web-foundations.qmd`, `chapters/03-week1-practice-review.qmd` | `php/public/home.php` es monolítico (etiquetado honestamente, no MVC) | `csharp/src/Controllers/`, `Views/` (MVC real) | — | — | Complementario (housekeeping honesto) |
 | 1.6 | Diferencia .NET/ASP.NET y comparación PHP/C# | `chapters/01-web-foundations.qmd` (PHP y C#: comparación inicial), `chapters/04-development-environment.qmd` | — | `csharp/` stack completo | `dotnet build` (contenedor) → 0W/0E | — | Verificado |
-| 1.7 | Variables, tipos escalares e inferencia | `chapters/02-variables-types-scope.qmd` | `php/src/variables.php` + `php/views/variables.php` | `HomeController.cs` demo `Home/Variables` | `php tests/variables.php` → 17 PASS; `python3 -m unittest` → 7 OK | — | Verificado |
+| 1.7 | Variables, tipos escalares e inferencia | `chapters/02-variables-types-scope.qmd` | `php/src/variables.php` + `php/views/variables.php` | `HomeController.cs` demo `Home/Variables` | `php tests/variables.php` → 17 PASS; `python3 -m unittest` → 8 OK | — | Verificado |
 | 1.8 | Constantes: `const`/`define` (PHP) y `const` (C#) | `chapters/02-variables-types-scope.qmd` | `php/config/config.php` (`const CURSO`, `define('ETIQUETA')`) | `public const string CursoConst` | Mismas pruebas de 1.7 (checks de constantes) | — | Verificado |
 | 1.9 | Valores nulos e interpolación | `chapters/02-variables-types-scope.qmd` | `$docente = null`, `??`, `"Estudiante: $curso"` | `string? apellido`, `??`, `$"Curso: {estudiante}"` | Mismas pruebas de 1.7 (+ test dedicado de interpolación C#) | — | Verificado |
 | 1.10 | Ámbito y paso de parámetros frente a `global` | `chapters/02-variables-types-scope.qmd` | `cursoDe(string $nombre)` (sin `global`) | `CursoDe(string nombre)` (estático, no lee estado compartido) | Mismas pruebas de 1.7 | — | Verificado |
@@ -38,17 +38,44 @@ Fuentes oficiales de Semana 1: EVA `_334077_1` (Clase 1), `_334079_1` (Clase 2),
 
 ## Semana 2
 
-> **Las fuentes oficiales de Semana 2 NO se reconfirmaron en este lote** (T8, bloqueada:
-> requiere EVA autenticada o contenido del docente). Los objetivos provienen de los enclaces
-> del `README.md` declarados como plan; **no** son evidencia de cobertura. No se infiere
-> contenido desde `lleroc/web`.
+Fuentes aportadas por el usuario: `semana2.md` (Clase 1) y
+`semana2-clase2.md` (Clase 2). Verificación local con PHP 8.5.12;
+no se afirma acceso renovado a EVA ni publicación.
 
-| # | Objetivo oficial (plan, sin confirmar) | Capítulo del ebook | Práctica PHP | Práctica C# | Pruebas | Entrega | Estado |
+| # | Objetivo del material | Capítulo del ebook | Práctica PHP | Práctica C# | Pruebas | Entrega | Estado |
 |---|---|---|---|---|---|---|---|
-| 2.1 | Tipos simples `int`, `float`, `string`, `bool`; conversión implícita/explicita; declaraciones de tipo y modo estricto; variables de variables y alternativa con arreglos; clase `Cliente` CRUD | Sin capítulo dedicado (el `02` cubre la Semana 1) | — | — | — | — | **Pendiente**: fuentes oficiales sin confirmar (EVA `_334088_1`) |
-| 2.2 | Formularios HTML; GET vs POST; recepción de datos entre archivos; validación y saneamiento; formulario autoprocesado y Post/Redirect/Get | Sin capítulo dedicado (las tablas HTTP/DevTools son complementarias) | — (el POST de facturas es complementario, no cubre validación/PRG) | — | — | — | **Pendiente**: fuentes oficiales sin confirmar (EVA `_334090_1`) |
+| 2.1 | Tipos simples y null; conversiones; comparaciones; tipos estrictos/unión; variables de variables y arreglos; Cliente CRUD | [Semana 2 · Clase 1](ebook/subjects/aplicaciones-web/semana-02/01-tipos-cliente.qmd) | `php/public/semana2-tipos.php`, `php/src/semana2-{tipos,cliente}.php` | `csharp/src/Controllers/Semana2Controller.cs`, `Models/Cliente*.cs`, `/Semana2/Tipos`: tipos estáticos, nullable, casts, `Dictionary` (no `$$`) y CRUD en memoria | PHP: `php php/tests/semana2-tipos.php`, `php php/tests/semana2-cliente.php`; C#: HTTP `test_semana2_http.py` → 8 OK | Local, sin publicar | PHP y C# verificados |
+| 2.2 | Formularios; GET/POST; recepción entre archivos; validación/saneamiento; autoprocesado; PRG; registro/consulta | [Semana 2 · Clase 2](ebook/subjects/aplicaciones-web/semana-02/02-formularios-get-post.qmd) | `php/public/semana2.php`, `semana2-registro.php`, `php/src/semana2-formulario.php` | `/Semana2`: GET búsqueda, POST separado/autoprocesado, validación, antiforgery, sesión y 303 PRG | PHP: `python3 -m unittest discover -s php/tests -p 'test_semana2_http.py' -v` → 5 OK; C#: `SEMANA2_BASE_URL=http://127.0.0.1:18083 python3 -m unittest discover -s csharp/tests -p 'test_semana2_http.py' -v` → 8 OK | Local, sin publicar | PHP y C# verificados |
 
-## Pruebas ejecutadas en este lote (resumen de evidencia)
+Las pruebas HTTP ejercitan ambos destinos POST, GET, 303/PRG, campos múltiples,
+edad opcional y límites 16/99, nombre 80/81 caracteres, errores 422 sin nuevos registros,
+arrays manipulados, salida escapada y token CSRF. El registro se conserva en sesión,
+no en una base de datos. El CRUD de Clase 1 es en memoria.
+
+## Evidencia adicional — Semana 2 C#
+
+- Build Release con `--warnaserror`: 0 advertencias, 0 errores (imagen SDK local).
+- `SEMANA2_BASE_URL=http://127.0.0.1:18083 python3 -m unittest discover -s csharp/tests -p 'test_*.py' -v`: 15 pruebas OK, incluyendo 8 HTTP.
+- Navegador: registro, mensaje de éxito de una sola vez, recarga sin duplicación, búsqueda sin coincidencias y ejemplos de clase 1 comprobados.
+- Verificación independiente: ambas clases y controles antiforgery/validación aprobados tras corregir claves de intereses manipuladas; sin bloqueantes pendientes.
+- Las 15 pruebas anteriores usaron `PracticeOnly=true`. El build offline del verificador no tuvo caché NuGet suficiente; los builds normales del implementador sí pasaron.
+- Revisión nativa: `review-44e36ad1f10d82fc` aprobada y reconocida, autoridad cerrada; observaciones informativas sin corrección obligatoria.
+
+### Prueba adicional de facturas SQL Server — verificada
+
+- SQL Server 2022 aislado, sin volúmenes compartidos ni puerto SQL publicado: migración inicial predeterminada comprobada.
+- Fallo original reproducido: omitir `Mail` se aceptaba. El usuario autorizó corregirlo con «si».
+- Corrección limitada: `Factura.Mail` tiene `Required` con «El correo es obligatorio.» y la vista muestra ese error. No se cambian formato de correo, otros campos, rutas ni estado HTTP de facturas.
+- `python3 csharp/tests/check_factura_sql.py --base-url http://127.0.0.1:18084 --sql-container invoice-mail-proof-db` → PASS: omitido, vacío y espacios devuelven HTTP 200 sin tarjeta de éxito, conservan los otros campos y dejan todas las filas y `IDENT_CURRENT` intactos.
+- Factura válida: HTTP 200 y coincidencia exacta de los seis campos almacenados; una fila y un valor de identidad nuevos. GET no altera filas ni contador.
+- `SEMANA2_BASE_URL=http://127.0.0.1:18084 python3 -m unittest discover -s csharp/tests -p 'test_*.py' -v` → 15 pruebas OK, con filas completas y contador de facturas idénticos antes/después.
+- Verificación independiente y spot-check del padre: aprobados. Navegador: error exacto visible aun omitiendo el `required` HTML, campos retenidos y sin tarjeta de éxito.
+- Build Release con `--warnaserror`: 0 advertencias y 0 errores; sin migración nueva ni dependencias.
+- Incidentes del probe resueltos: opciones incompatibles de `sqlcmd` y salida JSON truncada; el helper final usa `-y 0` sin `-h`/`-W`.
+- Contenedores y red de prueba eliminados después de verificar; no se usaron datos existentes. El experimento sigue siendo complementario, no una validación integral de facturas.
+- La aprobación nativa anterior cubre el snapshot de Semana 2 previo a este arreglo, no la corrección de `Mail`. Para esta corrección se completó verificación independiente; la evaluación nativa no pudo clasificar el nuevo candidato por requerir selección explícita de archivos no rastreados.
+
+## Evidencia histórica — Semana 1
 
 | Comando | Resultado |
 |---|---|

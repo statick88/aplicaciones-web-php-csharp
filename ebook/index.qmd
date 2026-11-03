@@ -23,8 +23,8 @@ un índice independiente con su propia cobertura y ruta de lectura:
 - [Inteligencia de Negocios](subjects/inteligencia-negocios.qmd)
 - [Proyectos Informáticos](subjects/proyectos-informaticos.qmd)
 
-Solo Aplicaciones Web y Diseño y Arquitectura de Software tienen capítulos de
-estudio verificados y redactados en esta edición. Los demás índices declaran la
+Aplicaciones Web y Diseño y Arquitectura de Software reúnen las Semanas 1 y 2
+con capítulos de estudio redactados en esta edición. Los demás índices declaran la
 evidencia disponible sin mezclar respuestas ni adelantar contenido por inferencia.
 
 ## Un ciclo de práctica

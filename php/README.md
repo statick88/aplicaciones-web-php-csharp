@@ -1,6 +1,6 @@
 # PHP Practice
 
-PHP technology implementation of the shared Week 1 course exercises in this repository, not a production application. See the [general repository guide](../README.md). Apache serves `public/` (the only folder exposed to the browser); MariaDB and the invoice page are extra experiments, outside the tested Week 1 requirements. `public/home.php` is currently monolithic and is **not** MVC.
+PHP technology implementation of the Week 1 and Week 2 course exercises in this repository, not a production application. See the [general repository guide](../README.md). Apache serves `public/` (the only folder exposed to the browser); MariaDB and the invoice page are extra experiments, outside the tested Week 1 requirements. `public/home.php` is currently monolithic and is **not** MVC.
 
 ## Quick start
 
@@ -76,10 +76,51 @@ The separate completed assignment (personal page and PHP calculator) is publishe
 - [Week 1, Class 1](https://uniandesec.blackboard.com/ultra/courses/_3085_1/document/_334077_1?view=content&state=view)
 - [Week 1, Class 2](https://uniandesec.blackboard.com/ultra/courses/_3085_1/document/_334079_1?view=content&state=view)
 
-Planned work from the prepared course checklist; detailed Week 2 content was not rechecked in this verification:
+## Week 2 — completed PHP practice
 
-- [ ] [Week 2, Class 1](https://uniandesec.blackboard.com/ultra/courses/_3085_1/document/_334088_1?view=content&state=view): simple types, conversions, strict typing, variable variables and the `Cliente` CRUD exercise.
-- [ ] [Week 2, Class 2](https://uniandesec.blackboard.com/ultra/courses/_3085_1/document/_334090_1?view=content&state=view): forms, GET/POST, input validation and Post/Redirect/Get.
-- [ ] Week 3 onward: await published official content before adding requirements or implementations.
+The supplied [Class 1](../semana2.md) and [Class 2](../semana2-clase2.md)
+materials are the acceptance reference; no authenticated Blackboard session is needed.
+C# and ebook Week 2 coverage are not claimed.
+
+Run locally without a database or Docker, from `php/`:
+
+```bash
+php -S 127.0.0.1:8081 -t public
+```
+
+- <http://127.0.0.1:8081/semana2-tipos.php>: scalar types, null, casts, comparisons,
+  strict typing (including an actual caught TypeError), union types, variable variables,
+  associative arrays and a full in-memory Cliente CRUD demonstration.
+- <http://127.0.0.1:8081/semana2.php>: GET search and POST registration.
+  “Enviar a otro archivo” posts to `semana2-registro.php`;
+  “Procesar en esta página” posts to the form itself. Both use the same validation
+  and redirect with HTTP 303 after success. Refreshing the GET does not resubmit.
+
+The name is required (1–80 Unicode characters after trimming), email must validate,
+age may be empty or an integer from 16 through 99, career is SOF/SIS, and interests
+are optional web/movil/datos values. Invalid fields/arrays produce HTTP 422 without
+creating a record; values are retained for correction. Invalid CSRF tokens return 403;
+unsupported methods return 405 with an Allow header. HTML output is escaped.
+
+```bash
+# From the repository root; PHP 8+ and Python 3, no third-party test dependencies.
+for test in php/tests/*.php; do php "$test" || exit; done
+python3 -m unittest discover -s php/tests -p 'test_semana2_http.py' -v
+```
+
+The HTTP suite creates a local PHP server, fresh cookie jars and a temporary session
+directory inside `php/`, cleaning them up at completion. It tests both POST routes,
+GET filtering, multiple interests, boundaries, malicious array shapes, output escaping,
+CSRF and PRG. Class 1 tests check all CRUD operations and missing IDs.
+
+### Educational limits
+
+The Class 1 repository resets each request and follows the supplied example (registering
+an existing ID replaces it). Class 2 only appends validated new records to the browser
+session, not MariaDB; closing/expiring the session loses the records. Use fictional data.
+POST does not encrypt data; real personal information requires HTTPS. Neither this
+example nor the separate invoice experiment is a production application.
+
+Week 3 onward remains pending published content.
 
 Official PHP release reference: <https://www.php.net/releases/index.php?json&version=8.5>.
