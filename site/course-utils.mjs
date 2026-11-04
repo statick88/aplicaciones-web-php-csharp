@@ -4,7 +4,9 @@ export function filterUnits(modules, query) {
     (Array.isArray(module.units) ? module.units : [])
       .filter((unit) => {
         if (!normalized) return true;
-        const searchable = [unit.title, ...(Array.isArray(unit.technologies) ? unit.technologies : [])]
+        const labels = (Array.isArray(unit.technologies) ? unit.technologies : [])
+          .flatMap((technology) => technology === "dotnet" ? ["dotnet", ".NET"] : [technology]);
+        const searchable = [unit.title, ...labels]
           .join(" ")
           .toLocaleLowerCase("es");
         return searchable.includes(normalized);

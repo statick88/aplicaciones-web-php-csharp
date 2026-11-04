@@ -19,6 +19,12 @@ test("filterUnits finds titles and technologies without changing the catalog", (
   assert.equal(modules[0].units.length, 2);
 });
 
+test("filterUnits accepts the visible .NET brand when only technology metadata matches", () => {
+  const generic = [{ units: [{ id: "forms", title: "Formularios", technologies: ["dotnet"] }] }];
+  assert.equal(filterUnits(generic, ".NET").length, 1);
+  assert.equal(filterUnits(generic, "dotnet").length, 1);
+});
+
 test("filterUnits returns all units for an empty search and none for an unknown term", () => {
   assert.equal(filterUnits(modules, "").length, 2);
   assert.equal(filterUnits(modules, "ruby").length, 0);
