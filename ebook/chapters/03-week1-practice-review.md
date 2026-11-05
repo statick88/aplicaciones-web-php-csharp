@@ -16,6 +16,26 @@ La consigna de la primera semana pide una página personal HTML/CSS y una
 calculadora PHP integrada y publicada en control de versiones [@blackboard-task1].
 Esa es una cita breve del requisito; no se reproduce el material docente.
 
+### Si no tienes la entrega personal {#repaso-sin-entrega}
+
+Puedes repasar esta clase sin acceder a una entrega ajena ni construir otra
+calculadora. Usa este recorrido alternativo dentro de la misma página:
+
+1. Lee **Misma intención, dos lecturas**. Ambos fragmentos muestran
+   `Ana tiene 2 intentos.`; la comparación explica por qué `$` introduce una
+   variable en PHP, pero pertenece a la cadena interpolada en el ejemplo C#.
+2. Continúa con **Alcance y constantes: una decisión pequeña**. Para una base
+   de `100`, multiplicar por `1 + 0.19` da un valor matemático de `119`.
+   Distingue el dato de entrada, la constante y el valor retornado; el formato
+   impreso y la representación numérica dependen del lenguaje.
+3. Completa la **Autoevaluación de opción múltiple** de esta página y revisa
+   la explicación de cada alternativa. Si quieres ejecutar las prácticas,
+   sigue [Entorno de desarrollo opcional](04-development-environment.md#entorno-desarrollo).
+
+La tabla de operaciones de la calculadora que aparece más abajo es una guía
+para quienes sí tienen esa entrega. Leerla no equivale a haber ejecutado sus
+casos, y no necesitas una calculadora C# para completar este repaso.
+
 ## Un ciclo para resolver, no para adivinar
 
 Aplica esta secuencia en cada caso. Es útil tanto en el editor como al leer un
@@ -43,8 +63,10 @@ hacerlo [@blackboard-task1].
 
 ## Recorrido manual de la entrega existente
 
-Abre la entrega personal y conserva una pequeña tabla de observación. No des
-por hecho que “se ve bien” equivale a que cada operación fue revisada.
+Si tienes tu entrega personal, ábrela y conserva una pequeña tabla de
+observación. Si no la tienes, sigue el [repaso sin entrega](#repaso-sin-entrega)
+y usa estos casos solo como lectura del algoritmo. No des por hecho que “se ve
+bien” equivale a que cada operación fue revisada.
 
 | Caso declarado | Predicción que anotas | Qué comprobar |
 |---|---|---|

@@ -186,11 +186,57 @@ repositorio de la demostración en una base de datos.
 2. Ejecuta desde la raíz `php php/tests/semana2-tipos.php` y registra la salida.
 3. Ejecuta desde la raíz `php php/tests/semana2-cliente.php`; cambia solo una
    predicción en tus notas, no las reglas del repositorio.
-4. Compara el resultado con `Semana2/Tipos` en C#: identifica qué hace el
-   cast/parsing y qué dato queda solo en memoria.
+4. Abre la demostración C# con el recorrido de la sección siguiente y compara
+   `Semana2/Tipos`: identifica qué hace el cast/parsing y qué dato queda solo
+   en memoria.
 5. Continúa con [formularios, GET y POST](02-formularios-get-post.md#semana2-clase2-formularios-get-post) para ver
    cómo un texto llega por una solicitud. La navegación de la asignatura está
    en [Aplicaciones Web](../../aplicaciones-web.md#cobertura-actual).
+
+### Abrir la demostración C# {#s2c1-abrir-csharp}
+
+**Preparación.** Sigue primero la sección **C# / ASP.NET Core** de
+[Entorno de desarrollo opcional](../../../chapters/04-development-environment.md#entorno-desarrollo):
+allí se explican Docker, el archivo privado de variables, los requisitos de
+SQL Server y cómo revisar errores de arranque. No compartas las contraseñas.
+El arranque normal de ese escenario aplica las migraciones de facturas y
+requiere SQL Server disponible, aunque la demostración de tipos use memoria.
+No inicies PHP y C# a la vez: ambos escenarios utilizan el puerto `8080`.
+
+**1. Inicia el escenario ya preparado.** Desde la raíz del repositorio:
+
+```bash
+docker compose --env-file csharp/.env -f csharp/compose.yaml config --quiet
+docker compose --env-file csharp/.env -f csharp/compose.yaml up -d --build
+```
+
+El primer comando valida la configuración sin imprimir sus valores; no prueba
+que los servicios estén disponibles. Si ya están iniciados, pasa al navegador.
+Si la aplicación no responde, vuelve a las comprobaciones de estado y registros
+del capítulo de entorno; no borres los volúmenes para intentar arreglarla.
+
+**2. Abre la ruta completa.** En tu navegador visita
+[http://127.0.0.1:8080/Semana2/Tipos](http://127.0.0.1:8080/Semana2/Tipos).
+Es la aplicación que ejecutas en tu equipo, no una página del sitio estático de
+estudio. Debe mostrar **Clase 1 — Tipos, Dictionary y Cliente**. La raíz `/`
+abre el formulario de facturas, que no es el ejemplo que estás comparando.
+
+**3. Contrasta resultados concretos.** Usa estas referencias para localizar la
+regla que acabas de estudiar, no solo para comprobar que carga una página:
+
+| Bloque de la demostración | Resultado que debes reconocer |
+|---|---|
+| Conversión explícita | `(int)3.99` produce `3`; analizar `"8.5"` produce el valor numérico `8.5` |
+| Comparación | los números analizados desde `"1"` y `"01"` son iguales (`True`); sus textos ordinales no (`False`) |
+| Claves dinámicas | el diccionario devuelve `Ambato` para la clave `ciudad` |
+| Cliente en memoria | Ana aparece con `ana.perez@correo.com`; consultar `999` indica `Cliente inexistente` |
+
+La presentación de los decimales puede usar punto o coma según la cultura de
+la aplicación; distingue esa presentación del valor numérico. Al recargar,
+el ejemplo vuelve a crear su repositorio: no esperes guardar clientes entre
+solicitudes ni comprobar persistencia en una base de datos con esta pantalla.
+Si no puedes iniciar el entorno, realiza la comparación leyendo los ejemplos
+y la tabla; no la registres como una ejecución comprobada.
 
 ## Ejercicios de opción múltiple y referencias {#s2c1-ejercicios}
 
