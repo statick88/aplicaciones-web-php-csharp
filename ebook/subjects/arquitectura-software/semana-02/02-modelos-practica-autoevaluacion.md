@@ -10,10 +10,10 @@ fuente oficial [@blackboard-arq-s2].
 
 1. Compara cada modelo por las condiciones que aprovecha y los problemas que debe
    controlar.
-2. Resuelve el caso antes de abrir la decisión trabajada.
-3. Justifica un modelo con requisitos, entregas, retroalimentación y riesgos; no lo
-   elijas por popularidad.
-4. Contesta la autoevaluación con tus palabras y contrasta el razonamiento.
+2. Examina las premisas del caso antes de leer la decisión trabajada.
+3. Elige el modelo que encaja con requisitos, entregas, retroalimentación y riesgos,
+   no con popularidad.
+4. Elige una alternativa en cada comprobación y lee su retroalimentación.
 
 ## Cuatro modelos, cuatro énfasis
 
@@ -149,165 +149,77 @@ moderno» o «es más seguro».
 
 ## Práctica análoga: agenda de espacios comunitarios
 
-Un municipio desea una agenda para reservar canchas y salones comunitarios. Las
-reglas de horario y responsables están aprobadas, pero no se conoce qué vista será
-más comprensible para la ciudadanía. Se necesita publicar una primera capacidad en
-un mes. Hay riesgo de importar duplicados desde hojas de cálculo.
+El municipio tiene reglas aprobadas, una primera capacidad en un mes, incertidumbre
+sobre la vista y riesgo de importar duplicados. Elige el enfoque más defendible bajo
+esas premisas y lee la retroalimentación.
 
-### Entregable de estudio
-
-Escribe una página breve con:
-
-1. hechos estables, incertidumbres y riesgos;
-2. comparación de al menos dos modelos;
-3. modelo elegido y razón contextual;
-4. dos entregas o ciclos con resultados observables;
-5. una condición que haría revisar la elección.
-
-No implementes un sistema ni inventes métricas. La práctica evalúa razonamiento: una
-respuesta alternativa es válida si conserva las reglas y explica consecuencias.
-
-::: {.callout-tip collapse="true" title="Pista opcional"}
-Separa la necesidad de publicar temprano, que favorece pensar en incrementos, de la
-incertidumbre de interfaz, que requiere retroalimentación. Después pregunta si el
-riesgo de datos justifica un ciclo específico antes de ampliar el servicio.
-:::
-
-::: {.callout-note collapse="true" title="Ejemplo parcial de respuesta"}
-Un primer incremento podría mostrar disponibilidad y reglas aprobadas; un segundo,
-permitir reservas y cancelaciones. Después de probar la vista con personas usuarias,
-el equipo ajustaría lenguaje y filtros. Antes de importar otra hoja, ejecutaría una
-prueba de duplicados y detendría la ampliación si aparecen conflictos. Esta respuesta
-elige incremental por entrega temprana, incorpora retroalimentación y trata el riesgo
-sin afirmar que una sola etiqueta resuelve todo.
-:::
+<!-- quiz: arq-s2-practica-modelo -->
 
 ## Autoevaluación formativa
 
-Responde primero sin abrir la retroalimentación. Estas diez preguntas son originales
-del cuaderno: no son respuestas de una evaluación, del crucigrama, del Taller 1.2 ni
-del caso oficial de restaurante.
+Elige una alternativa antes de leer su retroalimentación. Estas diez preguntas son
+originales del cuaderno: no son respuestas de una evaluación, del crucigrama, del
+Taller 1.2 ni del caso oficial de restaurante.
 
 ### 1. Actividad y tarea
 
-¿Cuál es la diferencia entre «pruebas» como actividad general y «comprobar que una
-sala ocupada no acepta otra reserva» como tarea?
+Elige una alternativa y lee la retroalimentación.
 
-::: {.callout-note collapse="true" title="Retroalimentación razonada — 1"}
-Pruebas nombra un tipo amplio de trabajo orientado a obtener evidencia. La segunda
-frase define una tarea concreta con condición y resultado observable. Varias tareas
-pueden pertenecer a la actividad de pruebas; describirlas permite revisar avance y
-resultado sin suponer que una columna llamada «Pruebas» garantiza calidad.
-:::
+<!-- quiz: arq-s2-actividad-tarea -->
 
 ### 2. Flujo que vuelve atrás
 
-Una prueba revela que nadie definió cuánto dura una reserva provisional. ¿Por qué
-volver a requisitos no significa necesariamente que el proceso haya fracasado?
+Elige una alternativa y lee la retroalimentación.
 
-::: {.callout-note collapse="true" title="Retroalimentación razonada — 2"}
-La prueba hizo visible una decisión faltante. Volver a requisitos permite aclarar la
-regla antes de consolidar una implementación arbitraria. El fracaso sería ocultar la
-incertidumbre o repetir trabajo sin aprender. Un flujo útil comunica devoluciones y
-actualiza diseño, código y pruebas con la decisión acordada.
-:::
+<!-- quiz: arq-s2-volver-requisitos -->
 
 ### 3. Patrón sin receta
 
-El equipo quiere reutilizar una solución que separa la disponibilidad de la pantalla.
-¿Qué debe comprobar antes de llamarla una buena reutilización?
+Elige una alternativa y lee la retroalimentación.
 
-::: {.callout-note collapse="true" title="Retroalimentación razonada — 3"}
-Debe comprobar que existe un problema comparable: varias interfaces necesitan una
-regla consistente y conviene protegerla detrás de un contrato. También debe revisar
-consecuencias, como coordinación y manejo de errores. Reutilizar el nombre o la forma
-sin compartir el problema puede añadir complejidad y no ofrece el beneficio esperado.
-:::
+<!-- quiz: arq-s2-patron -->
 
 ### 4. Cascada y estabilidad
 
-¿Qué dato del proyecto apoyaría elegir cascada y qué dato haría esa elección más
-arriesgada?
+Elige una alternativa y lee la retroalimentación.
 
-::: {.callout-note collapse="true" title="Retroalimentación razonada — 4"}
-Apoya cascada que los requisitos, formatos y criterios estén claros, aprobados y sean
-poco propensos al cambio. La vuelve más arriesgada que el uso real todavía deba
-descubrirse o que decisiones tempranas dependan de retroalimentación tardía. La
-secuencia es una ventaja solo si sus supuestos coinciden con el contexto.
-:::
+<!-- quiz: arq-s2-cascada -->
 
 ### 5. Incremento funcional
 
-¿Por qué «crear todas las pantallas» no es necesariamente un buen primer incremento?
+Elige una alternativa y lee la retroalimentación.
 
-::: {.callout-note collapse="true" title="Retroalimentación razonada — 5"}
-Un incremento debe entregar una capacidad funcional integrada, no solo una capa sin
-reglas ni datos. Una consulta de disponibilidad completa puede incluir interfaz,
-regla, integración y prueba en un alcance pequeño. Cortar por capas puede aplazar el
-valor y descubrir tarde problemas de integración.
-:::
+<!-- quiz: arq-s2-incremento -->
 
 ### 6. Evolución con control
 
-¿Qué registro mínimo evitaría que un proceso evolutivo se convierta en una lista
-ilimitada de cambios?
+Elige una alternativa y lee la retroalimentación.
 
-::: {.callout-note collapse="true" title="Retroalimentación razonada — 6"}
-Conviene registrar la hipótesis o necesidad, la versión donde se observará, la
-evidencia recibida y la decisión de aceptar, rechazar o posponer el cambio. También
-se mantiene un límite de alcance o tiempo. Así la retroalimentación orienta aprendizaje
-en lugar de reemplazar toda planificación.
-:::
+<!-- quiz: arq-s2-evolucion -->
 
 ### 7. Riesgo en espiral
 
-Un equipo enumera riesgos al inicio, pero después ejecuta ciclos idénticos sin volver
-a evaluarlos. ¿Qué elemento del modelo espiral está ausente?
+Elige una alternativa y lee la retroalimentación.
 
-::: {.callout-note collapse="true" title="Retroalimentación razonada — 7"}
-Falta usar el análisis de riesgos para orientar cada ciclo y decidir el siguiente
-compromiso. Una lista decorativa no reduce incertidumbre. El equipo debería elegir
-qué riesgo estudiar, obtener evidencia y adaptar planificación o solución según el
-resultado.
-:::
+<!-- quiz: arq-s2-espiral -->
 
 ### 8. Dos proyectos, modelos distintos
 
-Un sistema tiene requisitos legales estables; otro prueba una experiencia nueva con
-usuarios. ¿Por qué sería débil recomendar el mismo modelo solo porque ambos son web?
+Elige una alternativa y lee la retroalimentación.
 
-::: {.callout-note collapse="true" title="Retroalimentación razonada — 8"}
-La tecnología de interfaz no determina estabilidad, retroalimentación, riesgo ni forma
-de entrega. El primer contexto puede favorecer una secuencia más planificada; el
-segundo necesita aprendizaje frecuente. Se comparan condiciones del proyecto, no la
-etiqueta «web» ni una moda metodológica.
-:::
+<!-- quiz: arq-s2-contexto -->
 
 ### 9. Elegir con cuatro evidencias
 
-Para una reserva de biblioteca, nombra una evidencia sobre requisitos, otra sobre
-entrega, otra sobre retroalimentación y otra sobre riesgo que usarías al elegir modelo.
+Elige una alternativa y lee la retroalimentación.
 
-::: {.callout-note collapse="true" title="Retroalimentación razonada — 9"}
-Podrían ser: la regla de no solapamiento está aprobada; una sede necesita consulta en
-seis semanas; los filtros se definirán con el piloto; y la migración puede duplicar
-horarios. En conjunto favorecen entregas incrementales, puntos de aprendizaje y una
-evaluación explícita del riesgo antes de ampliar. Otras evidencias pueden justificar
-otra decisión si se explica su relación.
-:::
+<!-- quiz: arq-s2-evidencias -->
 
 ### 10. Revisar una elección
 
-El equipo eligió incremental, pero descubre que ninguna capacidad parcial puede
-operar legalmente y todos los requisitos están fijados. ¿Qué debería hacer?
+Elige una alternativa y lee la retroalimentación.
 
-::: {.callout-note collapse="true" title="Retroalimentación razonada — 10"}
-Debe revisar la elección en vez de proteger la etiqueta. Si no existe valor ni uso
-legal por partes y los requisitos son estables, una secuencia planificada podría ser
-más coherente. También puede redefinir qué significa un incremento interno, pero no
-debe fingir entregas utilizables. Un modelo es una decisión contextual que cambia
-cuando cambian sus supuestos.
-:::
+<!-- quiz: arq-s2-revisar -->
 
 ## Alcance de la fuente y cierre
 
@@ -317,7 +229,6 @@ evolutivo y espiral. El plan de clase y otros archivos PDF quedaron disponibles 
 como metadatos y **no fueron leídos**; por tanto, este material no afirma cubrir todas
 las clases, fuentes ni evaluaciones de la semana o del semestre.
 
-La preparación se completa al poder justificar cómo se organiza el trabajo y por qué
-un modelo encaja en condiciones concretas. Si una respuesta depende de «siempre» o
-«el mejor», vuelve a requisitos, entregas, retroalimentación y riesgos: ahí debe estar
-la evidencia de la elección.
+La preparación se completa al relacionar el modelo con condiciones concretas. Si una
+alternativa depende de «siempre» o «el mejor», vuelve a requisitos, entregas,
+retroalimentación y riesgos: ahí debe estar la evidencia de la elección.

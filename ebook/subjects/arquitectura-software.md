@@ -36,10 +36,10 @@ ni asigna una nota.
 
 ## Ruta de estudio
 
-1. Formula una respuesta antes de abrir la retroalimentación.
+1. Elige una alternativa antes de leer su retroalimentación.
 2. Relaciona una necesidad concreta con una decisión y una comprobación observable.
 3. Distingue el concepto técnico de su dominio de uso antes de clasificarlo.
-4. Explica qué evidencia faltaría para sostener una conclusión arquitectónica.
+4. Usa la retroalimentación para reconocer qué evidencia sostiene o limita una conclusión arquitectónica.
 
 La cobertura se ampliará únicamente cuando haya temas oficiales verificados. Las
 prácticas y sus respuestas de Arquitectura viven en las lecturas de cada semana; las

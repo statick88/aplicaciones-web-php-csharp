@@ -11,8 +11,9 @@ responsable [@blackboard-arq-s1].
 - Explicar por qué lenguaje, intérprete, editor, framework y runtime no son sinónimos.
 - Analizar los cuatro mitos de la semana mediante condiciones, consecuencias y acciones.
 
-**Pregunta de recuperación.** ¿Puede el mismo programa ser software de aplicación y
-pertenecer al dominio educativo? Justifica con dos criterios distintos.
+**Comprobación de recuperación.** Elige una clasificación y lee la retroalimentación.
+
+<!-- quiz: arq-tipos-ejes -->
 
 ## Dos ejes para no mezclar etiquetas
 
@@ -99,20 +100,11 @@ la necesidad de dejar decisiones relevantes recuperables. La acción es document
 lo que ayuda a operar, cambiar y revisar: propósito, interfaz, decisión y evidencia,
 manteniéndolo cercano a quien lo usa.
 
-## Ejercicio breve
+## Comprobación breve
 
-Clasifica un programa que recoge lecturas de temperatura desde un sensor y envía una
-alarma a personal de mantenimiento. Indica tipo técnico, dominio y una pregunta que
-harías antes de decidir si es embebido.
+Elige la evidencia que sustenta una clasificación responsable y lee la retroalimentación.
 
-::: {.callout-note collapse="true" title="Retroalimentación razonada"}
-El programa que controla directamente el sensor puede ser software de sistema o
-embebido según su función y entorno; el dominio podría ser industrial o científico,
-según el propósito de las mediciones. Preguntaría si se ejecuta dentro de un dispositivo
-con recursos y responsabilidades específicas, en vez de etiquetarlo solo porque usa
-un sensor. La alarma puede ser otra aplicación conectada: clasificar sus piezas evita
-forzar una sola etiqueta al conjunto.
-:::
+<!-- quiz: arq-tipos-sensor -->
 
 ## Conclusión
 
@@ -122,5 +114,6 @@ condiciones; una decisión madura las vuelve preguntas sobre personas, dependenc
 calidad y contexto. Esa conclusión permite actuar sin prometer que toda contratación,
 cambio o documentación tenga el mismo resultado.
 
-**Recuerdo rápido.** Ante «funciona, luego está terminado», ¿qué evidencia de calidad
-pedirías para este producto y por qué?
+**Recuerdo rápido.** Elige la conclusión que corresponde a una demostración exitosa.
+
+<!-- quiz: arq-tipos-terminado -->

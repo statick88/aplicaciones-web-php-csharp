@@ -7,19 +7,16 @@ la teoría, con decisiones que puedes explicar y comprobar de forma observable.
 
 ## Ruta de trabajo
 
-1. Lee el caso y escribe una primera decisión antes de abrir una pista.
-2. Compara tu explicación con el ejemplo parcial; no copies su forma sin revisar el
-   contexto.
-3. Resuelve el ejercicio análogo con tus propios supuestos y contrasta después la
-   autoevaluación.
+1. Lee el caso y elige una alternativa antes de abrir su retroalimentación.
+2. Contrasta cada alternativa con el caso y sus restricciones.
+3. Usa las comprobaciones para identificar qué concepto conviene releer.
 
 ::: {.callout-important}
 ## Qué se espera en esta práctica
 
-No hay ejecución, nota ni evidencia de rendimiento que producir. Conserva una hoja
-con una necesidad, clasificaciones, una decisión justificada, un esquema de
-responsabilidades y un criterio observable. Diseños alternativos son válidos cuando
-mantienen las reglas y explican sus consecuencias.
+No hay ejecución, nota ni evidencia de rendimiento que producir. Las comprobaciones
+proponen una mejor alternativa bajo las premisas declaradas; no convierten una
+arquitectura o un estilo en una respuesta universal.
 :::
 
 ## Caso guiado: una reserva sin promesas duplicadas
@@ -107,192 +104,80 @@ calidad total.
 
 ## Ejercicio análogo: préstamo de equipos
 
-Ahora una sala de innovación presta una cámara a estudiantes. Hay una cámara libre y
-dos solicitudes pueden coincidir. Propón una solución para estudiar; no implementes
-ni supongas que existe una plataforma institucional.
+Una sala de innovación presta una cámara a estudiantes; hay una cámara libre y dos
+solicitudes pueden coincidir. Elige el diseño que protege la regla y lee la
+retroalimentación.
 
-::: {.callout-tip collapse="true" title="Pista opcional"}
-Empieza por la regla que no debe romperse. Después nombra una responsabilidad que la
-proteja y una observación que podría refutar tu propuesta.
-:::
-
-### Entregables y criterios observables
-
-Entrega en tus apuntes los cinco elementos siguientes:
-
-1. La necesidad en una oración y la clasificación por tipo técnico, dominio y función.
-2. Una distinción entre lo que descubres en análisis y lo que decides en diseño o
-   arquitectura.
-3. Una tabla pequeña con al menos dos responsabilidades, una interfaz y sus
-   resultados.
-4. Un registro de decisión con contexto, alternativa considerada, consecuencia y un
-   estilo compatible con su justificación; no existe un estilo universalmente mejor.
-5. Un criterio de calidad y una comprobación observable que distinga consistencia de
-   disponibilidad cuando corresponda.
-
-Puedes elegir capas, cliente-servidor o un monolito con fronteras claras si explicas
-qué problema atiende. Un esquema cumple cuando permite reconocer quién protege la
-regla, qué recibe cada parte y qué observación esperas. No cumple solo por usar
-nombres técnicos ni por dibujar más cajas.
-
-### Lista de revisión sin puntaje
-
-- [ ] ¿Puedo señalar una regla del dominio sin nombrar una tecnología?
-- [ ] ¿Distinguí la finalidad del producto de las herramientas para construirlo?
-- [ ] ¿Mi interfaz evita que la pantalla cambie directamente el estado crítico?
-- [ ] ¿Mi comprobación describe una entrada o condición y un resultado observable?
-- [ ] ¿Expliqué una consecuencia o límite de mi decisión?
-- [ ] ¿Sé qué concepto debo releer si no pude justificar una frontera?
-
-Vuelve a [necesidad, módulos y cualidades](01-diseno-arquitectura.md) para revisar
-análisis, interfaces, vistas y estilos; vuelve a [tipos, dominios y mitos](02-dominios-mitos.md)
-para revisar clasificaciones y afirmaciones absolutas.
+<!-- quiz: arq-s1-caso-regla -->
 
 ## Autoevaluación formativa
 
-Responde primero con tus palabras. Las preguntas son originales para el estudio de
-esta semana: no se copian de Educaplay ni representan calificación oficial.
+Elige una alternativa en cada caso y lee su retroalimentación. Estas preguntas son
+originales para el estudio de esta semana: no se copian de Educaplay ni representan
+calificación oficial.
 
 ### 1. De necesidad a decisión
 
-Una coordinación pide «que las reservas sean claras». ¿Qué preguntas de análisis
-harías antes de decidir una interfaz, y cuándo explicarías que la decisión tiene
-alcance arquitectónico?
+Elige una alternativa y lee la retroalimentación.
 
-::: {.callout-note collapse="true" title="Retroalimentación razonada — 1"}
-Primero aclararía actores, qué significa «clara», qué regla protege una reserva y qué
-resultado debe ver cada persona. Eso evita convertir una frase ambigua en una tabla o
-API prematura. Propondría una interfaz después de identificar la regla y los límites.
-La llamaría arquitectónica si condiciona a varias partes, contratos o cambios futuros;
-si solo organiza un detalle local, sigue siendo diseño con menor alcance.
-:::
+<!-- quiz: arq-s1-analisis -->
 
 ### 2. Fronteras, acoplamiento y cohesión
 
-Una pantalla valida disponibilidad, registra reservas y compone correos. Propón una
-frontera de módulos y explica qué cambio quedaría localizado.
+Elige una alternativa y lee la retroalimentación.
 
-::: {.callout-note collapse="true" title="Retroalimentación razonada — 2"}
-Una respuesta posible separa pantalla, `Reservas` y `Notificaciones`. `Reservas`
-concentra la regla y expone una operación; la pantalla presenta el resultado y
-Notificaciones compone el aviso. Cambiar el proveedor o formato del correo afecta
-principalmente a Notificaciones, por menor acoplamiento. La frontera es útil solo si
-las responsabilidades realmente cambian por razones distintas; dividir cada función
-sin necesidad puede reducir cohesión.
-:::
+<!-- quiz: arq-s1-fronteras -->
 
 ### 3. Vista y notación
 
-Para explicar que una persona solicita una cámara y que el sistema la confirma o
-rechaza, ¿elegirías caso de uso, clases o secuencia? Indica también una vista que no
-resuelve por sí sola ese diagrama.
+Elige una alternativa y lee la retroalimentación.
 
-::: {.callout-note collapse="true" title="Retroalimentación razonada — 3"}
-Un caso de uso es una elección directa para mostrar actor y meta; una secuencia sirve
-si importa mostrar los mensajes del escenario. Un diagrama de clases ayuda a discutir
-conceptos y relaciones, no sustituye esa interacción. La vista conceptual aclara
-cámara, persona y préstamo; la lógica muestra componentes que colaboran; la física
-ubica ejecuciones y datos. Elegir una no elimina la pregunta de las otras.
-:::
+<!-- quiz: arq-s1-vista -->
 
 ### 4. Estilo con contexto
 
-El equipo tiene una aplicación pequeña, un despliegue conocido y pocas fronteras
-estables. ¿Por qué «microservicios» no es automáticamente la mejor respuesta? Da una
-alternativa compatible.
+Elige una alternativa y lee la retroalimentación.
 
-::: {.callout-note collapse="true" title="Retroalimentación razonada — 4"}
-Microservicios agregan coordinación de despliegues, fallos y datos; sin una necesidad
-que compense esos costos pueden oscurecer el problema. Un monolito organizado por
-capas, atendido en cliente-servidor, puede conservar interfaces y módulos cohesivos.
-La elección depende de restricciones, cambios esperados y evidencia, no de una
-jerarquía universal de estilos.
-:::
+<!-- quiz: arq-s1-estilo -->
 
 ### 5. Dos cualidades distintas
 
-Dos solicitudes coincidentes producen una confirmación y un rechazo, pero el servicio
-estuvo caído una hora por un fallo externo. ¿Qué evidencia tienes y qué evidencia falta?
+Elige una alternativa y lee la retroalimentación.
 
-::: {.callout-note collapse="true" title="Retroalimentación razonada — 5"}
-El escenario aporta evidencia limitada de consistencia: no se prometió dos veces la
-misma copia. No demuestra disponibilidad, porque el servicio no atendió durante la
-interrupción. Para hablar de disponibilidad se definen condiciones de fallo, tiempo o
-nivel de servicio y cómo se observará la atención o degradación; para rendimiento se
-necesitaría además una carga y una medida, que esta práctica no inventa.
-:::
+<!-- quiz: arq-s1-cualidades -->
 
 ### 6. Tipo, dominio y herramientas
 
-Clasifica el sistema operativo de un servidor, el portal de préstamos y el editor que
-usa el equipo. Luego explica por qué Python y su runtime no responden a la misma
-pregunta que «educativo».
+Elige una alternativa y lee la retroalimentación.
 
-::: {.callout-note collapse="true" title="Retroalimentación razonada — 6"}
-El sistema operativo es software de sistema; el portal es software de aplicación y
-puede pertenecer al dominio educativo; el editor es software de desarrollo. Python es
-un lenguaje y el runtime aporta el entorno para ejecutar programas: describen medios
-técnicos diferentes. «Educativo» describe la finalidad del portal. Por eso no se
-comparan como etiquetas rivales ni se infiere la categoría de una base de datos solo
-por su nombre.
-:::
+<!-- quiz: arq-s1-clasificacion -->
 
 ### 7. Mito: sumar personas tarde
 
-Un proyecto se atrasa y alguien propone añadir cinco personas mañana. ¿Qué condición
-revisarías antes de aceptar o rechazar la propuesta?
+Elige una alternativa y lee la retroalimentación.
 
-::: {.callout-note collapse="true" title="Retroalimentación razonada — 7"}
-Revisaría el cuello de botella, el tiempo para conocer el contexto y si existen tareas
-independientes, bien especificadas y con incorporación preparada. Si el trabajo exige
-coordinación intensa, sumar personas puede aumentar comunicación y errores al inicio.
-No es una prohibición absoluta: una tarea aislada y preparada podría repartirse. La
-respuesta responsable explica esa condición en lugar de prometer que más personas
-siempre aceleran.
-:::
+<!-- quiz: arq-s1-sumar-personas -->
 
 ### 8. Mito: «funciona, está terminado»
 
-Una demostración registra un préstamo correctamente. Nombra dos clases de evidencia
-que aún podrían faltar antes de declarar terminado el producto.
+Elige una alternativa y lee la retroalimentación.
 
-::: {.callout-note collapse="true" title="Retroalimentación razonada — 8"}
-Podrían faltar evidencia de autorización —quién puede prestar o administrar— y de
-casos de falla o concurrencia, además de documentación y condiciones de entrega. Que
-un camino funcione confirma ese escenario, no seguridad, mantenibilidad u operación.
-Qué pedir depende del contexto, pero una definición explícita de terminado evita
-confundir una demostración con una conclusión total.
-:::
+<!-- quiz: arq-s1-terminado -->
 
 ### 9. Mito: «cada cambio es fácil»
 
-Cambiar una regla de préstamo afecta la pantalla, una interfaz compartida y registros
-históricos. ¿Cómo razonarías su costo sin asumir que todo cambio es difícil?
+Elige una alternativa y lee la retroalimentación.
 
-::: {.callout-note collapse="true" title="Retroalimentación razonada — 9"}
-Rastrearía módulos, contratos, datos existentes y personas afectadas antes de estimar,
-y probaría el comportamiento que depende de la regla. Es posible que un texto aislado
-sea fácil de cambiar; aquí las dependencias compartidas sugieren más riesgo y
-coordinación. La lección no es negar la evolución, sino distinguir cambios locales de
-cambios que atraviesan fronteras.
-:::
+<!-- quiz: arq-s1-cambio -->
 
 ### 10. Mito: «no hace falta documentación»
 
-El equipo recuerda hoy por qué rechazó que cada pantalla actualizara inventario. ¿Qué
-documentarías para que esa razón sobreviva a un cambio de equipo?
+Elige una alternativa y lee la retroalimentación.
 
-::: {.callout-note collapse="true" title="Retroalimentación razonada — 10"}
-Registraría el contexto de solicitudes coincidentes, la decisión de centralizar la
-regla, la alternativa de actualizar desde cada pantalla, sus consecuencias y el
-criterio observable de una sola reserva activa. El código puede mostrar una llamada,
-pero no siempre por qué se eligió ni qué supuesto debe conservarse. Una nota breve y
-cercana a la decisión puede ser suficiente para este alcance; no exige documentación
-exhaustiva sin propósito.
-:::
+<!-- quiz: arq-s1-documentacion -->
 
 ## Cierre
 
-La práctica se completa al poder defender una decisión con necesidad, frontera y
-observación, no al acertar una lista de letras. Si una respuesta fue débil, regresa al
-concepto enlazado, ajusta el supuesto y escribe qué evidencia pedirías después.
+La práctica se completa al relacionar la alternativa elegida con necesidad, frontera y
+observación. Si una alternativa no encaja, vuelve al concepto enlazado y revisa qué
+evidencia del caso cambia la decisión.

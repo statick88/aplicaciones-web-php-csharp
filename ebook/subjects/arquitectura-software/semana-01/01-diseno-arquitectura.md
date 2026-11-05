@@ -11,8 +11,9 @@ cómo el sistema responderá a cambios y cualidades relevantes [@blackboard-arq-
 - Usar abstracción, modularidad, encapsulación, acoplamiento y cohesión al razonar.
 - Reconocer vistas, relaciones, estilos y atributos de calidad iniciales.
 
-**Pregunta de recuperación.** Si dos módulos cambian juntos cada vez que cambia una
-regla, ¿qué hipótesis harías sobre su frontera y por qué?
+**Comprobación de recuperación.** Elige la alternativa y lee su retroalimentación.
+
+<!-- quiz: arq-diseno-frontera -->
 
 ## De entender la necesidad a decidir una forma
 
@@ -108,18 +109,11 @@ No hay un estilo mejor sin contexto, restricciones y evidencia. Tampoco conviene
 partir en microservicios antes de conocer las fronteras, la operación y el coste de
 coordinar despliegues, fallos y datos.
 
-## Ejercicio breve
+## Comprobación breve
 
-Una pantalla consulta directamente la base de datos y manda correos de confirmación.
-Propón una frontera de módulos y explica qué cambio quedaría más localizado.
+Elige la alternativa que mejor aplica las fronteras al caso y lee la retroalimentación.
 
-::: {.callout-note collapse="true" title="Retroalimentación razonada"}
-Una respuesta posible separa la pantalla, `Reservas` y `Notificaciones`; la pantalla
-pide la operación a una interfaz y no conoce la persistencia. Cambiar el proveedor
-de correo afectaría principalmente Notificaciones. La propuesta necesita validar qué
-reglas comparten realmente los casos de uso: separar por moda también puede añadir
-complejidad.
-:::
+<!-- quiz: arq-diseno-modulos -->
 
 ## Cierre
 
@@ -128,5 +122,6 @@ fronteras que permitan explicar una necesidad y comprobar sus consecuencias. La
 arquitectura hace visibles las decisiones de mayor alcance; la evolución posterior
 sigue siendo contextual, no una ley idéntica para todo programa [@lehman1996].
 
-**Recuerdo rápido.** ¿Qué convertirías primero en una comprobación observable antes
-de afirmar que una decisión mejoró la calidad?
+**Recuerdo rápido.** Elige qué evidencia observar antes de afirmar una mejora de calidad.
+
+<!-- quiz: arq-diseno-calidad -->

@@ -1,0 +1,540 @@
+{
+  "schemaVersion": 1,
+  "pages": [
+    {
+      "href": "subjects/arquitectura-software/semana-01/01-diseno-arquitectura.html",
+      "questions": [
+        {
+          "id": "arq-diseno-frontera",
+          "prompt": "Dos módulos cambian juntos cada vez que cambia una regla de préstamo. ¿Qué hipótesis conviene investigar primero?",
+          "options": [
+            "La regla compartida puede no estar encapsulada tras una frontera adecuada.",
+            "Cambiar ambos módulos a la vez prueba que tienen alta cohesión.",
+            "Los módulos deben convertirse siempre en microservicios."
+          ],
+          "correctIndex": 0,
+          "feedback": [
+            "Correcta: el cambio conjunto sugiere revisar dónde vive la regla y qué interfaz la protege.",
+            "La cohesión trata de la relación interna de un módulo; no explica por sí sola la dependencia entre dos módulos.",
+            "Microservicios no se justifican solo por este síntoma; añaden costos operativos que el caso no evalúa."
+          ],
+          "objective": "Reconocer una frontera de responsabilidad cuestionable",
+          "level": "comprender"
+        },
+        {
+          "id": "arq-diseno-modulos",
+          "prompt": "En una pantalla que consulta datos, modifica inventario y envía correos, ¿qué separación localiza mejor un cambio de proveedor de correo?",
+          "options": [
+            "Pantalla, Reservas y Notificaciones; la pantalla solicita la operación sin modificar inventario.",
+            "Un servicio separado por cada campo del formulario.",
+            "Una única pantalla que conserva las tres responsabilidades para evitar llamadas."
+          ],
+          "correctIndex": 0,
+          "feedback": [
+            "Correcta: separa razones de cambio y conserva la regla crítica detrás de una interfaz.",
+            "Partir por campos no responde a responsabilidades ni garantiza cohesión.",
+            "Reunir presentación, regla e integración incrementa el acoplamiento ante cambios de correo."
+          ],
+          "objective": "Aplicar modularidad y encapsulación a un caso",
+          "level": "aplicar"
+        },
+        {
+          "id": "arq-diseno-calidad",
+          "prompt": "Antes de afirmar que una decisión mejoró la consistencia de reservas, ¿qué comprobación es más pertinente?",
+          "options": [
+            "La pantalla se ve más simple que antes.",
+            "El equipo declara que eligió un estilo moderno.",
+            "Dos solicitudes controladas por la última copia producen una confirmación, un rechazo y una sola reserva activa."
+          ],
+          "correctIndex": 2,
+          "feedback": [
+            "La apariencia no evidencia consistencia de datos.",
+            "Una etiqueta de estilo no sustituye evidencia del comportamiento.",
+            "Correcta: define condición y resultado observable para la regla de no duplicación."
+          ],
+          "objective": "Elegir una comprobación observable de calidad",
+          "level": "aplicar"
+        }
+      ]
+    },
+    {
+      "href": "subjects/arquitectura-software/semana-01/02-dominios-mitos.html",
+      "questions": [
+        {
+          "id": "arq-tipos-ejes",
+          "prompt": "Un portal de reservas para estudiantes usa Python y se ejecuta sobre un sistema operativo. ¿Qué clasificación distingue correctamente sus ejes?",
+          "options": [
+            "Python, el portal y educativo son tres tipos técnicos equivalentes.",
+            "El portal es software de sistema porque usa una base de datos.",
+            "El portal es software de aplicación y puede ser educativo; Python es lenguaje y el sistema operativo es software de sistema."
+          ],
+          "correctIndex": 2,
+          "feedback": [
+            "Mezcla una tecnología, una aplicación y un dominio como si respondieran la misma pregunta.",
+            "Usar una base de datos no convierte una aplicación orientada a usuarios en software de sistema.",
+            "Correcta: separa función técnica, finalidad de dominio y herramientas o plataforma."
+          ],
+          "objective": "Distinguir tipo técnico, dominio y herramienta",
+          "level": "comprender"
+        },
+        {
+          "id": "arq-tipos-sensor",
+          "prompt": "Un programa controla directamente un sensor y alerta a mantenimiento. Antes de etiquetarlo como embebido, ¿qué dato falta?",
+          "options": [
+            "Si se ejecuta dentro de un dispositivo con recursos y responsabilidades específicas.",
+            "Si la alarma tiene una interfaz colorida.",
+            "Qué marca de editor utilizó el equipo."
+          ],
+          "correctIndex": 0,
+          "feedback": [
+            "Correcta: el entorno y responsabilidades del programa sustentan la clasificación embebida.",
+            "La apariencia de una alarma no determina dónde ni cómo se ejecuta el controlador.",
+            "El editor es una herramienta de desarrollo, no evidencia del dominio o entorno del producto."
+          ],
+          "objective": "Analizar evidencia para una clasificación contextual",
+          "level": "analizar"
+        },
+        {
+          "id": "arq-tipos-terminado",
+          "prompt": "Una demostración registra un préstamo correctamente. ¿Qué conclusión es más responsable?",
+          "options": [
+            "Confirma ese escenario, pero aún deben acordarse evidencias de autorización, fallos u operación pertinentes.",
+            "Hace innecesaria la documentación de decisiones.",
+            "Prueba que el producto está terminado en cualquier contexto."
+          ],
+          "correctIndex": 0,
+          "feedback": [
+            "Correcta: una demostración aporta evidencia limitada y no sustituye criterios de entrega contextualizados.",
+            "El código ejecutado no conserva por sí solo las razones y supuestos de una decisión.",
+            "Un camino exitoso no demuestra seguridad, mantenibilidad ni operación."
+          ],
+          "objective": "Cuestionar el mito de que funcionar equivale a terminar",
+          "level": "analizar"
+        }
+      ]
+    },
+    {
+      "href": "subjects/arquitectura-software/semana-01/03-practica-autoevaluacion.html",
+      "questions": [
+        {
+          "id": "arq-s1-caso-regla",
+          "prompt": "En el préstamo de una sola cámara con dos solicitudes simultáneas, ¿qué diseño estudia mejor la regla crítica?",
+          "options": [
+            "Un módulo de reservas usa una operación atómica de disponibilidad y notifica solo el resultado final.",
+            "Cada pantalla marca la cámara disponible o no y envía su propio correo.",
+            "Reintentar automáticamente toda solicitud interrumpida hasta confirmar dos veces."
+          ],
+          "correctIndex": 0,
+          "feedback": [
+            "Correcta: centraliza la regla y evita que presentación y aviso modifiquen inventario.",
+            "Duplica una regla crítica y permite que las pantallas diverjan.",
+            "Un reintento ciego de una operación no idempotente puede crear otra reserva."
+          ],
+          "objective": "Aplicar una frontera a un caso de concurrencia",
+          "level": "aplicar"
+        },
+        {
+          "id": "arq-s1-analisis",
+          "prompt": "La coordinación pide que las reservas sean «claras». ¿Cuál es el siguiente paso antes de diseñar una interfaz?",
+          "options": [
+            "Aclarar actores, significado de claridad, regla protegida y resultado esperado.",
+            "Llamar arquitectónica a toda decisión de interfaz.",
+            "Elegir una tabla y API para volver concreta la frase."
+          ],
+          "correctIndex": 0,
+          "feedback": [
+            "Correcta: transforma una petición ambigua en información útil para decidir.",
+            "El alcance depende de contratos, partes afectadas y cambios futuros, no del nombre de interfaz.",
+            "La tecnología prematura puede fijar una solución antes de comprender la necesidad."
+          ],
+          "objective": "Distinguir análisis previo de decisión",
+          "level": "comprender"
+        },
+        {
+          "id": "arq-s1-fronteras",
+          "prompt": "Una pantalla valida disponibilidad, registra reservas y compone correos. ¿Qué cambio queda principalmente localizado con una frontera adecuada?",
+          "options": [
+            "Cambiar proveedor o formato de correo en Notificaciones.",
+            "Eliminar toda comunicación entre módulos.",
+            "Cambiar toda regla de reserva desde cada pantalla."
+          ],
+          "correctIndex": 0,
+          "feedback": [
+            "Correcta: Notificaciones concentra una razón de cambio distinta de la regla de reserva.",
+            "Las interfaces coordinan módulos; eliminarlas no es una meta de diseño.",
+            "Permitir cambios críticos desde cada pantalla recrea el acoplamiento que la frontera evita."
+          ],
+          "objective": "Identificar el efecto de una separación modular",
+          "level": "aplicar"
+        },
+        {
+          "id": "arq-s1-vista",
+          "prompt": "Para mostrar que una persona solicita una cámara y recibe confirmación o rechazo, ¿qué notación encaja mejor?",
+          "options": [
+            "Una vista física que por sí sola muestra la meta de la persona.",
+            "Un diagrama de clases como sustituto de toda interacción.",
+            "Un caso de uso; una secuencia sería útil si importan los mensajes del escenario."
+          ],
+          "correctIndex": 2,
+          "feedback": [
+            "La vista física ubica ejecución y datos, pero no describe por sí sola la meta.",
+            "Las clases muestran conceptos y relaciones, no reemplazan directamente la interacción con el actor.",
+            "Correcta: el caso de uso comunica actor y meta, y secuencia detalla intercambios."
+          ],
+          "objective": "Seleccionar una notación según la pregunta",
+          "level": "aplicar"
+        },
+        {
+          "id": "arq-s1-estilo",
+          "prompt": "Una aplicación pequeña tiene despliegue conocido y pocas fronteras estables. ¿Cuál es la conclusión más justificada?",
+          "options": [
+            "Microservicios son siempre mejores porque separan servicios.",
+            "No debe haber interfaces hasta que el sistema sea grande.",
+            "Un monolito por capas puede ser compatible; microservicios solo compensan si necesidades y costos lo justifican."
+          ],
+          "correctIndex": 2,
+          "feedback": [
+            "La separación distribuida no es una mejora universal ni gratuita.",
+            "Las interfaces pueden aclarar responsabilidades también dentro de un monolito.",
+            "Correcta: compara el beneficio potencial con coordinación de despliegues, fallos y datos."
+          ],
+          "objective": "Evaluar estilos sin una regla universal",
+          "level": "analizar"
+        },
+        {
+          "id": "arq-s1-cualidades",
+          "prompt": "Dos solicitudes producen una confirmación y un rechazo, pero el servicio estuvo caído una hora. ¿Qué evidencia existe?",
+          "options": [
+            "Hay evidencia limitada de consistencia, pero no de disponibilidad.",
+            "Hay evidencia de rendimiento porque se rechazó una solicitud.",
+            "Hay evidencia completa de disponibilidad porque una solicitud fue confirmada."
+          ],
+          "correctIndex": 0,
+          "feedback": [
+            "Correcta: la prueba evita promesas duplicadas, pero la caída contradice atención continua.",
+            "Rendimiento exige carga y medición definidas; el rechazo no las aporta.",
+            "Una ejecución previa no demuestra comportamiento durante una interrupción."
+          ],
+          "objective": "Diferenciar consistencia, disponibilidad y rendimiento",
+          "level": "analizar"
+        },
+        {
+          "id": "arq-s1-clasificacion",
+          "prompt": "¿Cuál clasificación es correcta para un servidor, un portal de préstamos y un editor?",
+          "options": [
+            "Python es el dominio educativo y el editor es un runtime.",
+            "Sistema operativo: sistema; portal: aplicación y posiblemente educativo; editor: desarrollo.",
+            "Los tres son software de aplicación porque participan en el portal."
+          ],
+          "correctIndex": 1,
+          "feedback": [
+            "Confunde lenguaje, dominio, editor y entorno de ejecución.",
+            "Correcta: clasifica cada pieza por su función y separa el dominio de la aplicación.",
+            "Participar en un entorno no elimina las funciones técnicas distintas."
+          ],
+          "objective": "Clasificar componentes por función y dominio",
+          "level": "comprender"
+        },
+        {
+          "id": "arq-s1-sumar-personas",
+          "prompt": "Un proyecto atrasado considera añadir cinco personas mañana. ¿Qué condición debe guiar la decisión?",
+          "options": [
+            "Que ninguna persona nueva pueda aportar nunca.",
+            "Que más personas siempre reducen el plazo.",
+            "El cuello de botella, incorporación y existencia de tareas independientes bien preparadas."
+          ],
+          "correctIndex": 2,
+          "feedback": [
+            "Una tarea aislada con incorporación preparada sí puede repartirse.",
+            "Ignora que la coordinación inicial puede aumentar errores y demora.",
+            "Correcta: la utilidad depende de divisibilidad y del costo de coordinación y aprendizaje."
+          ],
+          "objective": "Analizar condiciones detrás de un mito de gestión",
+          "level": "analizar"
+        },
+        {
+          "id": "arq-s1-terminado",
+          "prompt": "Además de una demostración de préstamo correcto, ¿qué evidencia puede faltar antes de entregar?",
+          "options": [
+            "Solo otro nombre para la pantalla.",
+            "Autorización y comportamiento ante fallos o concurrencia pertinentes al contexto.",
+            "La garantía de que nunca habrá cambios futuros."
+          ],
+          "correctIndex": 1,
+          "feedback": [
+            "Renombrar una interfaz no prueba una condición de calidad.",
+            "Correcta: estos aspectos amplían la evidencia más allá de un camino exitoso.",
+            "Ningún proceso puede garantizar inmovilidad futura; se evalúan condiciones actuales."
+          ],
+          "objective": "Identificar evidencia faltante de entrega",
+          "level": "comprender"
+        },
+        {
+          "id": "arq-s1-cambio",
+          "prompt": "Una regla de préstamo afecta pantalla, interfaz compartida y datos históricos. ¿Cómo estimar responsablemente?",
+          "options": [
+            "Bloquear cualquier cambio porque puede tener riesgo.",
+            "Rastrear módulos, contratos, datos y personas afectadas, y probar el comportamiento dependiente.",
+            "Suponer que toda modificación es trivial porque es una regla."
+          ],
+          "correctIndex": 1,
+          "feedback": [
+            "Un cambio puede requerir cuidado sin dejar de ser posible.",
+            "Correcta: evalúa dependencias concretas sin convertir el riesgo en una prohibición absoluta.",
+            "Las fronteras compartidas y datos históricos pueden ampliar el impacto."
+          ],
+          "objective": "Diagnosticar impacto de un cambio compartido",
+          "level": "analizar"
+        },
+        {
+          "id": "arq-s1-documentacion",
+          "prompt": "Para conservar por qué no se permite que cada pantalla actualice inventario, ¿qué registro es más útil?",
+          "options": [
+            "Solo el nombre de la función que llama a la base de datos.",
+            "Contexto, decisión, alternativa, consecuencias y criterio de una sola reserva activa.",
+            "Una afirmación de que la arquitectura elegida es universalmente superior."
+          ],
+          "correctIndex": 1,
+          "feedback": [
+            "El código muestra implementación, pero no necesariamente el razonamiento descartado.",
+            "Correcta: deja recuperables la razón, alternativa y evidencia de la decisión.",
+            "La decisión depende del contexto y no debe presentarse como una ley universal."
+          ],
+          "objective": "Reconocer información esencial de una decisión",
+          "level": "comprender"
+        }
+      ]
+    },
+    {
+      "href": "subjects/arquitectura-software/semana-02/01-procesos-flujo.html",
+      "questions": [
+        {
+          "id": "arq-proceso-requisito",
+          "prompt": "El equipo programa reservas antes de definir quién puede reservar una sala. ¿Qué falta aclarar primero?",
+          "options": [
+            "La regla de autorización y sus resultados observables.",
+            "El color definitivo de la tarjeta de pruebas.",
+            "Que todas las actividades se ejecuten una única vez."
+          ],
+          "correctIndex": 0,
+          "feedback": [
+            "Correcta: una regla de acceso ambigua puede obligar a revisar diseño y código.",
+            "La apariencia no resuelve quién está autorizado.",
+            "Los procesos pueden volver a requisitos cuando aparece una incertidumbre."
+          ],
+          "objective": "Relacionar requisitos con retrabajo evitable",
+          "level": "comprender"
+        },
+        {
+          "id": "arq-proceso-tareas",
+          "prompt": "¿Cuál formulación convierte mejor «probar reservas» en una tarea revisable?",
+          "options": [
+            "Probar todo antes de entregar.",
+            "Mover una tarjeta a la columna Pruebas.",
+            "Con una sala ocupada, solicitar el mismo horario y comprobar rechazo sin otro registro."
+          ],
+          "correctIndex": 2,
+          "feedback": [
+            "Es demasiado amplio y no define una condición ni resultado.",
+            "El estado del tablero no demuestra comportamiento.",
+            "Correcta: establece entrada, acción y resultado que permiten revisar evidencia."
+          ],
+          "objective": "Formular una tarea con evidencia observable",
+          "level": "aplicar"
+        }
+      ]
+    },
+    {
+      "href": "subjects/arquitectura-software/semana-02/02-modelos-practica-autoevaluacion.html",
+      "questions": [
+        {
+          "id": "arq-s2-practica-modelo",
+          "prompt": "Para una agenda comunitaria con reglas estables, primera entrega en un mes, interfaz incierta y riesgo de duplicados, ¿qué enfoque es más defendible?",
+          "options": [
+            "Cascada rígida que pospone toda observación de interfaz hasta el final.",
+            "Espiral obligatoria para cada pantalla porque existe cualquier riesgo.",
+            "Incrementos funcionales con retroalimentación y una prueba explícita de duplicados antes de ampliar."
+          ],
+          "correctIndex": 2,
+          "feedback": [
+            "La incertidumbre de interfaz vuelve costoso cerrar todo antes de observar uso.",
+            "Un riesgo existe en muchos proyectos; la carga de espiral debe justificarse por su criticidad y costo.",
+            "Correcta: atiende entrega temprana y aprendizaje sin ignorar el riesgo de datos."
+          ],
+          "objective": "Elegir un enfoque según premisas y tradeoffs",
+          "level": "analizar"
+        },
+        {
+          "id": "arq-s2-actividad-tarea",
+          "prompt": "¿Qué diferencia hay entre Pruebas y comprobar una sala ocupada?",
+          "options": [
+            "La tarea elimina la necesidad de una actividad de pruebas.",
+            "Pruebas es una actividad general; comprobar ese caso es una tarea concreta con condición y resultado.",
+            "Son sinónimos porque ambos ocurren al final."
+          ],
+          "correctIndex": 1,
+          "feedback": [
+            "Una tarea específica aporta evidencia, pero sigue formando parte del trabajo de pruebas.",
+            "Correcta: las tareas hacen revisable el trabajo dentro de una actividad amplia.",
+            "Las pruebas pueden ocurrir durante el proceso y no son solo una fase final."
+          ],
+          "objective": "Distinguir actividad general y tarea",
+          "level": "comprender"
+        },
+        {
+          "id": "arq-s2-volver-requisitos",
+          "prompt": "Una prueba revela que nadie definió la duración de una reserva provisional. ¿Qué respuesta describe un flujo útil?",
+          "options": [
+            "Mantener la implementación para no admitir un fracaso.",
+            "Volver a requisitos para aclarar la regla y actualizar diseño, código y prueba.",
+            "Elegir otro modelo sin investigar la decisión faltante."
+          ],
+          "correctIndex": 1,
+          "feedback": [
+            "Ocultar incertidumbre no la resuelve y puede propagar un supuesto erróneo.",
+            "Correcta: la devolución incorpora aprendizaje y evita consolidar una regla arbitraria.",
+            "Cambiar etiquetas no reemplaza aclarar la condición que falta."
+          ],
+          "objective": "Interpretar retroalimentación en un flujo",
+          "level": "aplicar"
+        },
+        {
+          "id": "arq-s2-patron",
+          "prompt": "Antes de reutilizar una separación entre disponibilidad y pantalla, ¿qué debe comprobar el equipo?",
+          "options": [
+            "Que el patrón tenga un nombre conocido.",
+            "Que el problema y sus consecuencias sean comparables, incluidas reglas compartidas y manejo de errores.",
+            "Que copie exactamente la estructura de otro sistema."
+          ],
+          "correctIndex": 1,
+          "feedback": [
+            "El nombre no garantiza pertinencia técnica.",
+            "Correcta: un patrón aporta valor cuando encaja con problema y tradeoffs similares.",
+            "Copiar forma sin contexto puede añadir complejidad innecesaria."
+          ],
+          "objective": "Evaluar reutilización de una solución",
+          "level": "analizar"
+        },
+        {
+          "id": "arq-s2-cascada",
+          "prompt": "¿Qué combinación apoya cascada y a la vez señala su principal riesgo?",
+          "options": [
+            "Cualquier riesgo de datos; por ello cascada queda prohibida.",
+            "Una interfaz web; por ello cascada siempre es correcta.",
+            "Requisitos aprobados y estables; sería riesgosa si la interacción real aún requiere descubrimiento."
+          ],
+          "correctIndex": 2,
+          "feedback": [
+            "Un riesgo requiere análisis; no convierte por sí solo un modelo en imposible.",
+            "La tecnología web no determina la estabilidad de requisitos.",
+            "Correcta: vincula la secuencia con estabilidad y reconoce el costo de descubrir tarde."
+          ],
+          "objective": "Analizar supuestos de cascada",
+          "level": "analizar"
+        },
+        {
+          "id": "arq-s2-incremento",
+          "prompt": "¿Por qué crear todas las pantallas no es necesariamente un buen primer incremento?",
+          "options": [
+            "Porque un incremento evita toda integración posterior.",
+            "Porque las pantallas nunca forman parte de una entrega.",
+            "Porque un incremento debe ofrecer una capacidad integrada con reglas, datos y prueba, no una sola capa."
+          ],
+          "correctIndex": 2,
+          "feedback": [
+            "Cada incremento debe integrarse y probarse con lo anterior.",
+            "La interfaz puede ser parte de un incremento, junto con el comportamiento necesario.",
+            "Correcta: una capacidad completa entrega y valida valor en un alcance pequeño."
+          ],
+          "objective": "Reconocer un incremento funcional",
+          "level": "comprender"
+        },
+        {
+          "id": "arq-s2-evolucion",
+          "prompt": "¿Qué control mínimo orienta un proceso evolutivo?",
+          "options": [
+            "Fijar todos los requisitos y no escuchar retroalimentación.",
+            "Registrar hipótesis, versión de observación, evidencia y decisión, con límite de alcance o tiempo.",
+            "Aceptar cada petición inmediatamente para preservar flexibilidad."
+          ],
+          "correctIndex": 1,
+          "feedback": [
+            "Eliminar aprendizaje contradice el propósito evolutivo cuando hay incertidumbre.",
+            "Correcta: convierte retroalimentación en aprendizaje trazable y acotado.",
+            "Aceptar todo pierde el control de alcance que el modelo necesita."
+          ],
+          "objective": "Controlar aprendizaje evolutivo",
+          "level": "aplicar"
+        },
+        {
+          "id": "arq-s2-espiral",
+          "prompt": "Un equipo enumera riesgos al inicio pero repite ciclos sin reevaluarlos. ¿Qué falta?",
+          "options": [
+            "Usar el análisis de riesgos para orientar cada ciclo y el siguiente compromiso.",
+            "Añadir más nombres de riesgos al documento inicial.",
+            "Declarar que el proyecto es incremental."
+          ],
+          "correctIndex": 0,
+          "feedback": [
+            "Correcta: en espiral, la evidencia sobre riesgos guía planificación y decisiones de cada ciclo.",
+            "Una lista decorativa no estudia ni reduce incertidumbre.",
+            "Cambiar de etiqueta no reintroduce el análisis que los ciclos omiten."
+          ],
+          "objective": "Diagnosticar una aplicación incompleta de espiral",
+          "level": "analizar"
+        },
+        {
+          "id": "arq-s2-contexto",
+          "prompt": "Dos productos son web: uno tiene requisitos legales estables y otro explora una experiencia nueva. ¿Por qué no basta recomendar el mismo modelo?",
+          "options": [
+            "Los requisitos legales impiden cualquier prueba con usuarios.",
+            "Todo producto web debe usar evolución.",
+            "La tecnología no determina estabilidad, retroalimentación, riesgo ni forma de entrega."
+          ],
+          "correctIndex": 2,
+          "feedback": [
+            "Las obligaciones legales pueden requerir pruebas; lo que cambia es el marco y la evidencia.",
+            "La exploración puede favorecer evolución, pero no es una regla para toda aplicación web.",
+            "Correcta: los hechos del proyecto, no la etiqueta web, sustentan una elección."
+          ],
+          "objective": "Comparar modelos con evidencia contextual",
+          "level": "analizar"
+        },
+        {
+          "id": "arq-s2-evidencias",
+          "prompt": "En el caso de biblioteca, ¿qué conjunto de evidencias favorece entregas incrementales con gestión explícita del riesgo?",
+          "options": [
+            "Que todas las decisiones sean irreversibles desde el primer día.",
+            "Que el equipo prefiera el modelo más moderno.",
+            "Regla de no solapamiento aprobada, sede en seis semanas, filtros por aprender y migración que puede duplicar horarios."
+          ],
+          "correctIndex": 2,
+          "feedback": [
+            "El caso incluye aprendizaje y decisiones revisables, no una certeza absoluta inicial.",
+            "La popularidad no vincula una elección con las premisas del caso.",
+            "Correcta: reúne requisitos, entrega, retroalimentación y riesgo para justificar la combinación."
+          ],
+          "objective": "Sintetizar evidencias para una elección",
+          "level": "analizar"
+        },
+        {
+          "id": "arq-s2-revisar",
+          "prompt": "El equipo eligió incremental, pero ninguna capacidad parcial puede operar legalmente y los requisitos están fijados. ¿Qué corresponde hacer?",
+          "options": [
+            "Mantener incremental porque ya se eligió.",
+            "Afirmar que cualquier modelo es equivalente sin considerar sus supuestos.",
+            "Revisar el modelo; una secuencia planificada puede encajar mejor, o redefinir un incremento interno sin fingir valor utilizable."
+          ],
+          "correctIndex": 2,
+          "feedback": [
+            "Proteger una etiqueta ignora evidencia que contradice la capacidad de entregar por partes.",
+            "Los modelos tienen consecuencias distintas; el contexto es precisamente lo que permite compararlos.",
+            "Correcta: una decisión de proceso se revisa cuando cambian o se aclaran sus premisas."
+          ],
+          "objective": "Revisar críticamente una decisión de proceso",
+          "level": "analizar"
+        }
+      ]
+    }
+  ]
+}

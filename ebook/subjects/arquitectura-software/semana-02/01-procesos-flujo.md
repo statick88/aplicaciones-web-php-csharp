@@ -13,8 +13,9 @@ todos los proyectos recorren las actividades una sola vez y en el mismo orden
 - Distinguir tareas específicas de patrones reutilizables sin convertirlos en una
   receta universal.
 
-**Pregunta de recuperación.** Si un equipo programa antes de aclarar quién puede
-reservar una sala, ¿qué información faltante podría obligarlo a rehacer el trabajo?
+**Comprobación de recuperación.** Elige la información que debe aclararse y lee la retroalimentación.
+
+<!-- quiz: arq-proceso-requisito -->
 
 ## Un proceso organiza el trabajo, no reemplaza el criterio
 
@@ -146,26 +147,11 @@ muestre resultados y permita aprender. Elegir el modelo se estudia en la lectura
 siguiente.
 :::
 
-## Práctica breve: del trabajo difuso a tareas revisables
+## Comprobación breve: del trabajo difuso a tareas revisables
 
-Para el mismo caso, el equipo escribe «hacer notificaciones» y «probar reservas».
-Reformula ambos elementos como tareas con entrada, acción y resultado. Después indica
-qué decisión debe volver a requisitos si aún no está definida.
+Elige la formulación que hace una tarea comprobable y lee la retroalimentación.
 
-::: {.callout-tip collapse="true" title="Pista opcional"}
-Separa el medio de notificación de la regla que decide cuándo se envía. En pruebas,
-especifica una condición y un resultado; no uses «probar todo».
-:::
-
-::: {.callout-note collapse="true" title="Una solución posible"}
-**Tarea 1:** dada una reserva confirmada y un correo válido, preparar un aviso con
-sede, sala y horario; el resultado es un mensaje listo para enviar. **Tarea 2:** dada
-una sala con una reserva activa en un horario, solicitar el mismo intervalo; el
-resultado esperado es rechazo sin un segundo registro. Debe volver a requisitos la
-decisión sobre qué ocurre si el envío del aviso falla: la reserva podría seguir
-confirmada, quedar pendiente o requerir otra política. Esa regla no se deduce del
-nombre de la tarea.
-:::
+<!-- quiz: arq-proceso-tareas -->
 
 ## Cierre
 
