@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "title": "Cuaderno de estudio y práctica — Ingeniería de Software",
+  "currentWeek": 2,
+  "modules": [
+    {
+      "id": "week1",
+      "title": "Semana 1: fundamentos, variables y práctica",
+      "week": 1,
+      "description": "PHP dinámico, variables en .NET, fundamentos HTTP y práctica guiada.",
+      "units": [
+        {"id": "web-foundations", "title": "Fundamentos de la web", "source": "ebook/chapters/01-web-foundations.md", "href": "chapters/01-web-foundations.html", "technologies": ["php", "dotnet"]},
+        {"id": "variables-types-scope", "title": "Valores, tipos y alcance", "source": "ebook/chapters/02-variables-types-scope.md", "href": "chapters/02-variables-types-scope.html", "technologies": ["php", "dotnet"]},
+        {"id": "week1-practice-review", "title": "Práctica y repaso de la Semana 1", "source": "ebook/chapters/03-week1-practice-review.md", "href": "chapters/03-week1-practice-review.html", "technologies": ["php", "dotnet"]},
+        {"id": "development-environment", "title": "Entorno de desarrollo opcional", "source": "ebook/chapters/04-development-environment.md", "href": "chapters/04-development-environment.html", "technologies": ["php", "dotnet"]}
+      ]
+    },
+    {
+      "id": "week2",
+      "title": "Semana 2: tipos y formularios",
+      "week": 2,
+      "description": "Tipos, variables de variables y formularios GET/POST en PHP y .NET.",
+      "units": [
+        {"id": "types-client", "title": "Tipos, conversiones y Cliente", "source": "ebook/subjects/aplicaciones-web/semana-02/01-tipos-cliente.md", "href": "subjects/aplicaciones-web/semana-02/01-tipos-cliente.html", "technologies": ["php", "dotnet"]},
+        {"id": "forms-get-post", "title": "Formularios, GET y POST", "source": "ebook/subjects/aplicaciones-web/semana-02/02-formularios-get-post.md", "href": "subjects/aplicaciones-web/semana-02/02-formularios-get-post.html", "technologies": ["php", "dotnet"]}
+      ]
+    }
+  ],
+  "pages": [
+    {"source": "ebook/index.md", "href": "cuaderno.html", "title": "Cómo usar este cuaderno"},
+    {"source": "ebook/answers.md", "href": "answers.html", "title": "Respuestas de autoevaluación"},
+    {"source": "ebook/references.md", "href": "references.html", "title": "Fuentes y política de uso"},
+    {"source": "ebook/chapters/01-web-foundations.md", "href": "chapters/01-web-foundations.html", "title": "Clase 1: de una petición a una respuesta"},
+    {"source": "ebook/chapters/02-variables-types-scope.md", "href": "chapters/02-variables-types-scope.html", "title": "Clase 2: valores, tipos y alcance"},
+    {"source": "ebook/chapters/03-week1-practice-review.md", "href": "chapters/03-week1-practice-review.html", "title": "Práctica y repaso de la Semana 1"},
+    {"source": "ebook/chapters/04-development-environment.md", "href": "chapters/04-development-environment.html", "title": "Entorno de desarrollo opcional"},
+    {"source": "ebook/subjects/aplicaciones-web.md", "href": "subjects/aplicaciones-web.html", "title": "Aplicaciones Web"},
+    {"source": "ebook/subjects/aplicaciones-web/consulta-http.md", "href": "subjects/aplicaciones-web/consulta-http.html", "title": "Tablas de consulta HTTP"},
+    {"source": "ebook/subjects/aplicaciones-web/laboratorio-http-php.md", "href": "subjects/aplicaciones-web/laboratorio-http-php.html", "title": "Laboratorio PHP: cinco métodos en DevTools"},
+    {"source": "ebook/subjects/aplicaciones-web/semana-02/01-tipos-cliente.md", "href": "subjects/aplicaciones-web/semana-02/01-tipos-cliente.html", "title": "Semana 2 · Clase 1: tipos, conversiones y Cliente"},
+    {"source": "ebook/subjects/aplicaciones-web/semana-02/02-formularios-get-post.md", "href": "subjects/aplicaciones-web/semana-02/02-formularios-get-post.html", "title": "Semana 2 · Clase 2: formularios, GET y POST"},
+    {"source": "ebook/subjects/arquitectura-software.md", "href": "subjects/arquitectura-software.html", "title": "Diseño y Arquitectura de Software"},
+    {"source": "ebook/subjects/arquitectura-software/semana-01/01-diseno-arquitectura.md", "href": "subjects/arquitectura-software/semana-01/01-diseno-arquitectura.html", "title": "Diseño y arquitectura: de la necesidad a las decisiones"},
+    {"source": "ebook/subjects/arquitectura-software/semana-01/02-dominios-mitos.md", "href": "subjects/arquitectura-software/semana-01/02-dominios-mitos.html", "title": "Software: tipos, dominios y mitos"},
+    {"source": "ebook/subjects/arquitectura-software/semana-01/03-practica-autoevaluacion.md", "href": "subjects/arquitectura-software/semana-01/03-practica-autoevaluacion.html", "title": "Práctica integrada y autoevaluación de la Semana 1"},
+    {"source": "ebook/subjects/arquitectura-software/semana-02/01-procesos-flujo.md", "href": "subjects/arquitectura-software/semana-02/01-procesos-flujo.html", "title": "Procesos de software: actividades, flujo y trabajo reutilizable"},
+    {"source": "ebook/subjects/arquitectura-software/semana-02/02-modelos-practica-autoevaluacion.md", "href": "subjects/arquitectura-software/semana-02/02-modelos-practica-autoevaluacion.html", "title": "Modelos de proceso: comparación, práctica y autoevaluación"},
+    {"source": "ebook/subjects/gestion-empresarial-emprendimiento.md", "href": "subjects/gestion-empresarial-emprendimiento.html", "title": "Gestión Empresarial y Emprendimiento"},
+    {"source": "ebook/subjects/inteligencia-artificial.md", "href": "subjects/inteligencia-artificial.html", "title": "Inteligencia Artificial"},
+    {"source": "ebook/subjects/inteligencia-negocios.md", "href": "subjects/inteligencia-negocios.html", "title": "Inteligencia de Negocios"},
+    {"source": "ebook/subjects/proyectos-informaticos.md", "href": "subjects/proyectos-informaticos.html", "title": "Proyectos Informáticos"}
+  ]
+}

@@ -1,0 +1,7 @@
+# Migración sin Quarto
+
+El sitio se genera con `python3 tools/build_site.py --output _site` a partir de `course/catalog.json` y las fuentes Markdown de `ebook/`. Quarto ya no es una dependencia activa.
+
+El PDF histórico se conserva, sin regenerarlo ni presentarlo como la edición actual. Se recuperó del [sitio público existente](https://statick88.github.io/aplicaciones-web-php-csharp/aplicaciones-web-php-csharp-semana1.pdf), se archivó en `ebook/downloads/aplicaciones-web-php-csharp-semana1.pdf` y se copia a la misma URL relativa para no romper enlaces. Tiene 95 páginas y fue creado el 3 de noviembre de 2026. SHA-256: `006de2336613beef6d33362b2b8c09c97f5568090e071910926e9cb0eb229e30`. Las actualizaciones semanales actuales son HTML; este PDF es una edición anterior, no evidencia de contenido nuevo. `ebook/index.typ` se conserva como archivo de usuario y no es entrada del generador.
+
+El generador elimina el frontmatter, conserva IDs de encabezados y procesa tablas, callouts, figuras y citas Markdown. Los enlaces a páginas y fragmentos se ajustan desde cada documento de salida; la cabecera siempre enlaza a `index.html#catalogo`. Para validar una salida existente use `python3 tools/build_site.py --output _site --check`. Solo se publican figuras editoriales referenciadas y el ejemplo HTTP permitido bajo `examples/http-methods/`; `course.json` no expone rutas `source`.

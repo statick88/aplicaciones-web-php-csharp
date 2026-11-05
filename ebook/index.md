@@ -1,0 +1,69 @@
+# Cómo usar este cuaderno
+
+Este cuaderno de Ingeniería de Software crece por **asignatura y semana** para
+preparar evaluaciones mediante teoría, ejemplos resueltos, práctica y
+autoevaluación. Cada parte declara su cobertura actual: no sustituye la
+documentación oficial de la asignatura ni registra calificaciones.
+
+## Ruta rápida
+
+1. Elige la asignatura y la semana que estás cursando en la navegación.
+2. Lee el concepto, predice el resultado de un ejemplo y realiza la práctica.
+3. Conserva una observación concreta y contrástala con la retroalimentación.
+
+El libro reúne seis asignaturas en un solo volumen y un solo PDF. Cada enlace abre
+un índice independiente con su propia cobertura y ruta de lectura:
+
+- [Aplicaciones Web](subjects/aplicaciones-web.md)
+- [Diseño y Arquitectura de Software](subjects/arquitectura-software.md)
+- [Gestión Empresarial y Emprendimiento](subjects/gestion-empresarial-emprendimiento.md)
+- [Inteligencia Artificial](subjects/inteligencia-artificial.md)
+- [Inteligencia de Negocios](subjects/inteligencia-negocios.md)
+- [Proyectos Informáticos](subjects/proyectos-informaticos.md)
+
+Aplicaciones Web y Diseño y Arquitectura de Software reúnen las Semanas 1 y 2
+con capítulos de estudio redactados en esta edición. Los demás índices declaran la
+evidencia disponible sin mezclar respuestas ni adelantar contenido por inferencia.
+
+## Un ciclo de práctica
+
+Repita este ciclo para cada ejercicio. El objetivo no es acertar a la primera,
+sino hacer visible qué evidencia sostiene una respuesta.
+
+1. **Prediga.** Antes de ejecutar, escriba qué espera que ocurra y por qué.
+2. **Explique.** Describa qué dato entra, qué regla se aplica y qué resultado debería salir.
+3. **Ejecute.** Pruebe un ejemplo pequeño en el repositorio de práctica o en su entorno local.
+4. **Compruebe.** Compare la salida y los errores con su predicción.
+5. **Reflexione.** Registre qué cambió entre la hipótesis y la evidencia, y formule el siguiente experimento.
+
+Los avisos desplegables de pista y solución ayudan a dosificar la ayuda: primero
+intente resolver; después contraste su razonamiento. En HTML pueden contraerse y
+en PDF permanecen como bloques claramente etiquetados.
+
+## Qué fuentes tienen prioridad
+
+| Prioridad | Uso en este cuaderno |
+|---|---|
+| Documentación oficial de la asignatura | Define los temas y la práctica de cada semana. Puede requerir inicio de sesión en Blackboard. |
+| Documentación técnica primaria | Aclara el comportamiento de lenguajes, plataformas y herramientas. |
+| Repositorios de práctica verificados | Ofrecen ejemplos para observar, no requisitos nuevos. |
+| Explicación editorial | Une las fuentes con lenguaje didáctico original; no reemplaza a las anteriores. |
+
+Consulte la [política de fuentes y bibliografía](references.md) para las referencias
+completas y la fecha de consulta. Este texto parafrasea el material del curso; no
+reproduce exportaciones privadas de Blackboard.
+
+## Autoevaluación formativa
+
+La autoevaluación es manual. Para cada práctica, conserve una predicción, el comando
+o acción realizada, la evidencia observada y una explicación breve. Revise después
+las [respuestas razonadas](answers.md), corrija su explicación y decida un paso
+siguiente. En Arquitectura, las respuestas están junto a la práctica integrada de
+Semana 1. No hay LMS, puntos, cuentas ni una promesa de dominio automático.
+
+## Alcance de esta edición
+
+La cobertura publicada depende del avance real y las fuentes verificadas de cada
+asignatura. No se añaden temarios futuros por inferencia. En Aplicaciones Web, Docker
+y Dev Containers aparecen como rutas de ejecución opcionales: el aprendizaje central
+es PHP, C# y la web, no una herramienta concreta.
