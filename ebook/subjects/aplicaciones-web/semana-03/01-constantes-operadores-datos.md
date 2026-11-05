@@ -305,7 +305,9 @@ requieren decisiones propias; no existe un escape universal para toda salida.
 5. Distingue conocimiento explicado, ejecución verificada de ejemplos puros y
    persistencia SQL no ejecutada en esta unidad.
 
-Como continuación, repasa
+Continúa con
+[control, ciclos y funciones](subjects/aplicaciones-web/semana-03/02-control-funciones.html#semana3-clase2-control-funciones)
+para combinar expresiones con decisiones y recorridos. También repasa
 [formularios, GET y POST](subjects/aplicaciones-web/semana-02/02-formularios-get-post.html#semana2-clase2-formularios-get-post)
 para reconocer cómo llegan valores externos antes de convertirlos, validarlos o
 mostrarlos.

@@ -33,6 +33,23 @@ class WeekThreeStudyTests(unittest.TestCase):
         self.assertEqual(source.count("```php\n"), 1)
         self.assertEqual(source.count("```csharp\n"), 1)
 
+    def test_class_two_is_active_with_closed_control_and_function_questions(self):
+        source = self.assert_active_lesson("02-control-funciones", "web-w3c2-")
+        self.assertIn("{#s3c2-colecciones-vacias}", source)
+        self.assertIn("{#s3c2-valor-referencia}", source)
+        self.assertNotIn("anota una predicción", source)
+
+    def test_progress_total_includes_only_active_web_lesson_questions(self):
+        catalog = json.loads((ROOT / "course/catalog.json").read_text())
+        active = {unit["href"] for module in catalog["modules"]
+                  if module["week"] <= catalog["currentWeek"] for unit in module["units"]}
+        banks = [json.loads((ROOT / "course" / name).read_text())
+                 for name in ("questions-web.json", "questions-architecture.json")]
+        active_questions = [question for bank in banks for page in bank["pages"]
+                            if page["href"] in active for question in page["questions"]]
+        self.assertEqual(len(active_questions), 49)
+        self.assertTrue(all(question["id"].startswith("web-") for question in active_questions))
+
 
 if __name__ == "__main__":
     unittest.main()

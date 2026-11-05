@@ -866,6 +866,164 @@
           "level": "aplicar"
         }
       ]
+    },
+    {
+      "href": "subjects/aplicaciones-web/semana-03/02-control-funciones.html",
+      "questions": [
+        {
+          "id": "web-w3c2-if-boundary",
+          "prompt": "La clasificación evalúa primero >= 90, después >= 70 y finalmente el caso restante. ¿Cómo clasifica 70 y 69?",
+          "options": [
+            "70 es medio y 69 es inicial",
+            "Ambos son medio",
+            "70 es alto y 69 es medio"
+          ],
+          "correctIndex": 0,
+          "feedback": [
+            "Correcto: 70 satisface exactamente el segundo límite; 69 no alcanza ese rango.",
+            "69 no satisface la comparación >= 70.",
+            "El nivel alto comienza en 90, no en 70."
+          ],
+          "objective": "aplicar límites ordenados en una condición",
+          "level": "aplicar"
+        },
+        {
+          "id": "web-w3c2-match",
+          "prompt": "¿Qué propiedad distingue al match de PHP en la comparación de la unidad?",
+          "options": [
+            "Siempre ejecuta todos los brazos siguientes",
+            "Devuelve un valor y no tiene caída entre brazos",
+            "Compara únicamente con igualdad flexible"
+          ],
+          "correctIndex": 1,
+          "feedback": [
+            "match selecciona un solo brazo; no continúa por los siguientes.",
+            "Correcto: es una expresión y no aplica la caída propia de ciertos usos de switch.",
+            "match usa comparación estricta, no igualdad flexible."
+          ],
+          "objective": "distinguir match de otras selecciones",
+          "level": "comprender"
+        },
+        {
+          "id": "web-w3c2-empty",
+          "prompt": "Un foreach suma una colección vacía y el acumulador comenzó en 0. ¿Qué conclusión es válida?",
+          "options": [
+            "El ciclo crea automáticamente un elemento cero",
+            "La colección vacía produce un error de índice",
+            "El ciclo ejecuta cero vueltas y el acumulador conserva 0"
+          ],
+          "correctIndex": 2,
+          "feedback": [
+            "El acumulador puede conservar cero sin que exista un elemento.",
+            "foreach no necesita acceder manualmente a un índice inexistente.",
+            "Correcto: vacío significa cero iteraciones, no un elemento con valor cero."
+          ],
+          "objective": "interpretar ciclos sobre colecciones vacías",
+          "level": "comprender"
+        },
+        {
+          "id": "web-w3c2-for-boundary",
+          "prompt": "Una colección tiene longitud 3. ¿Qué condición recorre sus índices 0, 1 y 2 sin intentar el índice 3?",
+          "options": [
+            "i < 3",
+            "i <= 3",
+            "i > 3"
+          ],
+          "correctIndex": 0,
+          "feedback": [
+            "Correcto: la condición se vuelve falsa cuando i llega a 3.",
+            "<= 3 permite una iteración adicional con un índice fuera del rango.",
+            "> 3 no inicia el recorrido desde cero."
+          ],
+          "objective": "aplicar el límite exclusivo de un for",
+          "level": "aplicar"
+        },
+        {
+          "id": "web-w3c2-typed-function",
+          "prompt": "Una función declara un parámetro int y un retorno int. ¿Qué sigue necesitando una regla adicional?",
+          "options": [
+            "Decidir si el archivo puede contener funciones",
+            "Decidir si un entero negativo pertenece al dominio permitido",
+            "Convertir todo retorno en texto"
+          ],
+          "correctIndex": 1,
+          "feedback": [
+            "La declaración de funciones no depende de esa regla de dominio.",
+            "Correcto: el tipo describe la forma; el dominio define qué valores son aceptables.",
+            "Un contrato int no exige devolver texto."
+          ],
+          "objective": "distinguir tipos y reglas de dominio",
+          "level": "analizar"
+        },
+        {
+          "id": "web-w3c2-reference",
+          "prompt": "¿Qué opción hace más visible una transformación cuando no es necesario modificar la variable del llamador?",
+          "options": [
+            "Usar estado global compartido",
+            "Ocultar el cambio dentro de una impresión",
+            "Retornar el nuevo valor"
+          ],
+          "correctIndex": 2,
+          "feedback": [
+            "El estado global amplía y oculta la dependencia.",
+            "Imprimir no comunica claramente qué valor debe conservar quien llama.",
+            "Correcto: un retorno expresa la transformación sin requerir una referencia."
+          ],
+          "objective": "elegir entre retorno y referencia",
+          "level": "analizar"
+        },
+        {
+          "id": "web-w3c2-closure",
+          "prompt": "En el ejemplo PHP, ¿qué hace use ($descuento) en el cierre?",
+          "options": [
+            "Captura el valor exterior para usarlo al calcular",
+            "Guarda el descuento en una base de datos",
+            "Convierte el cierre en una función flecha"
+          ],
+          "correctIndex": 0,
+          "feedback": [
+            "Correcto: el cierre puede leer ese valor capturado y producir un resultado nuevo.",
+            "La captura es memoria del programa; el ejemplo no tiene persistencia.",
+            "Una función anónima con bloque sigue siendo distinta de la sintaxis fn."
+          ],
+          "objective": "interpretar captura de variables en cierres PHP",
+          "level": "comprender"
+        },
+        {
+          "id": "web-w3c2-arrow",
+          "prompt": "¿Cuál uso encaja mejor con una función flecha fn de PHP?",
+          "options": [
+            "Una rutina con varias ramas, escritura y presentación",
+            "Un predicado breve de una sola expresión para filtrar positivos",
+            "Una operación que necesita persistir clientes"
+          ],
+          "correctIndex": 1,
+          "feedback": [
+            "Varias responsabilidades necesitan una estructura más explícita.",
+            "Correcto: fn comunica bien una transformación o condición breve.",
+            "La función flecha no aporta persistencia y esta unidad no la implementa."
+          ],
+          "objective": "seleccionar un uso legible de funciones flecha",
+          "level": "aplicar"
+        },
+        {
+          "id": "web-w3c2-responsibility",
+          "prompt": "¿Qué división facilita comprobar una función sin confundir resultados con persistencia?",
+          "options": [
+            "Una sola función que decide, imprime y guarda",
+            "Una variable global para todas las etapas",
+            "Funciones separadas para decidir, calcular y presentar"
+          ],
+          "correctIndex": 2,
+          "feedback": [
+            "Mezclar efectos dificulta saber qué evidencia corresponde a cada resultado.",
+            "El estado global oculta dependencias entre etapas.",
+            "Correcto: cada responsabilidad ofrece una entrada y un resultado más claros."
+          ],
+          "objective": "separar responsabilidades de funciones",
+          "level": "analizar"
+        }
+      ]
     }
   ]
 }

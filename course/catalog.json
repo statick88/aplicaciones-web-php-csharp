@@ -40,6 +40,16 @@
             "php",
             "dotnet"
           ]
+        },
+        {
+          "id": "week3-control-functions",
+          "title": "Control, ciclos y funciones",
+          "source": "ebook/subjects/aplicaciones-web/semana-03/02-control-funciones.md",
+          "href": "subjects/aplicaciones-web/semana-03/02-control-funciones.html",
+          "technologies": [
+            "php",
+            "dotnet"
+          ]
         }
       ]
     }
@@ -67,6 +77,7 @@
     {"source": "ebook/subjects/inteligencia-artificial.md", "href": "subjects/inteligencia-artificial.html", "title": "Inteligencia Artificial"},
     {"source": "ebook/subjects/inteligencia-negocios.md", "href": "subjects/inteligencia-negocios.html", "title": "Inteligencia de Negocios"},
     {"source": "ebook/subjects/proyectos-informaticos.md", "href": "subjects/proyectos-informaticos.html", "title": "Proyectos Informáticos"},
-    {"source": "ebook/subjects/aplicaciones-web/semana-03/01-constantes-operadores-datos.md", "href": "subjects/aplicaciones-web/semana-03/01-constantes-operadores-datos.html", "title": "Semana 3 · Clase 1: constantes, operadores y datos"}
+    {"source": "ebook/subjects/aplicaciones-web/semana-03/01-constantes-operadores-datos.md", "href": "subjects/aplicaciones-web/semana-03/01-constantes-operadores-datos.html", "title": "Semana 3 · Clase 1: constantes, operadores y datos"},
+    {"source": "ebook/subjects/aplicaciones-web/semana-03/02-control-funciones.md", "href": "subjects/aplicaciones-web/semana-03/02-control-funciones.html", "title": "Semana 3 · Clase 2: control, ciclos y funciones"}
   ]
 }

@@ -28,7 +28,7 @@ Las instrucciones y comprobaciones propias de cada práctica están en sus READM
 
 ## Cuaderno de estudio y práctica
 
-El cuaderno en [`ebook/`](ebook/) crece por asignatura y semana para preparar evaluaciones con teoría, ejemplos resueltos, práctica y autoevaluación. La edición local incluye Aplicaciones Web con PHP y C#, Semanas 1 y 2 (ambas clases, ejemplos, ejercicios y respuestas). Se publica como HTML estático en [GitHub Pages](https://statick88.github.io/aplicaciones-web-php-csharp/).
+El cuaderno en [`ebook/`](ebook/) crece por asignatura y semana para preparar evaluaciones con teoría, ejemplos resueltos, práctica y autoevaluación. La edición local incluye Aplicaciones Web con PHP y C#, Semanas 1 a 3 (ambas clases, ejemplos, ejercicios y respuestas; en Semana 3 se distingue la comparación PHP/C# de la ampliación conceptual PHP/MySQL). Se publica como HTML estático en [GitHub Pages](https://statick88.github.io/aplicaciones-web-php-csharp/).
 
 Para generar el sitio sin Quarto:
 

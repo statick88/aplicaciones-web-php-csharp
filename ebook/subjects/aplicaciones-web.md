@@ -16,6 +16,7 @@ curso ni registra calificaciones.
 | 2 · Clase 1 | Tipos, conversiones, variables de variables y Cliente CRUD en PHP/C# | [Tipos y Cliente](aplicaciones-web/semana-02/01-tipos-cliente.md#semana2-clase1-tipos-cliente) |
 | 2 · Clase 2 | Formularios GET/POST, validación y PRG en PHP/ASP.NET Core | [Formularios, GET y POST](aplicaciones-web/semana-02/02-formularios-get-post.md#semana2-clase2-formularios-get-post) |
 | 3 · Clase 1 | Constantes y operadores PHP/C#; ampliación diferenciada PHP/MySQL | [Constantes, operadores y datos](aplicaciones-web/semana-03/01-constantes-operadores-datos.md#semana3-clase1-constantes-operadores) |
+| 3 · Clase 2 | Condicionales, ciclos, parámetros y funciones en PHP/C# | [Control y funciones](aplicaciones-web/semana-03/02-control-funciones.md#semana3-clase2-control-funciones) |
 | Consulta transversal | Métodos, datos en DevTools/PHP y estados HTTP | [Tablas de consulta HTTP](aplicaciones-web/consulta-http.md) |
 | Consulta transversal | Métodos HTTP prácticos observados en DevTools | [Laboratorio PHP](aplicaciones-web/laboratorio-http-php.md) |
 
@@ -52,6 +53,8 @@ ampliación explica PHP/MySQL sin atribuirle equivalencia con C#.
 
 - [Clase 1: constantes, operadores y datos](aplicaciones-web/semana-03/01-constantes-operadores-datos.md#semana3-clase1-constantes-operadores).
 - [Autoevaluación de Clase 1](aplicaciones-web/semana-03/01-constantes-operadores-datos.md#s3c1-autoevaluacion).
+- [Clase 2: control, ciclos y funciones](aplicaciones-web/semana-03/02-control-funciones.md#semana3-clase2-control-funciones).
+- [Autoevaluación de Clase 2](aplicaciones-web/semana-03/02-control-funciones.md#s3c2-ejercicios).
 
 Los ejemplos de esta lectura son cálculos autónomos: no implementan ni acreditan
 la entrega de un CRUD de clientes. El progreso sigue siendo formativo y local.
