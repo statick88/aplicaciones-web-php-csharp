@@ -22,10 +22,12 @@
         <p class="eyebrow">{{week}}</p>
         <h1{{heading_id}}>{{title}}</h1>
         {{content}}
+        <p class="quiz-progress" hidden aria-live="polite"></p>
         <nav class="lesson-pagination" aria-label="Lección anterior y siguiente">{{pagination}}</nav>
       </article>
     </div>
   </main>
-  <footer class="site-footer">Material local de apoyo para Programación Web. No ejecuta PHP ni servicios remotos. <a href="{{root}}aplicaciones-web-php-csharp-semana1.pdf">PDF histórico (edición anterior)</a></footer>
+  <footer class="site-footer">Material local de apoyo para Programación Web. No ejecuta PHP ni servicios remotos.</footer>
+  <script type="module" src="{{root}}quiz.mjs"></script>
 </body>
 </html>

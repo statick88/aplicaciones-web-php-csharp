@@ -18,4 +18,4 @@ python3 -m venv .venv
 python3 tools/build_site.py --output _site
 ```
 
-El resultado es HTML estático. GitHub Pages no ejecuta PHP, .NET ni los servicios de los ejemplos; siga las instrucciones locales de cada práctica cuando corresponda.
+El resultado es HTML estático. GitHub Pages no ejecuta PHP, .NET ni los servicios de los ejemplos; siga las instrucciones locales de cada práctica cuando corresponda. Las evaluaciones se definen en los bancos de preguntas del curso y se insertan mediante marcadores editoriales; el constructor valida su esquema, sus marcadores y sus referencias antes de publicar. La interacción es de opción múltiple y guarda solo selecciones válidas en el almacenamiento local del navegador cuando está disponible.

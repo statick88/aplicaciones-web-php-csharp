@@ -1,9 +1,12 @@
 import { filterUnits, isLocalHref, supportingPages } from "./course-utils.mjs";
+import { createProgressStore, summarizeSelections } from "./progress.mjs";
 
 const app = document.querySelector("#app");
 const search = document.querySelector("#search");
 const catalogAnchor = document.querySelector("#catalogo");
 let course;
+let assessments;
+const progressStore = createProgressStore({ getStorage: () => window.localStorage, moduleUrl: import.meta.url });
 
 function element(tag, className, text) {
   const node = document.createElement(tag);
@@ -50,6 +53,21 @@ function makeModule(module, units) {
   return section;
 }
 
+function activeAssessmentQuestions() {
+  if (!assessments?.pages) return [];
+  const activeHrefs = new Set(courseModules().flatMap((module) => module.units ?? []).map((unit) => new URL(unit.href, import.meta.url).pathname));
+  return assessments.pages
+    .filter((page) => activeHrefs.has(new URL(page.href, import.meta.url).pathname))
+    .flatMap((page) => page.questions);
+}
+
+function makeProgressSummary() {
+  const questions = activeAssessmentQuestions();
+  if (!questions.length) return null;
+  const summary = summarizeSelections(questions, (question) => progressStore.read(question).selection);
+  return element("p", "course-progress", `Avance local en las prácticas vigentes: ${summary.responded}/${summary.total} respondidas · ${summary.correct}/${summary.total} correctas.`);
+}
+
 function makeSupportingPages() {
   const section = element("section", "supporting-pages");
   section.append(element("h2", undefined, "Cuaderno y material conservado"));
@@ -81,7 +99,9 @@ function renderHome() {
   const first = modules[0]?.units?.[0];
   if (first && isLocalHref(first.href)) hero.append(link("Empezar a practicar →", first.href, "cta"));
   hero.append(element("p", "totals", `Semana ${course.currentWeek} en curso · ${modules.length} módulos disponibles`));
-  hero.append(element("p", "local-notice", "Uso local: este sitio es estático; no ejecuta PHP, no guarda progreso ni envía datos."));
+  hero.append(element("p", "local-notice", "Uso local: este sitio es estático; las respuestas de las evaluaciones se guardan solo en el almacenamiento local de este dispositivo cuando está disponible y no se envían datos."));
+  const progress = makeProgressSummary();
+  if (progress) hero.append(progress);
   app.append(hero);
 
   const catalogSection = element("section", "catalog-section");
@@ -115,6 +135,18 @@ function renderLoadError() {
   app.append(section);
 }
 
+async function loadAssessments() {
+  try {
+    const response = await fetch(new URL("./assessments.json", import.meta.url));
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const data = await response.json();
+    if (data?.schemaVersion !== 1 || !Array.isArray(data.pages)) throw new Error("Formato incompatible");
+    assessments = data;
+  } catch (error) {
+    console.error("No se pudo cargar assessments.json", error);
+  }
+}
+
 async function loadCourse() {
   clearApp();
   app.append(element("p", "loading", "Cargando las prácticas…"));
@@ -124,6 +156,7 @@ async function loadCourse() {
     const data = await response.json();
     if (data?.schemaVersion !== 1 || !Array.isArray(data.modules) || !Array.isArray(data.pages)) throw new Error("Formato incompatible");
     course = data;
+    await loadAssessments();
     renderHome();
     if (window.location.hash === "#catalogo") catalogAnchor.scrollIntoView();
   } catch (error) {

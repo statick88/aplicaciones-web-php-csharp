@@ -29,6 +29,9 @@ IMAGE = re.compile(r"!\[[^]]*\]\(([^)]+)\)")
 ATTR = re.compile(r'([\w-]+)=(?:"([^"]*)"|([^\s]+))|#([\w-]+)')
 FRONT_MATTER = re.compile(r"\A---\s*\n.*?\n---\s*(?:\n|\Z)", re.S)
 ATX_H1 = re.compile(r"^#\s+(.+?)\s*$", re.M)
+QUIZ_MARKER = re.compile(r"<!--\s*quiz:\s*([a-z0-9]+(?:-[a-z0-9]+)*)\s*-->")
+QUESTION_ID = re.compile(r"[a-z0-9]+(?:-[a-z0-9]+)*\Z")
+LEVELS = {"comprender", "aplicar", "analizar"}
 
 
 def fail(message: str) -> int:
@@ -78,6 +81,83 @@ def bibliography(root: Path) -> dict[str, dict[str, str]]:
         fields["kind"] = kind
         entries[key.strip()] = fields
     return entries
+
+
+def cited_keys(sources: list[Path], bib: dict[str, dict[str, str]]) -> set[str]:
+    cited: set[str] = set()
+    for source in sources:
+        for match in CITATION.finditer(source.read_text(encoding="utf-8")):
+            for key in re.findall(r"@([\w:-]+)", match.group(0)):
+                if key not in bib:
+                    raise ValueError(f"citation missing from references.bib: @{key}")
+                cited.add(key)
+    return cited
+
+
+def question_error(message: str) -> ValueError:
+    return ValueError(f"assessment: {message}")
+
+
+def assessment_data(root: Path, mapping: dict[str, str]) -> dict | None:
+    paths = [root / "course/questions-web.json", root / "course/questions-architecture.json"]
+    existing = [path for path in paths if path.is_file()]
+    if not existing:
+        return None
+    if len(existing) != len(paths):
+        raise question_error("both question banks are required when assessments are present")
+    pages: list[dict] = []
+    seen_ids: set[str] = set()
+    questions_by_href: dict[str, set[str]] = {}
+    catalog_hrefs = set(mapping.values())
+    for path in paths:
+        bank = json.loads(path.read_text(encoding="utf-8"))
+        if bank.get("schemaVersion") != 1 or not isinstance(bank.get("pages"), list):
+            raise question_error(f"{path.name} must have schemaVersion 1 and pages")
+        for page in bank["pages"]:
+            href = page.get("href") if isinstance(page, dict) else None
+            questions = page.get("questions") if isinstance(page, dict) else None
+            if href not in catalog_hrefs or not isinstance(questions, list):
+                raise question_error(f"unknown or invalid page: {href}")
+            page_ids = questions_by_href.setdefault(href, set())
+            clean_questions = []
+            for question in questions:
+                if not isinstance(question, dict): raise question_error("question must be an object")
+                qid = question.get("id")
+                if not isinstance(qid, str) or not QUESTION_ID.fullmatch(qid): raise question_error("question id must be a slug")
+                if qid in seen_ids: raise question_error(f"duplicate question id: {qid}")
+                if qid in page_ids: raise question_error(f"duplicate question id: {qid}")
+                seen_ids.add(qid); page_ids.add(qid)
+                options, feedback = question.get("options"), question.get("feedback")
+                if not isinstance(question.get("prompt"), str) or not question["prompt"].strip(): raise question_error(f"{qid}: prompt must be non-empty")
+                if not isinstance(options, list) or len(options) not in (3, 4) or any(not isinstance(option, str) or not option.strip() for option in options) or len(set(options)) != len(options): raise question_error(f"{qid}: options must be 3 or 4 distinct non-empty strings")
+                correct = question.get("correctIndex")
+                if isinstance(correct, bool) or not isinstance(correct, int) or not 0 <= correct < len(options): raise question_error(f"{qid}: correctIndex must be an in-range integer")
+                if not isinstance(feedback, list) or len(feedback) != len(options) or any(not isinstance(item, str) or not item.strip() for item in feedback): raise question_error(f"{qid}: feedback must be non-empty for every option")
+                if not isinstance(question.get("objective"), str) or not question["objective"].strip(): raise question_error(f"{qid}: objective must be non-empty")
+                if question.get("level") not in LEVELS: raise question_error(f"{qid}: level must be comprender, aplicar, or analizar")
+                if "code" in question and not isinstance(question["code"], str): raise question_error(f"{qid}: code must be text")
+                clean_questions.append(question)
+            pages.append({"href": href, "questions": clean_questions})
+    for source, href in mapping.items():
+        markers = QUIZ_MARKER.findall((root / source).read_text(encoding="utf-8"))
+        if len(markers) != len(set(markers)):
+            duplicate = next(marker for marker in markers if markers.count(marker) > 1)
+            raise question_error(f"duplicate marker: {duplicate}")
+        expected = questions_by_href.get(href, set())
+        for marker in markers:
+            if marker not in expected: raise question_error(f"marker has no question: {marker}")
+        missing = expected - set(markers)
+        if missing: raise question_error(f"question has no marker: {sorted(missing)[0]}")
+    return {"schemaVersion": 1, "pages": pages}
+
+
+def quiz_html(question: dict) -> str:
+    qid = html.escape(question["id"], quote=True)
+    options = "".join(f'<label><input type="radio" name="{qid}" value="{index}" disabled> <span>{html.escape(option)}</span></label>' for index, option in enumerate(question["options"]))
+    code = f'<pre><code>{html.escape(question["code"])}</code></pre>' if "code" in question else ""
+    return (f'<fieldset class="quiz-question" data-question-id="{qid}" id="{qid}"><legend>{html.escape(question["prompt"])}</legend>'
+            f'<div class="quiz-options">{options}</div><p class="quiz-feedback" aria-live="polite"></p>'
+            f'<p class="quiz-meta">Objetivo: {html.escape(question["objective"])} · Nivel: {html.escape(question["level"])}</p>{code}</fieldset>')
 
 
 def attrs(text: str) -> dict[str, str]:
@@ -187,16 +267,20 @@ def relative_url(current: str, target: str) -> str:
     return relative + (("?" + parsed.query) if parsed.query else "") + (("#" + parsed.fragment) if parsed.fragment else "")
 
 
-def render_page(text: str, source: Path, href: str, mapping: dict[str, str], bib: dict[str, dict[str, str]], template: str, catalog: dict) -> str:
+def render_page(text: str, source: Path, href: str, mapping: dict[str, str], bib: dict[str, dict[str, str]], template: str, catalog: dict, assessment: dict | None, citations: set[str]) -> str:
     prepared, heading_id = preprocess(text, source, mapping, bib)
     body = markdown.markdown(prepared, extensions=["tables", "fenced_code", "attr_list", "toc", "md_in_html"], output_format="html5")
+    question_map = {question["id"]: question for page in (assessment or {}).get("pages", []) if page["href"] == href for question in page["questions"]}
+    body = QUIZ_MARKER.sub(lambda match: quiz_html(question_map[match.group(1)]), body)
     if source.name == "references.md":
         items = []
         for key, entry in bib.items():
+            if key not in citations:
+                continue
             title = html.escape(entry.get("title", key))
             author = html.escape(entry.get("author", ""))
             year = html.escape(entry.get("year", ""))
-            url = entry.get("url")
+            url = entry.get("url") or (f'https://doi.org/{entry["doi"]}' if entry.get("doi") else "")
             tail = f' <a href="{html.escape(url, quote=True)}">{html.escape(url)}</a>' if url else ""
             items.append(f'<li id="ref-{html.escape(key, quote=True)}">{author}. {title}. {year}.{tail}</li>')
         body += '<h2>Referencias</h2><ol class="references">' + "".join(items) + "</ol>"
@@ -361,6 +445,11 @@ def build(root: Path, output: Path, check: bool = False) -> int:
             return fail("invalid output:\n" + "\n".join(errors))
         print("Site output is valid.")
         return 0
+    try:
+        assessment = assessment_data(root, mapping)
+        citations = cited_keys([root / source for source in mapping], bib)
+    except (OSError, ValueError, json.JSONDecodeError) as exc:
+        return fail(str(exc))
     if markdown is None:
         return fail("Markdown is required; install requirements-docs.txt")
     template_path = root / "site/page.html"
@@ -374,8 +463,8 @@ def build(root: Path, output: Path, check: bool = False) -> int:
             for page in catalog["pages"]:
                 destination = stage / page["href"]; destination.parent.mkdir(parents=True, exist_ok=True)
                 source = root / page["source"]
-                destination.write_text(render_page(source.read_text(encoding="utf-8"), source, page["href"], mapping, bib, template, catalog), encoding="utf-8")
-            for name in ("index.html", "app.mjs", "course-utils.mjs", "styles.css"):
+                destination.write_text(render_page(source.read_text(encoding="utf-8"), source, page["href"], mapping, bib, template, catalog, assessment, citations), encoding="utf-8")
+            for name in ("index.html", "app.mjs", "course-utils.mjs", "styles.css", "progress.mjs", "quiz.mjs"):
                 source = root / "site" / name
                 if source.is_file(): shutil.copy2(source, stage / name)
             copy_public_assets(root, stage, catalog["pages"])
@@ -385,6 +474,8 @@ def build(root: Path, output: Path, check: bool = False) -> int:
                 module["units"] = [{key: value for key, value in unit.items() if key != "source"} for unit in module.get("units", [])]
             public["pages"] = [{key: value for key, value in page.items() if key != "source"} for page in catalog["pages"]]
             (stage / "course.json").write_text(json.dumps(public, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+            if assessment is not None:
+                (stage / "assessments.json").write_text(json.dumps(assessment, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
             (stage / ".nojekyll").write_text("", encoding="utf-8")
             errors = validate(stage)
             if errors: return fail("invalid output:\n" + "\n".join(errors))

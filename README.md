@@ -38,7 +38,7 @@ python3 -m venv .venv
 .venv/bin/python tools/build_site.py --output _site
 ```
 
-Cada actualización semanal añade o corrige el Markdown editorial y registra todas las páginas en `course/catalog.json`; después ejecute la compilación y su comprobación `--check`. El [flujo de publicación](https://github.com/statick88/aplicaciones-web-php-csharp/actions/workflows/ebook.yml) valida y publica únicamente `_site`. Se conserva el [PDF histórico](https://statick88.github.io/aplicaciones-web-php-csharp/aplicaciones-web-php-csharp-semana1.pdf) como edición anterior, sin regenerarlo con Quarto ni presentarlo como actualizado; vea [`ebook/MIGRATION.md`](ebook/MIGRATION.md). Pages no ejecuta PHP, .NET ni los ejemplos HTTP: estos se mantienen como material descargable y se ejecutan solo en sus entornos locales.
+Cada actualización semanal añade o corrige el contenido editorial y registra todas las páginas en `course/catalog.json`; después ejecute la compilación y su comprobación `--check`. El flujo de publicación valida y publica únicamente `_site`. Las evaluaciones publicadas son preguntas de opción múltiple: sus selecciones y el avance formativo se conservan solamente en el almacenamiento local disponible del navegador, sin cuentas ni envío de datos. El PDF histórico permanece en la URL heredada por compatibilidad, pero no aparece en la interfaz actual ni se regenera; la guía técnica de migración explica su condición archivada. Pages no ejecuta PHP, .NET ni los ejemplos HTTP: estos se mantienen como material descargable y se ejecutan solo en sus entornos locales.
 
 El resto del repositorio (prácticas PHP/C#, material de otras asignaturas y el archivo `ebook/index.typ`) se conserva fuera de la entrada activa del sitio.
 

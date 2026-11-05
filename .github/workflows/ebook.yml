@@ -31,12 +31,12 @@ jobs:
         uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d
       - name: Instalar dependencias de documentación
         run: python3 -m venv .venv && .venv/bin/pip install -r requirements-docs.txt
-      - name: Probar el generador
-        run: .venv/bin/python -m unittest tests/test_build_site.py -v
+      - name: Probar el generador y las evaluaciones publicadas
+        run: .venv/bin/python -m unittest discover -s tests -v
       - name: Probar verificaciones editoriales preservadas
         run: python3 -m unittest discover ebook/tests -v
-      - name: Probar la búsqueda del sitio
-        run: node --test site/course-utils.test.mjs
+      - name: Probar los módulos del sitio
+        run: node --test site/*.test.mjs
       - name: Construir el sitio estático
         run: .venv/bin/python tools/build_site.py --output _site
       - name: Validar el sitio estático
