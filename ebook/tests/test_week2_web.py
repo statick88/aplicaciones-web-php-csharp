@@ -1,22 +1,24 @@
 """Week 2 chapters must be reachable in the book and subject navigation."""
+import json
 from pathlib import Path
 import re
 import unittest
 
 BOOK = Path(__file__).resolve().parents[1]
 CHAPTERS = (
-    "subjects/aplicaciones-web/semana-02/01-tipos-cliente.qmd",
-    "subjects/aplicaciones-web/semana-02/02-formularios-get-post.qmd",
+    "subjects/aplicaciones-web/semana-02/01-tipos-cliente.md",
+    "subjects/aplicaciones-web/semana-02/02-formularios-get-post.md",
 )
 
 
 class Week2WebTests(unittest.TestCase):
-    def test_both_classes_are_configured_and_linked_from_subject(self):
-        config = (BOOK / "_quarto.yml").read_text()
-        subject = (BOOK / "subjects/aplicaciones-web.qmd").read_text()
+    def test_both_classes_are_catalogued_and_linked_from_subject(self):
+        catalog = json.loads((BOOK.parent / "course/catalog.json").read_text())
+        sources = {page["source"] for page in catalog["pages"]}
+        subject = (BOOK / "subjects/aplicaciones-web.md").read_text()
         for chapter in CHAPTERS:
             with self.subTest(chapter=chapter):
-                self.assertIn(chapter, config)
+                self.assertIn(f"ebook/{chapter}", sources)
                 self.assertIn(chapter.removeprefix("subjects/"), subject)
         self.assertIn("## Navegación de la Semana 2", subject)
 

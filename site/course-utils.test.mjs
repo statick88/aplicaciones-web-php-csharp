@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { filterUnits, isLocalHref } from "./course-utils.mjs";
+import { filterUnits, isLocalHref, supportingPages } from "./course-utils.mjs";
 
 const modules = [
   {
@@ -28,6 +28,13 @@ test("filterUnits accepts the visible .NET brand when only technology metadata m
 test("filterUnits returns all units for an empty search and none for an unknown term", () => {
   assert.equal(filterUnits(modules, "").length, 2);
   assert.equal(filterUnits(modules, "ruby").length, 0);
+});
+
+test("supporting pages exclude active weekly lessons without changing the catalog", () => {
+  const pages = [{ href: "chapters/php.html" }, { href: "chapters/net.html" }, { href: "cuaderno.html" }];
+  const weekly = modules.map((module) => ({ ...module, week: 1 }));
+  assert.deepEqual(supportingPages(pages, weekly, 2).map(({ href }) => href), ["cuaderno.html"]);
+  assert.equal(pages.length, 3);
 });
 
 test("isLocalHref accepts normal Pages-relative documents and rejects external or unsafe URLs", () => {

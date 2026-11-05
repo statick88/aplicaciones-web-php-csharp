@@ -5,7 +5,7 @@ import unittest
 from pathlib import Path
 
 GUIDE = (Path(__file__).resolve().parents[1]
-         / "subjects/aplicaciones-web/laboratorio-http-php.qmd")
+         / "subjects/aplicaciones-web/laboratorio-http-php.md")
 
 
 class PhpHttpGuide(unittest.TestCase):

@@ -8,28 +8,29 @@ Also pins the PDF output name and the existence of every linked local page.
 
 from __future__ import annotations
 
+import json
 import re
 import unittest
 from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-WEB_INDEX = ROOT / "subjects" / "aplicaciones-web.qmd"
-CONFIG = ROOT / "_quarto.yml"
+WEB_INDEX = ROOT / "subjects" / "aplicaciones-web.md"
+CATALOG = ROOT.parent / "course" / "catalog.json"
 
 # Theory, practice/review and optional environment chapters.
 # Examples: transversal DevTools lab. Reference: transversal HTTP tables.
-# Self-assessment anchor inside chapter 03, answers in answers.qmd.
+# Self-assessment anchor inside chapter 03, answers in answers.md.
 # Delivery: the published Semana 1 repository.
 REQUIRED_LINKS = [
-    "../chapters/01-web-foundations.qmd",
-    "../chapters/02-variables-types-scope.qmd",
-    "../chapters/03-week1-practice-review.qmd",
-    "../chapters/04-development-environment.qmd",
-    "aplicaciones-web/laboratorio-http-php.qmd",
-    "aplicaciones-web/consulta-http.qmd",
-    "../chapters/03-week1-practice-review.qmd#autoevaluacion-semana1",
-    "../answers.qmd",
+    "../chapters/01-web-foundations.md",
+    "../chapters/02-variables-types-scope.md",
+    "../chapters/03-week1-practice-review.md",
+    "../chapters/04-development-environment.md",
+    "aplicaciones-web/laboratorio-http-php.md",
+    "aplicaciones-web/consulta-http.md",
+    "../chapters/03-week1-practice-review.md#autoevaluacion-semana1",
+    "../answers.md",
     "https://github.com/statick88/aplicaciones-web-semana1",
 ]
 
@@ -41,9 +42,9 @@ class WeekNavigationTests(unittest.TestCase):
             with self.subTest(link=link):
                 self.assertIn(link, text)
 
-    def test_every_linked_local_qmd_target_exists(self) -> None:
+    def test_every_linked_local_markdown_target_exists(self) -> None:
         text = WEB_INDEX.read_text(encoding="utf-8")
-        targets = re.findall(r"\]\(([^)\s]+\.qmd)(?:#[^)\s]*)?\)", text)
+        targets = re.findall(r"\]\(([^)\s]+\.md)(?:#[^)\s]*)?\)", text)
         self.assertTrue(targets, "subject index must link local pages")
         for target in targets:
             with self.subTest(target=target):
@@ -57,9 +58,13 @@ class WeekNavigationTests(unittest.TestCase):
         self.assertNotIn("idempotencia", text)
         self.assertNotIn("cinco métodos", text)
 
-    def test_pdf_output_name_stays_compatible(self) -> None:
-        config = CONFIG.read_text(encoding="utf-8")
-        self.assertIn("output-file: aplicaciones-web-php-csharp-semana1", config)
+    def test_catalog_keeps_every_week_navigation_target_public(self) -> None:
+        catalog = json.loads(CATALOG.read_text(encoding="utf-8"))
+        sources = {page["source"] for page in catalog["pages"]}
+        for target in REQUIRED_LINKS[:-1]:
+            source = (ROOT / "subjects" / target.split("#", 1)[0]).resolve()
+            with self.subTest(target=target):
+                self.assertIn(str(source.relative_to(ROOT.parent)), sources)
 
 
 if __name__ == "__main__":

@@ -15,13 +15,13 @@ FIGURES = {
 }
 
 CHAPTER_FIGURES = {
-    "chapters/01-web-foundations.qmd": {
+    "chapters/01-web-foundations.md": {
         "request-response.svg": ("Flujo PHP", "Flujo PHP"),
         "request-response-csharp.svg": ("Flujo C#", "Flujo C#"),
         "runtime-comparison.svg": ("Ruta de ejecución de PHP", "Ruta de ejecución de PHP"),
         "runtime-csharp.svg": ("Ruta de ejecución de C#", "Ruta de ejecución de C#"),
     },
-    "chapters/02-variables-types-scope.qmd": {
+    "chapters/02-variables-types-scope.md": {
         "scope.svg": ("Alcance en PHP", "Alcance en PHP"),
         "scope-csharp.svg": ("Alcance en C#", "Alcance en C#"),
     },

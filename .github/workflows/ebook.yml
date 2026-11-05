@@ -1,10 +1,15 @@
-name: Publicar ebook de Semana 1
+name: Publicar sitio estático
 
 on:
   push:
     branches: [main]
     paths:
+      - "course/**"
+      - "site/**"
+      - "tools/**"
       - "ebook/**"
+      - "requirements-docs.txt"
+      - "tests/**"
       - ".github/workflows/ebook.yml"
   workflow_dispatch:
 
@@ -24,20 +29,22 @@ jobs:
       - name: Configurar GitHub Pages
         id: pages
         uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d
-      - name: Instalar Quarto
-        uses: quarto-dev/quarto-actions/setup@8a96df13519ee81fd526f2dfca5962811136661b
-        with:
-          version: 1.10.19
-      - name: Comprobar la estructura del libro
-        run: python3 ebook/scripts/check_book.py
-      - name: Renderizar HTML y PDF juntos
-        run: quarto render ebook
-      - name: Comprobar los artefactos renderizados
-        run: python3 ebook/scripts/check_book.py --rendered
+      - name: Instalar dependencias de documentación
+        run: python3 -m venv .venv && .venv/bin/pip install -r requirements-docs.txt
+      - name: Probar el generador
+        run: .venv/bin/python -m unittest tests/test_build_site.py -v
+      - name: Probar verificaciones editoriales preservadas
+        run: python3 -m unittest discover ebook/tests -v
+      - name: Probar la búsqueda del sitio
+        run: node --test site/course-utils.test.mjs
+      - name: Construir el sitio estático
+        run: .venv/bin/python tools/build_site.py --output _site
+      - name: Validar el sitio estático
+        run: .venv/bin/python tools/build_site.py --output _site --check
       - name: Subir el sitio estático
         uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9
         with:
-          path: ebook/_book
+          path: _site
 
   deploy:
     needs: build

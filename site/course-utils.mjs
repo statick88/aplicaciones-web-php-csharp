@@ -15,6 +15,12 @@ export function filterUnits(modules, query) {
   );
 }
 
+export function supportingPages(pages, modules, currentWeek) {
+  const active = new Set(filterUnits(modules.filter((module) => Number(module.week) <= Number(currentWeek)), "")
+    .map(({ unit }) => unit.href));
+  return pages.filter((page) => !active.has(page.href));
+}
+
 export function isLocalHref(href) {
   return typeof href === "string"
     && href.length > 0

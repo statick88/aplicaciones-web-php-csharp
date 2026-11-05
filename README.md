@@ -28,9 +28,19 @@ Las instrucciones y comprobaciones propias de cada práctica están en sus READM
 
 ## Cuaderno de estudio y práctica
 
-El ebook estático en [`ebook/`](ebook/) crece por asignatura y semana para preparar evaluaciones con teoría, ejemplos resueltos, práctica y autoevaluación. La edición local incluye Aplicaciones Web con PHP y C#, Semanas 1 y 2 (ambas clases, ejemplos, ejercicios y respuestas). Su publicación existente permanece en [GitHub Pages](https://statick88.github.io/aplicaciones-web-php-csharp/), con el [PDF descargable](https://statick88.github.io/aplicaciones-web-php-csharp/aplicaciones-web-php-csharp-semana1.pdf) que conserva el nombre técnico `aplicaciones-web-php-csharp-semana1.pdf` por compatibilidad con enlaces públicos heredados.
+El cuaderno en [`ebook/`](ebook/) crece por asignatura y semana para preparar evaluaciones con teoría, ejemplos resueltos, práctica y autoevaluación. La edición local incluye Aplicaciones Web con PHP y C#, Semanas 1 y 2 (ambas clases, ejemplos, ejercicios y respuestas). Se publica como HTML estático en [GitHub Pages](https://statick88.github.io/aplicaciones-web-php-csharp/).
 
-Esta tarea no publicó cambios. El [flujo de publicación](https://github.com/statick88/aplicaciones-web-php-csharp/actions/workflows/ebook.yml) verifica y genera ambos formatos antes de desplegar. Pages solo sirve el libro estático; los ejercicios PHP y C# se ejecutan en sus entornos de desarrollo.
+Para generar el sitio sin Quarto:
+
+```bash
+python3 -m venv .venv
+.venv/bin/pip install -r requirements-docs.txt
+.venv/bin/python tools/build_site.py --output _site
+```
+
+Cada actualización semanal añade o corrige el Markdown editorial y registra todas las páginas en `course/catalog.json`; después ejecute la compilación y su comprobación `--check`. El [flujo de publicación](https://github.com/statick88/aplicaciones-web-php-csharp/actions/workflows/ebook.yml) valida y publica únicamente `_site`. Se conserva el [PDF histórico](https://statick88.github.io/aplicaciones-web-php-csharp/aplicaciones-web-php-csharp-semana1.pdf) como edición anterior, sin regenerarlo con Quarto ni presentarlo como actualizado; vea [`ebook/MIGRATION.md`](ebook/MIGRATION.md). Pages no ejecuta PHP, .NET ni los ejemplos HTTP: estos se mantienen como material descargable y se ejecutan solo en sus entornos locales.
+
+El resto del repositorio (prácticas PHP/C#, material de otras asignaturas y el archivo `ebook/index.typ`) se conserva fuera de la entrada activa del sitio.
 
 ## Semana 1 — avance verificado
 
@@ -58,7 +68,7 @@ Las facturas, la base de datos y los experimentos de persistencia son ejercicios
 
 Fuentes de trabajo aportadas en la raíz: [Clase 1](semana2.md) y [Clase 2](semana2-clase2.md).
 Estos materiales permiten completar las prácticas sin volver a acceder a Blackboard.
-La contraparte C# de ambas clases está implementada y verificada (sección siguiente). El ebook incorpora [Clase 1](ebook/subjects/aplicaciones-web/semana-02/01-tipos-cliente.qmd) y [Clase 2](ebook/subjects/aplicaciones-web/semana-02/02-formularios-get-post.qmd), con práctica y respuestas; la actualización permanece local, sin publicar.
+La contraparte C# de ambas clases está implementada y verificada (sección siguiente). El ebook incorpora [Clase 1](ebook/subjects/aplicaciones-web/semana-02/01-tipos-cliente.md) y [Clase 2](ebook/subjects/aplicaciones-web/semana-02/02-formularios-get-post.md), con práctica y respuestas; la actualización permanece local, sin publicar.
 
 ### Clase 1 — Tipos simples, variables de variables y Cliente
 

@@ -1,4 +1,4 @@
-import { filterUnits, isLocalHref } from "./course-utils.mjs";
+import { filterUnits, isLocalHref, supportingPages } from "./course-utils.mjs";
 
 const app = document.querySelector("#app");
 const search = document.querySelector("#search");
@@ -55,7 +55,7 @@ function makeSupportingPages() {
   section.append(element("h2", undefined, "Cuaderno y material conservado"));
   section.append(element("p", undefined, "Estas páginas preservan material de consulta y de otras asignaturas; no forman parte de las prácticas vigentes de Programación Web."));
   const list = element("ul", "supporting-list");
-  for (const page of Array.isArray(course.pages) ? course.pages : []) {
+  for (const page of supportingPages(course.pages, course.modules, course.currentWeek)) {
     if (!isLocalHref(page.href)) continue;
     const item = element("li");
     item.append(link(page.title, page.href, "text-link"));

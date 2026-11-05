@@ -1,3 +1,4 @@
+import json
 import re
 import struct
 import unittest
@@ -5,14 +6,14 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-CONFIG = ROOT / "_quarto.yml"
+CATALOG = ROOT.parent / "course" / "catalog.json"
 SUBJECTS = {
-    "Aplicaciones Web": "subjects/aplicaciones-web.qmd",
-    "Diseño y Arquitectura de Software": "subjects/arquitectura-software.qmd",
-    "Gestión Empresarial y Emprendimiento": "subjects/gestion-empresarial-emprendimiento.qmd",
-    "Inteligencia Artificial": "subjects/inteligencia-artificial.qmd",
-    "Inteligencia de Negocios": "subjects/inteligencia-negocios.qmd",
-    "Proyectos Informáticos": "subjects/proyectos-informaticos.qmd",
+    "Aplicaciones Web": "subjects/aplicaciones-web.md",
+    "Diseño y Arquitectura de Software": "subjects/arquitectura-software.md",
+    "Gestión Empresarial y Emprendimiento": "subjects/gestion-empresarial-emprendimiento.md",
+    "Inteligencia Artificial": "subjects/inteligencia-artificial.md",
+    "Inteligencia de Negocios": "subjects/inteligencia-negocios.md",
+    "Proyectos Informáticos": "subjects/proyectos-informaticos.md",
 }
 FONT_DIR = ROOT / "assets/fonts/fira-code-nerd"
 
@@ -39,14 +40,15 @@ def read_name_records(path):
 
 
 class SubjectIndexesAndTypography(unittest.TestCase):
-    def test_shared_bibliography_keeps_entries_for_unchanged_chapters(self):
-        references = (ROOT / "references.qmd").read_text()
-        self.assertRegex(references, r"(?m)^nocite:\s*['\"]@\*['\"]\s*$")
+    def test_shared_bibliography_keeps_its_render_target(self):
+        references = (ROOT / "references.md").read_text()
+        self.assertIn("# Fuentes y política de uso", references)
         self.assertIn("::: {#refs}", references)
 
-    def test_portal_and_navigation_expose_six_independent_official_indexes(self):
-        portal = (ROOT / "index.qmd").read_text()
-        config = CONFIG.read_text()
+    def test_portal_and_catalog_expose_six_independent_official_indexes(self):
+        portal = (ROOT / "index.md").read_text()
+        catalog = json.loads(CATALOG.read_text())
+        sources = {page["source"] for page in catalog["pages"]}
         for official_name, relative_path in SUBJECTS.items():
             with self.subTest(subject=official_name):
                 page = ROOT / relative_path
@@ -54,19 +56,19 @@ class SubjectIndexesAndTypography(unittest.TestCase):
                 text = page.read_text()
                 self.assertRegex(text, rf"(?m)^# {re.escape(official_name)}$")
                 self.assertIn(f"]({relative_path})", portal)
-                self.assertIn(relative_path, config)
+                self.assertIn(f"ebook/{relative_path}", sources)
 
     def test_unavailable_subject_indexes_are_honest_and_do_not_mix_web_answers(self):
         unavailable = set(SUBJECTS.values()) - {
-            "subjects/aplicaciones-web.qmd",
-            "subjects/arquitectura-software.qmd",
+            "subjects/aplicaciones-web.md",
+            "subjects/arquitectura-software.md",
         }
         for relative_path in unavailable:
             with self.subTest(page=relative_path):
                 text = (ROOT / relative_path).read_text().lower()
                 normalized = " ".join(text.replace("**", "").split())
                 self.assertIn("no hay capítulos de estudio verificados y redactados", normalized)
-                self.assertNotIn("answers.qmd", text)
+                self.assertNotIn("answers.md", text)
                 self.assertNotIn("respuestas de aplicaciones web", text)
 
     def test_bundled_fira_fonts_license_and_portable_typst_configuration(self):
@@ -87,12 +89,9 @@ class SubjectIndexesAndTypography(unittest.TestCase):
         self.assertIn("FiraCode Project Authors", attribution)
         self.assertIn("SIL Open Font License 1.1", attribution)
 
-        config = CONFIG.read_text()
-        self.assertNotIn('mainfont: "FiraCode Nerd Font"', config)
-        self.assertIn('monofont: "FiraCode Nerd Font"', config)
-        self.assertIn("font-paths:", config)
-        self.assertIn("assets/fonts/fira-code-nerd", config)
-        self.assertIn("include-in-header: assets/typography.typ", config)
+        readme = (ROOT / "README.md").read_text()
+        self.assertIn("Markdown editables", readme)
+        self.assertIn("course/catalog.json", readme)
 
     def test_proportional_book_text_keeps_fira_code_and_justified_prose(self):
         css = (ROOT / "assets/styles.css").read_text()
