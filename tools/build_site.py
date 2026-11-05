@@ -437,6 +437,7 @@ def build(root: Path, output: Path, check: bool = False) -> int:
     try:
         catalog, mapping = catalog_data(root)
         bib = bibliography(root)
+        assessment = assessment_data(root, mapping)
     except (OSError, ValueError, json.JSONDecodeError) as exc:
         return fail(str(exc))
     if check:
@@ -446,7 +447,6 @@ def build(root: Path, output: Path, check: bool = False) -> int:
         print("Site output is valid.")
         return 0
     try:
-        assessment = assessment_data(root, mapping)
         citations = cited_keys([root / source for source in mapping], bib)
     except (OSError, ValueError, json.JSONDecodeError) as exc:
         return fail(str(exc))
@@ -489,7 +489,7 @@ def build(root: Path, output: Path, check: bool = False) -> int:
 def main() -> int:
     parser = argparse.ArgumentParser(description="Build the static course site without Quarto.")
     parser.add_argument("--output", type=Path, required=True, help="destination directory (preserved on build failure, never cleaned)")
-    parser.add_argument("--check", action="store_true", help="validate an existing output directory only")
+    parser.add_argument("--check", action="store_true", help="validate existing output and assessment inputs without publishing")
     args = parser.parse_args()
     return build(ROOT, args.output, args.check)
 

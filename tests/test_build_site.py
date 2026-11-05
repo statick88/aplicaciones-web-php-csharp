@@ -55,6 +55,10 @@ class BuildSite(unittest.TestCase):
         self.assertIn('aria-current="page"', page)
         self.assertIn('Semana 1 · W1', page)
         cuaderno=(output / "cuaderno.html").read_text()
+        before = {path.relative_to(output): path.read_bytes() for path in output.rglob("*") if path.is_file()}
+        result = self.invoke("--output", str(output), "--check")
+        self.assertEqual((result.returncode, result.stdout, result.stderr), (0, "Site output is valid.\n", ""))
+        self.assertEqual({path.relative_to(output): path.read_bytes() for path in output.rglob("*") if path.is_file()}, before)
         self.assertNotIn("Privado", cuaderno)
         self.assertEqual(cuaderno.count('class="citation"'), 2)
         self.assertIn('id="catalogo"', (output / "index.html").read_text())

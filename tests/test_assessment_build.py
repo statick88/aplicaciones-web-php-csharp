@@ -64,6 +64,29 @@ class AssessmentBuild(unittest.TestCase):
         self.assertEqual((result.returncode, result.stdout, result.stderr), (2, "", "build_site: assessment: marker has no question: unknown-question\n"))
         self.assertEqual(self.output_files(output), before)
 
+    def test_check_validates_assessment_inputs_without_mutating_output(self):
+        output = self.root / "output"
+        result = self.invoke("--output", str(output))
+        self.assertEqual((result.returncode, result.stdout, result.stderr), (0, "Site output is valid.\n", ""))
+        before = self.output_files(output)
+        result = self.invoke("--output", str(output), "--check")
+        self.assertEqual((result.returncode, result.stdout, result.stderr), (0, "Site output is valid.\n", ""))
+        self.assertEqual(self.output_files(output), before)
+        for invalid_bank in (True, False):
+            with self.subTest(invalid_bank=invalid_bank):
+                question = self.question()
+                if invalid_bank:
+                    question["options"] = ["same", "same", "third"]
+                    error = "safe-question: options must be 3 or 4 distinct non-empty strings"
+                else:
+                    source = self.root / "ebook/chapters/one.md"
+                    source.write_text(source.read_text() + "<!-- quiz: unknown-question -->\n")
+                    error = "marker has no question: unknown-question"
+                self.bank({"schemaVersion": 1, "pages": [{"href": "chapters/one.html", "questions": [question]}]})
+                result = self.invoke("--output", str(output), "--check")
+                self.assertEqual((result.returncode, result.stdout, result.stderr), (2, "", f"build_site: assessment: {error}\n"))
+                self.assertEqual(self.output_files(output), before)
+
     def test_duplicate_question_id_preserves_output(self):
         output = self.root / "output"; output.mkdir(); (output / "keep").write_text("same")
         before = self.output_files(output)
