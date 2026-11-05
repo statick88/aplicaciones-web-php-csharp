@@ -9,6 +9,7 @@ import os
 import re
 import shutil
 import sys
+import tempfile
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import unquote, urlparse
@@ -45,11 +46,22 @@ def catalog_data(root: Path) -> tuple[dict, dict[str, str]]:
     mapping: dict[str, str] = {}
     for page in pages:
         source, href = page.get("source"), page.get("href")
-        if not isinstance(source, str) or not isinstance(href, str) or not source.startswith("ebook/") or not href.endswith(".html"):
-            raise ValueError("each page needs ebook/*.md source and *.html href")
+        parsed_href = urlparse(href) if isinstance(href, str) else None
+        source_path = (root / source).resolve() if isinstance(source, str) else None
+        try:
+            safe_source = source_path is not None and source_path.is_relative_to((root / "ebook").resolve())
+        except OSError:
+            safe_source = False
+        decoded_href = unquote(parsed_href.path) if parsed_href else ""
+        safe_href = (parsed_href is not None and not parsed_href.scheme and not parsed_href.netloc
+                     and decoded_href.endswith(".html") and not Path(decoded_href).is_absolute()
+                     and "\\" not in decoded_href and ".." not in Path(decoded_href).parts
+                     and not parsed_href.query and not parsed_href.fragment)
+        if not isinstance(source, str) or not source.endswith(".md") or not safe_source or not safe_href:
+            raise ValueError("each page needs safe ebook/*.md source and safe relative *.html href")
         if source in mapping or href in mapping.values():
             raise ValueError(f"duplicate catalog page: {source if source in mapping else href}")
-        if not (root / source).is_file():
+        if not source_path.is_file():
             raise ValueError(f"catalog source is missing: {source}")
         mapping[source] = href
     units = [unit for module in catalog.get("modules", []) for unit in module.get("units", [])]
@@ -297,6 +309,46 @@ def copy_public_assets(root: Path, output: Path, pages: list[dict]) -> None:
         shutil.copytree(lab, output / "examples/http-methods", dirs_exist_ok=True)
 
 
+def output_path(output: Path) -> Path:
+    output = output.absolute()
+    for path in (output, *output.parents):
+        if path.exists():
+            if path.is_symlink():
+                raise ValueError(f"output path is a symlink: {path}")
+            if not path.is_dir():
+                raise ValueError(f"output path is not a directory: {path}")
+    return output
+
+
+def publish(stage: Path, output: Path) -> None:
+    files = [path for path in stage.rglob("*") if path.is_file()]
+    for source in files:
+        destination = output / source.relative_to(stage)
+        for path in (destination.parent, *destination.parent.parents):
+            if path == output.parent:
+                break
+            if path.exists() and (path.is_symlink() or not path.is_dir()):
+                raise ValueError(f"output path is not a directory: {path}")
+        if destination.is_symlink() or (destination.exists() and not destination.is_file()):
+            raise ValueError(f"output path is not a file: {destination}")
+    backup = stage / ".backup"; moved = []; written = []
+    try:
+        for source in files:
+            destination = output / source.relative_to(stage)
+            destination.parent.mkdir(parents=True, exist_ok=True)
+            if destination.exists():
+                saved = backup / source.relative_to(stage); saved.parent.mkdir(parents=True, exist_ok=True)
+                os.replace(destination, saved); moved.append((saved, destination))
+            os.replace(source, destination); written.append(destination)
+    except OSError:
+        for destination in reversed(written):
+            if destination.exists():
+                destination.unlink()
+        for saved, destination in reversed(moved):
+            os.replace(saved, destination)
+        raise
+
+
 def build(root: Path, output: Path, check: bool = False) -> int:
     try:
         catalog, mapping = catalog_data(root)
@@ -314,31 +366,38 @@ def build(root: Path, output: Path, check: bool = False) -> int:
     template_path = root / "site/page.html"
     if not template_path.is_file():
         return fail("missing required template: site/page.html")
-    output.mkdir(parents=True, exist_ok=True)
-    template = template_path.read_text(encoding="utf-8")
-    for page in catalog["pages"]:
-        destination = output / page["href"]
-        destination.parent.mkdir(parents=True, exist_ok=True)
-        rendered = render_page((root / page["source"]).read_text(encoding="utf-8"), root / page["source"], page["href"], mapping, bib, template, catalog)
-        destination.write_text(rendered, encoding="utf-8")
-    for name in ("index.html", "app.mjs", "course-utils.mjs", "styles.css"):
-        source = root / "site" / name
-        if source.is_file():
-            shutil.copy2(source, output / name)
-    copy_public_assets(root, output, catalog["pages"])
-    public = {key: value for key, value in catalog.items() if key != "pages"}
-    public["modules"] = [{key: value for key, value in module.items() if key != "source"} for module in catalog.get("modules", [])]
-    for module in public["modules"]:
-        module["units"] = [{key: value for key, value in unit.items() if key != "source"} for unit in module.get("units", [])]
-    public["pages"] = [{key: value for key, value in page.items() if key != "source"} for page in catalog["pages"]]
-    (output / "course.json").write_text(json.dumps(public, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    (output / ".nojekyll").write_text("", encoding="utf-8")
-    return build(root, output, check=True)
+    try:
+        output = output_path(output)
+        output.parent.mkdir(parents=True, exist_ok=True)
+        with tempfile.TemporaryDirectory(prefix=".build-site-", dir=output.parent) as temp:
+            stage = Path(temp); template = template_path.read_text(encoding="utf-8")
+            for page in catalog["pages"]:
+                destination = stage / page["href"]; destination.parent.mkdir(parents=True, exist_ok=True)
+                source = root / page["source"]
+                destination.write_text(render_page(source.read_text(encoding="utf-8"), source, page["href"], mapping, bib, template, catalog), encoding="utf-8")
+            for name in ("index.html", "app.mjs", "course-utils.mjs", "styles.css"):
+                source = root / "site" / name
+                if source.is_file(): shutil.copy2(source, stage / name)
+            copy_public_assets(root, stage, catalog["pages"])
+            public = {key: value for key, value in catalog.items() if key != "pages"}
+            public["modules"] = [{key: value for key, value in module.items() if key != "source"} for module in catalog.get("modules", [])]
+            for module in public["modules"]:
+                module["units"] = [{key: value for key, value in unit.items() if key != "source"} for unit in module.get("units", [])]
+            public["pages"] = [{key: value for key, value in page.items() if key != "source"} for page in catalog["pages"]]
+            (stage / "course.json").write_text(json.dumps(public, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+            (stage / ".nojekyll").write_text("", encoding="utf-8")
+            errors = validate(stage)
+            if errors: return fail("invalid output:\n" + "\n".join(errors))
+            publish(stage, output)
+    except (OSError, ValueError, json.JSONDecodeError) as exc:
+        return fail(str(exc))
+    print("Site output is valid.")
+    return 0
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Build the static course site without Quarto.")
-    parser.add_argument("--output", type=Path, required=True, help="destination directory (preserved, never cleaned)")
+    parser.add_argument("--output", type=Path, required=True, help="destination directory (preserved on build failure, never cleaned)")
     parser.add_argument("--check", action="store_true", help="validate an existing output directory only")
     args = parser.parse_args()
     return build(ROOT, args.output, args.check)

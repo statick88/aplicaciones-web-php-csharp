@@ -69,6 +69,12 @@ class BuildSite(unittest.TestCase):
         self.assertEqual((result.returncode, result.stdout, result.stderr), (0, "Site output is valid.\n", ""))
         self.assertIn('id="ref-source">Microsoft. Documentation. 2026.', (output / "references.html").read_text())
 
+    def test_build_still_creates_nested_output_directories(self):
+        output = self.root / "new-parent" / "site"
+        result = self.invoke("--output", str(output))
+        self.assertEqual((result.returncode, result.stdout, result.stderr), (0, "Site output is valid.\n", ""))
+        self.assertTrue((output / "chapters/one.html").is_file())
+
     def test_rejected_catalog_leaves_existing_output_unchanged(self):
         output=self.root / "output"; output.mkdir(); marker=output / "keep.txt"; marker.write_text("keep")
         catalog=json.loads((self.root / "course/catalog.json").read_text()); catalog["pages"].append(catalog["pages"][0])
@@ -83,4 +89,40 @@ class BuildSite(unittest.TestCase):
         self.assertEqual(result.returncode, 2); self.assertEqual(result.stdout, "")
         self.assertEqual(result.stderr, "build_site: invalid output:\nindex.html: missing destination missing.html\n")
         self.assertEqual((output / "index.html").read_bytes(), before)
+
+    def test_rejects_catalog_escapes_before_writing_output(self):
+        output=self.root / "output"; output.mkdir(); (output / "counter.txt").write_text("7")
+        outside=self.root / "outside.md"; outside.write_text("ordinary fixture")
+        catalog=json.loads((self.root / "course/catalog.json").read_text())
+        cases=("ebook/../outside.md", "ebook/link.md", "../outside.html", "/outside.html", "chapters/%2e%2e/outside.html")
+        for value in cases:
+            with self.subTest(value=value):
+                changed=json.loads(json.dumps(catalog))
+                if value.endswith(".md"):
+                    changed["pages"][0]["source"]=value
+                    if value.endswith("link.md"):
+                        (self.root / "ebook/link.md").symlink_to(outside)
+                else: changed["pages"][0]["href"]=value
+                (self.root / "course/catalog.json").write_text(json.dumps(changed))
+                result=self.invoke("--output", str(output))
+                self.assertEqual((result.returncode, result.stdout, result.stderr), (2, "", "build_site: each page needs safe ebook/*.md source and safe relative *.html href\n"))
+                self.assertEqual((output / "counter.txt").read_text(), "7")
+                self.assertFalse((self.root / "outside.html").exists())
+
+    def test_failed_build_preserves_existing_output(self):
+        output=self.root / "output"; output.mkdir(); (output / "counter.txt").write_text("7")
+        for text, error in (("# Inicio {#inicio}\n\n[@unknown]\n", "citation missing from references.bib: @unknown"), ("# Inicio {#inicio}\n\n[bad](missing.html)\n", "invalid output:\ncuaderno.html: missing destination missing.html")):
+            with self.subTest(error=error):
+                before={path.relative_to(output): path.read_bytes() for path in output.rglob("*") if path.is_file()}
+                (self.root / "ebook/index.md").write_text(text)
+                result=self.invoke("--output", str(output))
+                self.assertEqual((result.returncode, result.stdout, result.stderr), (2, "", f"build_site: {error}\n"))
+                self.assertEqual({path.relative_to(output): path.read_bytes() for path in output.rglob("*") if path.is_file()}, before)
+
+    def test_publication_failure_preserves_existing_output(self):
+        output=self.root / "output"; output.mkdir(); (output / "chapters").write_text("occupied"); (output / "counter.txt").write_text("7")
+        before={path.relative_to(output): path.read_bytes() for path in output.rglob("*") if path.is_file()}
+        result=self.invoke("--output", str(output))
+        self.assertEqual((result.returncode, result.stdout, result.stderr), (2, "", f"build_site: output path is not a directory: {output / 'chapters'}\n"))
+        self.assertEqual({path.relative_to(output): path.read_bytes() for path in output.rglob("*") if path.is_file()}, before)
 if __name__ == "__main__": unittest.main()
