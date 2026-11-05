@@ -264,26 +264,19 @@ Consulta: 2026-10-30. Temas como patrones, Clean Architecture y TDD se retomará
 cuando una semana posterior los requiera; aquí la prioridad es dominar valores y
 alcance observables.
 
-## Autoevaluación manual
+## Autoevaluación de opción múltiple
 
-1. ¿Por qué `var` no transforma una variable de C# en dinámica?
-2. Predice `"Hola $nombre"` y `'Hola $nombre'` en PHP cuando `$nombre` vale `Ada`.
-3. ¿Qué resultado producen `'3' + 3` en PHP y `"3" + 3` en C#? Explica la causa.
-4. ¿Qué diferencia a `readonly` de `const` en C#?
-5. ¿Por qué un parámetro suele ser preferible a leer una variable global?
+Selecciona una alternativa y consulta la retroalimentación antes de repetir un ejemplo.
 
-::: {.callout-note collapse="true" title="Pistas progresivas y retroalimentación razonada"}
+<!-- quiz: web-values-var -->
 
-- **Pista 1:** separa «cómo se infiere el tipo» de «cuándo puede cambiar».
-- **Pista 2:** mira primero qué comillas habilitan sustitución en PHP.
-- **Pista 3:** observa si `+` recibe dos números o una cadena.
+<!-- quiz: web-values-quotes -->
 
-`var` infiere un tipo estático en la compilación. Las dobles de PHP producen `Hola
-Ada`; las simples dejan el nombre literal. PHP suma la cadena numérica y obtiene `6`;
-C# concatena y obtiene `33`. `readonly` puede asignarse al inicializar o construir,
-mientras que `const` debe conocerse en compilación. Un parámetro declara la
-entrada de la operación y reduce dependencias ocultas.
-:::
+<!-- quiz: web-values-plus -->
+
+<!-- quiz: web-values-readonly -->
+
+<!-- quiz: web-values-scope -->
 
 **Siguiente paso:** usa estas predicciones al revisar la práctica de Semana 1 y anota
 qué resultado observaste antes de consultar una solución.

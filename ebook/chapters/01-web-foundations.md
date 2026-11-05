@@ -177,22 +177,18 @@ las [notas de PHP 8.5](https://www.php.net/releases/8.5/en.php), la
 y la [introducción oficial a ASP.NET Core MVC](https://learn.microsoft.com/en-us/aspnet/core/mvc/overview?view=aspnetcore-10.0).
 Consulta: 2026-10-30.
 
-## Autoevaluación manual
+## Autoevaluación de opción múltiple
 
-1. ¿Qué diferencia práctica hay entre el cuerpo de una respuesta HTTP y el código PHP?
-2. ¿Por qué `404` y `500` describen situaciones distintas?
-3. ¿Qué distingue a C# de .NET cuando explicas cómo se ejecuta un programa?
-4. ¿Cuándo prefieres `require` a `include` y por qué?
+Selecciona una alternativa en cada pregunta y usa la retroalimentación para volver al
+concepto o ejemplo correspondiente.
 
-::: {.callout-note collapse="true" title="Retroalimentación razonada"}
+<!-- quiz: web-foundations-response-body -->
 
-1. El navegador recibe el cuerpo de la respuesta; PHP se ejecutó antes en el servidor.
-2. `404` comunica que no se encontró el recurso; `500` indica un error interno al
-   procesar la solicitud. Ambos se verifican en la respuesta, no solo en la página.
-3. C# es el lenguaje; .NET aporta runtime y bibliotecas que ejecutan IL mediante JIT.
-4. Cuando el archivo es indispensable, porque detenerse revela una aplicación incompleta
-   en vez de continuar con un estado incierto.
-:::
+<!-- quiz: web-foundations-status -->
+
+<!-- quiz: web-foundations-dotnet -->
+
+<!-- quiz: web-foundations-require -->
 
 **Siguiente paso:** en la Clase 2 predice tipos, conversiones y ámbitos antes de
 confirmarlos con los dos programas de demostración.

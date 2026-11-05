@@ -2,13 +2,11 @@
 
 ## Política de fuentes
 
-Los contenidos de Semana 1 de **Aplicaciones Web con PHP y C#** se organizan primero a partir de su documentación oficial [@blackboard-s1c1; @blackboard-s1c2; @blackboard-task1], consultada el **30 de octubre de 2026**. Los enlaces pueden pedir autenticación institucional. Este libro los enlaza y parafrasea de forma original; no copia ni redistribuye material privado del aula.
+Los contenidos se apoyan en documentación oficial de la asignatura [@blackboard-s1c1; @blackboard-s1c2; @blackboard-task1; @blackboard-arq-s1; @blackboard-arq-s2] y en fuentes primarias para el comportamiento técnico: PHP, C#, ASP.NET Core, Docker y SQL Server [@php-manual; @microsoft-csharp; @aspnet-mvc; @docker-docs; @sqlserver-containers]. Los enlaces institucionales pueden pedir autenticación; esta edición no afirma acceso nuevo ni reproduce contenido privado.
 
-La Semana 1 de **Arquitectura de Software** se organiza a partir de su fuente oficial de contenidos [@blackboard-arq-s1], consultada el **31 de octubre de 2026**. La explicación editorial desarrolla esos temas con redacción original. Como enriquecimiento técnico, Parnas fundamenta la ocultación de decisiones de cambio [@parnas1972] y Lehman trata la evolución como un fenómeno contextual [@lehman1996]; ninguna de las dos fuentes sustituye el currículo oficial.
+Para arquitectura, Parnas fundamenta la ocultación de decisiones de cambio [@parnas1972] y Lehman sitúa la evolución como un fenómeno contextual [@lehman1996]. Estas fuentes primarias enriquecen la explicación sin sustituir el currículo oficial.
 
-Las fuentes técnicas complementarias de Aplicaciones Web se usan para verificar sintaxis, plataformas y herramientas, no para ampliar el currículo más allá de Semana 1. Cuando haya una diferencia entre una explicación editorial y una fuente primaria, prevalece la fuente primaria. Los ejemplos de los repositorios de práctica se identifican como evidencia de trabajo existente [@practice-repo; @assignment-repo], no como una afirmación de que todo el código siga MVC ni como requisito adicional.
-
-Cada entrada conserva su propia fecha de consulta cuando corresponde. La bibliografía distingue las fuentes oficiales de cada asignatura del enriquecimiento técnico suplementario.
+Los ejemplos locales ilustran recorridos de práctica; no se presentan como autoridades bibliográficas. Cuando una explicación editorial difiere de una fuente oficial o primaria, prevalece la fuente correspondiente. Cada entrada conserva su fecha de consulta cuando aplica.
 
 ## Bibliografía
 

@@ -10,7 +10,7 @@ Necesitas PHP instalado. Desde la raíz del repositorio ejecuta:
 php -S 127.0.0.1:8088 -t ebook/examples/http-methods ebook/examples/http-methods/router.php
 ```
 
-Después abre [el laboratorio local](http://127.0.0.1:8088/). La [guía del ejemplo](../../examples/http-methods/README.md) conserva el mismo comando y sirve como referencia descargable del código fuente.
+Después abre [el laboratorio local](http://127.0.0.1:8088/). Este entorno es sólo de desarrollo; consulta la [documentación oficial del servidor integrado de PHP](https://www.php.net/manual/es/features.commandline.webserver.php) para conocer sus límites de uso.
 
 ::: {.callout-warning}
 Usa exactamente `127.0.0.1`, el document root aislado `ebook/examples/http-methods` y `router.php`, que limita las rutas públicas. No omitas el router, no uses `0.0.0.0` ni sirvas la raíz del repositorio: podrías exponer otros archivos. El ejemplo requiere PHP local; no funciona con `file://` ni ejecutado desde GitHub Pages.
@@ -56,7 +56,7 @@ Pulsa **DELETE simulado**. El identificador viaja como query y PHP lo obtiene de
 
 ![DevTools Network unido al laboratorio PHP real: Response de DELETE muestra method DELETE, id 42, saved false y el mensaje de simulación sin eliminación.](../../assets/http-lab-delete.png){#fig-http-lab-delete fig-alt="DevTools Network unido al laboratorio PHP real: Response de DELETE muestra method DELETE, id 42, saved false y el mensaje de simulación sin eliminación." fig-cap="DELETE real como petición HTTP, pero con efecto simulado y sin eliminación de datos." width="100%"}
 
-## Qué debes poder explicar
+## Qué debes reconocer
 
 | Observación | Lectura razonada |
 |---|---|
@@ -65,5 +65,16 @@ Pulsa **DELETE simulado**. El identificador viaja como query y PHP lo obtiene de
 | Form data de POST | PHP lo procesa en `$_POST` para el tipo de formulario usado. |
 | Request payload JSON | PHP debe leer `php://input`, decodificar y validar el formato. |
 | Response | Es el cuerpo que emitió PHP; aquí refleja entradas ficticias sin guardarlas. |
+
+## Comprobación de opción múltiple
+
+Selecciona una alternativa según la evidencia observada en Network. No hace falta
+redactar una explicación ni informar una autoevaluación.
+
+<!-- quiz: web-http-lab-get -->
+
+<!-- quiz: web-http-lab-post -->
+
+<!-- quiz: web-http-lab-delete -->
 
 Detén el servidor con `Ctrl+C` al terminar. Para recordar significados, idempotencia y estados, vuelve a [Tablas de consulta HTTP](consulta-http.md).

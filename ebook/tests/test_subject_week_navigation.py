@@ -1,7 +1,7 @@
 """Week navigation checks for the Aplicaciones Web subject index.
 
 The subject page is the per-week entry point: it must link theory, examples,
-exercises, the self-assessment (with its answers) and the published delivery,
+exercises, the self-assessment (with its answers) and delivery evidence,
 reusing the existing transversal HTTP pages instead of copying their content.
 Also pins the PDF output name and the existence of every linked local page.
 """
@@ -21,7 +21,7 @@ CATALOG = ROOT.parent / "course" / "catalog.json"
 # Theory, practice/review and optional environment chapters.
 # Examples: transversal DevTools lab. Reference: transversal HTTP tables.
 # Self-assessment anchor inside chapter 03, answers in answers.md.
-# Delivery: the published Semana 1 repository.
+# Delivery evidence is described without treating a personal repository as a source.
 REQUIRED_LINKS = [
     "../chapters/01-web-foundations.md",
     "../chapters/02-variables-types-scope.md",
@@ -31,7 +31,6 @@ REQUIRED_LINKS = [
     "aplicaciones-web/consulta-http.md",
     "../chapters/03-week1-practice-review.md#autoevaluacion-semana1",
     "../answers.md",
-    "https://github.com/statick88/aplicaciones-web-semana1",
 ]
 
 
@@ -41,6 +40,8 @@ class WeekNavigationTests(unittest.TestCase):
         for link in REQUIRED_LINKS:
             with self.subTest(link=link):
                 self.assertIn(link, text)
+        self.assertIn("| Entregas | Sitio personal y calculadora", text)
+        self.assertNotIn("https://github.com/statick88", text)
 
     def test_every_linked_local_markdown_target_exists(self) -> None:
         text = WEB_INDEX.read_text(encoding="utf-8")
@@ -61,7 +62,7 @@ class WeekNavigationTests(unittest.TestCase):
     def test_catalog_keeps_every_week_navigation_target_public(self) -> None:
         catalog = json.loads(CATALOG.read_text(encoding="utf-8"))
         sources = {page["source"] for page in catalog["pages"]}
-        for target in REQUIRED_LINKS[:-1]:
+        for target in REQUIRED_LINKS:
             source = (ROOT / "subjects" / target.split("#", 1)[0]).resolve()
             with self.subTest(target=target):
                 self.assertIn(str(source.relative_to(ROOT.parent)), sources)

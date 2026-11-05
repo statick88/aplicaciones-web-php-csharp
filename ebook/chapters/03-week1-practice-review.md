@@ -7,14 +7,10 @@ cómo PHP y C# expresan la misma idea. PHP y C# no son tareas distintas aquí.
 
 ## Punto de partida verificable
 
-La entrega personal existente es el sitio HTML/CSS con una calculadora PHP del
-commit [`ff3d1d7`](https://github.com/statick88/aplicaciones-web-semana1/commit/ff3d1d757b0799bdad2b2a8f4813f3023f3f49ca).
-No la copies ni la sustituyas: úsala como evidencia previa para observar las
-cuatro operaciones. El repositorio de práctica actual tiene ejemplos de
-variables en PHP y C# en el commit
-[`406f4c0`](https://github.com/statick88/aplicaciones-web-php-csharp/commit/406f4c02b3803f4ec444559239a8d93c724773c8).
-Son material de comparación, no una afirmación de que ya existe una calculadora
-C# equivalente.
+Una entrega previa contiene un sitio HTML/CSS con una calculadora PHP. No la
+copies ni la sustituyas: úsala como evidencia de práctica para observar las
+cuatro operaciones. Los ejemplos locales de variables en PHP y C# son material
+de comparación, no una afirmación de que ya existe una calculadora C# equivalente.
 
 La consigna de la primera semana pide una página personal HTML/CSS y una
 calculadora PHP integrada y publicada en control de versiones [@blackboard-task1].
@@ -135,55 +131,36 @@ representación, el manejo de solicitudes y los datos del dominio para que sea
 más fácil localizar responsabilidades [@aspnet-mvc]. No convierte
 retroactivamente todo archivo en MVC. En particular, el `php/public/home.php`
 actual de las facturas es monolítico; este ebook no lo refactoriza y las
-facturas/persistencia no son requisitos oficiales comprobados de Semana 1
-[@practice-repo].
+facturas/persistencia no son requisitos oficiales comprobados de Semana 1.
 
-## Autoevaluación manual {#autoevaluacion-semana1}
+## Autoevaluación de opción múltiple {#autoevaluacion-semana1}
 
-Responde en una libreta antes de abrir las soluciones. Los enlaces estables
-llevan a respuestas razonadas, no a una calificación ni a una prueba segura.
+Selecciona una opción para cada tema. Las referencias se conservan como ampliación
+conceptual; la retroalimentación de cada alternativa guía qué ejemplo revisar.
 
-1. <span id="p1"></span>[P1: historia y propósito](../answers.md#p1-respuesta) ¿Qué problema ayuda
-   a resolver una página dinámica frente a una estática y qué aspecto de la
-   evolución de PHP revisarías en una fuente oficial?
-2. <span id="p2"></span>[P2: HTTP](../answers.md#p2-respuesta) En una calculadora web, distingue
-   solicitud, procesamiento en servidor y respuesta con tus propias palabras.
-3. <span id="p3"></span>[P3: tipos](../answers.md#p3-respuesta) Predice qué intención expresa
-   `"8" + "2"` en PHP y por qué debes verificarlo en vez de asumir que equivale
-   a la suma C# `8 + 2`.
-4. <span id="p4"></span>[P4: interpolación](../answers.md#p4-respuesta) Predice la salida de los
-   dos ejemplos de Ana y nombra una diferencia sintáctica.
-5. <span id="p5"></span>[P5: constantes](../answers.md#p5-respuesta) ¿Cuándo elegirías una
-   constante en vez de una variable? Da un ejemplo de cada una.
-6. <span id="p6"></span>[P6: alcance](../answers.md#p6-respuesta) Explica por qué un parámetro hace
-   más visible la dependencia de una función que recurrir a `global`.
-7. <span id="p7"></span>[P7: depuración](../answers.md#p7-respuesta) Si `8 / 0` no produce un
-   resultado numérico útil, ¿qué tres observaciones registrarías antes de tocar
-   el código?
-8. <span id="p8"></span>[P8: comprobación](../answers.md#p8-respuesta) Diseña una tabla mínima para
-   verificar las cuatro operaciones, cero y entrada no numérica.
-9. <span id="p9"></span>[P9: MVC](../answers.md#p9-respuesta) ¿Qué afirma y qué no afirma decir que
-   MVC es el patrón adoptado, dado el `home.php` PHP actual?
-10. <span id="p10"></span>[P10: transferencia](../answers.md#p10-respuesta) Para convertir
-    temperaturas, identifica entrada, procesamiento y salida; después escribe
-    una predicción de prueba para PHP y otra para C#.
+1. <span id="p1"></span>[P1: historia y propósito](../answers.md#p1-respuesta)
+   <!-- quiz: web-review-p1 -->
+2. <span id="p2"></span>[P2: HTTP](../answers.md#p2-respuesta)
+   <!-- quiz: web-review-p2 -->
+3. <span id="p3"></span>[P3: tipos](../answers.md#p3-respuesta)
+   <!-- quiz: web-review-p3 -->
+4. <span id="p4"></span>[P4: interpolación](../answers.md#p4-respuesta)
+   <!-- quiz: web-review-p4 -->
+5. <span id="p5"></span>[P5: constantes](../answers.md#p5-respuesta)
+   <!-- quiz: web-review-p5 -->
+6. <span id="p6"></span>[P6: alcance](../answers.md#p6-respuesta)
+   <!-- quiz: web-review-p6 -->
+7. <span id="p7"></span>[P7: depuración](../answers.md#p7-respuesta)
+   <!-- quiz: web-review-p7 -->
+8. <span id="p8"></span>[P8: comprobación](../answers.md#p8-respuesta)
+   <!-- quiz: web-review-p8 -->
+9. <span id="p9"></span>[P9: MVC](../answers.md#p9-respuesta)
+   <!-- quiz: web-review-p9 -->
+10. <span id="p10"></span>[P10: transferencia](../answers.md#p10-respuesta)
+    <!-- quiz: web-review-p10 -->
 
-## Criterios de autoevaluación
-
-**Estos son criterios de autoevaluación, no rúbrica docente.** Marca cada punto
-solo si puedes mostrar tu predicción y una observación.
-
-| Evidencia personal | Aún no | Sí, con nota concreta |
-|---|---:|---:|
-| Distinguí entrada, procesamiento y salida en un caso | ☐ | ☐ |
-| Revisé las cuatro operaciones y el divisor cero | ☐ | ☐ |
-| Registré qué ocurrió con una entrada no numérica | ☐ | ☐ |
-| Expliqué una diferencia PHP/C# sin inventar paridad | ☐ | ☐ |
-| Justifiqué una constante, un tipo y un parámetro | ☐ | ☐ |
-
-Una pista o una respuesta te ayuda a comparar tu razonamiento; no demuestra
-que hayas realizado la práctica. Conserva tus notas y vuelve al ejemplo cuando
-una predicción falle.
+La selección correcta orienta el siguiente repaso; el progreso distingue una respuesta
+registrada de un acierto y no sustituye observar las prácticas locales.
 
 ## Siguiente paso
 

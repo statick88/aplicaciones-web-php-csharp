@@ -1,8 +1,10 @@
 # Respuestas de autoevaluación {#respuestas-autoevaluacion}
 
-Estas respuestas muestran una forma de razonar. Compáralas con tus notas después
-de contestar las preguntas de [auto evaluación de Semana 1](chapters/03-week1-practice-review.md#autoevaluacion-semana1).
-No asignan puntos, no guardan progreso y no certifican una evaluación.
+Estas respuestas amplían conceptos de las preguntas de opción múltiple de la
+[autoevaluación de Semana 1](chapters/03-week1-practice-review.md#autoevaluacion-semana1).
+Selecciona una alternativa y usa su retroalimentación antes de consultar esta referencia.
+No asignan puntos ni certifican una evaluación; el sitio puede registrar localmente
+respuestas y aciertos como medidas separadas.
 
 Para Semana 2, las soluciones están al final de cada clase:
 [tipos y Cliente](subjects/aplicaciones-web/semana-02/01-tipos-cliente.md#s2c1-respuestas)
@@ -93,7 +95,7 @@ el valor observado, no solo que el programa compile.
 
 ## Cómo usar una discrepancia
 
-Si tu respuesta no coincide, vuelve a la pregunta enlazada, localiza qué
-suposición hiciste sobre entrada, tipo o alcance y prueba un caso pequeño.
-Consultar una pista o estas soluciones puede orientar la siguiente prueba, pero
-no es evidencia de que la hayas realizado.
+Si una selección no coincide con la respuesta de referencia, vuelve a la pregunta
+enlazada, localiza la regla sobre entrada, tipo o alcance y prueba un caso pequeño
+cuando la práctica lo proponga. La retroalimentación orienta el siguiente repaso;
+no certifica que se haya realizado una práctica.

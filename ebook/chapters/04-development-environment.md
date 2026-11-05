@@ -83,15 +83,9 @@ siguientes desde la **raíz del repositorio**, no desde `php/public` ni `csharp/
 
 ### Preparación común
 
-**1. Abre el proyecto.** Si todavía no tienes una copia, puedes obtenerla así:
-
-```bash
-git clone https://github.com/statick88/aplicaciones-web-php-csharp.git
-cd aplicaciones-web-php-csharp
-```
-
-Si ya tienes una copia, abre su carpeta: no vuelvas a clonarla. En la raíz deben
-estar las carpetas `php/`, `csharp/` y `ebook/`.
+**1. Abre una copia local del proyecto.** En su raíz deben estar las carpetas
+`php/`, `csharp/` y `ebook/`. La obtención de la copia depende del canal de
+entrega del curso; esta guía no la presenta como fuente técnica.
 
 **2. Comprueba Docker y Compose.**
 
@@ -130,8 +124,9 @@ elimines el volumen para corregir una discrepancia.
 
 El escenario usa `php/Dockerfile` y `php/compose.yaml`. El primero prepara
 Apache, PHP 8.5.12 y las extensiones `pdo_mysql` y `mysqli`; Compose conecta
-`app` con MariaDB. Puedes consultar también la
-[guía PHP del repositorio](https://github.com/statick88/aplicaciones-web-php-csharp/blob/main/php/README.md).
+`app` con MariaDB. La configuración de Compose de esta práctica define esos
+servicios; para instalar o administrar Docker, consulta su documentación oficial
+[@docker-docs].
 
 **1. Crea `php/.env` con tu editor.** Usa dos contraseñas distintas:
 
@@ -203,9 +198,9 @@ Para volver a iniciar, reutiliza el mismo comando `up -d --build` del paso 2.
 ### C# / ASP.NET Core
 
 El escenario usa `csharp/Dockerfile` y `csharp/compose.yaml`: un contenedor con
-SDK .NET 10.0.403 y `dotnet watch`, y otro con SQL Server 2022. Consulta también
-la [guía C# del repositorio](https://github.com/statick88/aplicaciones-web-php-csharp/blob/main/csharp/README.md).
-Antes de empezar, respeta el límite x86-64 explicado arriba. El Compose declara
+SDK .NET 10.0.403 y `dotnet watch`, y otro con SQL Server 2022. Antes de
+empezar, respeta el límite x86-64 explicado arriba y la documentación oficial de
+SQL Server en contenedores [@sqlserver-containers]. El Compose declara
 `ACCEPT_EULA=Y`: revisa los términos de Microsoft antes de utilizar la imagen.
 
 **1. Libera el puerto y crea `csharp/.env`.** Si ya preparaste PHP con los pasos
@@ -338,13 +333,13 @@ Desde el host se accede por `127.0.0.1:3306` y `127.0.0.1:1433`.
 
 ## Comprobación de aprendizaje, no de plataforma
 
-Después de cualquiera de las rutas, vuelve al objetivo de Semana 1:
+Selecciona una alternativa y usa la retroalimentación para distinguir evidencia de
+servicio, respuesta HTTP y persistencia. Las prácticas de ejecución siguen siendo
+opcionales y no requieren una respuesta escrita.
 
-1. elige un valor de entrada y predice una salida;
-2. localiza entrada, procesamiento y salida en el ejemplo;
-3. contrasta PHP y C# sin exigir que tengan la misma pantalla;
-4. anota si el límite fue del código, del contenedor, del puerto o de la
-   compatibilidad de SQL Server.
+<!-- quiz: web-environment-evidence -->
+
+<!-- quiz: web-environment-boundary -->
 
 Si no puedes iniciar el stack C# en Apple Silicon, aún puedes estudiar los
 fragmentos y completar la comparación conceptual. No presentes esa lectura

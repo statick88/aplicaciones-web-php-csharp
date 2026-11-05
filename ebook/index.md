@@ -27,14 +27,13 @@ evidencia disponible sin mezclar respuestas ni adelantar contenido por inferenci
 
 ## Un ciclo de práctica
 
-Repita este ciclo para cada ejercicio. El objetivo no es acertar a la primera,
-sino hacer visible qué evidencia sostiene una respuesta.
+Lee el ejemplo, selecciona una alternativa y usa la retroalimentación para localizar
+la regla o evidencia que conviene revisar. Después ejecuta un caso pequeño si la
+práctica lo propone y compara la salida observada con el comportamiento explicado.
 
-1. **Prediga.** Antes de ejecutar, escriba qué espera que ocurra y por qué.
-2. **Explique.** Describa qué dato entra, qué regla se aplica y qué resultado debería salir.
-3. **Ejecute.** Pruebe un ejemplo pequeño en el repositorio de práctica o en su entorno local.
-4. **Compruebe.** Compare la salida y los errores con su predicción.
-5. **Reflexione.** Registre qué cambió entre la hipótesis y la evidencia, y formule el siguiente experimento.
+<!-- quiz: web-study-feedback -->
+
+<!-- quiz: web-study-progress -->
 
 Los avisos desplegables de pista y solución ayudan a dosificar la ayuda: primero
 intente resolver; después contraste su razonamiento. En HTML pueden contraerse y
@@ -55,11 +54,11 @@ reproduce exportaciones privadas de Blackboard.
 
 ## Autoevaluación formativa
 
-La autoevaluación es manual. Para cada práctica, conserve una predicción, el comando
-o acción realizada, la evidencia observada y una explicación breve. Revise después
-las [respuestas razonadas](answers.md), corrija su explicación y decida un paso
-siguiente. En Arquitectura, las respuestas están junto a la práctica integrada de
-Semana 1. No hay LMS, puntos, cuentas ni una promesa de dominio automático.
+Las autoevaluaciones usan opción múltiple y muestran retroalimentación por cada
+selección. El progreso local cuenta respuestas y aciertos por separado; no es una
+calificación, no usa cuentas ni certifica dominio. Las [respuestas de referencia](answers.md)
+amplían algunos conceptos sin pedir una justificación escrita. En Arquitectura, las
+respuestas están junto a la práctica integrada de Semana 1.
 
 ## Alcance de esta edición
 

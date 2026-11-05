@@ -14,7 +14,8 @@ class PhpHttpGuide(unittest.TestCase):
         launch = re.search(r"\[el laboratorio local\]\(([^)]+)\)", source)
         self.assertIsNotNone(launch)
         self.assertEqual(launch.group(1), "http://127.0.0.1:8088/")
-        self.assertIn("[guía del ejemplo](../../examples/http-methods/README.md)", source)
+        self.assertIn("[documentación oficial del servidor integrado de PHP](https://www.php.net/manual/es/features.commandline.webserver.php)", source)
+        self.assertNotIn("examples/http-methods/README.md", source)
 
 
 if __name__ == "__main__":

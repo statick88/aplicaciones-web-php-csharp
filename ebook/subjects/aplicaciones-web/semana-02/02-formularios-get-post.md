@@ -5,8 +5,12 @@ Esta clase sigue el recorrido completo: construir la entrada, leerla con cuidado
 validarla en el servidor y mostrar un resultado sin repetir un registro.
 Los ejemplos son prácticas locales, con datos ficticios y sin base de datos.
 
-El alcance sigue el material de clase aportado como `semana2-clase2.md`, contrastado con
-las prácticas locales de PHP y C#; no implica acceso nuevo a Blackboard [@course-web-week2-class2].
+Las reglas de formularios, PHP y ASP.NET Core se contrastan con sus
+[referencias oficiales](https://www.php.net/manual/en/), la
+[documentación de Microsoft](https://learn.microsoft.com/en-us/aspnet/core/mvc/models/model-binding?view=aspnetcore-10.0)
+y la semántica de HTTP de [IETF](https://www.rfc-editor.org/rfc/rfc9110)
+[@php-manual; @microsoft-csharp; @aspnet-mvc]. Los ejemplos locales solo permiten
+observar esas reglas en una práctica controlada.
 
 ## Formularios: contrato de entrada {#s2c2-formularios}
 
@@ -195,31 +199,25 @@ Consulta primero [tipos, conversiones y Cliente](01-tipos-cliente.md#semana2-cla
 navegación de [Aplicaciones Web](../../aplicaciones-web.md#cobertura-actual) para volver al mapa
 de la asignatura.
 
-## Ejercicios {#s2c2-ejercicios}
+## Ejercicios de opción múltiple {#s2c2-ejercicios}
+
+Selecciona una alternativa y usa su retroalimentación para contrastar la regla con los
+fragmentos o la práctica local; no se requiere una explicación escrita.
 
 ### Ejercicio 1: contrato del formulario {#s2c2-ej-1}
-
-¿Por qué `required` no basta para aceptar un correo y qué papel cumple `name`?
+<!-- quiz: web-forms-contract -->
 
 ### Ejercicio 2: elegir método {#s2c2-ej-2}
-
-Elige GET o POST para buscar `ana` y para registrar `ana@example.test`.
-Explica por qué POST no cifra el correo.
+<!-- quiz: web-forms-method -->
 
 ### Ejercicio 3: múltiples intereses {#s2c2-ej-3}
-
-Compara `intereses[]` en PHP con varias casillas `name="Intereses"` en Razor.
-¿Qué validación se conserva en ambos lados?
+<!-- quiz: web-forms-interests -->
 
 ### Ejercicio 4: entrada manipulada {#s2c2-ej-4}
-
-¿Qué debe pasar si `nombre` llega como arreglo o si la edad es `100`?
-Incluye estado, datos retenidos y efecto sobre el contador.
+<!-- quiz: web-forms-invalid -->
 
 ### Ejercicio 5: PRG y alcance {#s2c2-ej-5}
-
-¿Por qué la redirección `303` ayuda al recargar, y qué problema no resuelve?
-¿Dónde viven los registros de esta práctica?
+<!-- quiz: web-forms-prg -->
 
 ## Respuestas razonadas {#s2c2-respuestas}
 

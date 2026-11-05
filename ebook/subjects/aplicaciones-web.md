@@ -26,7 +26,7 @@ curso ni registra calificaciones.
 | Ejemplos | Demostraciones ejecutables en el capítulo de valores y [Laboratorio PHP](aplicaciones-web/laboratorio-http-php.md); rutas opcionales en [Entorno de desarrollo](../chapters/04-development-environment.md) |
 | Ejercicios | [Práctica y repaso](../chapters/03-week1-practice-review.md) con predicciones; [Tablas de consulta HTTP](aplicaciones-web/consulta-http.md) como referencia durante la práctica |
 | Autoevaluación | [Autoevaluación de Semana 1](../chapters/03-week1-practice-review.md#autoevaluacion-semana1) y sus [respuestas razonadas](../answers.md) |
-| Entregas | Sitio personal y calculadora publicados en [aplicaciones-web-semana1](https://github.com/statick88/aplicaciones-web-semana1) |
+| Entregas | Sitio personal y calculadora como evidencia de práctica; no son fuentes de autoridad |
 
 ## Navegación de la Semana 2
 
@@ -38,9 +38,10 @@ curso ni registra calificaciones.
 | Respuestas razonadas | [Clase 1](aplicaciones-web/semana-02/01-tipos-cliente.md#s2c1-respuestas) y [Clase 2](aplicaciones-web/semana-02/02-formularios-get-post.md#s2c2-respuestas) |
 | Práctica local | Demos PHP `semana2-tipos.php` / `semana2.php` y MVC `/Semana2/Tipos` / `/Semana2`; instrucciones dentro de cada clase |
 
-La Semana 2 se basa en los materiales de ambas clases aportados para esta práctica;
-no declara una nueva entrega oficial ni una evaluación aprobada. PHP y ASP.NET Core
-se ejecutan localmente: este libro estático explica y enlaza el recorrido de estudio.
+La Semana 2 contrasta sus reglas con documentación oficial de PHP, Microsoft e
+HTTP; no declara una nueva entrega oficial ni una evaluación aprobada. PHP y
+ASP.NET Core se ejecutan localmente: este libro estático explica y enlaza el
+recorrido de estudio.
 
 ## Alcance de las semanas actuales
 
@@ -53,9 +54,9 @@ las de Semana 2 se encuentran al final de cada clase.
 ## Ciclo de estudio
 
 1. **Lee y predice** el resultado antes de ejecutar un ejemplo.
-2. **Explica** la entrada, la regla y la salida con tus palabras.
-3. **Practica y comprueba** con una observación concreta.
-4. **Contrasta** tu razonamiento con la retroalimentación y registra la siguiente duda.
+2. **Selecciona** una alternativa y revisa la retroalimentación asociada.
+3. **Practica y comprueba** con una observación concreta cuando la guía lo proponga.
+4. **Contrasta** el resultado con el ejemplo y continúa con el concepto relacionado.
 
 La cobertura se amplía solo cuando la asignatura avance y existan fuentes oficiales
 verificadas. Esta página delimita las Semanas 1 y 2 disponibles, sin anticipar semanas futuras.

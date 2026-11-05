@@ -6,8 +6,9 @@ comparan PHP y C# sin suponer que sus reglas son idénticas. Para referencias de
 lenguaje, consulta el manual de PHP y la referencia de C# [@php-manual;
 @microsoft-csharp].
 
-El alcance sigue el material de clase aportado como `semana2.md`, contrastado con
-las prácticas locales de PHP y C#; no implica acceso nuevo a Blackboard [@course-web-week2-class1].
+Las reglas de lenguaje se contrastan con la documentación oficial de PHP y C#
+[@php-manual; @microsoft-csharp]. Los ejemplos locales solo permiten observar
+esas reglas en una práctica controlada.
 
 ## 1. Valores simples y ausencia de valor {#s2c1-tipos-simples}
 
@@ -191,31 +192,25 @@ repositorio de la demostración en una base de datos.
    cómo un texto llega por una solicitud. La navegación de la asignatura está
    en [Aplicaciones Web](../../aplicaciones-web.md#cobertura-actual).
 
-## Ejercicios y respuestas razonadas {#s2c1-ejercicios}
+## Ejercicios de opción múltiple y referencias {#s2c1-ejercicios}
+
+Selecciona una alternativa y consulta la retroalimentación; las referencias siguientes
+amplían la regla sin requerir una respuesta escrita.
 
 ### Ejercicio 1 {#s2c1-ej-1}
-
-¿Por qué `(int) "125abc"` no valida un id?
+<!-- quiz: web-types-cast -->
 
 ### Ejercicio 2 {#s2c1-ej-2}
-
-Predice `calcularTotal(3, 12.5, 0.10)` y explica qué ocurriría con `"3"` como
-primer argumento en la llamada estricta.
+<!-- quiz: web-types-strict -->
 
 ### Ejercicio 3 {#s2c1-ej-3}
-
-Compara `"1" == "01"` con `"1" === "01"`. ¿Qué información exige la segunda
-comparación?
+<!-- quiz: web-types-equality -->
 
 ### Ejercicio 4 {#s2c1-ej-4}
-
-Si se registra dos veces el id `2`, ¿qué ocurre? ¿Qué devuelve eliminar `999` y
-qué datos cambia?
+<!-- quiz: web-types-client -->
 
 ### Ejercicio 5 {#s2c1-ej-5}
-
-Elige entre `$$campo` y un arreglo/Dictionary para una ciudad que llega de un
-formulario. Justifica la elección.
+<!-- quiz: web-types-dynamic-name -->
 
 ### Respuestas {#s2c1-respuestas}
 

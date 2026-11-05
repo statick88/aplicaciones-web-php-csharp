@@ -90,6 +90,16 @@ resultado. Ningún verbo garantiza por sí solo un código de éxito.
 el cuerpo que realmente enviaste antes de cambiar la URL o repetir la petición.
 Si una respuesta `HEAD` no muestra cuerpo, no lo trates como un error: es lo esperado.
 
+## Comprobación de opción múltiple
+
+Selecciona una alternativa y revisa la retroalimentación antes de cambiar una petición.
+
+<!-- quiz: web-http-method -->
+
+<!-- quiz: web-http-json -->
+
+<!-- quiz: web-http-415 -->
+
 ## Fuentes de consulta
 
 Referencia técnica: [MDN: métodos HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Methods),

@@ -1,0 +1,713 @@
+{
+  "schemaVersion": 1,
+  "pages": [
+    {
+      "href": "cuaderno.html",
+      "questions": [
+        {
+          "id": "web-study-feedback",
+          "prompt": "Después de seleccionar una opción en una autoevaluación, ¿qué uso apoya mejor el aprendizaje?",
+          "options": [
+            "Leer la retroalimentación y volver al ejemplo relacionado",
+            "Tomar el acierto como certificación de dominio",
+            "Escribir una justificación obligatoria antes de continuar"
+          ],
+          "correctIndex": 0,
+          "feedback": [
+            "Correcto: la retroalimentación conecta la elección con la evidencia del ejemplo.",
+            "Un acierto aislado no certifica dominio ni sustituye la práctica.",
+            "La autoevaluación es cerrada; no exige una justificación escrita."
+          ],
+          "objective": "usar retroalimentación para orientar el estudio",
+          "level": "comprender"
+        },
+        {
+          "id": "web-study-progress",
+          "prompt": "¿Qué mide el progreso local de estas preguntas?",
+          "options": [
+            "Tiempo de lectura y visitas a las páginas",
+            "Preguntas respondidas, separadas de las correctas",
+            "Una calificación oficial del curso"
+          ],
+          "correctIndex": 1,
+          "feedback": [
+            "Las visitas no prueban que se haya respondido una pregunta.",
+            "Correcto: responder y acertar son medidas distintas.",
+            "El cuaderno no reemplaza una evaluación oficial."
+          ],
+          "objective": "interpretar progreso formativo",
+          "level": "comprender"
+        }
+      ]
+    },
+    {
+      "href": "chapters/01-web-foundations.html",
+      "questions": [
+        {
+          "id": "web-foundations-response-body",
+          "prompt": "Un navegador solicita una página PHP. ¿Qué recibe normalmente como cuerpo de respuesta?",
+          "options": [
+            "El proceso del runtime PHP",
+            "HTML o datos producidos por el servidor",
+            "El archivo PHP fuente para ejecutarlo localmente"
+          ],
+          "correctIndex": 1,
+          "feedback": [
+            "El runtime trabaja en el servidor, no viaja en el cuerpo HTTP.",
+            "Correcto: el servidor ejecuta PHP antes de enviar la respuesta.",
+            "El código de servidor no se entrega como parte normal de la página."
+          ],
+          "objective": "distinguir código de servidor y respuesta HTTP",
+          "level": "comprender"
+        },
+        {
+          "id": "web-foundations-status",
+          "prompt": "Una ruta existente produce una excepción no controlada al procesarse. ¿Qué estado describe mejor el caso?",
+          "options": [
+            "500 Internal Server Error",
+            "200 OK",
+            "404 Not Found"
+          ],
+          "correctIndex": 0,
+          "feedback": [
+            "Correcto: 500 informa un fallo interno durante el procesamiento.",
+            "200 no describe una ejecución fallida.",
+            "404 comunica que no se encontró el recurso solicitado."
+          ],
+          "objective": "interpretar estados HTTP",
+          "level": "aplicar"
+        },
+        {
+          "id": "web-foundations-dotnet",
+          "prompt": "¿Cuál explicación separa correctamente C# y .NET?",
+          "options": [
+            "C# es el servidor web y .NET es un editor",
+            "Son nombres equivalentes para el mismo compilador",
+            "C# es el lenguaje; .NET aporta runtime y bibliotecas"
+          ],
+          "correctIndex": 2,
+          "feedback": [
+            "Un servidor y un editor tienen responsabilidades distintas.",
+            "La plataforma incluye más que el compilador.",
+            "Correcto: el lenguaje se ejecuta sobre la plataforma."
+          ],
+          "objective": "distinguir lenguaje y plataforma",
+          "level": "comprender"
+        },
+        {
+          "id": "web-foundations-require",
+          "prompt": "Una aplicación necesita una configuración indispensable. ¿Qué elección hace visible un archivo faltante?",
+          "options": [
+            "include",
+            "require",
+            "Silenciar el aviso y continuar"
+          ],
+          "correctIndex": 1,
+          "feedback": [
+            "include puede continuar tras una advertencia y dejar estado incompleto.",
+            "Correcto: require detiene la ejecución ante un archivo indispensable ausente.",
+            "Ocultar el problema elimina evidencia útil para diagnosticarlo."
+          ],
+          "objective": "elegir carga de archivos según criticidad",
+          "level": "aplicar"
+        }
+      ]
+    },
+    {
+      "href": "chapters/02-variables-types-scope.html",
+      "questions": [
+        {
+          "id": "web-values-var",
+          "prompt": "En C#, ¿qué describe correctamente a var edad = 20;?",
+          "options": [
+            "El compilador infiere int y el tipo sigue siendo estático",
+            "edad puede recibir cualquier tipo después",
+            "La variable queda sin tipo hasta ejecutarse"
+          ],
+          "correctIndex": 0,
+          "feedback": [
+            "Correcto: var infiere un tipo estático desde el inicializador.",
+            "Eso describe tipado dinámico, no var en C#.",
+            "El tipo se determina en compilación."
+          ],
+          "objective": "interpretar inferencia de tipos",
+          "level": "comprender"
+        },
+        {
+          "id": "web-values-quotes",
+          "prompt": "Si $nombre vale Ada, ¿qué muestra 'Hola $nombre' en PHP?",
+          "options": [
+            "Un error de interpolación",
+            "Hola Ada",
+            "Hola $nombre"
+          ],
+          "correctIndex": 2,
+          "feedback": [
+            "La cadena es válida; simplemente no interpola.",
+            "La interpolación ocurre con comillas dobles en este caso.",
+            "Correcto: las comillas simples preservan el texto literal."
+          ],
+          "objective": "predecir interpolación PHP",
+          "level": "aplicar"
+        },
+        {
+          "id": "web-values-plus",
+          "prompt": "¿Qué par de resultados es correcto?",
+          "options": [
+            "Ambos dan 6 porque representan números",
+            "Ambos dan 33 porque hay una cadena",
+            "'3' + 3 en PHP da 6; \"3\" + 3 en C# da 33"
+          ],
+          "correctIndex": 2,
+          "feedback": [
+            "C# no convierte automáticamente esta expresión en suma.",
+            "PHP aplica conversión numérica para esa cadena válida.",
+            "Correcto: PHP suma la cadena numérica; C# concatena al intervenir string."
+          ],
+          "objective": "comparar operadores según tipos",
+          "level": "analizar"
+        },
+        {
+          "id": "web-values-readonly",
+          "prompt": "¿Cuándo puede asignarse un campo readonly de instancia en C#?",
+          "options": [
+            "Solo como una constante de compilación",
+            "En cualquier método después de crear el objeto",
+            "En la declaración o en el constructor de instancia"
+          ],
+          "correctIndex": 2,
+          "feedback": [
+            "const y readonly tienen momentos de asignación distintos.",
+            "Después de construir el objeto no puede reasignarse normalmente.",
+            "Correcto: readonly permite esas inicializaciones controladas."
+          ],
+          "objective": "distinguir const y readonly",
+          "level": "comprender"
+        },
+        {
+          "id": "web-values-scope",
+          "prompt": "Una función necesita un valor exterior para calcular. ¿Qué diseño hace más visible la dependencia?",
+          "options": [
+            "Recibirlo como parámetro",
+            "Confiar en una variable creada en otro bloque",
+            "Leerlo con global"
+          ],
+          "correctIndex": 0,
+          "feedback": [
+            "Correcto: el parámetro aparece en la firma y en cada llamada.",
+            "La disponibilidad depende de reglas de alcance y no expresa la dependencia.",
+            "global oculta de dónde viene el dato."
+          ],
+          "objective": "elegir dependencias explícitas",
+          "level": "aplicar"
+        }
+      ]
+    },
+    {
+      "href": "chapters/03-week1-practice-review.html",
+      "questions": [
+        {
+          "id": "web-review-p1",
+          "prompt": "¿Qué ventaja práctica puede aportar una página dinámica frente a una estática?",
+          "options": [
+            "Enviar siempre el código PHP al navegador",
+            "Evitar verificar la versión de PHP",
+            "Construir la respuesta con datos o reglas de la solicitud"
+          ],
+          "correctIndex": 2,
+          "feedback": [
+            "El navegador recibe la respuesta, no el código PHP del servidor.",
+            "La versión activa sigue siendo una condición técnica.",
+            "Correcto: una respuesta dinámica puede depender de la solicitud."
+          ],
+          "objective": "distinguir páginas estáticas y dinámicas",
+          "level": "comprender"
+        },
+        {
+          "id": "web-review-p2",
+          "prompt": "En una calculadora web, ¿cuál secuencia representa el recorrido correcto?",
+          "options": [
+            "HTML visible → solicitud → código PHP enviado",
+            "Respuesta → navegador procesa en servidor → solicitud",
+            "Solicitud con datos → procesamiento servidor → respuesta"
+          ],
+          "correctIndex": 2,
+          "feedback": [
+            "El código PHP no se envía como el HTML visible.",
+            "El navegador no procesa en el servidor.",
+            "Correcto: el servidor procesa la solicitud antes de responder."
+          ],
+          "objective": "modelar el ciclo HTTP",
+          "level": "aplicar"
+        },
+        {
+          "id": "web-review-p3",
+          "prompt": "¿Por qué conviene verificar \"8\" + \"2\" en PHP antes de equipararlo con 8 + 2 en C#?",
+          "options": [
+            "PHP convierte cadenas numéricas; C# ya suma enteros",
+            "Las expresiones siempre tienen idéntico tipo",
+            "C# concatena dos enteros"
+          ],
+          "correctIndex": 0,
+          "feedback": [
+            "Correcto: coincidir en resultado no implica las mismas entradas o conversiones.",
+            "Los tipos de entrada y reglas sí importan.",
+            "Dos enteros se suman; la concatenación depende de string."
+          ],
+          "objective": "analizar conversiones entre lenguajes",
+          "level": "analizar"
+        },
+        {
+          "id": "web-review-p4",
+          "prompt": "¿Qué diferencia sintáctica produce “Ana tiene 2 intentos.” en ambos ejemplos?",
+          "options": [
+            "PHP interpola variables en comillas dobles; C# usa $ y llaves",
+            "C# interpola con comillas simples",
+            "PHP y C# usan exactamente la misma interpolación"
+          ],
+          "correctIndex": 0,
+          "feedback": [
+            "Correcto: las sintaxis difieren aunque la salida sea semejante.",
+            "Las cadenas de C# usan comillas dobles.",
+            "La equivalencia de salida no vuelve idéntica la sintaxis."
+          ],
+          "objective": "comparar interpolación",
+          "level": "comprender"
+        },
+        {
+          "id": "web-review-p5",
+          "prompt": "¿Qué dato es mejor candidato para una constante?",
+          "options": [
+            "Un correo recibido desde un formulario",
+            "Una tasa fija durante la ejecución",
+            "La entrada base de cada cálculo"
+          ],
+          "correctIndex": 1,
+          "feedback": [
+            "La entrada externa debe tratarse como dato variable y validarse.",
+            "Correcto: expresa una regla que no se reasigna.",
+            "La base cambia según la entrada."
+          ],
+          "objective": "seleccionar constantes",
+          "level": "aplicar"
+        },
+        {
+          "id": "web-review-p6",
+          "prompt": "¿Por qué pasar un parámetro suele superar a global en este ejemplo?",
+          "options": [
+            "Muestra explícitamente la dependencia",
+            "Elimina la necesidad de una llamada",
+            "Hace que la función comparta toda la memoria"
+          ],
+          "correctIndex": 0,
+          "feedback": [
+            "Correcto: firma y llamada documentan el origen del valor.",
+            "La función todavía debe invocarse con una entrada.",
+            "No se busca ampliar estado compartido."
+          ],
+          "objective": "razonar sobre alcance",
+          "level": "comprender"
+        },
+        {
+          "id": "web-review-p7",
+          "prompt": "Ante una división por cero, ¿qué observación inicia mejor el diagnóstico?",
+          "options": [
+            "Atribuir el fallo a PHP o C# de inmediato",
+            "Valores y tipos de entrada, operador y resultado o aviso",
+            "Cambiar el navegador sin mirar la salida"
+          ],
+          "correctIndex": 1,
+          "feedback": [
+            "La causa no puede inferirse sin observar el recorrido.",
+            "Correcto: esos datos permiten formular una hipótesis comprobable.",
+            "Cambiar una herramienta no aporta evidencia del cálculo."
+          ],
+          "objective": "diagnosticar con evidencia",
+          "level": "analizar"
+        },
+        {
+          "id": "web-review-p8",
+          "prompt": "¿Qué caso debe incluir una comprobación responsable de calculadora?",
+          "options": [
+            "Solo resultados positivos",
+            "Divisor cero y entrada no numérica además de operaciones normales",
+            "Solo una suma que compile"
+          ],
+          "correctIndex": 1,
+          "feedback": [
+            "Excluir casos límite oculta información útil.",
+            "Correcto: los límites muestran comportamiento declarado.",
+            "Una suma no cubre las reglas críticas restantes."
+          ],
+          "objective": "diseñar casos de prueba",
+          "level": "aplicar"
+        },
+        {
+          "id": "web-review-p9",
+          "prompt": "¿Qué afirma correctamente el texto sobre MVC?",
+          "options": [
+            "MVC demuestra que no hay lógica de negocio",
+            "Es la organización elegida para prácticas que lo usan, no una descripción retroactiva de todo archivo",
+            "Todo archivo PHP actual ya es MVC"
+          ],
+          "correctIndex": 1,
+          "feedback": [
+            "Separar responsabilidades no elimina la lógica de negocio.",
+            "Correcto: el ejemplo monolítico no se reclasifica por esa decisión.",
+            "El texto identifica explícitamente un ejemplo monolítico."
+          ],
+          "objective": "delimitar afirmaciones arquitectónicas",
+          "level": "analizar"
+        },
+        {
+          "id": "web-review-p10",
+          "prompt": "Para convertir Celsius a Fahrenheit, ¿cuál es una prueba concreta correcta?",
+          "options": [
+            "Entrada Fahrenheit, regla sumar texto, salida 0",
+            "Entrada 0, regla C * 9 / 5 + 32, salida 32",
+            "Compilar sin elegir entrada ni resultado"
+          ],
+          "correctIndex": 1,
+          "feedback": [
+            "La regla y las unidades no corresponden a la conversión descrita.",
+            "Correcto: identifica entrada, procesamiento y salida observable.",
+            "Compilar no verifica por sí solo el comportamiento."
+          ],
+          "objective": "transferir el modelo entrada-proceso-salida",
+          "level": "aplicar"
+        }
+      ]
+    },
+    {
+      "href": "subjects/aplicaciones-web/consulta-http.html",
+      "questions": [
+        {
+          "id": "web-http-method",
+          "prompt": "Una API debe reemplazar la representación completa de /productos/42. ¿Qué método expresa esa intención?",
+          "options": [
+            "PUT",
+            "PATCH",
+            "GET"
+          ],
+          "correctIndex": 0,
+          "feedback": [
+            "Correcto: PUT representa creación o reemplazo conforme al contrato.",
+            "PATCH se usa para cambios parciales según un formato de parche.",
+            "GET solicita una representación sin pedir modificación."
+          ],
+          "objective": "seleccionar métodos HTTP",
+          "level": "aplicar"
+        },
+        {
+          "id": "web-http-json",
+          "prompt": "Un endpoint PHP recibe JSON con PATCH. ¿Dónde debe leer el cuerpo antes de decodificarlo?",
+          "options": [
+            "La barra de direcciones",
+            "php://input",
+            "$_POST siempre"
+          ],
+          "correctIndex": 1,
+          "feedback": [
+            "La URL no contiene necesariamente el cuerpo enviado.",
+            "Correcto: JSON no aparece automáticamente en $_POST.",
+            "$_POST aplica a tipos de formulario que PHP procesa."
+          ],
+          "objective": "ubicar datos HTTP en PHP",
+          "level": "aplicar"
+        },
+        {
+          "id": "web-http-415",
+          "prompt": "PATCH /productos/42 devuelve 415. ¿Qué revisar primero?",
+          "options": [
+            "Asumir que la URL no existe",
+            "Cambiar PATCH por el número 415",
+            "Content-Type y formato del cuerpo"
+          ],
+          "correctIndex": 2,
+          "feedback": [
+            "Una ruta ausente se asociaría típicamente con 404.",
+            "Un estado no es un método HTTP.",
+            "Correcto: 415 señala un formato de contenido no aceptado."
+          ],
+          "objective": "diagnosticar respuestas HTTP",
+          "level": "analizar"
+        }
+      ]
+    },
+    {
+      "href": "subjects/aplicaciones-web/laboratorio-http-php.html",
+      "questions": [
+        {
+          "id": "web-http-lab-get",
+          "prompt": "En el laboratorio, ¿dónde recibe PHP tema=red enviado en la URL?",
+          "options": [
+            "$_POST",
+            "php://input como JSON",
+            "$_GET"
+          ],
+          "correctIndex": 2,
+          "feedback": [
+            "No es un formulario POST.",
+            "No se envió un cuerpo JSON.",
+            "Correcto: los parámetros de consulta llegan a $_GET."
+          ],
+          "objective": "relacionar query y PHP",
+          "level": "aplicar"
+        },
+        {
+          "id": "web-http-lab-post",
+          "prompt": "¿Por qué el POST de formulario aparece en $_POST en el laboratorio?",
+          "options": [
+            "GET copia automáticamente el formulario",
+            "Todo POST JSON llena $_POST",
+            "Usa application/x-www-form-urlencoded"
+          ],
+          "correctIndex": 2,
+          "feedback": [
+            "GET y POST son solicitudes distintas.",
+            "JSON requiere leer y decodificar el cuerpo.",
+            "Correcto: PHP procesa ese tipo de formulario en $_POST."
+          ],
+          "objective": "interpretar datos de formulario",
+          "level": "comprender"
+        },
+        {
+          "id": "web-http-lab-delete",
+          "prompt": "¿Qué demuestra saved: false en la respuesta DELETE del laboratorio?",
+          "options": [
+            "La consulta cambió una base de datos",
+            "La eliminación es simulada y no persistió datos",
+            "El método DELETE no llegó al servidor"
+          ],
+          "correctIndex": 1,
+          "feedback": [
+            "No hay almacenamiento de datos en este recorrido.",
+            "Correcto: el laboratorio hace explícita la simulación.",
+            "La respuesta confirma que PHP recibió y procesó el método."
+          ],
+          "objective": "interpretar evidencia de persistencia",
+          "level": "analizar"
+        }
+      ]
+    },
+    {
+      "href": "subjects/aplicaciones-web/semana-02/01-tipos-cliente.html",
+      "questions": [
+        {
+          "id": "web-types-cast",
+          "prompt": "¿Por qué (int) \"125abc\" no valida un id?",
+          "options": [
+            "Todo cast rechaza textos con letras",
+            "El cast toma el prefijo y no confirma el formato completo",
+            "Convertir hace innecesaria la validación"
+          ],
+          "correctIndex": 1,
+          "feedback": [
+            "El ejemplo muestra que PHP conserva el prefijo numérico.",
+            "Correcto: convertir e identificar formato válido son tareas distintas.",
+            "La validación debe decidir qué entradas acepta la regla."
+          ],
+          "objective": "distinguir conversión y validación",
+          "level": "analizar"
+        },
+        {
+          "id": "web-types-strict",
+          "prompt": "¿Qué ocurre al llamar calcularTotal(\"3\", 12.5) desde una llamada estricta?",
+          "options": [
+            "Se produce TypeError",
+            "Crea un cliente con id 3",
+            "Devuelve 33.75 tras convertir sin aviso"
+          ],
+          "correctIndex": 0,
+          "feedback": [
+            "Correcto: el parámetro int no acepta silenciosamente esa cadena en ese contexto.",
+            "La función calcula un total, no registra clientes.",
+            "33.75 corresponde a la llamada con entero 3."
+          ],
+          "objective": "aplicar contratos de tipo",
+          "level": "aplicar"
+        },
+        {
+          "id": "web-types-equality",
+          "prompt": "¿Qué comparación exige que \"1\" y \"01\" tengan mismo tipo y valor?",
+          "options": [
+            "=",
+            "===",
+            "=="
+          ],
+          "correctIndex": 1,
+          "feedback": [
+            "= es asignación, no comparación.",
+            "Correcto: === compara identidad de tipo y valor.",
+            "== puede hacer comparación flexible en PHP."
+          ],
+          "objective": "comparar igualdad PHP",
+          "level": "comprender"
+        },
+        {
+          "id": "web-types-client",
+          "prompt": "Se registra dos veces el cliente id 2 y luego se elimina 999. ¿Qué ocurre?",
+          "options": [
+            "El segundo registro reemplaza id 2; eliminar 999 devuelve false sin cambios",
+            "Ambos registros se conservan y 999 se crea",
+            "Eliminar 999 lanza una excepción y borra id 2"
+          ],
+          "correctIndex": 0,
+          "feedback": [
+            "Correcto: el id es clave y el inexistente no modifica la colección.",
+            "La fuente no define duplicados como una lista adicional.",
+            "No se describe ese efecto lateral ni una excepción."
+          ],
+          "objective": "predecir operaciones de repositorio",
+          "level": "aplicar"
+        },
+        {
+          "id": "web-types-dynamic-name",
+          "prompt": "Para una ciudad que llega de un formulario, ¿qué estructura mantiene las claves visibles y controladas?",
+          "options": [
+            "Un arreglo asociativo o Dictionary",
+            "$$campo construido desde la entrada",
+            "Una variable global por cada ciudad"
+          ],
+          "correctIndex": 0,
+          "feedback": [
+            "Correcto: permite recorrer y validar claves sin crear nombres arbitrarios.",
+            "Los nombres dinámicos desde entrada externa dificultan el control.",
+            "El estado global no aporta una estructura de datos segura."
+          ],
+          "objective": "elegir estructuras para entrada dinámica",
+          "level": "analizar"
+        }
+      ]
+    },
+    {
+      "href": "subjects/aplicaciones-web/semana-02/02-formularios-get-post.html",
+      "questions": [
+        {
+          "id": "web-forms-contract",
+          "prompt": "¿Por qué required no basta para aceptar un correo?",
+          "options": [
+            "El servidor debe validar porque la petición puede manipularse",
+            "required cifra el correo automáticamente",
+            "name reemplaza toda validación"
+          ],
+          "correctIndex": 0,
+          "feedback": [
+            "Correcto: las reglas del navegador no son una frontera de confianza.",
+            "El cifrado de tránsito requiere HTTPS.",
+            "name identifica el campo; no valida su contenido."
+          ],
+          "objective": "distinguir validación cliente y servidor",
+          "level": "comprender"
+        },
+        {
+          "id": "web-forms-method",
+          "prompt": "¿Qué combinación es adecuada para buscar ana y registrar ana@example.test?",
+          "options": [
+            "GET para ambos porque la URL siempre es privada",
+            "GET para buscar; POST para registrar",
+            "POST para buscar; GET para registrar"
+          ],
+          "correctIndex": 1,
+          "feedback": [
+            "Las URL compartidas no son privadas y registrar no es una consulta.",
+            "Correcto: buscar consulta; registrar cambia la colección.",
+            "La práctica asigna intenciones distintas a cada método."
+          ],
+          "objective": "seleccionar GET y POST",
+          "level": "aplicar"
+        },
+        {
+          "id": "web-forms-interests",
+          "prompt": "¿Qué validación conservan PHP intereses[] y varias casillas Intereses en Razor?",
+          "options": [
+            "Cada valor debe estar en la lista permitida",
+            "Debe existir exactamente una casilla",
+            "El navegador decide qué valores persisten"
+          ],
+          "correctIndex": 0,
+          "feedback": [
+            "Correcto: ambos producen colecciones que el servidor valida.",
+            "La lista puede contener varios intereses permitidos.",
+            "La validación es responsabilidad del servidor."
+          ],
+          "objective": "validar colecciones de formulario",
+          "level": "aplicar"
+        },
+        {
+          "id": "web-forms-invalid",
+          "prompt": "Si nombre llega como arreglo o edad vale 100, ¿qué respuesta conserva la práctica?",
+          "options": [
+            "303 y un cliente nuevo",
+            "422, valores para corregir y contador sin cambio",
+            "200 sin revisar la forma"
+          ],
+          "correctIndex": 1,
+          "feedback": [
+            "303 se usa tras un POST válido en PRG.",
+            "Correcto: la forma se rechaza antes de tratarla como texto y no se escribe.",
+            "Aceptar sin validar contradice el contrato."
+          ],
+          "objective": "diagnosticar validación de formulario",
+          "level": "analizar"
+        },
+        {
+          "id": "web-forms-prg",
+          "prompt": "¿Qué evita el 303 posterior a un POST válido y qué no garantiza?",
+          "options": [
+            "Evita repetir el POST al recargar; no garantiza idempotencia",
+            "Guarda clientes permanentemente en SQL",
+            "Cifra la sesión y elimina duplicados"
+          ],
+          "correctIndex": 0,
+          "feedback": [
+            "Correcto: PRG lleva a GET, pero no resuelve todos los problemas de concurrencia.",
+            "Los registros de la práctica viven en sesión.",
+            "La redirección no ofrece esas garantías de seguridad o datos."
+          ],
+          "objective": "analizar Post/Redirect/Get",
+          "level": "analizar"
+        }
+      ]
+    },
+    {
+      "href": "chapters/04-development-environment.html",
+      "questions": [
+        {
+          "id": "web-environment-evidence",
+          "prompt": "Un contenedor aparece en docker compose ps. ¿Qué conclusión es válida?",
+          "options": [
+            "La aplicación ya guardó datos correctamente",
+            "La compatibilidad de todos los hosts está demostrada",
+            "El servicio está listado, pero aún debe comprobarse respuesta HTTP y persistencia"
+          ],
+          "correctIndex": 2,
+          "feedback": [
+            "El guardado requiere una comprobación adicional del formulario y la base.",
+            "La guía declara límites de plataforma específicos.",
+            "Correcto: ps no cubre por sí solo el recorrido completo."
+          ],
+          "objective": "evaluar evidencia de ejecución",
+          "level": "analizar"
+        },
+        {
+          "id": "web-environment-boundary",
+          "prompt": "Si SQL Server no inicia de forma nativa en Apple Silicon, ¿qué alternativa conserva el objetivo de Semana 1?",
+          "options": [
+            "Borrar volúmenes hasta que arranque",
+            "Declarar que la práctica se ejecutó sin evidencia",
+            "Estudiar fragmentos y comparación conceptual sin afirmar ejecución verificada"
+          ],
+          "correctIndex": 2,
+          "feedback": [
+            "Borrar datos no resuelve una limitación de arquitectura.",
+            "La guía pide distinguir lectura de ejecución comprobada.",
+            "Correcto: el límite no impide comprender las comparaciones de lenguaje."
+          ],
+          "objective": "reconocer límites de plataforma",
+          "level": "aplicar"
+        }
+      ]
+    }
+  ]
+}
