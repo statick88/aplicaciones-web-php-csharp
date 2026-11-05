@@ -1,6 +1,6 @@
 # Aplicaciones Web
 
-Esta asignatura reúne las **Semanas 1 y 2**. Combina teoría, ejemplos
+Esta asignatura reúne las **Semanas 1 y 2**, más el material disponible de la **Semana 3**. Combina teoría, ejemplos
 resueltos, práctica y autoevaluación para preparar la evaluación a partir de las
 fuentes oficiales y de observaciones propias; no sustituye la documentación del
 curso ni registra calificaciones.
@@ -15,6 +15,7 @@ curso ni registra calificaciones.
 | 1 | Rutas opcionales para ejecutar los ejemplos | [Entorno de desarrollo](../chapters/04-development-environment.md) |
 | 2 · Clase 1 | Tipos, conversiones, variables de variables y Cliente CRUD en PHP/C# | [Tipos y Cliente](aplicaciones-web/semana-02/01-tipos-cliente.md#semana2-clase1-tipos-cliente) |
 | 2 · Clase 2 | Formularios GET/POST, validación y PRG en PHP/ASP.NET Core | [Formularios, GET y POST](aplicaciones-web/semana-02/02-formularios-get-post.md#semana2-clase2-formularios-get-post) |
+| 3 · Clase 1 | Constantes y operadores PHP/C#; ampliación diferenciada PHP/MySQL | [Constantes, operadores y datos](aplicaciones-web/semana-03/01-constantes-operadores-datos.md#semana3-clase1-constantes-operadores) |
 | Consulta transversal | Métodos, datos en DevTools/PHP y estados HTTP | [Tablas de consulta HTTP](aplicaciones-web/consulta-http.md) |
 | Consulta transversal | Métodos HTTP prácticos observados en DevTools | [Laboratorio PHP](aplicaciones-web/laboratorio-http-php.md) |
 
@@ -43,6 +44,18 @@ HTTP; no declara una nueva entrega oficial ni una evaluación aprobada. PHP y
 ASP.NET Core se ejecutan localmente: este libro estático explica y enlaza el
 recorrido de estudio.
 
+## Navegación de la Semana 3
+
+La primera clase conserva dos alcances distintos del material disponible: el
+recorrido principal compara constantes y operadores en PHP/C#, mientras que la
+ampliación explica PHP/MySQL sin atribuirle equivalencia con C#.
+
+- [Clase 1: constantes, operadores y datos](aplicaciones-web/semana-03/01-constantes-operadores-datos.md#semana3-clase1-constantes-operadores).
+- [Autoevaluación de Clase 1](aplicaciones-web/semana-03/01-constantes-operadores-datos.md#s3c1-autoevaluacion).
+
+Los ejemplos de esta lectura son cálculos autónomos: no implementan ni acreditan
+la entrega de un CRUD de clientes. El progreso sigue siendo formativo y local.
+
 ## Alcance de las semanas actuales
 
 El recorrido cubre fundamentos de la web, valores y alcance, y la práctica guiada
@@ -59,4 +72,4 @@ las de Semana 2 se encuentran al final de cada clase.
 4. **Contrasta** el resultado con el ejemplo y continúa con el concepto relacionado.
 
 La cobertura se amplía solo cuando la asignatura avance y existan fuentes oficiales
-verificadas. Esta página delimita las Semanas 1 y 2 disponibles, sin anticipar semanas futuras.
+verificadas. Esta página delimita las Semanas 1 a 3 disponibles, sin anticipar semanas futuras.

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "title": "Cuaderno de estudio y práctica — Ingeniería de Software",
-  "currentWeek": 2,
+  "currentWeek": 3,
   "modules": [
     {
       "id": "week1",
@@ -23,6 +23,24 @@
       "units": [
         {"id": "types-client", "title": "Tipos, conversiones y Cliente", "source": "ebook/subjects/aplicaciones-web/semana-02/01-tipos-cliente.md", "href": "subjects/aplicaciones-web/semana-02/01-tipos-cliente.html", "technologies": ["php", "dotnet"]},
         {"id": "forms-get-post", "title": "Formularios, GET y POST", "source": "ebook/subjects/aplicaciones-web/semana-02/02-formularios-get-post.md", "href": "subjects/aplicaciones-web/semana-02/02-formularios-get-post.html", "technologies": ["php", "dotnet"]}
+      ]
+    },
+    {
+      "id": "week3",
+      "title": "Semana 3: constantes, control y funciones",
+      "week": 3,
+      "description": "Comparación PHP/C# y ampliación conceptual PHP/MySQL, con alcances diferenciados.",
+      "units": [
+        {
+          "id": "week3-constants-data",
+          "title": "Constantes, operadores y datos",
+          "source": "ebook/subjects/aplicaciones-web/semana-03/01-constantes-operadores-datos.md",
+          "href": "subjects/aplicaciones-web/semana-03/01-constantes-operadores-datos.html",
+          "technologies": [
+            "php",
+            "dotnet"
+          ]
+        }
       ]
     }
   ],
@@ -48,6 +66,7 @@
     {"source": "ebook/subjects/gestion-empresarial-emprendimiento.md", "href": "subjects/gestion-empresarial-emprendimiento.html", "title": "Gestión Empresarial y Emprendimiento"},
     {"source": "ebook/subjects/inteligencia-artificial.md", "href": "subjects/inteligencia-artificial.html", "title": "Inteligencia Artificial"},
     {"source": "ebook/subjects/inteligencia-negocios.md", "href": "subjects/inteligencia-negocios.html", "title": "Inteligencia de Negocios"},
-    {"source": "ebook/subjects/proyectos-informaticos.md", "href": "subjects/proyectos-informaticos.html", "title": "Proyectos Informáticos"}
+    {"source": "ebook/subjects/proyectos-informaticos.md", "href": "subjects/proyectos-informaticos.html", "title": "Proyectos Informáticos"},
+    {"source": "ebook/subjects/aplicaciones-web/semana-03/01-constantes-operadores-datos.md", "href": "subjects/aplicaciones-web/semana-03/01-constantes-operadores-datos.html", "title": "Semana 3 · Clase 1: constantes, operadores y datos"}
   ]
 }

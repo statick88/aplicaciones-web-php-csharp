@@ -708,6 +708,164 @@
           "level": "aplicar"
         }
       ]
+    },
+    {
+      "href": "subjects/aplicaciones-web/semana-03/01-constantes-operadores-datos.html",
+      "questions": [
+        {
+          "id": "web-w3c1-const-variable",
+          "prompt": "¿Qué diseño comunica mejor una regla fija y un dato que cambia en cada compra?",
+          "options": [
+            "Declarar la moneda como constante y la cantidad como variable",
+            "Declarar la cantidad como constante y reasignar la moneda",
+            "Usar constantes para evitar validar cualquier valor"
+          ],
+          "correctIndex": 0,
+          "feedback": [
+            "Correcto: la moneda representa la regla fija y la cantidad pertenece a cada operación.",
+            "La cantidad puede cambiar entre compras; además, una constante no debe reasignarse.",
+            "Una constante restringe reasignación, pero no confirma que el valor sea válido."
+          ],
+          "objective": "distinguir reglas constantes de datos variables",
+          "level": "comprender"
+        },
+        {
+          "id": "web-w3c1-readonly-depth",
+          "prompt": "Un campo readonly de C# guarda una lista. ¿Qué afirmación es precisa?",
+          "options": [
+            "La lista y todos sus elementos se vuelven profundamente inmutables",
+            "El campo no puede reasignarse fuera de los lugares permitidos, pero el contenido puede seguir siendo mutable",
+            "readonly es el equivalente exacto de define en PHP"
+          ],
+          "correctIndex": 1,
+          "feedback": [
+            "readonly no congela automáticamente el objeto al que apunta una referencia.",
+            "Correcto: fija la asignación del campo, no garantiza inmutabilidad profunda del contenido.",
+            "Los mecanismos tienen reglas e intenciones distintas; no existe esa equivalencia oficial."
+          ],
+          "objective": "explicar el alcance de readonly",
+          "level": "comprender"
+        },
+        {
+          "id": "web-w3c1-precedence",
+          "prompt": "¿Qué revisión reduce mejor el riesgo de interpretar mal precio * cantidad - descuento?",
+          "options": [
+            "Confiar en que toda persona memorice la precedencia",
+            "Quitar nombres intermedios para que la expresión sea más corta",
+            "Calcular subtotal y total por separado y usar paréntesis donde expresen la regla"
+          ],
+          "correctIndex": 2,
+          "feedback": [
+            "La precedencia existe, pero depender solo de memoria dificulta revisión y aprendizaje.",
+            "Acortar puede ocultar la intención y vuelve más difícil comprobar cada paso.",
+            "Correcto: los nombres intermedios y paréntesis hacen observable la intención del cálculo."
+          ],
+          "objective": "aplicar precedencia y agrupación con claridad",
+          "level": "aplicar"
+        },
+        {
+          "id": "web-w3c1-strict-equality",
+          "prompt": "En PHP, ¿qué resultado produce '25' === 25?",
+          "options": [
+            "false, porque el tipo y el valor deben coincidir",
+            "true, porque toda igualdad convierte el texto a entero",
+            "un cambio permanente del texto al tipo int"
+          ],
+          "correctIndex": 0,
+          "feedback": [
+            "Correcto: la igualdad estricta distingue la cadena del entero.",
+            "La conversión puede intervenir con ==, pero === también exige el mismo tipo.",
+            "Una comparación no reasigna ni transforma permanentemente sus operandos."
+          ],
+          "objective": "diferenciar igualdad flexible y estricta en PHP",
+          "level": "comprender"
+        },
+        {
+          "id": "web-w3c1-pricing",
+          "prompt": "Con precio 12500 centavos, cantidad 2 y descuento 250 centavos, ¿cuál es el total del ejemplo?",
+          "options": [
+            "25250 centavos",
+            "24750 centavos",
+            "25000 centavos porque una constante no puede participar en una resta"
+          ],
+          "correctIndex": 1,
+          "feedback": [
+            "Ese resultado suma el descuento; la regla del ejemplo lo resta del subtotal.",
+            "Correcto: 12500 * 2 produce 25000 y luego se restan 250.",
+            "Una constante puede usarse como operando; lo que no se hace es reasignarla."
+          ],
+          "objective": "aplicar operadores a un cálculo monetario ficticio",
+          "level": "aplicar"
+        },
+        {
+          "id": "web-w3c1-scope-separation",
+          "prompt": "¿Qué conclusión respeta los dos alcances de la unidad?",
+          "options": [
+            "PDO demuestra que PHP y C# tienen una API oficial idéntica para MySQL",
+            "La salida de los ejemplos puros prueba que una base MySQL guardó los datos",
+            "PHP y C# se comparan en constantes y operadores; PHP/MySQL es un complemento distinto"
+          ],
+          "correctIndex": 2,
+          "feedback": [
+            "La unidad no establece paridad entre PDO y una API de C#.",
+            "Los ejemplos ejecutables no abren conexiones ni persisten información.",
+            "Correcto: mantener los alcances separados evita una equivalencia no sustentada."
+          ],
+          "objective": "analizar el alcance de las fuentes y ejemplos",
+          "level": "analizar"
+        },
+        {
+          "id": "web-w3c1-prepared-values",
+          "prompt": "Una pantalla permite ordenar solo por nombre o fecha_registro. ¿Qué decisión es adecuada?",
+          "options": [
+            "Elegir la columna desde una lista cerrada y enlazar por separado los valores de búsqueda",
+            "Usar un marcador de valor para cualquier nombre de columna recibido",
+            "Concatenar sin revisión todo el texto de ordenamiento"
+          ],
+          "correctIndex": 0,
+          "feedback": [
+            "Correcto: los identificadores se seleccionan de opciones permitidas y los valores se parametrizan.",
+            "Los marcadores de sentencias preparadas representan valores, no identificadores SQL arbitrarios.",
+            "Copiar una entrada arbitraria en la estructura de la consulta pierde el control del identificador."
+          ],
+          "objective": "distinguir valores preparados de identificadores SQL",
+          "level": "analizar"
+        },
+        {
+          "id": "web-w3c1-errors",
+          "prompt": "Una operación de datos falla. ¿Qué respuesta conceptual es más responsable?",
+          "options": [
+            "Mostrar al usuario la excepción completa y la cadena de conexión",
+            "Separar el detalle de diagnóstico de un mensaje comprensible para el usuario",
+            "Ocultar el fallo y continuar como si se hubiera guardado"
+          ],
+          "correctIndex": 1,
+          "feedback": [
+            "Los detalles internos pueden revelar configuración o datos que no necesita el usuario.",
+            "Correcto: diagnóstico y comunicación al usuario tienen públicos y propósitos distintos.",
+            "Simular éxito destruye la evidencia sobre si la operación realmente ocurrió."
+          ],
+          "objective": "analizar responsabilidades ante errores de datos",
+          "level": "analizar"
+        },
+        {
+          "id": "web-w3c1-html-escape",
+          "prompt": "Un nombre recuperado mediante una consulta preparada se mostrará en HTML. ¿Qué falta considerar?",
+          "options": [
+            "Nada: preparar SQL también escapa automáticamente cualquier salida HTML",
+            "Volver a guardar el nombre para que el navegador lo considere seguro",
+            "Escapar el valor para el contexto HTML al renderizarlo"
+          ],
+          "correctIndex": 2,
+          "feedback": [
+            "Preparar una consulta protege la estructura SQL; no codifica una salida HTML.",
+            "Persistir otra vez no aplica el escape requerido por el contexto de presentación.",
+            "Correcto: el escape se aplica al producir HTML y no reemplaza validación ni parámetros SQL."
+          ],
+          "objective": "aplicar escape según el contexto de salida",
+          "level": "aplicar"
+        }
+      ]
     }
   ]
 }

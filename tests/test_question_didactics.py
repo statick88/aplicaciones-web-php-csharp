@@ -23,7 +23,7 @@ class QuestionDidacticsTests(unittest.TestCase):
 
     def test_correct_answers_are_not_all_in_one_position(self):
         positions = Counter(question["correctIndex"] for question in self.questions)
-        self.assertEqual(len(self.questions), 69)
+        self.assertEqual(len(self.questions), 78)
         self.assertGreater(len(positions), 1, positions)
         self.assertLess(max(positions.values()), len(self.questions), positions)
 
