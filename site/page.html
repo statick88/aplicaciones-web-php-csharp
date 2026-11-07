@@ -16,10 +16,12 @@
     <a class="route-link" href="{{root}}index.html#catalogo">Recorrido <span aria-hidden="true">↓</span></a>
   </header>
   <main id="contenido" tabindex="-1">
+    <div class="lesson-toolbar">
+      <button type="button" class="topics-toggle" data-topics-toggle aria-controls="lesson-topics" aria-expanded="true" hidden>Ocultar temas</button>
+    </div>
     <div class="lesson-layout">
-      <aside class="lesson-sidebar" aria-label="Navegación de lecciones">{{navigation}}</aside>
+      <aside id="lesson-topics" class="lesson-sidebar" aria-label="Navegación de lecciones">{{navigation}}</aside>
       <article class="lesson">
-        <p class="eyebrow">{{week}}</p>
         <h1{{heading_id}}>{{title}}</h1>
         {{content}}
         <section class="modal-example" aria-labelledby="modal-example-title">
@@ -48,5 +50,6 @@
   <footer class="site-footer">Material local de apoyo para Programación Web. No ejecuta PHP ni servicios remotos.</footer>
   <script type="module" src="{{root}}app.mjs"></script>
   <script type="module" src="{{root}}quiz.mjs"></script>
+  <script type="module" src="{{root}}lesson-layout.mjs"></script>
 </body>
 </html>

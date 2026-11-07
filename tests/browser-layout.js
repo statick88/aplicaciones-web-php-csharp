@@ -34,6 +34,34 @@ async (page) => {
           throw new Error(`${width}px ${path || "home"}: unused space or overflow: ${JSON.stringify(result)}`);
         }
         measurements.push({ width, path: path || "home", ...result });
+        if (path) {
+          const toggle = page.getByRole("button", { name: "Ocultar temas", exact: true });
+          await toggle.waitFor({ state: "visible", timeout: 3000 });
+          if (await toggle.getAttribute("aria-expanded") !== "true") throw new Error("Topics must initially be expanded");
+          const before = await page.locator(".lesson").boundingBox();
+          await toggle.focus();
+          await page.keyboard.press("Enter");
+          const show = page.getByRole("button", { name: "Mostrar temas", exact: true });
+          if (await show.getAttribute("aria-expanded") !== "false") throw new Error("Collapsed state not announced");
+          if (await page.locator(".lesson-sidebar").isVisible()) throw new Error("Topics remain visible");
+          const expanded = await page.evaluate(() => {
+            const layout = document.querySelector(".lesson-layout").getBoundingClientRect();
+            const article = document.querySelector(".lesson").getBoundingClientRect();
+            return { left: Math.abs(layout.left - article.left), right: Math.abs(layout.right - article.right), width: article.width,
+              overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth };
+          });
+          if (expanded.left > 1 || expanded.right > 1 || expanded.overflow) throw new Error(`Not full width: ${JSON.stringify(expanded)}`);
+          if (width > 700 && expanded.width <= before.width) throw new Error("Hiding topics did not widen the lesson");
+          if (!(await show.evaluate((node) => node === document.activeElement))) throw new Error("Toggle lost keyboard focus");
+          await page.keyboard.press("Space");
+          if (!(await page.locator(".lesson-sidebar").isVisible())) throw new Error("Topics did not return");
+          if (await toggle.getAttribute("aria-expanded") !== "true") throw new Error("Restored state not announced");
+          const restored = await page.locator(".lesson").boundingBox();
+          if (Math.abs(restored.width - before.width) > 1) throw new Error("Original layout not restored");
+          measurements.push({ width, path, topicsToggle: "keyboard hide/show passed", ...expanded });
+        } else if (await page.locator("[data-topics-toggle]").count()) {
+          throw new Error("Home should not have a topics toggle");
+        }
       }
     }
   } finally {

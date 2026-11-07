@@ -14,6 +14,14 @@ async (page) => {
     contexts.push(context);
     return context.newPage();
   };
+  const openQuiz = async (tab) => {
+    if (!(await tab.locator(".quiz-question").count())) return;
+    const trigger = tab.getByRole("button", { name: /^Abrir cuestionario/ });
+    await trigger.waitFor({ state: "visible", timeout: 3000 });
+    await trigger.click();
+    assert(await tab.getByRole("dialog", { name: "Cuestionario de la lección" }).isVisible(), "No se abrió el cuestionario modal");
+    assert(await tab.locator(".quiz-dialog").evaluate((node) => node.contains(document.activeElement)), "El foco no entró al modal");
+  };
   try {
     const tab = await isolatedPage();
     await tab.goto(base, { waitUntil: "networkidle" });
@@ -31,13 +39,36 @@ async (page) => {
     await tab.goto(new URL(entry.href, base).href, { waitUntil: "networkidle" });
     await summary(tab, ".quiz-progress", 0, 0, entry.questions.length);
     assert(await tab.locator('.quiz-question textarea, .quiz-question input:not([type="radio"])').count() === 0, "La evaluación contiene respuesta libre");
+    await openQuiz(tab);
+    for (const width of [375, 1920]) {
+      await tab.setViewportSize({ width, height: 900 });
+      const bounds = await tab.locator(".quiz-dialog").evaluate((node) => {
+        const box = node.getBoundingClientRect();
+        return { left: box.left, right: box.right, height: box.height,
+          overflow: node.scrollWidth > node.clientWidth, viewport: innerWidth };
+      });
+      assert(bounds.left >= 0 && bounds.right <= bounds.viewport && bounds.height <= 900 && !bounds.overflow, `Modal fuera de pantalla: ${JSON.stringify(bounds)}`);
+    }
+    await tab.getByRole("button", { name: "Cerrar cuestionario" }).focus();
+    await tab.keyboard.press("Shift+Tab");
+    assert(await tab.locator(".quiz-dialog").evaluate((node) => node.contains(document.activeElement)), "El foco escapó del modal");
     await tab.locator(`#${question.id} input[value="${wrong}"]`).check();
+    await tab.getByRole("button", { name: "Siguiente", exact: true }).click();
+    assert(await tab.locator(".quiz-question:visible").count() === 1, "Se muestra más de una pregunta");
+    await tab.getByRole("button", { name: "Anterior", exact: true }).click();
+    assert(await tab.locator(`#${question.id} input[value="${wrong}"]`).isChecked(), "Cambiar de pregunta borró la respuesta");
+    await tab.keyboard.press("Escape");
+    assert(!(await tab.getByRole("dialog").isVisible()), "Escape no cerró el cuestionario");
+    assert(await tab.getByRole("button", { name: /^Abrir cuestionario/ }).evaluate((node) => node === document.activeElement), "No se devolvió el foco al botón");
+    await openQuiz(tab);
+    assert(await tab.locator(`#${question.id} input[value="${wrong}"]`).isChecked(), "Cerrar el modal borró la respuesta");
     await summary(tab, ".quiz-progress", 1, 0, entry.questions.length);
     await tab.reload({ waitUntil: "networkidle" });
     assert(await tab.locator(`#${question.id} input[value="${wrong}"]`).isChecked(), "No se restauró la opción seleccionada");
     const wrongState = await tab.locator(`#${question.id} .quiz-feedback`).textContent();
     assert(wrongState.includes("Por revisar") && wrongState.includes(question.feedback[wrong]), "No se restauró la explicación de la opción incorrecta");
     await summary(tab, ".quiz-progress", 1, 0, entry.questions.length);
+    await openQuiz(tab);
     await tab.locator(`#${question.id} input[value="${question.correctIndex}"]`).check();
     await tab.reload({ waitUntil: "networkidle" });
     assert(await tab.locator(`#${question.id} input[value="${question.correctIndex}"]`).isChecked(), "No se restauró la respuesta correcta");
@@ -47,7 +78,10 @@ async (page) => {
     const architecture = assessment.pages.find((candidate) => candidate.questions.some((item) => item.id.startsWith("arq-")));
     await tab.goto(new URL(architecture.href, base).href, { waitUntil: "networkidle" });
     const arq = architecture.questions[0];
+    await openQuiz(tab);
     await tab.locator(`#${arq.id} input[value="${arq.correctIndex}"]`).check();
+    await tab.getByRole("button", { name: "Cerrar cuestionario" }).click();
+    assert(!(await tab.getByRole("dialog").isVisible()), "El botón Cerrar no cerró el cuestionario");
     await tab.goto(base, { waitUntil: "networkidle" });
     const homeProgress = await summary(tab, ".course-progress", 1, 1, total);
     const corruptKey = await tab.evaluate((qid) => {
@@ -65,6 +99,7 @@ async (page) => {
     const blocked = await isolatedPage();
     await blocked.addInitScript(() => Object.defineProperty(window, "localStorage", { get() { throw new Error("Blocked in isolated test"); } }));
     await blocked.goto(new URL(entry.href, base).href, { waitUntil: "networkidle" });
+    await openQuiz(blocked);
     await blocked.locator(`#${question.id} input[value="${wrong}"]`).check();
     const temporary = await summary(blocked, ".quiz-progress", 1, 0, entry.questions.length);
     assert(temporary.includes("No se pudo guardar"), "La UI afirma persistencia con almacenamiento bloqueado");

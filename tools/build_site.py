@@ -309,14 +309,24 @@ def render_page(text: str, source: Path, href: str, mapping: dict[str, str], bib
         units = module.get("units", [])
         ordered_units.extend(units)
         label = f"Semana {module['week']} · {module['title']}"
-        nav_parts.append(f'<h2 class="sidebar-module">{html.escape(module["title"])}</h2>')
-        nav_parts.append(sidebar_list(units))
         if any(unit["href"] == href for unit in units):
             context = label
     unit_hrefs = {unit["href"] for unit in ordered_units}
     supplementary = [page for page in catalog["pages"] if page["href"] not in unit_hrefs]
-    nav_parts.append('<h2 class="sidebar-module">Material complementario y otras asignaturas</h2>')
-    nav_parts.append(sidebar_list(supplementary))
+    modules = catalog.get("modules", [])
+    active_module = next((module for module in modules if any(unit["href"] == href for unit in module.get("units", []))), None)
+    if active_module is None:
+        active_module = next((module for module in modules if module["week"] == catalog.get("currentWeek")), None)
+    for module in ([active_module] if active_module else []) + [module for module in modules if module is not active_module]:
+        heading = html.escape(module["title"])
+        links = sidebar_list(module.get("units", []))
+        if module is active_module:
+            nav_parts.append(f'<h2 class="sidebar-module">{heading}</h2>{links}')
+        else:
+            nav_parts.append(f'<details class="sidebar-group"><summary class="sidebar-module">{heading}</summary>{links}</details>')
+    supplementary_open = ' open' if href not in unit_hrefs else ''
+    nav_parts.append(f'<details class="sidebar-group sidebar-supplementary"{supplementary_open}><summary class="sidebar-module">Material complementario y otras asignaturas</summary>')
+    nav_parts.append(sidebar_list(supplementary) + '</details>')
     nav = "".join(nav_parts)
     pages = ordered_units if href in unit_hrefs else supplementary
     position = next(i for i, page in enumerate(pages) if page["href"] == href)
@@ -464,7 +474,7 @@ def build(root: Path, output: Path, check: bool = False) -> int:
                 destination = stage / page["href"]; destination.parent.mkdir(parents=True, exist_ok=True)
                 source = root / page["source"]
                 destination.write_text(render_page(source.read_text(encoding="utf-8"), source, page["href"], mapping, bib, template, catalog, assessment, citations), encoding="utf-8")
-            for name in ("index.html", "app.mjs", "course-utils.mjs", "styles.css", "progress.mjs", "quiz.mjs"):
+            for name in ("index.html", "app.mjs", "course-utils.mjs", "styles.css", "progress.mjs", "quiz.mjs", "lesson-layout.mjs"):
                 source = root / "site" / name
                 if source.is_file(): shutil.copy2(source, stage / name)
             copy_public_assets(root, stage, catalog["pages"])
