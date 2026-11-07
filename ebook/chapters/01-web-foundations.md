@@ -1,186 +1,155 @@
 # Clase 1: de una petición a una respuesta
 
-**Meta.** Al terminar podrás explicar qué ocurre entre un navegador y una aplicación,
-y distinguir el lenguaje, la plataforma y las carpetas básicas de un proyecto.
-No necesitas montar un servidor para leer esta clase: primero sigue el recorrido y
-luego comprueba tus predicciones con las prácticas de la semana.
+**Meta:** entender qué pide el navegador, qué ejecuta el servidor y qué recibe el usuario.
 
-> **Ruta de estudio:** predice qué pide el navegador → sigue la respuesta → compara
-> PHP y C# → nombra la responsabilidad de cada carpeta → comprueba tu explicación.
+## Qué es una página estática o dinámica
 
-## Una página no siempre es un archivo fijo
+Una página **estática** entrega un contenido ya preparado. Una página **dinámica**
+construye la respuesta al recibir una petición: puede usar datos, parámetros o reglas.
+No necesita una base de datos para ser dinámica.
 
-Una página **estática** entrega esencialmente el mismo HTML a quienes solicitan la
-misma URL. Sus archivos pueden vivir en un servidor, pero no requieren ejecutar
-lógica para fabricar ese contenido. Una página **dinámica** se construye al atender
-la petición: puede usar parámetros, datos o reglas antes de enviar la respuesta.
-Dinámico no significa necesariamente complejo ni que deba incluir una base de datos.
+**Para qué sirve distinguirlas:** permite saber si hay que cambiar un archivo o la
+lógica que genera su contenido.
 
-Predicción: al escribir una dirección web y pulsar Enter, ¿el navegador recibe PHP
-o C#? Normalmente recibe una **respuesta HTTP**, cuyo cuerpo puede ser HTML, CSS,
-JavaScript, una imagen o datos. El código del servidor se ejecuta antes y no se
-entrega como parte de la página.
+## Cómo viaja una petición
 
-Los dos recorridos comparten el mismo ciclo HTTP, pero se muestran por separado para
-que cada figura permita seguir una sola tecnología.
+1. El navegador pide una ruta mediante HTTP: envía método, cabeceras y, a veces, datos.
+2. El servidor busca el recurso o ejecuta la aplicación.
+3. Devuelve un estado, cabeceras y un cuerpo, por ejemplo HTML.
+4. El navegador interpreta el HTML y pide los recursos adicionales que necesita.
 
-![Flujo PHP: 1. petición del navegador; 2. PHP ejecuta el programa en el servidor; 3. una respuesta con cuerpo HTML vuelve al navegador.](../assets/request-response.svg){fig-alt="Flujo PHP con tres pasos: petición HTTP del navegador, ejecución del programa PHP en el servidor y respuesta HTML de vuelta al navegador."}
+**El navegador recibe el resultado, no el código PHP o C# que lo generó.**
 
-![Flujo C#: 1. petición del navegador; 2. .NET ejecuta el programa C# en el servidor; 3. una respuesta con cuerpo HTML vuelve al navegador.](../assets/request-response-csharp.svg){fig-alt="Flujo C# con tres pasos: petición HTTP del navegador, ejecución del programa C# mediante .NET en el servidor y respuesta HTML de vuelta al navegador."}
+![Flujo PHP: petición, ejecución en el servidor y respuesta HTML.](../assets/request-response.svg){fig-alt="Flujo PHP: el navegador pide, PHP ejecuta el programa en el servidor y devuelve HTML."}
 
-## El ciclo mínimo HTTP
+![Flujo C#: petición, ejecución en el servidor y respuesta HTML.](../assets/request-response-csharp.svg){fig-alt="Flujo C#: el navegador pide, .NET ejecuta el programa C# en el servidor y devuelve HTML."}
 
-1. El **cliente** (por ejemplo, un navegador) envía una petición: método, ruta,
-   cabeceras y, si corresponde, datos.
-2. El **servidor** la recibe y el programa decide qué hacer.
-3. La respuesta incluye un código de estado, cabeceras y un cuerpo.
-4. El navegador interpreta el HTML recibido y solicita recursos adicionales si los
-   encuentra.
+### Qué indica el estado HTTP
 
-Los estados no son mensajes decorativos. `200 OK` indica que la respuesta fue
-atendida; `404 Not Found` comunica que no se encontró el recurso solicitado; `500
-Internal Server Error` señala un fallo no controlado del lado servidor. Un `200` no
-garantiza que el contenido sea útil, y un `404` no prueba por sí solo que el programa
-esté roto: expresa el resultado de esta petición.
-
-::: {.callout-note}
-## Observa antes de concluir
-
-Las herramientas de desarrollo del navegador permiten ver URL, método, estado y
-cuerpo de una respuesta. Es una comprobación mejor que deducir el resultado solo por
-lo que parece mostrar la pantalla.
-:::
-
-## HTML en el cliente; programas en el servidor
-
-HTML describe la estructura que el navegador renderiza. CSS presenta esa estructura
-y JavaScript puede modificarla en el cliente. PHP y C# pueden generar HTML o datos
-en el servidor. Esta división ayuda a diagnosticar: si el navegador muestra una
-etiqueta literalmente, probablemente llegó como texto; si aparece un error de PHP o
-.NET, la ejecución ocurrió en el servidor.
-
-No confundas «usar un editor» con «ejecutar una aplicación». Un **editor** escribe y
-organiza archivos. El **runtime** interpreta o ejecuta el programa. Un **servidor
-web** recibe HTTP y puede delegar la petición al runtime. En desarrollo pueden estar
-en el mismo equipo; sus funciones siguen siendo distintas.
-
-::: {.table-responsive tabindex="0" role="region" aria-label="Comparación de editor, runtime y servidor web"}
-
-| Pregunta | Editor | Runtime | Servidor web |
-|---|---|---|---|
-| ¿Escribe `index.php` o `Program.cs`? | Sí | No | No |
-| ¿Ejecuta el lenguaje? | No | Sí | Coordina o delega |
-| ¿Acepta una petición HTTP? | No | No necesariamente | Sí |
-
-:::
-
-## PHP y C#: comparación inicial
-
-PHP es un lenguaje usado con frecuencia para generar respuestas web. En el flujo
-tradicional, el runtime evalúa el archivo PHP que corresponde a la petición. Un
-acelerador como OPcache puede conservar código compilado en memoria, por lo que no es
-correcto afirmar que PHP «siempre recompila todo» en cada solicitud [@php-manual].
-
-C# es el **lenguaje** con el que escribimos el programa. .NET es la **plataforma**
-que ofrece runtime, bibliotecas y herramientas para compilar y ejecutar ese programa.
-Al compilar, C# produce código intermedio (IL); el runtime aplica compilación JIT
-cuando necesita ejecutar código. Es una comparación de rutas de ejecución, no una
-escala de calidad: la elección depende del contexto y del proyecto [@microsoft-csharp].
-
-Las figuras separan las rutas para que los pasos propios de cada plataforma no se
-mezclen. La comparación sigue en el texto: ambas producen una respuesta, aunque su
-preparación y ejecución no son idénticas.
-
-![Ruta de ejecución de PHP: durante la petición, el runtime ejecuta la aplicación; OPcache puede conservar código compilado.](../assets/runtime-comparison.svg){fig-alt="Ruta de ejecución de PHP durante una petición HTTP: el runtime PHP ejecuta la aplicación y OPcache puede conservar código compilado."}
-
-![Ruta de ejecución de C#: el proyecto se compila a IL antes de atender peticiones; durante la petición, el runtime .NET aplica JIT cuando hace falta y ejecuta el código.](../assets/runtime-csharp.svg){fig-alt="Ruta de ejecución de C# con preparación previa de código fuente a IL y ejecución durante la petición mediante el runtime .NET y JIT."}
-
-### Ejemplo mental emparejado
-
-Supón que una ruta debe saludar a Ada. En PHP el runtime evalúa una instrucción que
-produce `Hola Ada`; en C#, la aplicación compilada ejecuta una instrucción equivalente
-y produce el mismo texto. En ambos casos el resultado puede insertarse en una
-respuesta HTTP. Predice cuál parte ve el navegador: ve el texto final, no la variable
-ni el paso de compilación.
-
-**Por qué importa.** Si cambias HTML, estás cambiando lo que el cliente interpreta.
-Si cambias PHP o C#, estás cambiando cómo el servidor construye la respuesta. Para
-confirmarlo, inspecciona la respuesta en el navegador y observa que no contiene el
-código de servidor.
-
-## Una historia breve de PHP
-
-La evolución importa porque explica por qué encontrarás proyectos con estilos
-diferentes. PHP 5 consolidó gran parte del modelo orientado a objetos; PHP 7 trajo
-mejoras importantes de rendimiento y tipos; PHP 8.0 incorporó cambios de lenguaje
-como atributos y unión de tipos. Las versiones 8.1 a 8.3 continuaron refinando el
-lenguaje, y PHP 8.4 y 8.5 son versiones posteriores documentadas por el proyecto.
-Esta clase no es un tutorial de sus novedades: al trabajar en un repositorio, verifica
-la versión real antes de usar una característica [@php85].
-
-La versión activa es una condición técnica, no un detalle de estilo. Una instrucción
-válida en una versión reciente puede no funcionar en una instalación anterior.
-Consulta las notas oficiales de PHP 8.5 y el manual para confirmar disponibilidad, en
-vez de copiar fragmentos aislados [@php85; @php-manual].
-
-## Carpetas: pistas sobre responsabilidades
-
-Un punto de partida frecuente separa estas carpetas:
-
-| Carpeta | Responsabilidad inicial |
+| Estado | Significado |
 |---|---|
-| `public/` | Punto expuesto al navegador: archivos públicos y entrada web. |
-| `src/` | Código de la aplicación que no debería ser una URL directa. |
-| `views/` | Plantillas o fragmentos destinados a producir la presentación. |
-| `config/` | Configuración de la aplicación, no secretos publicados. |
+| `200 OK` | La petición se atendió correctamente; no garantiza que el contenido sea útil. |
+| `404 Not Found` | No se encontró el recurso solicitado. |
+| `500 Internal Server Error` | El servidor encontró un fallo interno al atender la petición. |
 
-Esta convención no es una ley del lenguaje ni convierte automáticamente un proyecto
-en MVC. Es una forma de hacer visible qué archivo está expuesto y dónde buscar una
-responsabilidad. Nunca publiques contraseñas en `public/` ni en un repositorio.
+**Comprueba:** en las herramientas del navegador, abre la pestaña de red y revisa
+la URL, el método, el estado y el cuerpo. No te guíes solo por lo que muestra la página.
 
-PHP ofrece `include` y `require` para incorporar archivos. Si falta un archivo,
-`include` emite una advertencia y el script puede continuar; `require` produce un
-error fatal y detiene la ejecución. Las variantes `include_once` y `require_once`
-se comportan igual, pero solo cargan cada archivo una vez, lo que evita declarar
-la misma función dos veces. Para configuración o código indispensable,
-`require` evita continuar con una aplicación incompleta. Comprueba la ruta y el
-mensaje; no silencies el problema con operadores de supresión [@php-manual].
+## Qué hace cada herramienta
 
-## MVC: una introducción, no una receta completa
+| Elemento | Responsabilidad |
+|---|---|
+| HTML | Define la estructura de la página. |
+| CSS | Define su presentación. |
+| JavaScript | Puede modificar la página en el navegador. |
+| PHP o C# | Ejecutan la lógica del servidor y pueden generar HTML o datos. |
+| Editor | Permite escribir y organizar archivos; no ejecuta por sí solo la aplicación. |
+| Runtime | Ejecuta el programa. |
+| Servidor web | Recibe peticiones HTTP y puede delegarlas al runtime. |
 
-MVC propone separar responsabilidades: un **modelo** representa datos y reglas, una
-**vista** presenta información y un **controlador** coordina una petición. ASP.NET
-Core MVC documenta este patrón para aplicaciones web [@aspnet-mvc]. En Semana 1 basta
-con reconocer el propósito de esa separación y no colocar una decisión de interfaz en
-un lugar arbitrario.
+## PHP y C#: lenguaje no es plataforma
 
-El ejemplo de factura PHP existente en el repositorio es monolítico y **no** es una
-arquitectura MVC de referencia. La aplicación C# ya usa una plantilla MVC, pero eso
-no convierte toda su lógica de negocio en un catálogo de patrones de dominio. No
-reestructures esas prácticas durante este repaso: observa, nombra responsabilidades y
-avanza gradualmente.
+**PHP** es un lenguaje cuyo runtime ejecuta la aplicación. OPcache puede guardar
+código compilado para reutilizarlo [@php-manual].
 
-::: {.callout-important}
-## Límite de Semana 1
+**C#** es un lenguaje; **.NET** es la plataforma que aporta runtime, bibliotecas y
+herramientas. En la ruta habitual, C# se compila a código intermedio (IL) y el runtime
+usa JIT cuando hace falta ejecutarlo [@microsoft-csharp].
 
-Patrones de diseño, Clean Architecture y TDD requieren práctica deliberada posterior.
-Aquí no abrimos capítulos nuevos sobre ellos: usamos solo la idea inicial de separar
-responsabilidades para leer mejor una aplicación MVC.
-:::
+Ambos pueden producir la misma respuesta HTTP: cambia cómo preparan y ejecutan el programa.
+
+![Ruta de ejecución de PHP: OPcache puede reutilizar código compilado.](../assets/runtime-comparison.svg){fig-alt="Ruta de ejecución de PHP: el runtime ejecuta la aplicación y OPcache puede conservar código compilado."}
+
+![Ruta de ejecución de C#: compilación a IL y ejecución con .NET.](../assets/runtime-csharp.svg){fig-alt="Ruta de ejecución de C#: el proyecto se compila a IL y el runtime .NET usa JIT cuando hace falta."}
+
+### Ejemplo mínimo: saludar a Ada
+
+En PHP:
+
+```php
+<?php
+$nombre = "Ada";
+echo "Hola $nombre";
+```
+
+En C#, dentro de una ruta de una aplicación ASP.NET Core:
+
+```csharp
+var nombre = "Ada";
+app.MapGet("/saludo", () => $"Hola {nombre}");
+```
+
+**Resultado esperado del cuerpo de la respuesta en ambos casos:**
+
+```text
+Hola Ada
+```
+
+El navegador recibe `Hola Ada`, no `$nombre`, `echo` ni `MapGet`.
+Los fragmentos necesitan sus respectivos entornos de servidor; no se ejecutan en este sitio estático.
+
+## Por qué importa la versión de PHP
+
+PHP 5 consolidó la orientación a objetos; PHP 7 mejoró rendimiento y tipos;
+PHP 8.0 añadió, entre otras funciones, atributos y tipos unión. Las versiones 8.1 a
+8.5 siguieron ampliando el lenguaje [@php85].
+
+**Antes de copiar un ejemplo:** comprueba la versión instalada y la disponibilidad
+de sus funciones en el manual. El código reciente puede fallar en versiones anteriores.
+
+## Dónde va cada archivo
+
+| Carpeta | Qué contiene |
+|---|---|
+| `public/` | Entrada web y archivos accesibles desde el navegador. |
+| `src/` | Lógica de la aplicación, no expuesta como URL directa. |
+| `views/` | Plantillas de presentación. |
+| `config/` | Configuración; nunca contraseñas publicadas. |
+
+Esta organización es una convención: no convierte por sí sola un proyecto en MVC.
+No publiques secretos en `public/` ni en el repositorio.
+
+### Cuándo usar `include` o `require`
+
+- **`include`:** si falta el archivo, emite una advertencia y el script puede continuar.
+- **`require`:** si falta, produce un error que detiene la ejecución si no se maneja.
+  Úsalo para archivos indispensables.
+- **`include_once` y `require_once`:** evitan cargar de nuevo el mismo archivo.
+
+Si falla una carga, revisa la ruta; no ocultes el error [@php-manual].
+
+## Qué separa MVC
+
+**Modelo:** datos y reglas. **Vista:** presentación. **Controlador:** coordina la
+petición [@aspnet-mvc]. Sirve para ubicar cada responsabilidad.
+
+La factura PHP del repositorio es monolítica, no un modelo MVC. La aplicación C# usa
+una plantilla MVC; eso no garantiza que toda su lógica esté bien separada.
+Por ahora, identifica responsabilidades: no hace falta reestructurar las prácticas
+ni estudiar Clean Architecture, otros patrones o TDD en esta clase.
+
+## Practica: predice antes de ejecutar
+
+1. Cambia `Ada` por `Luis` en los ejemplos. ¿Qué cuerpo debería recibir el navegador?
+2. Si una ruta no existe, ¿qué estado corresponde?
+3. Si la configuración es indispensable, ¿usarías `include` o `require`?
+
+**Respuestas:** `Hola Luis`; `404 Not Found`; `require`.
+
+**Recuerda:** el cliente pide, el servidor procesa y el cliente recibe una respuesta.
 
 ## Fuentes y trazabilidad
 
-El temario de Clase 1 es la fuente curricular primaria [@blackboard-s1c1]. Para
-confirmar detalles técnicos consulta el [manual oficial de PHP](https://www.php.net/manual/en/),
-las [notas de PHP 8.5](https://www.php.net/releases/8.5/en.php), la
+Temario de Clase 1: fuente curricular primaria [@blackboard-s1c1].
+Detalles técnicos: [manual de PHP](https://www.php.net/manual/en/),
+[PHP 8.5](https://www.php.net/releases/8.5/en.php),
 [referencia de C#](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/)
-y la [introducción oficial a ASP.NET Core MVC](https://learn.microsoft.com/en-us/aspnet/core/mvc/overview?view=aspnetcore-10.0).
+y [ASP.NET Core MVC](https://learn.microsoft.com/en-us/aspnet/core/mvc/overview?view=aspnetcore-10.0).
 Consulta: 2026-10-30.
 
 ## Autoevaluación de opción múltiple
 
-Selecciona una alternativa en cada pregunta y usa la retroalimentación para volver al
-concepto o ejemplo correspondiente.
+Elige una alternativa y usa la retroalimentación para repasar.
 
 <!-- quiz: web-foundations-response-body -->
 
@@ -190,5 +159,4 @@ concepto o ejemplo correspondiente.
 
 <!-- quiz: web-foundations-require -->
 
-**Siguiente paso:** en la Clase 2 predice tipos, conversiones y ámbitos antes de
-confirmarlos con los dos programas de demostración.
+**Siguiente paso:** en la Clase 2, practica tipos, conversiones y ámbitos en PHP y C#.
