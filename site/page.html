@@ -16,18 +16,40 @@
     <a class="route-link" href="{{root}}index.html#catalogo">Recorrido <span aria-hidden="true">↓</span></a>
   </header>
   <main id="contenido" tabindex="-1">
+    <div class="lesson-toolbar">
+      <button type="button" class="topics-toggle" data-topics-toggle aria-controls="lesson-topics" aria-expanded="true" hidden>Ocultar temas</button>
+    </div>
     <div class="lesson-layout">
-      <aside class="lesson-sidebar" aria-label="Navegación de lecciones">{{navigation}}</aside>
+      <aside id="lesson-topics" class="lesson-sidebar" aria-label="Navegación de lecciones">{{navigation}}</aside>
       <article class="lesson">
-        <p class="eyebrow">{{week}}</p>
         <h1{{heading_id}}>{{title}}</h1>
         {{content}}
+        <section class="modal-example" aria-labelledby="modal-example-title">
+          <h2 id="modal-example-title">Ejemplo de diálogo</h2>
+          <p>Este componente muestra un diálogo modal accesible, reutilizable y sin dependencias.</p>
+          <button type="button" class="secondary-cta" data-modal-open="example-modal">Abrir diálogo de ejemplo</button>
+        </section>
+        <div class="modal" id="example-modal" hidden aria-hidden="true">
+          <div class="modal-backdrop" data-modal-close></div>
+          <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="example-modal-title" aria-describedby="example-modal-desc" tabindex="-1">
+            <div class="modal-header">
+              <h2 id="example-modal-title">Diálogo de ejemplo</h2>
+              <button type="button" class="modal-close" data-modal-close aria-label="Cerrar diálogo">Cerrar</button>
+            </div>
+            <p id="example-modal-desc">Usa Tab para moverte dentro del diálogo, Escape para cerrarlo, o el botón Cerrar.</p>
+            <div class="modal-actions">
+              <button type="button" class="cta" data-modal-close data-modal-initial-focus>Entendido</button>
+            </div>
+          </div>
+        </div>
         <p class="quiz-progress" hidden aria-live="polite"></p>
         <nav class="lesson-pagination" aria-label="Lección anterior y siguiente">{{pagination}}</nav>
       </article>
     </div>
   </main>
   <footer class="site-footer">Material local de apoyo para Programación Web. No ejecuta PHP ni servicios remotos.</footer>
+  <script type="module" src="{{root}}app.mjs"></script>
   <script type="module" src="{{root}}quiz.mjs"></script>
+  <script type="module" src="{{root}}lesson-layout.mjs"></script>
 </body>
 </html>

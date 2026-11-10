@@ -8,6 +8,89 @@ let course;
 let assessments;
 const progressStore = createProgressStore({ getStorage: () => window.localStorage, moduleUrl: import.meta.url });
 
+
+const FOCUSABLE = 'a[href], area[href], button:not([disabled]), input:not([disabled]):not([type="hidden"]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+let activeModal = null;
+let lastFocus = null;
+
+function focusables(container) {
+  return [...container.querySelectorAll(FOCUSABLE)].filter((node) => !node.hasAttribute("disabled") && node.getAttribute("aria-hidden") !== "true");
+}
+
+function openModal(modal) {
+  if (!modal || activeModal === modal) return;
+  lastFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+  if (activeModal) closeModal(activeModal, false);
+  activeModal = modal;
+  modal.hidden = false;
+  modal.classList.add("is-open");
+  modal.setAttribute("aria-hidden", "false");
+  document.body.classList.add("modal-open");
+  const target = modal.querySelector("[data-modal-initial-focus]") || focusables(modal)[0] || modal.querySelector(".modal-dialog");
+  if (target instanceof HTMLElement) target.focus();
+}
+
+function closeModal(modal, restoreFocus = true) {
+  if (!modal) return;
+  modal.classList.remove("is-open");
+  modal.hidden = true;
+  modal.setAttribute("aria-hidden", "true");
+  if (activeModal === modal) {
+    activeModal = null;
+    document.body.classList.remove("modal-open");
+    if (restoreFocus && lastFocus instanceof HTMLElement) lastFocus.focus();
+  }
+}
+
+function handleModalKeydown(event) {
+  if (!activeModal) return;
+  if (event.key === "Escape") {
+    event.preventDefault();
+    closeModal(activeModal);
+    return;
+  }
+  if (event.key !== "Tab") return;
+  const dialog = activeModal.querySelector(".modal-dialog");
+  const nodes = focusables(activeModal);
+  if (!nodes.length) {
+    event.preventDefault();
+    if (dialog instanceof HTMLElement) dialog.focus();
+    return;
+  }
+  const first = nodes[0];
+  const last = nodes[nodes.length - 1];
+  if (event.shiftKey && document.activeElement === first) {
+    event.preventDefault();
+    last.focus();
+  } else if (!event.shiftKey && document.activeElement === last) {
+    event.preventDefault();
+    first.focus();
+  }
+}
+
+export function initializeModals(root = document) {
+  for (const modal of root.querySelectorAll(".modal[hidden]")) modal.setAttribute("aria-hidden", "true");
+  if (root.__modalListenersAttached) return;
+  root.__modalListenersAttached = true;
+  root.addEventListener("click", (event) => {
+    const openTrigger = event.target instanceof Element ? event.target.closest("[data-modal-open]") : null;
+    if (openTrigger) {
+      const modal = document.getElementById(openTrigger.getAttribute("data-modal-open") || "");
+      if (modal?.classList.contains("modal")) {
+        event.preventDefault();
+        openModal(modal);
+      }
+      return;
+    }
+    const closeTrigger = event.target instanceof Element ? event.target.closest("[data-modal-close]") : null;
+    if (closeTrigger && activeModal && closeTrigger.closest(".modal") === activeModal) {
+      event.preventDefault();
+      closeModal(activeModal);
+    }
+  });
+  root.addEventListener("keydown", handleModalKeydown);
+}
+
 function element(tag, className, text) {
   const node = document.createElement(tag);
   if (className) node.className = className;
@@ -165,5 +248,6 @@ async function loadCourse() {
   }
 }
 
-search.addEventListener("input", () => { if (course) renderHome(); });
-loadCourse();
+if (search) search.addEventListener("input", () => { if (course) renderHome(); });
+if (app && search && catalogAnchor) loadCourse();
+initializeModals();

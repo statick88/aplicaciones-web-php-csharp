@@ -24,6 +24,7 @@ class BuildSite(unittest.TestCase):
         (self.root / "site/app.mjs").write_text("fetch('./course.json')")
         (self.root / "site/styles.css").write_text("body{}")
         (self.root / "site/course-utils.mjs").write_text("export {}")
+        (self.root / "site/lesson-layout.mjs").write_text("// lesson layout control")
         (self.root / "ebook/assets/diagram.svg").write_text("<svg/>")
         (self.root / "ebook/assets/plain.svg").write_text("<svg/>")
         (self.root / "ebook/references.bib").write_text('@misc{source,\n title = {Source},\n author = {Author},\n year = {2026}\n}\n')
@@ -65,6 +66,7 @@ class BuildSite(unittest.TestCase):
         self.assertTrue((output / ".nojekyll").exists())
         self.assertEqual((output / "aplicaciones-web-php-csharp-semana1.pdf").read_bytes(), b"%PDF-1.7\nfixture\n")
         self.assertEqual((output / "styles.css").read_text(), "body{}")
+        self.assertEqual((output / "lesson-layout.mjs").read_text(), "// lesson layout control")
         public=json.loads((output / "course.json").read_text()); self.assertNotIn("source", public["pages"][0]); self.assertNotIn("source", public["modules"][0]["units"][0])
     def test_preserves_bibliography_organization_names(self):
         (self.root / "ebook/references.bib").write_text('@misc{source,\n title = {Documentation},\n author = {{Microsoft}},\n year = {2026}\n}\n')

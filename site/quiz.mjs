@@ -73,6 +73,87 @@ function renderFeedback(fieldset, result) {
   }
 }
 
+function initializeQuizDialog(fieldsets, progress) {
+  const dialog = document.createElement("dialog");
+  // Keep the inline questions usable in browsers without native dialog support.
+  if (typeof dialog.showModal !== "function") return;
+  dialog.id = "lesson-quiz-dialog";
+  dialog.className = "quiz-dialog";
+  dialog.setAttribute("aria-labelledby", "lesson-quiz-title");
+
+  const header = document.createElement("div");
+  header.className = "quiz-dialog-header";
+  const title = document.createElement("h2");
+  title.id = "lesson-quiz-title";
+  title.textContent = "Cuestionario de la lección";
+  const close = document.createElement("button");
+  close.type = "button";
+  close.className = "modal-close";
+  close.textContent = "Cerrar cuestionario";
+  close.autofocus = true;
+  header.append(title, close);
+
+  const trigger = document.createElement("button");
+  trigger.type = "button";
+  trigger.className = "cta quiz-open";
+  trigger.textContent = `Abrir cuestionario (${fieldsets.length} preguntas)`;
+  trigger.setAttribute("aria-haspopup", "dialog");
+  trigger.setAttribute("aria-controls", dialog.id);
+  fieldsets[0].before(trigger);
+  const position = document.createElement("p");
+  position.className = "quiz-position";
+  position.setAttribute("aria-live", "polite");
+  const navigation = document.createElement("nav");
+  navigation.className = "quiz-navigation";
+  navigation.setAttribute("aria-label", "Preguntas del cuestionario");
+  const previous = document.createElement("button");
+  previous.type = "button";
+  previous.className = "modal-close";
+  previous.textContent = "Anterior";
+  const next = document.createElement("button");
+  next.type = "button";
+  next.className = "modal-close";
+  next.textContent = "Siguiente";
+  navigation.append(previous, position, next);
+  let current = 0;
+  function showQuestion(index, moveFocus = false) {
+    current = index;
+    for (const [number, fieldset] of fieldsets.entries()) fieldset.hidden = number !== current;
+    position.textContent = `Pregunta ${current + 1} de ${fieldsets.length}`;
+    previous.disabled = current === 0;
+    next.disabled = current === fieldsets.length - 1;
+    if (moveFocus) {
+      const question = fieldsets[current];
+      question.tabIndex = -1;
+      question.focus({ preventScroll: true });
+      dialog.scrollTop = 0;
+    }
+  }
+  previous.addEventListener("click", () => showQuestion(current - 1, true));
+  next.addEventListener("click", () => showQuestion(current + 1, true));
+  showQuestion(0);
+  dialog.append(header, progress, ...fieldsets, navigation);
+  document.body.append(dialog);
+
+  trigger.addEventListener("click", () => dialog.showModal());
+  close.addEventListener("click", () => dialog.close());
+  dialog.addEventListener("close", () => trigger.focus());
+  dialog.addEventListener("keydown", (event) => {
+    if (event.key !== "Tab") return;
+    const controls = [...dialog.querySelectorAll('button:not([disabled]), input:not([disabled]), a[href], [tabindex="0"]')]
+      .filter((node) => node.getClientRects().length > 0);
+    const first = controls[0];
+    const last = controls.at(-1);
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  });
+}
+
 async function initializeQuiz() {
   const fieldsets = [...document.querySelectorAll(".quiz-question[data-question-id]")];
   if (!fieldsets.length) return;
@@ -120,7 +201,13 @@ async function initializeQuiz() {
     const persistence = storageAvailable
       ? " Los cambios se guardan en este dispositivo."
       : " No se pudo guardar en este dispositivo; la selección se conserva mientras esta página permanezca abierta.";
-    progress.textContent = `Progreso de esta página: ${summary.responded}/${summary.total} respondidas · ${summary.correct}/${summary.total} correctas.${persistence}`;
+    const counts = document.createElement("span");
+    counts.className = "quiz-progress-counts";
+    counts.textContent = `${summary.responded}/${summary.total} respondidas · ${summary.correct}/${summary.total} correctas.`;
+    const note = document.createElement("small");
+    note.className = "quiz-storage-note";
+    note.textContent = persistence;
+    progress.replaceChildren(counts, note);
   }
 
   for (const fieldset of fieldsets) {
@@ -139,6 +226,7 @@ async function initializeQuiz() {
     }
   }
   updateProgress();
+  initializeQuizDialog(fieldsets, progress);
 }
 
 if (typeof document !== "undefined") initializeQuiz();
