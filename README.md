@@ -10,6 +10,22 @@ Repositorio público único de prácticas educativas de Aplicaciones Web, no de 
 
 > La entrega pública ya existente es [aplicaciones-web-semana1](https://github.com/statick88/aplicaciones-web-semana1): sitio personal HTML/CSS y calculadora PHP. El commit `ff3d1d7` de esa entrega ya fue comprobado (lint de 3 archivos y 12 pruebas). Estas prácticas son ejercicios adicionales y no duplican esa entrega.
 
+## Equivalencias PHP ↔ C#
+
+Las dos implementaciones recorren los mismos conceptos de la Semana 1, pero no son idénticas: cada directorio conserva su propio avance y **no se declara paridad completa**. Este mapa dice dónde vive cada equivalencia.
+
+| Tema | PHP (`php/`) | C# / ASP.NET Core (`csharp/`) |
+| --- | --- | --- |
+| Entrada de la demo de variables | `php/public/variables.php` (Apache sirve `public/`) | `csharp/src/Controllers/HomeController.cs`, acción `Variables` (ruta `/Home/Variables`) |
+| Lógica de la demo | `php/src/variables.php` | `HomeController.Variables()` en el mismo controlador |
+| Presentación | `php/views/variables.php` (plantilla unida con `require`) | `csharp/src/Views/Home/Variables.cshtml` (vista Razor) |
+| Constantes | `php/config/config.php` (`const` y `define`) | `public const string` en `HomeController` |
+| Nulos e interpolación | `$docente = null`, `??`, `"Estudiante: $curso"` | `string? apellido = null`, `??`, `$"Curso: {estudiante}"` |
+| Parámetros frente a `global` | `cursoDe(string $nombre)` | `CursoDe(string nombre)` |
+| Pruebas | `php/tests/` (`structure.php`, `variables.php`) | `csharp/tests/` (cobertura estática) + `dotnet build` en contenedor |
+
+Diferencias que sí importan: PHP ejecuta scripts con `require`/`include` sobre Apache, sin framework; C# usa MVC con controladores, vistas Razor y EF Core sobre SQL Server. Las pruebas tampoco son equivalentes: pruebas PHP ejecutadas directamente frente a cobertura estática C# más compilación `Release --warnaserror`. En persistencia, el POST de facturas no valida a nivel de servidor en ninguna de las dos implementaciones y no se presenta como ejemplo de validación robusta.
+
 ## Uso local
 
 Ambos compose ocupan `127.0.0.1:8080`; PHP está detenido y C# está activo. Para alternar sin borrar volúmenes, detenga el stack activo con `stop` y luego inicie el otro desde la raíz:
@@ -24,7 +40,11 @@ docker compose -f csharp/compose.yaml up -d --build
 docker compose -f csharp/compose.yaml stop
 ```
 
-Las instrucciones y comprobaciones propias de cada práctica están en sus README independientes.
+Las instrucciones y comprobaciones propias de cada práctica están en sus README independientes. La comprobación transversal del mapa de equivalencias y de los enlaces locales corre desde la raíz:
+
+```bash
+python3 -m unittest discover -s tests -p 'test_*.py'
+```
 
 ## Cuaderno de estudio y práctica
 
