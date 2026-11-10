@@ -218,7 +218,10 @@ ejemplos puros.
 
 Esta sección no amplía la comparación PHP–C#. Resume otro alcance de la clase:
 el acceso conceptual desde PHP a MySQL. No incluye código ejecutable de base de
-datos, credenciales, esquema, contenedores ni operaciones CRUD.
+datos, credenciales, esquema, contenedores ni operaciones CRUD. La práctica
+ejecutable de la semana —crear el esquema SQL, conectarse con PDO o MySQLi y
+ejecutar consultas preparadas— corresponde al material de clase de acceso a
+datos; esta lección prepara el marco conceptual para seguirla.
 
 PDO ofrece una interfaz para varios controladores de bases de datos; MySQLi se
 orienta a MySQL. Elegir entre ellos depende del contexto del proyecto. Ninguno
