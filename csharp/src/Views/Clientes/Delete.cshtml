@@ -1,12 +1,11 @@
 @model Facturas.Models.ClienteSemana3
+@{ ViewData["Title"] = "Eliminar cliente"; }
 <!DOCTYPE html>
-<html lang="es"><head><meta charset="utf-8" /><title>Eliminar cliente</title></head>
-<body>
-    <h1>Eliminar cliente</h1>
-    <p>¿Confirma que desea eliminar este cliente?</p>
-    <partial name="_ClienteDatos" model="Model" />
-    <form asp-action="Delete" asp-route-id="@Model.Id" method="post">
-        <button type="submit">Eliminar</button>
-        <a asp-action="Details" asp-route-id="@Model.Id">Cancelar</a>
-    </form>
+<html lang="es"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>Eliminar cliente</title><partial name="_ShellHead" /></head><body>
+<partial name="_ShellHeader" />
+<section aria-labelledby="titulo-eliminar">
+    <div class="page-heading"><div><p class="eyebrow">Acción irreversible</p><h1 id="titulo-eliminar">Eliminar cliente</h1><p>Confirma únicamente si deseas eliminar este registro.</p></div></div>
+    <div class="danger-panel"><h2>¿Eliminar a @Model.Nombres @Model.Apellidos?</h2><partial name="_ClienteDatos" model="Model" /><form asp-action="Delete" asp-route-id="@Model.Id" method="post"><div class="form-actions"><button class="danger" type="submit">Eliminar cliente</button><a class="button secondary" asp-action="Details" asp-route-id="@Model.Id">Cancelar y volver al detalle</a></div></form></div>
+</section>
+<partial name="_ShellFoot" />
 </body></html>

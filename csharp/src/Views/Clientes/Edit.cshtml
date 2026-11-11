@@ -1,9 +1,11 @@
 @model Facturas.Models.ClienteSemana3
+@{ ViewData["Title"] = "Editar cliente"; }
 <!DOCTYPE html>
-<html lang="es"><head><meta charset="utf-8" /><title>Editar cliente</title></head>
-<body>
-    <h1>Editar cliente</h1>
-    <form asp-action="Edit" asp-route-id="@Model.Id" method="post">
-        <partial name="_Form" model="Model" />
-    </form>
+<html lang="es"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>Editar cliente</title><partial name="_ShellHead" /></head><body>
+<partial name="_ShellHeader" />
+<section aria-labelledby="titulo-editar">
+    <div class="page-heading"><div><p class="eyebrow">Cliente #@Model.Id</p><h1 id="titulo-editar">Editar cliente</h1><p>Actualiza los datos necesarios y guarda los cambios.</p></div></div>
+    <div class="form-card"><form asp-action="Edit" asp-route-id="@Model.Id" method="post"><partial name="_Form" model="Model" /></form></div>
+</section>
+<partial name="_ShellFoot" />
 </body></html>

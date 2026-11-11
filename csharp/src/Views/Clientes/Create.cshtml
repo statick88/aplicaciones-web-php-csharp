@@ -1,9 +1,11 @@
 @model Facturas.Models.ClienteSemana3
+@{ ViewData["Title"] = "Crear cliente"; }
 <!DOCTYPE html>
-<html lang="es"><head><meta charset="utf-8" /><title>Crear cliente</title></head>
-<body>
-    <h1>Crear cliente</h1>
-    <form asp-action="Create" method="post">
-        <partial name="_Form" model="Model" />
-    </form>
+<html lang="es"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>Crear cliente</title><partial name="_ShellHead" /></head><body>
+<partial name="_ShellHeader" />
+<section aria-labelledby="titulo-crear">
+    <div class="page-heading"><div><p class="eyebrow">Nuevo registro</p><h1 id="titulo-crear">Crear cliente</h1><p>Completa los datos para registrar un cliente.</p></div></div>
+    <div class="form-card"><form asp-action="Create" method="post"><partial name="_Form" model="Model" /></form></div>
+</section>
+<partial name="_ShellFoot" />
 </body></html>

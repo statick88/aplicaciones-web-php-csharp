@@ -1,8 +1,11 @@
 @model Facturas.Models.ClienteSemana3
+@{ ViewData["Title"] = "Detalle del cliente"; }
 <!DOCTYPE html>
-<html lang="es"><head><meta charset="utf-8" /><title>Detalle del cliente</title></head>
-<body>
-    <h1>Detalle del cliente</h1>
-    <partial name="_ClienteDatos" model="Model" />
-    <p><a asp-action="Edit" asp-route-id="@Model.Id">Editar</a> <a asp-action="Delete" asp-route-id="@Model.Id">Eliminar</a> <a asp-action="Index">Volver</a></p>
+<html lang="es"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>Detalle del cliente</title><partial name="_ShellHead" /></head><body>
+<partial name="_ShellHeader" />
+<section aria-labelledby="titulo-detalle">
+    <div class="page-heading"><div><p class="eyebrow">Cliente #@Model.Id</p><h1 id="titulo-detalle">Detalle del cliente</h1><p>Información registrada para este cliente.</p></div></div>
+    <div class="details-card"><partial name="_ClienteDatos" model="Model" /><div class="detail-actions"><a class="button" asp-action="Edit" asp-route-id="@Model.Id">Editar cliente</a><a class="button secondary" asp-action="Index">Volver a clientes</a><a asp-action="Delete" asp-route-id="@Model.Id">Eliminar cliente</a></div></div>
+</section>
+<partial name="_ShellFoot" />
 </body></html>

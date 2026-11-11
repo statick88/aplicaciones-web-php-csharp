@@ -9,5 +9,5 @@
     <dt>Ciudad</dt><dd>@Model.Ciudad</dd>
     <dt>Provincia</dt><dd>@Model.Provincia</dd>
     <dt>Fecha de nacimiento</dt><dd>@Model.FechaNacimiento?.ToString("yyyy-MM-dd")</dd>
-    <dt>Activo</dt><dd>@(Model.Activo ? "Yes" : "No")</dd>
+    <dt>Estado</dt><dd><span class="state @(Model.Activo ? "" : "inactive")">@(Model.Activo ? "Activo" : "Inactivo")</span></dd>
 </dl>

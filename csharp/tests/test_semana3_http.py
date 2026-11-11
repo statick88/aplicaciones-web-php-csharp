@@ -90,7 +90,7 @@ class ClientesHttpTests(unittest.TestCase):
         status, body, _ = self.request(f"/Clientes/Details/{identifier}")
         self.assertEqual(200, status)
         for name, value in self.fields().items():
-            expected = "Yes" if name == "Activo" else value
+            expected = "Activo" if name == "Activo" else value
             self.assertIn(html.escape(expected), body, name)
         status, body, _ = self.request("/Clientes")
         self.assertEqual(200, status)
@@ -113,7 +113,7 @@ class ClientesHttpTests(unittest.TestCase):
         for name, value in edited.items():
             if name in ("__RequestVerificationToken", "Id"):
                 continue
-            expected = "No" if name == "Activo" else value
+            expected = "Inactivo" if name == "Activo" else value
             self.assertIn(html.escape(expected), body, name)
         self.assertNotIn("Ambato", body)
         token = self.token(f"/Clientes/Delete/{identifier}")
@@ -164,6 +164,45 @@ class ClientesHttpTests(unittest.TestCase):
                      f"/Clientes/Delete/{identifier}"):
             self.assertEqual(400, self.request(path, self.fields())[0])
             self.assertEqual(before, self.request(f"/Clientes/Details/{identifier}")[1])
+
+    def test_uniandes_brand_is_present_on_crud_pages(self):
+        identifier = self.create()
+        paths = ["/Clientes", "/Clientes/Create"] + [
+            f"/Clientes/{action}/{identifier}" for action in ("Details", "Edit", "Delete")
+        ]
+        for path in paths:
+            with self.subTest(path=path):
+                status, body, _ = self.request(path)
+                self.assertEqual(200, status)
+                self.assertIn('alt="UNIANDES', body)
+                self.assertIn(
+                    'src="https://www.uniandes.edu.ec/wp-content/uploads/2020/12/logo-uniandes-inspira-.png"',
+                    body,
+                )
+
+    def test_clientes_shell_is_semantic_and_uses_remote_visual_language(self):
+        identifier = self.create()
+        paths = ["/Clientes", "/Clientes/Create"] + [
+            f"/Clientes/{action}/{identifier}" for action in ("Details", "Edit", "Delete")
+        ]
+        for path in paths:
+            with self.subTest(path=path):
+                status, body, _ = self.request(path)
+                self.assertEqual(200, status)
+                self.assertIn('<meta name="viewport" content="width=device-width, initial-scale=1"', body)
+                self.assertIn('class="skip-link" href="#contenido-principal"', body)
+                self.assertIn('<main id="contenido-principal" tabindex="-1">', body)
+                self.assertIn('--background: #0e0c15', body)
+                self.assertIn('--brand: #512bd4', body)
+                self.assertIn('Clientes</a>', body)
+                self.assertIn('Crear cliente</a>', body)
+                self.assertIn('Inicio</a>', body)
+        status, body, _ = self.request("/Clientes/Create")
+        self.assertEqual(200, status)
+        self.assertIn('<fieldset class="form-group">', body)
+        self.assertIn('<legend>Identificación</legend>', body)
+        self.assertIn('<legend>Contacto</legend>', body)
+        self.assertIn('<legend>Ubicación</legend>', body)
 
     def test_html_output_is_encoded(self):
         identifier = self.create()

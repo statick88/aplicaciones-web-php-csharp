@@ -1,17 +1,31 @@
 @model IEnumerable<Facturas.Models.ClienteSemana3>
 @{ ViewData["Title"] = "Clientes"; }
 <!DOCTYPE html>
-<html lang="es"><head><meta charset="utf-8" /><title>Clientes</title></head>
-<body>
-    <h1>Clientes</h1>
-    <p><a asp-action="Create">Crear cliente</a> · <a asp-controller="Home" asp-action="Index">Inicio</a></p>
-    <table>
-        <thead><tr><th>Nombre</th><th>Correo</th><th>Ciudad</th><th>Activo</th><th>Acciones</th></tr></thead>
-        <tbody>
-        @foreach (var cliente in Model)
-        {
-            <tr><td>@cliente.Nombres @cliente.Apellidos</td><td>@cliente.Correo</td><td>@cliente.Ciudad</td><td>@(cliente.Activo ? "Yes" : "No")</td><td><a asp-action="Details" asp-route-id="@cliente.Id">Ver</a> <a asp-action="Edit" asp-route-id="@cliente.Id">Editar</a> <a asp-action="Delete" asp-route-id="@cliente.Id">Eliminar</a></td></tr>
-        }
-        </tbody>
-    </table>
+<html lang="es"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>Clientes</title><partial name="_ShellHead" /></head><body>
+<partial name="_ShellHeader" />
+<section aria-labelledby="titulo-clientes">
+    <div class="page-heading">
+        <div><p class="eyebrow">Semana 3</p><h1 id="titulo-clientes">Clientes</h1><p>Consulta y administra la información registrada.</p></div>
+        <a class="button" asp-action="Create">Crear cliente</a>
+    </div>
+    @if (Model.Any())
+    {
+        <div class="table-scroll" role="region" aria-label="Listado de clientes" tabindex="0">
+            <table>
+                <thead><tr><th scope="col">Nombre</th><th scope="col">Correo</th><th scope="col">Ciudad</th><th scope="col">Estado</th><th scope="col">Acciones</th></tr></thead>
+                <tbody>
+                @foreach (var cliente in Model)
+                {
+                    <tr><td>@cliente.Nombres @cliente.Apellidos</td><td>@cliente.Correo</td><td>@cliente.Ciudad</td><td><span class="state @(cliente.Activo ? "" : "inactive")">@(cliente.Activo ? "Activo" : "Inactivo")</span></td><td><div class="row-actions"><a asp-action="Details" asp-route-id="@cliente.Id">Ver</a><a asp-action="Edit" asp-route-id="@cliente.Id">Editar</a><a asp-action="Delete" asp-route-id="@cliente.Id">Eliminar</a></div></td></tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <div class="empty-state"><h2>Aún no hay clientes</h2><p>Registra el primer cliente para comenzar a gestionar su información.</p><a class="button" asp-action="Create">Crear cliente</a></div>
+    }
+</section>
+<partial name="_ShellFoot" />
 </body></html>
