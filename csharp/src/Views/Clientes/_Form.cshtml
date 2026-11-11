@@ -1,0 +1,17 @@
+@model Facturas.Models.ClienteSemana3
+@{
+    string action = ViewContext.RouteData.Values["action"]?.ToString() ?? "Create";
+}
+<div asp-validation-summary="All" class="text-danger"></div>
+<div><label asp-for="Cedula"></label><input asp-for="Cedula" maxlength="10" /><span asp-validation-for="Cedula" class="text-danger"></span></div>
+<div><label asp-for="Nombres"></label><input asp-for="Nombres" maxlength="80" /><span asp-validation-for="Nombres" class="text-danger"></span></div>
+<div><label asp-for="Apellidos"></label><input asp-for="Apellidos" maxlength="80" /><span asp-validation-for="Apellidos" class="text-danger"></span></div>
+<div><label asp-for="Correo"></label><input asp-for="Correo" type="email" maxlength="120" /><span asp-validation-for="Correo" class="text-danger"></span></div>
+<div><label asp-for="Telefono"></label><input asp-for="Telefono" maxlength="20" /><span asp-validation-for="Telefono" class="text-danger"></span></div>
+<div><label asp-for="Direccion"></label><input asp-for="Direccion" maxlength="160" /><span asp-validation-for="Direccion" class="text-danger"></span></div>
+<div><label asp-for="Ciudad"></label><input asp-for="Ciudad" maxlength="80" /><span asp-validation-for="Ciudad" class="text-danger"></span></div>
+<div><label asp-for="Provincia"></label><input asp-for="Provincia" maxlength="80" /><span asp-validation-for="Provincia" class="text-danger"></span></div>
+<div><label asp-for="FechaNacimiento"></label><input asp-for="FechaNacimiento" type="date" /><span asp-validation-for="FechaNacimiento" class="text-danger"></span></div>
+<div><label><input asp-for="Activo" /> Activo</label></div>
+<button type="submit">@(action == "Create" ? "Crear" : "Guardar cambios")</button>
+<a asp-action="Index">Cancelar</a>

@@ -1,6 +1,6 @@
 # C# / ASP.NET Core MVC Practice
 
-C# / ASP.NET Core technology implementation of the Week 1 and Week 2 course exercises in this repository, using MVC, EF Core, SQL Server, and Docker Compose. See the [general repository guide](../README.md). It is not a production application. Invoice persistence is an extra experiment rather than an official Week 1 deliverable, and its POST flow is not claimed as robust server-side validation.
+C# / ASP.NET Core technology implementation of the Week 1, Week 2 and Week 3 course exercises in this repository, using MVC, EF Core, SQL Server, and Docker Compose. See the [general repository guide](../README.md). It is not a production application. Invoice persistence is an extra experiment rather than an official Week 1 deliverable, and its POST flow is not claimed as robust server-side validation.
 
 ## Quick start
 
@@ -105,6 +105,6 @@ Course checkpoints (Week 2 verified against the supplied root Markdown materials
 
 - [x] [Week 2, Class 1](https://uniandesec.blackboard.com/ultra/courses/_3085_1/document/_334088_1?view=content&state=view): C# comparison of types, casts, nullable values, Dictionary and Cliente CRUD in memory.
 - [x] [Week 2, Class 2](https://uniandesec.blackboard.com/ultra/courses/_3085_1/document/_334090_1?view=content&state=view): independent MVC GET/POST practice with validation, antiforgery, session and PRG; it does not certify or alter invoices.
-- [ ] Week 3 onward: await official content. No later-week behavior is implemented by this documentation update.
+- [Week 3: Clientes CRUD with ASP.NET Core MVC](semana3/README.md).
 
 Official .NET release reference: <https://builds.dotnet.microsoft.com/dotnet/release-metadata/releases-index.json>.

@@ -1,0 +1,8 @@
+@model Facturas.Models.ClienteSemana3
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8" /><title>Detalle del cliente</title></head>
+<body>
+    <h1>Detalle del cliente</h1>
+    <partial name="_ClienteDatos" model="Model" />
+    <p><a asp-action="Edit" asp-route-id="@Model.Id">Editar</a> <a asp-action="Delete" asp-route-id="@Model.Id">Eliminar</a> <a asp-action="Index">Volver</a></p>
+</body></html>

@@ -1,0 +1,13 @@
+@model Facturas.Models.ClienteSemana3
+<dl>
+    <dt>Cédula</dt><dd>@Model.Cedula</dd>
+    <dt>Nombres</dt><dd>@Model.Nombres</dd>
+    <dt>Apellidos</dt><dd>@Model.Apellidos</dd>
+    <dt>Correo</dt><dd>@Model.Correo</dd>
+    <dt>Teléfono</dt><dd>@Model.Telefono</dd>
+    <dt>Dirección</dt><dd>@Model.Direccion</dd>
+    <dt>Ciudad</dt><dd>@Model.Ciudad</dd>
+    <dt>Provincia</dt><dd>@Model.Provincia</dd>
+    <dt>Fecha de nacimiento</dt><dd>@Model.FechaNacimiento?.ToString("yyyy-MM-dd")</dd>
+    <dt>Activo</dt><dd>@(Model.Activo ? "Yes" : "No")</dd>
+</dl>

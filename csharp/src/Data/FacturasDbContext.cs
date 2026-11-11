@@ -12,4 +12,5 @@ public class FacturasDbContext : DbContext
     }
 
     public DbSet<Factura> Facturas => Set<Factura>();
+    public DbSet<ClienteSemana3> Clientes => Set<ClienteSemana3>();
 }

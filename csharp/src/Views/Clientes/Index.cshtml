@@ -1,0 +1,17 @@
+@model IEnumerable<Facturas.Models.ClienteSemana3>
+@{ ViewData["Title"] = "Clientes"; }
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8" /><title>Clientes</title></head>
+<body>
+    <h1>Clientes</h1>
+    <p><a asp-action="Create">Crear cliente</a> · <a asp-controller="Home" asp-action="Index">Inicio</a></p>
+    <table>
+        <thead><tr><th>Nombre</th><th>Correo</th><th>Ciudad</th><th>Activo</th><th>Acciones</th></tr></thead>
+        <tbody>
+        @foreach (var cliente in Model)
+        {
+            <tr><td>@cliente.Nombres @cliente.Apellidos</td><td>@cliente.Correo</td><td>@cliente.Ciudad</td><td>@(cliente.Activo ? "Yes" : "No")</td><td><a asp-action="Details" asp-route-id="@cliente.Id">Ver</a> <a asp-action="Edit" asp-route-id="@cliente.Id">Editar</a> <a asp-action="Delete" asp-route-id="@cliente.Id">Eliminar</a></td></tr>
+        }
+        </tbody>
+    </table>
+</body></html>

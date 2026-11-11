@@ -131,6 +131,6 @@ docker compose run --rm --no-deps -e PracticeOnly=true -p 127.0.0.1:18083:8080 a
 
 Verificado con build Release (0 advertencias/errores), 15 pruebas (8 HTTP y 7 previas), recorrido en navegador y verificador independiente. Los registros solo duran la sesión; POST no cifra datos y HTTPS sigue siendo necesario para información real.
 
-## Semana 3 en adelante
+## Semana 3 — CRUD de clientes
 
-- [ ] Pendiente de publicación y verificación oficial; no se infiere ni inventa un temario.
+[CRUD web en C# con ASP.NET Core MVC](csharp/semana3/README.md): crear, listar, consultar, editar y eliminar clientes con diez campos de datos.
