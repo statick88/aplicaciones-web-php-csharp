@@ -175,6 +175,7 @@ class ClientesHttpTests(unittest.TestCase):
                 status, body, _ = self.request(path)
                 self.assertEqual(200, status)
                 self.assertIn('alt="UNIANDES', body)
+                self.assertIn('<link rel="icon" type="image/png" href="https://www.uniandes.edu.ec/wp-content/uploads/2020/12/logo-uniandes-inspira-.png"', body)
                 self.assertIn(
                     'src="https://www.uniandes.edu.ec/wp-content/uploads/2020/12/logo-uniandes-inspira-.png"',
                     body,
