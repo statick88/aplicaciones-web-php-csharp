@@ -67,6 +67,10 @@ pero no reemplaza el razonamiento sobre la petición, el programa y la respuesta
 Las respuestas de Semana 1 están en [Respuestas de autoevaluación](../answers.md);
 las de Semana 2 se encuentran al final de cada clase.
 
+## Diagnóstico de Semanas 4 y 5
+
+La [matriz de alineación y pendientes](aplicaciones-web/alineacion-semanas-04-05.md) contrasta las clases aportadas con el repositorio. Semana 4 tiene cobertura parcial; Semana 5 no dispone del recorrido integral Angular/API/MySQL. Este informe complementario no habilita progreso ni acredita lecciones o evaluaciones completadas.
+
 ## Ciclo de estudio
 
 1. **Lee y predice** el resultado antes de ejecutar un ejemplo.

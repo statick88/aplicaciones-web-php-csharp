@@ -131,6 +131,12 @@ docker compose run --rm --no-deps -e PracticeOnly=true -p 127.0.0.1:18083:8080 a
 
 Verificado con build Release (0 advertencias/errores), 15 pruebas (8 HTTP y 7 previas), recorrido en navegador y verificador independiente. Los registros solo duran la sesión; POST no cifra datos y HTTPS sigue siendo necesario para información real.
 
+## Semanas 4 y 5 — alineación pendiente
+
+El cuaderno activo llega a Semana 3. El [diagnóstico de Semanas 4 y 5](ebook/subjects/aplicaciones-web/alineacion-semanas-04-05.md) contrasta las cuatro clases aportadas con las prácticas existentes: Semana 4 tiene cobertura parcial de POO/MVC/EF en C#; Semana 5 aún no dispone del recorrido Angular/API/MySQL, archivos y consultas. No se declaran lecciones completas, paridad PHP/C# ni evaluación parcial aprobada para esas semanas.
+
+El informe se publica como material complementario; `course/catalog.json` conserva `currentWeek: 3`. Publicar el diagnóstico no equivale a completar las prácticas pendientes.
+
 ## Semana 3 — CRUD de clientes
 
 [CRUD web en C# con ASP.NET Core MVC](csharp/semana3/README.md): crear, listar, consultar, editar y eliminar clientes con diez campos de datos.

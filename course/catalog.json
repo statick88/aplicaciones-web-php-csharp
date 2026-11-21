@@ -55,6 +55,7 @@
     }
   ],
   "pages": [
+    {"source": "ebook/subjects/aplicaciones-web/alineacion-semanas-04-05.md", "href": "subjects/aplicaciones-web/alineacion-semanas-04-05.html", "title": "Semanas 4 y 5: alineación y pendientes"},
     {"source": "ebook/index.md", "href": "cuaderno.html", "title": "Cómo usar este cuaderno"},
     {"source": "ebook/answers.md", "href": "answers.html", "title": "Respuestas de autoevaluación"},
     {"source": "ebook/references.md", "href": "references.html", "title": "Fuentes y política de uso"},
