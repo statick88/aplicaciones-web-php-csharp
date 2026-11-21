@@ -9,7 +9,7 @@ ROOT = Path(__file__).resolve().parents[1]
 class WeekFourStudyTests(unittest.TestCase):
     def test_two_active_study_lessons_have_matched_six_question_banks(self):
         catalog = json.loads((ROOT / "course/catalog.json").read_text())
-        self.assertEqual(catalog["currentWeek"], 4)
+        self.assertGreaterEqual(catalog["currentWeek"], 4)
         module = next(item for item in catalog["modules"] if item["week"] == 4)
         self.assertEqual(len(module["units"]), 2)
         bank = json.loads((ROOT / "course/questions-web.json").read_text())

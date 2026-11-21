@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "title": "Cuaderno de estudio y práctica — Ingeniería de Software",
-  "currentWeek": 4,
+  "currentWeek": 5,
   "modules": [
     {
       "id": "week1",
@@ -74,6 +74,28 @@
           "technologies": ["php", "dotnet"]
         }
       ]
+    },
+    {
+      "id": "week5",
+      "title": "Semana 5: mantenimiento de tablas y consultas",
+      "week": 5,
+      "description": "DDL, CRUD, archivos seguros, INSERT y SELECT con PHP/PDO y .NET/EF Core.",
+      "units": [
+        {
+          "id": "week5-tables-files",
+          "title": "Tablas, mantenimiento y archivos",
+          "source": "ebook/subjects/aplicaciones-web/semana-05/01-tablas-archivos.md",
+          "href": "subjects/aplicaciones-web/semana-05/01-tablas-archivos.html",
+          "technologies": ["php", "dotnet", "angular"]
+        },
+        {
+          "id": "week5-insert-select",
+          "title": "INSERT, SELECT y consultas verificables",
+          "source": "ebook/subjects/aplicaciones-web/semana-05/02-insert-select.md",
+          "href": "subjects/aplicaciones-web/semana-05/02-insert-select.html",
+          "technologies": ["php", "dotnet", "angular"]
+        }
+      ]
     }
   ],
   "pages": [
@@ -103,6 +125,8 @@
     {"source": "ebook/subjects/aplicaciones-web/semana-03/01-constantes-operadores-datos.md", "href": "subjects/aplicaciones-web/semana-03/01-constantes-operadores-datos.html", "title": "Semana 3 · Clase 1: constantes, operadores y datos"},
     {"source": "ebook/subjects/aplicaciones-web/semana-03/02-control-funciones.md", "href": "subjects/aplicaciones-web/semana-03/02-control-funciones.html", "title": "Semana 3 · Clase 2: control, ciclos y funciones"},
     {"source": "ebook/subjects/aplicaciones-web/semana-04/01-cadenas-regex-arreglos.md", "href": "subjects/aplicaciones-web/semana-04/01-cadenas-regex-arreglos.html", "title": "Semana 4 · Clase 1: cadenas, expresiones regulares y arreglos"},
-    {"source": "ebook/subjects/aplicaciones-web/semana-04/02-poo-capas-parcial-i.md", "href": "subjects/aplicaciones-web/semana-04/02-poo-capas-parcial-i.html", "title": "Semana 4 · Clase 2: POO, capas y repaso del Parcial I"}
+    {"source": "ebook/subjects/aplicaciones-web/semana-04/02-poo-capas-parcial-i.md", "href": "subjects/aplicaciones-web/semana-04/02-poo-capas-parcial-i.html", "title": "Semana 4 · Clase 2: POO, capas y repaso del Parcial I"},
+    {"source": "ebook/subjects/aplicaciones-web/semana-05/01-tablas-archivos.md", "href": "subjects/aplicaciones-web/semana-05/01-tablas-archivos.html", "title": "Semana 5 · Clase 1: tablas, mantenimiento y archivos"},
+    {"source": "ebook/subjects/aplicaciones-web/semana-05/02-insert-select.md", "href": "subjects/aplicaciones-web/semana-05/02-insert-select.html", "title": "Semana 5 · Clase 2: INSERT, SELECT y consultas verificables"}
   ]
 }

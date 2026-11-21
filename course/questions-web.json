@@ -1238,6 +1238,220 @@
           "level": "comprender"
         }
       ]
+    },
+    {
+      "href": "subjects/aplicaciones-web/semana-05/01-tablas-archivos.html",
+      "questions": [
+        {
+          "id": "web-w5c1-ddl-dml",
+          "prompt": "¿Qué operación pertenece a DDL?",
+          "options": [
+            "ALTER TABLE productos ADD COLUMN descripcion TEXT",
+            "INSERT INTO productos (...) VALUES (...)",
+            "UPDATE productos SET stock = 3"
+          ],
+          "correctIndex": 0,
+          "feedback": [
+            "Correcto: ALTER cambia la estructura de la tabla.",
+            "INSERT agrega una fila; pertenece a DML/CRUD.",
+            "UPDATE modifica datos existentes; no define estructura."
+          ],
+          "objective": "distinguir DDL de DML",
+          "level": "comprender"
+        },
+        {
+          "id": "web-w5c1-constraint",
+          "prompt": "¿Qué regla impide que un producto apunte a una categoría inexistente?",
+          "options": [
+            "DEFAULT",
+            "FOREIGN KEY",
+            "VARCHAR(60)"
+          ],
+          "correctIndex": 1,
+          "feedback": [
+            "DEFAULT aporta un valor si no se envía uno; no relaciona tablas.",
+            "Correcto: una clave foránea exige la fila relacionada.",
+            "VARCHAR limita texto, no comprueba referencias."
+          ],
+          "objective": "relacionar restricciones e integridad",
+          "level": "comprender"
+        },
+        {
+          "id": "web-w5c1-migration",
+          "prompt": "¿Por qué un cambio ALTER TABLE debe registrarse como migración versionada?",
+          "options": [
+            "Para que cada entorno reciba cambios revisables en el mismo orden",
+            "Para evitar toda revisión antes de producción",
+            "Para que Angular aplique la estructura desde el navegador"
+          ],
+          "correctIndex": 0,
+          "feedback": [
+            "Correcto: el historial permite revisar y aplicar el cambio de forma trazable.",
+            "Una migración requiere revisión y un plan de despliegue.",
+            "El cliente no debe modificar el esquema de la base de datos."
+          ],
+          "objective": "explicar el propósito de migraciones",
+          "level": "analizar"
+        },
+        {
+          "id": "web-w5c1-formdata",
+          "prompt": "Al enviar FormData con HttpClient, ¿qué decisión evita romper el límite multipart?",
+          "options": [
+            "Fijar Content-Type: multipart/form-data manualmente",
+            "Dejar que el navegador establezca Content-Type y boundary",
+            "Convertir el archivo a una cadena de consulta"
+          ],
+          "correctIndex": 1,
+          "feedback": [
+            "Al fijarlo manualmente puede faltar el boundary que separa partes.",
+            "Correcto: el navegador serializa FormData y añade su boundary.",
+            "Una cadena de consulta no transporta un archivo multipart apropiadamente."
+          ],
+          "objective": "usar FormData con HttpClient",
+          "level": "aplicar"
+        },
+        {
+          "id": "web-w5c1-upload-controls",
+          "prompt": "¿Qué combinación debe comprobar el servidor antes de aceptar una carga?",
+          "options": [
+            "Solo accept del navegador",
+            "Tamaño, MIME detectado, extensión permitida y autorización",
+            "Solo el nombre original del archivo"
+          ],
+          "correctIndex": 1,
+          "feedback": [
+            "accept guía la interfaz, pero la petición se puede manipular.",
+            "Correcto: los controles se complementan y se hacen del lado servidor.",
+            "El nombre lo controla el cliente y no demuestra el contenido ni el permiso."
+          ],
+          "objective": "identificar controles de carga del servidor",
+          "level": "analizar"
+        },
+        {
+          "id": "web-w5c1-download-auth",
+          "prompt": "Para descargar un adjunto por id, ¿qué secuencia es más segura?",
+          "options": [
+            "Aceptar una ruta enviada por URL y servirla",
+            "Autorizar, buscar metadatos por id y usar el nombre interno almacenado",
+            "Confiar en que el archivo estaba oculto en el formulario"
+          ],
+          "correctIndex": 1,
+          "feedback": [
+            "Una ruta controlada por quien solicita permite recorrer ubicaciones no previstas.",
+            "Correcto: la autorización y el metadato controlado evitan depender de una ruta del cliente.",
+            "Ocultar un campo no aplica control de acceso en el servidor."
+          ],
+          "objective": "razonar sobre descarga autorizada",
+          "level": "analizar"
+        }
+      ]
+    },
+    {
+      "href": "subjects/aplicaciones-web/semana-05/02-insert-select.html",
+      "questions": [
+        {
+          "id": "web-w5c2-pdo-parameters",
+          "prompt": "¿Qué protege una sentencia PDO preparada con valores ligados?",
+          "options": [
+            "Que los valores no alteren la estructura SQL de la consulta",
+            "Que nombres de tabla arbitrarios sean parámetros",
+            "Que toda entrada sea válida para el negocio"
+          ],
+          "correctIndex": 0,
+          "feedback": [
+            "Correcto: consulta y valores viajan separados.",
+            "Los identificadores requieren una lista permitida; no son valores enlazables.",
+            "Los parámetros no sustituyen validación de formato, permisos o reglas."
+          ],
+          "objective": "explicar consultas parametrizadas PDO",
+          "level": "comprender"
+        },
+        {
+          "id": "web-w5c2-ef-core",
+          "prompt": "¿Qué afirmación describe el uso de EF Core al guardar una entidad válida?",
+          "options": [
+            "Permite interpolar entrada en SQL sin riesgo",
+            "El proveedor genera parámetros, pero aún se validan reglas y autorización",
+            "Hace que SQL Server y MySQL sean el mismo proveedor"
+          ],
+          "correctIndex": 1,
+          "feedback": [
+            "Interpolar SQL crudo con entrada no es la práctica descrita.",
+            "Correcto: EF ayuda a parametrizar, no elimina otras responsabilidades.",
+            "Los proveedores pueden generar dialectos y tipos diferentes."
+          ],
+          "objective": "delimitar responsabilidades de EF Core",
+          "level": "comprender"
+        },
+        {
+          "id": "web-w5c2-rollback",
+          "prompt": "Falla el segundo paso de un lote antes de commit. ¿Qué debe lograr rollback?",
+          "options": [
+            "Conservar solo la primera fila porque ya se preparó",
+            "Dejar el lote sin cambios confirmados",
+            "Reintentar indefinidamente sin informar el fallo"
+          ],
+          "correctIndex": 1,
+          "feedback": [
+            "Una transacción busca evitar ese éxito parcial.",
+            "Correcto: revierte los cambios de la transacción no confirmada.",
+            "Un reintento requiere una política y no reemplaza informar y manejar el error."
+          ],
+          "objective": "predecir el efecto de rollback",
+          "level": "aplicar"
+        },
+        {
+          "id": "web-w5c2-join-filter",
+          "prompt": "¿Qué aporta INNER JOIN categorias c ON c.id = p.categoria_id al listado?",
+          "options": [
+            "Relaciona cada producto con su categoría coincidente",
+            "Autoriza automáticamente a cualquier usuario",
+            "Elimina la necesidad de filtrar productos activos"
+          ],
+          "correctIndex": 0,
+          "feedback": [
+            "Correcto: combina filas según la clave relacionada.",
+            "JOIN describe datos; autorización se comprueba aparte.",
+            "El filtro de activos sigue siendo una regla independiente."
+          ],
+          "objective": "interpretar JOIN y responsabilidades",
+          "level": "comprender"
+        },
+        {
+          "id": "web-w5c2-pagination",
+          "prompt": "¿Qué hace determinista una página con LIMIT y OFFSET?",
+          "options": [
+            "Aplicar ORDER BY nombre ASC, id ASC antes de limitar",
+            "Omitir ORDER BY para que MySQL elija",
+            "Usar porPagina sin límite máximo"
+          ],
+          "correctIndex": 0,
+          "feedback": [
+            "Correcto: el segundo campo resuelve empates de nombre antes de paginar.",
+            "Sin orden la secuencia puede variar y producir saltos o repeticiones.",
+            "Un límite máximo evita respuestas excesivas, pero no fija el orden."
+          ],
+          "objective": "diseñar paginación determinista y acotada",
+          "level": "aplicar"
+        },
+        {
+          "id": "web-w5c2-postman-status",
+          "prompt": "En Postman, un POST sin código requerido debe comprobar principalmente que la API responda:",
+          "options": [
+            "201 y un id nuevo",
+            "400 con un error accionable y sin afirmar creación",
+            "200 aunque no se valide el cuerpo"
+          ],
+          "correctIndex": 1,
+          "feedback": [
+            "201 corresponde a una creación válida según el contrato.",
+            "Correcto: el caso inválido comunica la corrección necesaria y no éxito.",
+            "Aceptar sin validar oculta un contrato inválido."
+          ],
+          "objective": "planear una comprobación de estado API",
+          "level": "aplicar"
+        }
+      ]
     }
   ]
 }
