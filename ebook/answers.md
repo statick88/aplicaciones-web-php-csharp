@@ -10,6 +10,8 @@ Para Semana 2, las soluciones están al final de cada clase:
 [tipos y Cliente](subjects/aplicaciones-web/semana-02/01-tipos-cliente.md#s2c1-respuestas)
 y [formularios GET/POST](subjects/aplicaciones-web/semana-02/02-formularios-get-post.md#s2c2-respuestas).
 
+Las autoevaluaciones de las Semanas 3 a 5 muestran retroalimentación al seleccionar una opción: [Semana 3 · Clase 1](subjects/aplicaciones-web/semana-03/01-constantes-operadores-datos.md#s3c1-autoevaluacion), [Clase 2](subjects/aplicaciones-web/semana-03/02-control-funciones.md#s3c2-ejercicios), [Semana 4 · Clase 1](subjects/aplicaciones-web/semana-04/01-cadenas-regex-arreglos.md#s4c1-autoevaluacion), [Clase 2](subjects/aplicaciones-web/semana-04/02-poo-capas-parcial-i.md#s4c2-autoevaluacion), [Semana 5 · Clase 1](subjects/aplicaciones-web/semana-05/01-tablas-archivos.md#s5c1-autoevaluacion) y [Clase 2](subjects/aplicaciones-web/semana-05/02-insert-select.md#s5c2-autoevaluacion). Son apoyo formativo; no prueban que los ejemplos, aplicaciones o una evaluación oficial se hayan ejecutado o aprobado.
+
 
 ## P1: historia y propósito {#p1-respuesta}
 

@@ -6,7 +6,7 @@ Las fuentes editoriales son archivos Markdown editables (`.md`). El sitio estát
 
 1. Edite una página Markdown bajo `ebook/` y conserve sus enlaces, IDs, texto alternativo y bloques `:::` cuando existan.
 2. Al añadir una página, registre su `source`, `href` y título en `course/catalog.json`. `source` usa la ruta `ebook/*.md`; `href` publica la misma ruta sin `ebook/` y con `.html`. La excepción es `ebook/index.md`, publicado como `cuaderno.html`.
-3. Incluya una unidad solo cuando corresponda a una semana confirmada. Las páginas de apoyo y el archivo de otras asignaturas siguen en el catálogo sin inventar semanas futuras.
+3. Incluya una unidad solo cuando corresponda a una semana confirmada y actualice `currentWeek` cuando la cobertura de estudio publicada lo justifique. Distinga esa cobertura de la aceptación de una práctica ejecutable; las páginas de apoyo y el archivo de otras asignaturas siguen en el catálogo sin inventar semanas futuras.
 
 ## Generar el sitio
 

@@ -1,9 +1,6 @@
 # Aplicaciones Web
 
-Esta asignatura reúne las **Semanas 1 y 2**, más el material disponible de la **Semana 3**. Combina teoría, ejemplos
-resueltos, práctica y autoevaluación para preparar la evaluación a partir de las
-fuentes oficiales y de observaciones propias; no sustituye la documentación del
-curso ni registra calificaciones.
+Esta asignatura reúne las **Semanas 1 a 5**. Combina teoría, ejemplos resueltos, práctica de razonamiento y autoevaluación para preparar la evaluación a partir de las fuentes oficiales y de observaciones propias; no sustituye la documentación del curso ni registra calificaciones. Las lecciones de Semanas 4 y 5 son cobertura de estudio: sus ejemplos PHP, C# y Angular no declaran aplicaciones ejecutadas.
 
 ## Cobertura actual
 
@@ -17,6 +14,10 @@ curso ni registra calificaciones.
 | 2 · Clase 2 | Formularios GET/POST, validación y PRG en PHP/ASP.NET Core | [Formularios, GET y POST](aplicaciones-web/semana-02/02-formularios-get-post.md#semana2-clase2-formularios-get-post) |
 | 3 · Clase 1 | Constantes y operadores PHP/C#; ampliación diferenciada PHP/MySQL | [Constantes, operadores y datos](aplicaciones-web/semana-03/01-constantes-operadores-datos.md#semana3-clase1-constantes-operadores) |
 | 3 · Clase 2 | Condicionales, ciclos, parámetros y funciones en PHP/C# | [Control y funciones](aplicaciones-web/semana-03/02-control-funciones.md#semana3-clase2-control-funciones) |
+| 4 · Clase 1 | Cadenas UTF-8, regex, arreglos; contraste PHP, DataAnnotations y LINQ | [Cadenas, regex y arreglos](aplicaciones-web/semana-04/01-cadenas-regex-arreglos.md#semana4-clase1-cadenas) |
+| 4 · Clase 2 | POO, repositorio PDO, capas, MVC/EF y repaso formativo | [POO, capas y repaso del Parcial I](aplicaciones-web/semana-04/02-poo-capas-parcial-i.md#semana4-clase2-poo) |
+| 5 · Clase 1 | DDL/DML, restricciones, migraciones y controles de archivos con Angular | [Tablas, mantenimiento y archivos](aplicaciones-web/semana-05/01-tablas-archivos.md#semana5-clase1-tablas) |
+| 5 · Clase 2 | INSERT/SELECT, transacciones, filtros y paginación en Angular/API | [INSERT, SELECT y consultas verificables](aplicaciones-web/semana-05/02-insert-select.md#semana5-clase2-insert-select) |
 | Consulta transversal | Métodos, datos en DevTools/PHP y estados HTTP | [Tablas de consulta HTTP](aplicaciones-web/consulta-http.md) |
 | Consulta transversal | Métodos HTTP prácticos observados en DevTools | [Laboratorio PHP](aplicaciones-web/laboratorio-http-php.md) |
 
@@ -59,17 +60,20 @@ ampliación explica PHP/MySQL sin atribuirle equivalencia con C#.
 Los ejemplos de esta lectura son cálculos autónomos: no implementan ni acreditan
 la entrega de un CRUD de clientes. El progreso sigue siendo formativo y local.
 
+## Navegación de las Semanas 4 y 5
+
+| Semana | Lecciones y autoevaluación | Límite explícito |
+|---|---|---|
+| 4 | [Clase 1](aplicaciones-web/semana-04/01-cadenas-regex-arreglos.md#semana4-clase1-cadenas) · [Autoevaluación](aplicaciones-web/semana-04/01-cadenas-regex-arreglos.md#s4c1-autoevaluacion) · [Clase 2](aplicaciones-web/semana-04/02-poo-capas-parcial-i.md#semana4-clase2-poo) · [Autoevaluación](aplicaciones-web/semana-04/02-poo-capas-parcial-i.md#s4c2-autoevaluacion) | Ejemplos PHP/C# instructivos; no CRUD, conexión ni Parcial I oficial aprobados. |
+| 5 | [Clase 1](aplicaciones-web/semana-05/01-tablas-archivos.md#semana5-clase1-tablas) · [Autoevaluación](aplicaciones-web/semana-05/01-tablas-archivos.md#s5c1-autoevaluacion) · [Clase 2](aplicaciones-web/semana-05/02-insert-select.md#semana5-clase2-insert-select) · [Autoevaluación](aplicaciones-web/semana-05/02-insert-select.md#s5c2-autoevaluacion) | Explica Angular/API/MySQL, archivos y consultas; no implementa ni prueba ese recorrido. |
+
 ## Alcance de las semanas actuales
 
-El recorrido cubre fundamentos de la web, valores y alcance, y la práctica guiada
-que los conecta. El entorno de desarrollo es opcional: ayuda a observar los ejemplos,
-pero no reemplaza el razonamiento sobre la petición, el programa y la respuesta.
-Las respuestas de Semana 1 están en [Respuestas de autoevaluación](../answers.md);
-las de Semana 2 se encuentran al final de cada clase.
+El recorrido cubre fundamentos de la web, valores y alcance, y la práctica guiada que los conecta. El entorno de desarrollo es opcional: ayuda a observar los ejemplos, pero no reemplaza el razonamiento sobre la petición, el programa y la respuesta. Las respuestas de Semana 1 están en [Respuestas de autoevaluación](../answers.md); las de Semana 2 se encuentran al final de cada clase. Las autoevaluaciones de Semanas 3 a 5 muestran retroalimentación por opción y no certifican ejecución ni calificación.
 
 ## Diagnóstico de Semanas 4 y 5
 
-La [matriz de alineación y pendientes](aplicaciones-web/alineacion-semanas-04-05.md) contrasta las clases aportadas con el repositorio. Semana 4 tiene cobertura parcial; Semana 5 no dispone del recorrido integral Angular/API/MySQL. Este informe complementario no habilita progreso ni acredita lecciones o evaluaciones completadas.
+La [matriz de alineación, lecciones y pendientes](aplicaciones-web/alineacion-semanas-04-05.md) conserva el mapeo entre temas aportados, cobertura de estudio y brechas prácticas. El catálogo llega a la Semana 5 porque las cuatro lecciones están disponibles; esa aceptación editorial no habilita ni acredita las aplicaciones pendientes.
 
 ## Ciclo de estudio
 
@@ -78,5 +82,4 @@ La [matriz de alineación y pendientes](aplicaciones-web/alineacion-semanas-04-0
 3. **Practica y comprueba** con una observación concreta cuando la guía lo proponga.
 4. **Contrasta** el resultado con el ejemplo y continúa con el concepto relacionado.
 
-La cobertura se amplía solo cuando la asignatura avance y existan fuentes oficiales
-verificadas. Esta página delimita las Semanas 1 a 3 disponibles, sin anticipar semanas futuras.
+La cobertura se amplía solo cuando la asignatura avance y existan fuentes oficiales verificadas. Esta página delimita las Semanas 1 a 5 disponibles y distingue el estudio publicado de toda práctica que aún falte implementar.

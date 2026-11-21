@@ -1,22 +1,23 @@
-# Semanas 4 y 5: alineación y pendientes
+# Semanas 4 y 5: alineación, estudio y pendientes
 
-**La cobertura todavía no es completa.** El cuaderno publica lecciones y autoevaluaciones de las Semanas 1 a 3. La Semana 4 tiene coincidencias parciales con prácticas anteriores; la Semana 5 no tiene una implementación integral local. Este informe no es una lección completada ni una evaluación oficial.
+**El estudio está disponible; la práctica ejecutable todavía no es completa.** El cuaderno publica cuatro lecciones y sus autoevaluaciones formativas para las Semanas 4 y 5. Este informe conserva la trazabilidad entre los temas aportados, esas lecciones y las brechas de aplicación. No es una evaluación oficial ni prueba de ejecución local.
 
 ## Cómo interpretar la cobertura
 
-- **Material aportado:** contenido de clase recibido; no demuestra ejecución local.
-- **Parcial:** existe una práctica relacionada, pero no cubre todos los objetivos de la clase.
-- **Pendiente:** falta la lección activa, la práctica correspondiente o evidencia específica de su ejecución.
+- **Material aportado:** temas de clase recibidos; no demuestra ejecución local.
+- **Estudio disponible:** lección, ejemplos instructivos, práctica de razonamiento y autoevaluación publicados.
+- **Práctica parcial:** existe un código relacionado, pero no cubre ni verifica todo el recorrido de la clase.
+- **Pendiente:** aplicación, recorrido o evidencia específica que aún falta.
 
-El contraste usa las transcripciones locales `clase1-semana4.txt`, `clase2-semana4.txt`, `semana5-contenido1.txt` y `semana5-contenido2.txt`. No se afirma un acceso renovado a Blackboard. Los archivos de origen locales no se distribuyen con este informe; los temas relevantes quedan identificados abajo.
+Los temas de origen se conservan en las tablas siguientes sin atribuir un acceso renovado a Blackboard.
 
 ## Semana 4
 
-| Clase | Contenido del material aportado | Cobertura actual | Qué falta para declarar alineación |
+| Clase | Temas del material aportado | Estudio publicado | Brecha práctica pendiente |
 | --- | --- | --- | --- |
-| 1 | Cadenas UTF-8, funciones `mb_*`, expresiones regulares `preg_*`, arreglos y transformaciones; comparación con DataAnnotations y LINQ | Hay ejemplos previos de tipos, cadenas y validación, pero no una lección activa de esta clase | Desarrollar cadenas multibyte, regex y operaciones sobre arreglos con ejemplos, ejercicios y comprobaciones específicas; distinguir PHP de C# |
-| 2 | POO, encapsulación de PHP 8.4, herencia, interfaces, repositorio PDO, inyección de dependencias, capas y excepciones; MVC y EF Core | **Parcial:** C# ya contiene CRUD MVC de clientes, un modelo con anotaciones y persistencia EF Core sobre SQL Server; PHP tiene un Cliente en memoria y un experimento PDO, no una implementación equivalente de toda la clase | Completar el recorrido POO/repositorio/capas y su práctica PHP; explicar las diferencias con C# y verificar los objetivos pendientes |
-| Repaso parcial I | Guía de temas y ejercicios T01–T16/C01 al final de la clase 2 | No hay una evaluación local publicada que cubra esta guía completa | Preparar repaso y autoevaluación diferenciados de la evaluación oficial; no declarar el parcial aprobado |
+| 1 | Cadenas UTF-8, funciones `mb_*`, expresiones regulares `preg_*`, arreglos y transformaciones; comparación con DataAnnotations y LINQ | [Cadenas, expresiones regulares y arreglos](semana-04/01-cadenas-regex-arreglos.md#semana4-clase1-cadenas) cubre esos temas con [autoevaluación](semana-04/01-cadenas-regex-arreglos.md#s4c1-autoevaluacion) y distingue PHP de C#. | No hay una aplicación ejecutada que verifique este conjunto de objetivos. |
+| 2 | POO, encapsulación de PHP 8.4, herencia, interfaces, repositorio PDO, inyección de dependencias, capas y excepciones; MVC y EF Core | [POO, capas y repaso del Parcial I](semana-04/02-poo-capas-parcial-i.md#semana4-clase2-poo) explica el recorrido y ofrece [autoevaluación](semana-04/02-poo-capas-parcial-i.md#s4c2-autoevaluacion). | Falta completar y verificar la práctica PHP de repositorio/capas y cualquier equivalencia integral con C#. |
+| Repaso parcial I | Guía de temas y ejercicios T01–T16/C01 al final de la clase 2 | El repaso guiado y la autoevaluación son de estudio. | No hay evaluación oficial local ni se declara el Parcial I aprobado. |
 
 ### Evidencia local relacionada, no equivalencia completa
 
@@ -28,19 +29,17 @@ El contraste usa las transcripciones locales `clase1-semana4.txt`, `clase2-seman
 
 ## Semana 5
 
-| Clase | Contenido del material aportado | Cobertura actual | Qué falta para declarar alineación |
+| Clase | Temas del material aportado | Estudio publicado | Brecha práctica pendiente |
 | --- | --- | --- | --- |
-| 1 · Tablas | CRUD, DDL/DML, restricciones, `ALTER TABLE` y migraciones | Hay persistencia experimental y migraciones EF Core de otras prácticas; no constituyen el recorrido MySQL completo | Lección y laboratorio de tablas/restricciones/migraciones con comprobaciones sobre datos de prueba aislados |
-| 1 · Archivos | Carga Angular hacia PHP/.NET; validación del servidor de MIME, tamaño y extensión; control de acceso | Sin práctica integral de carga/descarga autorizada ni frontend Angular identificado | Implementar y probar el flujo completo antes de declararlo disponible; no confundir un ejemplo de clase con una carga segura ya verificada |
-| 2 · INSERT | Angular → API → MySQL, parámetros preparados/EF y transacciones | El CRUD MVC existente usa SQL Server y formularios Razor, no este recorrido | Preparar API y cliente correspondientes, inserciones parametrizadas y comprobaciones de transacciones |
-| 2 · SELECT | Consultas, JOIN, filtros, paginación y comprobaciones con Postman | Sin evidencia local del conjunto de objetivos de esta clase | Desarrollar consultas y recorrido de pruebas del contrato de la API, incluidos filtros y paginación |
+| 1 · Tablas | CRUD, DDL/DML, restricciones, `ALTER TABLE` y migraciones | [Tablas, mantenimiento y archivos](semana-05/01-tablas-archivos.md#semana5-clase1-tablas) explica DDL, DML, restricciones y migraciones, con [autoevaluación](semana-05/01-tablas-archivos.md#s5c1-autoevaluacion). | Falta laboratorio MySQL con datos aislados y comprobaciones reales de tablas, restricciones y migraciones. |
+| 1 · Archivos | Carga Angular hacia PHP/.NET; validación del servidor de MIME, tamaño y extensión; control de acceso | La misma lección describe `FormData`, el algoritmo de recepción y el contraste PHP/.NET/Angular. | No hay carga/descarga autorizada, frontend Angular ni endpoint implementados y probados. |
+| 2 · INSERT | Angular → API → MySQL, parámetros preparados/EF y transacciones | [INSERT, SELECT y consultas verificables](semana-05/02-insert-select.md#semana5-clase2-insert-select) cubre parámetros, transacciones y su [autoevaluación](semana-05/02-insert-select.md#s5c2-autoevaluacion). | Falta API y cliente Angular conectados a MySQL, con inserciones y transacciones verificadas. |
+| 2 · SELECT | Consultas, JOIN, filtros, paginación y comprobaciones con Postman | La misma lección explica JOIN, filtros, paginación y un plan de comprobación. | Faltan consultas y pruebas del contrato API en ejecución, incluidos filtros y paginación. |
 
-## Criterio para ampliar el catálogo
+## Criterio de aceptación separado
 
-1. Crear las dos lecciones de cada semana a partir de sus fuentes, con diferencias PHP/C# explícitas.
-2. Incorporar ejemplos y autoevaluaciones formativas que cubran los objetivos de cada clase.
-3. Separar lectura conceptual de prácticas ejecutables y registrar qué se ejecutó realmente.
-4. Verificar las prácticas en entornos aislados y construir/validar el sitio.
-5. Solo entonces registrar los módulos semanales y avanzar `currentWeek` en `course/catalog.json`.
+1. **Estudio:** una semana entra al catálogo cuando sus lecciones, ejercicios y autoevaluaciones formativas trazan los temas confirmados; por ello `currentWeek` ya es 5.
+2. **Aplicación:** una práctica se acepta solo tras implementar y verificar su flujo en un entorno aislado, distinguiendo qué se ejecutó realmente.
+3. La aceptación de estudio no afirma paridad PHP/C#, ejemplos ejecutados, datos modificados ni una evaluación oficial aprobada.
 
-Esta actualización publica el **diagnóstico**, no implementa las aplicaciones pendientes. GitHub Pages sirve HTML estático: no ejecuta PHP, ASP.NET Core, bases de datos ni cargas de archivos. El avance guardado en el navegador sigue correspondiendo exclusivamente a las evaluaciones disponibles de las Semanas 1 a 3.
+Esta actualización publica las **lecciones y el diagnóstico**; no implementa las aplicaciones pendientes. GitHub Pages sirve archivos estáticos: no aloja backends PHP/ASP.NET Core, bases de datos ni recepción de archivos. Puede servir un frontend Angular compilado, pero este cuaderno no despliega esa aplicación; solo explica sus fragmentos de estudio. El avance guardado en el navegador corresponde a las autoevaluaciones disponibles de las Semanas 1 a 5 y sigue siendo formativo.

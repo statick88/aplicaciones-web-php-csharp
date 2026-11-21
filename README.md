@@ -48,7 +48,7 @@ python3 -m unittest discover -s tests -p 'test_*.py'
 
 ## Cuaderno de estudio y práctica
 
-El cuaderno en [`ebook/`](ebook/) crece por asignatura y semana para preparar evaluaciones con teoría, ejemplos resueltos, práctica y autoevaluación. La edición local incluye Aplicaciones Web con PHP y C#, Semanas 1 a 3 (ambas clases, ejemplos, ejercicios y respuestas; en Semana 3 se distingue la comparación PHP/C# de la ampliación conceptual PHP/MySQL). Se publica como HTML estático en [GitHub Pages](https://statick88.github.io/aplicaciones-web-php-csharp/).
+El cuaderno en [`ebook/`](ebook/) crece por asignatura y semana para preparar evaluaciones con teoría, ejemplos resueltos, práctica y autoevaluación. La edición local incluye Aplicaciones Web con PHP y C#, Semanas 1 a 5: las Semanas 1 a 3 conservan sus ejemplos y alcances previos (en Semana 3 se distingue la comparación PHP/C# de la ampliación conceptual PHP/MySQL); las Semanas 4 y 5 añaden cuatro lecciones de estudio con ejercicios y autoevaluaciones. Se publica como HTML estático en [GitHub Pages](https://statick88.github.io/aplicaciones-web-php-csharp/).
 
 Para generar el sitio sin Quarto:
 
@@ -131,11 +131,11 @@ docker compose run --rm --no-deps -e PracticeOnly=true -p 127.0.0.1:18083:8080 a
 
 Verificado con build Release (0 advertencias/errores), 15 pruebas (8 HTTP y 7 previas), recorrido en navegador y verificador independiente. Los registros solo duran la sesión; POST no cifra datos y HTTPS sigue siendo necesario para información real.
 
-## Semanas 4 y 5 — alineación pendiente
+## Semanas 4 y 5 — estudio disponible; práctica pendiente
 
-El cuaderno activo llega a Semana 3. El [diagnóstico de Semanas 4 y 5](ebook/subjects/aplicaciones-web/alineacion-semanas-04-05.md) contrasta las cuatro clases aportadas con las prácticas existentes: Semana 4 tiene cobertura parcial de POO/MVC/EF en C#; Semana 5 aún no dispone del recorrido Angular/API/MySQL, archivos y consultas. No se declaran lecciones completas, paridad PHP/C# ni evaluación parcial aprobada para esas semanas.
+El cuaderno activo llega a Semana 5 (`course/catalog.json` conserva `currentWeek: 5`). Las cuatro clases de estudio ya publicadas explican PHP, C# y, en Semana 5, el papel de Angular: [cadenas, regex y arreglos](ebook/subjects/aplicaciones-web/semana-04/01-cadenas-regex-arreglos.md#semana4-clase1-cadenas), [POO, capas y repaso del Parcial I](ebook/subjects/aplicaciones-web/semana-04/02-poo-capas-parcial-i.md#semana4-clase2-poo), [tablas, mantenimiento y archivos](ebook/subjects/aplicaciones-web/semana-05/01-tablas-archivos.md#semana5-clase1-tablas) e [INSERT, SELECT y consultas verificables](ebook/subjects/aplicaciones-web/semana-05/02-insert-select.md#semana5-clase2-insert-select). Cada una contiene práctica de razonamiento y autoevaluación formativa.
 
-El informe se publica como material complementario; `course/catalog.json` conserva `currentWeek: 3`. Publicar el diagnóstico no equivale a completar las prácticas pendientes.
+El [diagnóstico de Semanas 4 y 5](ebook/subjects/aplicaciones-web/alineacion-semanas-04-05.md) mantiene la trazabilidad entre temas fuente, lecciones y brechas. La aceptación de estudio no es aceptación de aplicaciones: siguen pendientes el flujo Angular/API/MySQL, la carga y descarga autorizada de archivos, migraciones y consultas en un entorno real. No se declara paridad PHP/C#, ejemplos ejecutados, ni Parcial I aprobado.
 
 ## Semana 3 — CRUD de clientes
 

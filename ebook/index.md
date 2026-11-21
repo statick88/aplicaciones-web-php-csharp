@@ -21,9 +21,7 @@ un índice independiente con su propia cobertura y ruta de lectura:
 - [Inteligencia de Negocios](subjects/inteligencia-negocios.md)
 - [Proyectos Informáticos](subjects/proyectos-informaticos.md)
 
-Aplicaciones Web y Diseño y Arquitectura de Software reúnen las Semanas 1 y 2
-con capítulos de estudio redactados en esta edición. Los demás índices declaran la
-evidencia disponible sin mezclar respuestas ni adelantar contenido por inferencia.
+Aplicaciones Web reúne las Semanas 1 a 5 con lecciones de estudio redactadas en esta edición; las de Semanas 4 y 5 delimitan explícitamente los ejemplos conceptuales frente a las aplicaciones aún pendientes. Diseño y Arquitectura de Software reúne las Semanas 1 y 2. Los demás índices declaran la evidencia disponible sin mezclar respuestas ni adelantar contenido por inferencia.
 
 ## Un ciclo de práctica
 
@@ -54,11 +52,7 @@ reproduce exportaciones privadas de Blackboard.
 
 ## Autoevaluación formativa
 
-Las autoevaluaciones usan opción múltiple y muestran retroalimentación por cada
-selección. El progreso local cuenta respuestas y aciertos por separado; no es una
-calificación, no usa cuentas ni certifica dominio. Las [respuestas de referencia](answers.md)
-amplían algunos conceptos sin pedir una justificación escrita. En Arquitectura, las
-respuestas están junto a la práctica integrada de Semana 1.
+Las autoevaluaciones usan opción múltiple y muestran retroalimentación por cada selección. Aplicaciones Web reúne 73 preguntas activas; el banco combinado del cuaderno reúne 111. El progreso local cuenta respuestas y aciertos por separado; no es una calificación, no usa cuentas ni certifica dominio. Las [respuestas de referencia](answers.md) amplían algunos conceptos sin pedir una justificación escrita. En Arquitectura, las respuestas están junto a la práctica integrada de Semana 1.
 
 ## Alcance de esta edición
 
