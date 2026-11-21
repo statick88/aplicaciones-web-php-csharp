@@ -1024,6 +1024,220 @@
           "level": "analizar"
         }
       ]
+    },
+    {
+      "href": "subjects/aplicaciones-web/semana-04/01-cadenas-regex-arreglos.html",
+      "questions": [
+        {
+          "id": "web-w4c1-utf8",
+          "prompt": "Para contar caracteres de \"año\" en UTF-8, ¿qué función expresa la intención correcta?",
+          "options": [
+            "strlen($texto)",
+            "mb_strlen($texto, 'UTF-8')",
+            "count($texto)"
+          ],
+          "correctIndex": 1,
+          "feedback": [
+            "strlen mide bytes y puede diferir con ñ.",
+            "Correcto: cuenta caracteres según la codificación indicada.",
+            "count no mide caracteres de una cadena."
+          ],
+          "objective": "distinguir bytes y caracteres UTF-8",
+          "level": "aplicar"
+        },
+        {
+          "id": "web-w4c1-regex-result",
+          "prompt": "¿Qué significa preg_match($patron, $texto) === 1?",
+          "options": [
+            "El texto coincide con el patrón",
+            "El patrón produjo un error",
+            "El texto se guardó de forma segura"
+          ],
+          "correctIndex": 0,
+          "feedback": [
+            "Correcto: 1 indica una coincidencia.",
+            "Un patrón defectuoso devuelve false, no 1.",
+            "Una coincidencia de formato no guarda ni protege datos."
+          ],
+          "objective": "interpretar resultados de expresiones regulares",
+          "level": "comprender"
+        },
+        {
+          "id": "web-w4c1-regex-failure",
+          "prompt": "Una llamada a preg_match devuelve false. ¿Qué conclusión es responsable?",
+          "options": [
+            "La entrada es válida",
+            "Debe revisarse el patrón o su error antes de aceptar datos",
+            "El resultado equivale a no coincidencia normal"
+          ],
+          "correctIndex": 1,
+          "feedback": [
+            "false no confirma validez.",
+            "Correcto: false señala un fallo de evaluación que se distingue de 0.",
+            "0 es no coincidencia; false es un error del patrón/evaluación."
+          ],
+          "objective": "distinguir fallos y no coincidencias regex",
+          "level": "analizar"
+        },
+        {
+          "id": "web-w4c1-array-transform",
+          "prompt": "¿Qué transformación crea un nuevo arreglo aplicando una función a cada elemento?",
+          "options": [
+            "array_map",
+            "array_column",
+            "array_sum"
+          ],
+          "correctIndex": 0,
+          "feedback": [
+            "Correcto: array_map aplica la transformación por elemento.",
+            "array_column extrae una columna de filas.",
+            "array_sum reduce valores numéricos a un total."
+          ],
+          "objective": "seleccionar transformaciones de arreglos",
+          "level": "aplicar"
+        },
+        {
+          "id": "web-w4c1-dataannotations",
+          "prompt": "¿Qué rol tiene una DataAnnotation como [Required] en un modelo ASP.NET Core?",
+          "options": [
+            "Describe una regla que ModelState puede validar",
+            "Parametriza automáticamente una consulta SQL",
+            "Escapa HTML en toda vista"
+          ],
+          "correctIndex": 0,
+          "feedback": [
+            "Correcto: participa en la validación del modelo en el servidor.",
+            "La parametrización SQL es una responsabilidad distinta.",
+            "El escape depende del contexto de salida."
+          ],
+          "objective": "comparar validación PHP y DataAnnotations",
+          "level": "comprender"
+        },
+        {
+          "id": "web-w4c1-linq",
+          "prompt": "¿Qué operación LINQ corresponde mejor a seleccionar pedidos con total >= 20?",
+          "options": [
+            "Select",
+            "Where",
+            "OrderBy"
+          ],
+          "correctIndex": 1,
+          "feedback": [
+            "Select proyecta o transforma elementos.",
+            "Correcto: Where filtra por un predicado.",
+            "OrderBy ordena; no decide qué filas quedan."
+          ],
+          "objective": "relacionar transformaciones PHP y LINQ",
+          "level": "aplicar"
+        }
+      ]
+    },
+    {
+      "href": "subjects/aplicaciones-web/semana-04/02-poo-capas-parcial-i.html",
+      "questions": [
+        {
+          "id": "web-w4c2-encapsulation",
+          "prompt": "¿Qué protege mejor el encapsulamiento del stock?",
+          "options": [
+            "Un método que valida antes de restar",
+            "Una propiedad pública reasignable",
+            "Mostrar el stock solo en HTML"
+          ],
+          "correctIndex": 0,
+          "feedback": [
+            "Correcto: la regla se aplica antes de cambiar el estado.",
+            "Permite cambios que podrían violar el invariante.",
+            "La presentación no protege el estado interno."
+          ],
+          "objective": "aplicar encapsulamiento",
+          "level": "aplicar"
+        },
+        {
+          "id": "web-w4c2-php84",
+          "prompt": "¿Qué cautela corresponde a property hooks de PHP 8.4?",
+          "options": [
+            "Funcionan en cualquier versión de PHP",
+            "Exigen confirmar versión y evitar reglas confusas o recursivas",
+            "Reemplazan toda validación de negocio"
+          ],
+          "correctIndex": 1,
+          "feedback": [
+            "Son una característica introducida en PHP 8.4.",
+            "Correcto: la versión y el diseño del hook importan.",
+            "Una propiedad no absorbe todas las reglas de la aplicación."
+          ],
+          "objective": "reconocer alcance de PHP 8.4",
+          "level": "analizar"
+        },
+        {
+          "id": "web-w4c2-interface",
+          "prompt": "¿Qué expresa una interfaz como Exportable?",
+          "options": [
+            "Un contrato de métodos para implementaciones distintas",
+            "Una tabla SQL obligatoria",
+            "Una clase que siempre debe heredar de otra"
+          ],
+          "correctIndex": 0,
+          "feedback": [
+            "Correcto: define lo que puede pedirse a una implementación.",
+            "Una interfaz no crea una tabla.",
+            "La interfaz no impone esa jerarquía de herencia."
+          ],
+          "objective": "distinguir interfaces y herencia",
+          "level": "comprender"
+        },
+        {
+          "id": "web-w4c2-pdo-repository",
+          "prompt": "¿Por qué recibir PDO en el constructor de un repositorio?",
+          "options": [
+            "Para concatenar entrada en SQL",
+            "Para inyectar la dependencia y separar creación de uso",
+            "Para evitar validar parámetros"
+          ],
+          "correctIndex": 1,
+          "feedback": [
+            "Concatenar entrada no es una práctica segura.",
+            "Correcto: permite proveer la dependencia desde afuera.",
+            "La DI no reemplaza validación ni sentencias preparadas."
+          ],
+          "objective": "explicar repositorio PDO e inyección de dependencias",
+          "level": "comprender"
+        },
+        {
+          "id": "web-w4c2-layers-exceptions",
+          "prompt": "Ante una excepción técnica de datos, ¿qué separación es adecuada?",
+          "options": [
+            "Mostrar traza y consulta al usuario",
+            "Fingir éxito para no interrumpir",
+            "Comunicar un mensaje útil y conservar detalle para diagnóstico controlado"
+          ],
+          "correctIndex": 2,
+          "feedback": [
+            "Puede exponer detalles internos.",
+            "Oculta evidencia y deja el estado incierto.",
+            "Correcto: presentación y diagnóstico tienen públicos distintos."
+          ],
+          "objective": "organizar capas y manejo de excepciones",
+          "level": "analizar"
+        },
+        {
+          "id": "web-w4c2-mvc-ef",
+          "prompt": "¿Qué afirmación sobre MVC y Entity Framework es correcta?",
+          "options": [
+            "EF elimina autorización y reglas de negocio",
+            "MVC coordina presentación y EF trabaja con entidades mediante contexto",
+            "Usarlos prueba que un CRUD fue ejecutado"
+          ],
+          "correctIndex": 1,
+          "feedback": [
+            "Las decisiones de seguridad y negocio siguen siendo necesarias.",
+            "Correcto: describe sus responsabilidades sin prometer más.",
+            "La estructura explicada no es evidencia de ejecución."
+          ],
+          "objective": "distinguir MVC y Entity Framework",
+          "level": "comprender"
+        }
+      ]
     }
   ]
 }

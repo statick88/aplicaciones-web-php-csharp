@@ -11,7 +11,7 @@ class WeekThreeStudyTests(unittest.TestCase):
         catalog = json.loads((ROOT / "course/catalog.json").read_text())
         module = next((item for item in catalog["modules"] if item["week"] == 3), None)
         self.assertIsNotNone(module, "Week 3 must be an active study module")
-        self.assertEqual(catalog["currentWeek"], 3)
+        self.assertEqual(catalog["currentWeek"], 4)
         href = f"subjects/aplicaciones-web/semana-03/{filename}.html"
         self.assertIn(href, {unit["href"] for unit in module["units"]})
         page = next(item for item in catalog["pages"] if item["href"] == href)
@@ -47,7 +47,7 @@ class WeekThreeStudyTests(unittest.TestCase):
                  for name in ("questions-web.json", "questions-architecture.json")]
         active_questions = [question for bank in banks for page in bank["pages"]
                             if page["href"] in active for question in page["questions"]]
-        self.assertEqual(len(active_questions), 49)
+        self.assertEqual(len(active_questions), 61)
         self.assertTrue(all(question["id"].startswith("web-") for question in active_questions))
 
 

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "title": "Cuaderno de estudio y práctica — Ingeniería de Software",
-  "currentWeek": 3,
+  "currentWeek": 4,
   "modules": [
     {
       "id": "week1",
@@ -52,6 +52,28 @@
           ]
         }
       ]
+    },
+    {
+      "id": "week4",
+      "title": "Semana 4: cadenas, arreglos y POO",
+      "week": 4,
+      "description": "Cadenas UTF-8, expresiones regulares, arreglos, POO y arquitectura en capas.",
+      "units": [
+        {
+          "id": "week4-strings-regex-arrays",
+          "title": "Cadenas, expresiones regulares y arreglos",
+          "source": "ebook/subjects/aplicaciones-web/semana-04/01-cadenas-regex-arreglos.md",
+          "href": "subjects/aplicaciones-web/semana-04/01-cadenas-regex-arreglos.html",
+          "technologies": ["php", "dotnet"]
+        },
+        {
+          "id": "week4-oop-layers-partial",
+          "title": "POO, capas y repaso del Parcial I",
+          "source": "ebook/subjects/aplicaciones-web/semana-04/02-poo-capas-parcial-i.md",
+          "href": "subjects/aplicaciones-web/semana-04/02-poo-capas-parcial-i.html",
+          "technologies": ["php", "dotnet"]
+        }
+      ]
     }
   ],
   "pages": [
@@ -79,6 +101,8 @@
     {"source": "ebook/subjects/inteligencia-negocios.md", "href": "subjects/inteligencia-negocios.html", "title": "Inteligencia de Negocios"},
     {"source": "ebook/subjects/proyectos-informaticos.md", "href": "subjects/proyectos-informaticos.html", "title": "Proyectos Informáticos"},
     {"source": "ebook/subjects/aplicaciones-web/semana-03/01-constantes-operadores-datos.md", "href": "subjects/aplicaciones-web/semana-03/01-constantes-operadores-datos.html", "title": "Semana 3 · Clase 1: constantes, operadores y datos"},
-    {"source": "ebook/subjects/aplicaciones-web/semana-03/02-control-funciones.md", "href": "subjects/aplicaciones-web/semana-03/02-control-funciones.html", "title": "Semana 3 · Clase 2: control, ciclos y funciones"}
+    {"source": "ebook/subjects/aplicaciones-web/semana-03/02-control-funciones.md", "href": "subjects/aplicaciones-web/semana-03/02-control-funciones.html", "title": "Semana 3 · Clase 2: control, ciclos y funciones"},
+    {"source": "ebook/subjects/aplicaciones-web/semana-04/01-cadenas-regex-arreglos.md", "href": "subjects/aplicaciones-web/semana-04/01-cadenas-regex-arreglos.html", "title": "Semana 4 · Clase 1: cadenas, expresiones regulares y arreglos"},
+    {"source": "ebook/subjects/aplicaciones-web/semana-04/02-poo-capas-parcial-i.md", "href": "subjects/aplicaciones-web/semana-04/02-poo-capas-parcial-i.html", "title": "Semana 4 · Clase 2: POO, capas y repaso del Parcial I"}
   ]
 }
